@@ -1,0 +1,227 @@
+[{
+  "type": "constructor",
+  "stateMutability": "nonpayable",
+  "inputs": []
+}, {
+  "type": "event",
+  "name": "AuctionCreated",
+  "inputs": [{
+    "type": "uint256",
+    "name": "tokenClassAuctionID",
+    "internalType": "uint256",
+    "indexed": true
+  }, {
+    "type": "uint256",
+    "name": "timestamp",
+    "internalType": "uint256",
+    "indexed": false
+  }],
+  "anonymous": false
+}, {
+  "type": "event",
+  "name": "NFTContractSet",
+  "inputs": [{
+    "type": "address",
+    "name": "newNFTContract",
+    "internalType": "address",
+    "indexed": true
+  }, {
+    "type": "address",
+    "name": "oldNFTContract",
+    "internalType": "address",
+    "indexed": true
+  }],
+  "anonymous": false
+}, {
+  "type": "event",
+  "name": "OwnershipTransferred",
+  "inputs": [{
+    "type": "address",
+    "name": "previousOwner",
+    "internalType": "address",
+    "indexed": true
+  }, {
+    "type": "address",
+    "name": "newOwner",
+    "internalType": "address",
+    "indexed": true
+  }],
+  "anonymous": false
+}, {
+  "type": "event",
+  "name": "RevenueWithdrawal",
+  "inputs": [{
+    "type": "uint256",
+    "name": "amount",
+    "internalType": "uint256",
+    "indexed": false
+  }],
+  "anonymous": false
+}, {
+  "type": "event",
+  "name": "TokenSold",
+  "inputs": [{
+    "type": "uint256",
+    "name": "tokenID",
+    "internalType": "uint256",
+    "indexed": true
+  }, {
+    "type": "uint256",
+    "name": "tokenClassID",
+    "internalType": "uint256",
+    "indexed": true
+  }, {
+    "type": "address",
+    "name": "buyer",
+    "internalType": "address",
+    "indexed": true
+  }],
+  "anonymous": false
+}, {
+  "type": "function",
+  "stateMutability": "view",
+  "outputs": [{
+    "type": "bool",
+    "name": "",
+    "internalType": "bool"
+  }],
+  "name": "active",
+  "inputs": []
+}, {
+  "type": "function",
+  "stateMutability": "view",
+  "outputs": [{
+    "type": "uint256",
+    "name": "amount_sold",
+    "internalType": "uint256"
+  }, {
+    "type": "uint256",
+    "name": "max_supply",
+    "internalType": "uint256"
+  }, {
+    "type": "uint256",
+    "name": "start_timestamp",
+    "internalType": "uint256"
+  }, {
+    "type": "uint256",
+    "name": "priceInWei",
+    "internalType": "uint256"
+  }],
+  "name": "auctions",
+  "inputs": [{
+    "type": "uint256",
+    "name": "",
+    "internalType": "uint256"
+  }]
+}, {
+  "type": "function",
+  "stateMutability": "payable",
+  "outputs": [],
+  "name": "buyNFT",
+  "inputs": [{
+    "type": "uint256",
+    "name": "_classID",
+    "internalType": "uint256"
+  }]
+}, {
+  "type": "function",
+  "stateMutability": "nonpayable",
+  "outputs": [],
+  "name": "createNFTAuction",
+  "inputs": [{
+    "type": "uint256",
+    "name": "_classID",
+    "internalType": "uint256"
+  }, {
+    "type": "uint256",
+    "name": "_start_timestamp",
+    "internalType": "uint256"
+  }, {
+    "type": "uint256",
+    "name": "_priceInWei",
+    "internalType": "uint256"
+  }, {
+    "type": "uint256",
+    "name": "_max_supply",
+    "internalType": "uint256"
+  }]
+}, {
+  "type": "function",
+  "stateMutability": "view",
+  "outputs": [{
+    "type": "address",
+    "name": "",
+    "internalType": "address"
+  }],
+  "name": "nft_contract",
+  "inputs": []
+}, {
+  "type": "function",
+  "stateMutability": "view",
+  "outputs": [{
+    "type": "address",
+    "name": "",
+    "internalType": "address"
+  }],
+  "name": "owner",
+  "inputs": []
+}, {
+  "type": "function",
+  "stateMutability": "view",
+  "outputs": [{
+    "type": "address",
+    "name": "",
+    "internalType": "address payable"
+  }],
+  "name": "revenue",
+  "inputs": []
+}, {
+  "type": "function",
+  "stateMutability": "nonpayable",
+  "outputs": [],
+  "name": "setActive",
+  "inputs": [{
+    "type": "bool",
+    "name": "_active",
+    "internalType": "bool"
+  }]
+}, {
+  "type": "function",
+  "stateMutability": "nonpayable",
+  "outputs": [],
+  "name": "setNFTContract",
+  "inputs": [{
+    "type": "address",
+    "name": "_nftContract",
+    "internalType": "address"
+  }]
+}, {
+  "type": "function",
+  "stateMutability": "nonpayable",
+  "outputs": [],
+  "name": "setRevenueAddress",
+  "inputs": [{
+    "type": "address",
+    "name": "_revenue_address",
+    "internalType": "address payable"
+  }]
+}, {
+  "type": "function",
+  "stateMutability": "nonpayable",
+  "outputs": [],
+  "name": "transferOwnership",
+  "inputs": [{
+    "type": "address",
+    "name": "newOwner",
+    "internalType": "address"
+  }]
+}, {
+  "type": "function",
+  "stateMutability": "nonpayable",
+  "outputs": [],
+  "name": "withdrawRevenue",
+  "inputs": []
+}, {
+  "type": "receive",
+  "stateMutability": "payable"
+}]

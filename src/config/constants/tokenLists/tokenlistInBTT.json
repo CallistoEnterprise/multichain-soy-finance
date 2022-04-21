@@ -1,0 +1,46 @@
+{
+  "name": "SoyFinance Default List in Bittorent chain",
+  "timestamp": "2021-10-20T09:56:23Z",
+  "version": {
+    "major": 1,
+    "minor": 1,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "https://app.soy.finance/images/networks/btt.png",
+  "keywords": ["soyfinance", "Bittorent"],
+  "tokens": [
+    {
+      "name": "Wrapped BTT",
+      "symbol": "WBTT",
+      "address": "0x23181F21DEa5936e24163FFABa4Ea3B316B57f3C",
+      "chainId": 199,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0x23181F21DEa5936e24163FFABa4Ea3B316B57f3C.png"
+    },
+    {
+      "name": "Metronotes",
+      "symbol": "XMN",
+      "address": "0x5d9a3948a688aa40b5F2e1Ab58B80872FfF038A7",
+      "chainId": 199,
+      "decimals": 9,
+      "logoURI": "https://app.soy.finance/images/coins/0x5d9a3948a688aa40b5F2e1Ab58B80872FfF038A7.png"
+    },
+    {
+      "name": "Tether USD_TRON",
+      "symbol": "USDT_t",
+      "address": "0xdB28719F7f938507dBfe4f0eAe55668903D34a15",
+      "chainId": 199,
+      "decimals": 6,
+      "logoURI": "https://app.soy.finance/images/coins/0xdB28719F7f938507dBfe4f0eAe55668903D34a15.png"
+    },
+    {
+      "name": "TRON",
+      "symbol": "TRX",
+      "address": "0xEdf53026aeA60f8F75FcA25f8830b7e2d6200662",
+      "chainId": 199,
+      "decimals": 6,
+      "logoURI": "https://app.soy.finance/images/coins/0xEdf53026aeA60f8F75FcA25f8830b7e2d6200662.png"
+    }
+  ]
+}
