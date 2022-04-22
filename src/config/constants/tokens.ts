@@ -19,7 +19,7 @@ export const SOY: { [chainId: number]: Token } = {
 
 export const WCLO = new Token(ChainId.MAINNET, '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a', 18, 'WCLO', 'Wrapped CLO')
 export const BUSDT = new Token(ChainId.MAINNET, '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4', 18, 'BUSDT', 'Tether USD')
-export const WBTT = new Token(ChainId.BTTMAINNET, '0x23181f21dea5936e24163ffaba4ea3b316b57f3c', 18, 'WBTT', 'Wrapped BTT')
+export const WBTT = new Token(ChainId.BTTMAINNET, '0x23181F21DEa5936e24163FFABa4Ea3B316B57f3C', 18, 'WBTT', 'Wrapped BTT')
 
 export const ETH = new Token(
   ChainId.MAINNET,

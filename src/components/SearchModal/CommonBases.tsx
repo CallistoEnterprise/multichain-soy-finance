@@ -31,6 +31,11 @@ const BaseWrapper = styled.div<{ disable?: boolean }>`
   opacity: ${({ disable }) => disable && '0.4'};
 `
 
+const symbol = {
+  820: 'CLO',
+  199: 'BTT',
+}
+
 export default function CommonBases({
   chainId,
   onSelect,
@@ -41,6 +46,7 @@ export default function CommonBases({
   onSelect: (currency: Currency) => void
 }) {
   const { t } = useTranslation()
+
   return (
     <AutoColumn gap="md">
       <AutoRow>
@@ -57,7 +63,7 @@ export default function CommonBases({
           disable={selectedCurrency === ether[chainId]}
         >
           <CurrencyLogo currency={ether[chainId]} style={{ marginRight: 8 }} />
-          <Text>CLO</Text>
+          <Text>{symbol[chainId]}</Text>
         </BaseWrapper>
         {(chainId ? SUGGESTED_BASES[chainId] : []).map((token: Token) => {
           const selected = selectedCurrency instanceof Token && selectedCurrency.address === token.address

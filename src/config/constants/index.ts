@@ -4,7 +4,7 @@ import { BUSDT, SOY, WCLO, ETH, WBTT } from './tokens'
 export const ROUTER_ADDRESS = {
   820: '0xeB5B468fAacC6bBdc14c4aacF0eec38ABCCC13e7',
   20729: '0xdbe46b17FFd35D6865b69F9398AC5454389BF38c',
-  199: '0x8cb2e43e5aeb329de592f7e49b6c454649b61929'
+  199: '0x8Cb2e43e5AEB329de592F7e49B6c454649b61929'
 }
 
 // a list of tokens by chain
@@ -22,7 +22,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.BSC]: [WETH[ChainId.BSC]],
   [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
   [ChainId.ETCCLASSICMAINNET]: [WETH[ChainId.ETCCLASSICMAINNET]],
-  [ChainId.BTTMAINNET]: [WETH[ChainId.BTTMAINNET]]
+  [ChainId.BTTMAINNET]: []
 }
 
 /**
