@@ -68,7 +68,7 @@ export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.BSC]: [WETH[ChainId.BSC]],
   [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
   [ChainId.ETCCLASSICMAINNET]: [WETH[ChainId.ETCCLASSICMAINNET]],
-  [ChainId.BTTMAINNET]: [WETH[ChainId.BTTMAINNET]]
+  [ChainId.BTTMAINNET]: []
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
