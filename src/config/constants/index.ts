@@ -1,5 +1,5 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@soy-libs/sdk-multichain'
-import { BUSDT, SOY, WCLO, ETH, WBTT } from './tokens'
+import { BUSDT, SOY, WCLO, ETH, CCCLO } from './tokens'
 
 export const ROUTER_ADDRESS = {
   820: '0xeB5B468fAacC6bBdc14c4aacF0eec38ABCCC13e7',
@@ -22,7 +22,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.BSC]: [WETH[ChainId.BSC]],
   [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
   [ChainId.ETCCLASSICMAINNET]: [WETH[ChainId.ETCCLASSICMAINNET]],
-  [ChainId.BTTMAINNET]: []
+  [ChainId.BTTMAINNET]: [WETH[ChainId.BTTMAINNET], CCCLO]
 }
 
 /**
@@ -68,7 +68,7 @@ export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.BSC]: [WETH[ChainId.BSC]],
   [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
   [ChainId.ETCCLASSICMAINNET]: [WETH[ChainId.ETCCLASSICMAINNET]],
-  [ChainId.BTTMAINNET]: []
+  [ChainId.BTTMAINNET]: [CCCLO]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
@@ -81,7 +81,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.BSC]: [WETH[ChainId.BSC]],
   [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
   [ChainId.ETCCLASSICMAINNET]: [WETH[ChainId.ETCCLASSICMAINNET]],
-  [ChainId.BTTMAINNET]: [WETH[ChainId.BTTMAINNET]]
+  [ChainId.BTTMAINNET]: [WETH[ChainId.BTTMAINNET], CCCLO]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -89,7 +89,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     [SOY[ChainId.MAINNET], WCLO]
   ],
   [ChainId.BTTMAINNET]: [
-    [WETH[ChainId.BTTMAINNET], WBTT]
+    [WETH[ChainId.BTTMAINNET], CCCLO]
   ],
 }
 

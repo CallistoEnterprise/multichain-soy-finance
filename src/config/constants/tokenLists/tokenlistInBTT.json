@@ -11,6 +11,14 @@
   "keywords": ["soyfinance", "Bittorent"],
   "tokens": [
     {
+      "name": "Wrapped Callisto Coin",
+      "symbol": "ccCLO",
+      "address": "0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53",
+      "chainId": 199,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53.png"
+    },
+    {
       "name": "Metronotes",
       "symbol": "XMN",
       "address": "0x5d9a3948a688aa40b5F2e1Ab58B80872FfF038A7",
