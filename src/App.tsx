@@ -16,9 +16,9 @@ import EasterEgg from './components/EasterEgg'
 import history from './routerHistory'
 import RouteChangeTracker from './RouteChangeTracker'
 // Views included in the main bundle
-// import Pools from './views/Pools'
+import Pools from './views/Pools'
 import Swap from './views/Swap'
-// import IDO from './views/IDO'
+import IDO from './views/IDO'
 import {
   RedirectDuplicateTokenIds,
   RedirectOldAddLiquidityPathStructure,
@@ -59,15 +59,15 @@ const BodyWrapper = styled.div`
   }
 `
 // Route-based code splitting
-// const Farms = lazy(() => import('./views/Farms'))
-// const Collectibles = lazy(() => import('./views/Collectibles'))
+const Farms = lazy(() => import('./views/Farms'))
+const Collectibles = lazy(() => import('./views/Collectibles'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const Info = lazy(() => import('./views/Info'))
 
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
-// const IDOWeek = lazy(() => import('./views/IDOWeek'))
+const IDOWeek = lazy(() => import('./views/IDOWeek'))
 
 // This config is required for number formatting
 BigNumber.config({
@@ -98,12 +98,12 @@ const App: React.FC = () => {
                 {/* <Route exact path="/farms/auction">
                   <FarmAuction />
                 </Route> */}
-                {/* <Route path="/pools">
+                <Route path="/pools">
                   <Pools />
-                </Route> */}
-                {/* <Route path="/nft">
+                </Route>
+                <Route path="/nft">
                   <Collectibles />
-                </Route> */}
+                </Route>
 
                 {/* Using this format because these components use routes injected props. We need to rework them with hooks */}
                 <Route exact strict path="/swap" component={Swap} />
@@ -123,11 +123,11 @@ const App: React.FC = () => {
                 <Route path="/info">
                   <Info />
                 </Route>
-                {/* <Route path="/farms">
+                <Route path="/farms">
                   <Farms />
-                </Route> */}
-                {/* <Route exact strict path="/ido" component={IDO} />
-                <Route exact strict path="/ido-week" component={IDOWeek} /> */}
+                </Route>
+                <Route exact strict path="/ido" component={IDO} />
+                <Route exact strict path="/ido-week" component={IDOWeek} />
                 {/* Redirect */}
                 <Route path="/home">
                   <Redirect to="/swap" />
@@ -135,15 +135,15 @@ const App: React.FC = () => {
                 <Route path="/pool">
                   <Redirect to="/liquidity" />
                 </Route>
-                {/* <Route path="/staking">
+                <Route path="/staking">
                   <Redirect to="/pools" />
-                </Route> */}
+                </Route>
                 {/* <Route path="/psyrup">
                   <Redirect to="/pools" />
                 </Route> */}
-                {/* <Route path="/nft">
+                <Route path="/nft">
                   <Redirect to="/nft" />
-                </Route> */}
+                </Route>
 
                 <Route component={RedirectPathToSwapOnly} />
               </Switch>
