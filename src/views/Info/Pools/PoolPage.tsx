@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react'
 import { RouteComponentProps, Link } from 'react-router-dom'
+import { useWeb3React } from '@web3-react/core'
 import {
   Text,
   Flex,
@@ -29,6 +30,7 @@ import TransactionTable from 'views/Info/components/InfoTables/TransactionsTable
 import { useWatchlistPools } from 'state/user/hooks'
 import { useTranslation } from 'contexts/Localization'
 import ChartCard from 'views/Info/components/InfoCharts/ChartCard'
+import { ExplorerText } from 'config'
 
 const ContentLayout = styled.div`
   display: grid;
@@ -68,6 +70,7 @@ const PoolPage: React.FC<RouteComponentProps<{ address: string }>> = ({
 }) => {
   const { isXs, isSm } = useMatchBreakpoints()
   const { t } = useTranslation()
+  const { chainId } = useWeb3React()
   const [showWeeklyData, setShowWeeklyData] = useState(0)
   const { tooltip, tooltipVisible, targetRef } = useTooltip(
     t(`Based on last 7 days' performance. Does not account for impermanent loss`),
@@ -107,7 +110,7 @@ const PoolPage: React.FC<RouteComponentProps<{ address: string }>> = ({
             </Breadcrumbs>
             <Flex justifyContent={[null, null, 'flex-end']} mt={['8px', '8px', 0]}>
               <LinkExternal mr="8px" href={getCallistoExpLink(address, 'address')}>
-                {t('View on Callisto Explorer')}
+                {t(`View on ${ExplorerText[chainId]}`)}
               </LinkExternal>
               <SaveIcon fill={watchlistPools.includes(address)} onClick={() => addPoolToWatchlist(address)} />
             </Flex>

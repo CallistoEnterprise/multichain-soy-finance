@@ -24,6 +24,7 @@ import { fetchClaimableStatuses } from 'state/predictions'
 import { useTranslation } from 'contexts/Localization'
 import useToast from 'hooks/useToast'
 import { usePredictionsContract } from 'hooks/useContract'
+import { ExplorerText } from 'config'
 
 interface CollectRoundWinningsModalProps extends InjectedModalProps {
   payout: string
@@ -52,7 +53,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({
   onSuccess,
 }) => {
   const [isPendingTx, setIsPendingTx] = useState(false)
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const { t } = useTranslation()
   const { toastSuccess, toastError } = useToast()
   const predictionsContract = usePredictionsContract()
@@ -84,7 +85,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({
           </Text>
           {receipt.transactionHash && (
             <LinkExternal href={getCallistoExpLink(receipt.transactionHash, 'transaction')}>
-              {t('View on CallistoExp')}
+              {t(`View on ${ExplorerText[chainId]}`)}
             </LinkExternal>
           )}
         </Box>,

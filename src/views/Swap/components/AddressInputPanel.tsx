@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { Text, Link } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
+import { ExplorerText } from 'config'
 import useENS from '../../../hooks/ENS/useENS'
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 import { AutoColumn } from '../../../components/Layout/Column'
@@ -104,7 +105,7 @@ export default function AddressInputPanel({
               <Text>{t('Recipient')}</Text>
               {address && chainId && (
                 <Link external small href={getCallistoExpLink(name ?? address, 'address', chainId)}>
-                  ({t('View on CallistoExp')})
+                  ({t(`View on ${ExplorerText[chainId]}`)})
                 </Link>
               )}
             </RowBetween>

@@ -8,6 +8,11 @@ import { useBlockNumber } from '../application/hooks'
 import { AppDispatch, AppState } from '../index'
 import { checkedTransaction, finalizeTransaction } from './actions'
 
+const explorerText = {
+  820: 'CallistoExp',
+  199: 'BttcScan'
+}
+
 export function shouldCheck(
   lastBlockNumber: number,
   tx: { addedTime: number; receipt?: any; lastCheckedBlockNumber?: number },
@@ -75,7 +80,7 @@ export default function Updater(): null {
                   <Text>{transactions[hash]?.summary ?? `Hash: ${hash.slice(0, 8)}...${hash.slice(58, 65)}`}</Text>
                   {chainId && (
                     <Link external href={getCallistoExpLink(hash, 'transaction', chainId)}>
-                      View on CallistoExp
+                      {`View on ${explorerText[chainId]}`}
                     </Link>
                   )}
                 </Flex>,

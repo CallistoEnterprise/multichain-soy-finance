@@ -12,6 +12,12 @@ export const CALLISTO_BLOCK_TIME = 2.2
 export const BASE_CALLISTO_SCAN_URLS = {
   [ChainId.MAINNET]: 'https://explorer.callisto.network',
   [ChainId.CLOTESTNET]: 'https://testnet-explorer.callisto.network',
+  [ChainId.BTTMAINNET]: 'https://bttcscan.com',
+}
+
+export const ExplorerText = {
+  [ChainId.MAINNET]: 'CallistoScan',
+  [ChainId.BTTMAINNET]: 'BttcScan'
 }
 
 // SOY_PER_BLOCK details

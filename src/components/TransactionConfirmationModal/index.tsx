@@ -33,6 +33,11 @@ const ConfirmedIcon = styled(ColumnCenter)`
   padding: 10px 30px 30px 0;
 `
 
+const explorerText = {
+  820: 'CallistoExp',
+  199: 'BttcScan'
+}
+
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
   const { t } = useTranslation()
   return (
@@ -82,7 +87,7 @@ function TransactionSubmittedContent({
           <Text fontSize="20px">{t('Transaction Submitted')}</Text>
           {chainId && hash && (
             <Link external small href={getCallistoExpLink(hash, 'transaction', chainId)}>
-              {t('View on CallistoExp')}
+              {t(`View on ${explorerText[chainId]}`)}
             </Link>
           )}
           {currencyToAdd && library?.provider?.isMetaMask && (

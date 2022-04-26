@@ -8,6 +8,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCombinedInactiveList } from 'state/lists/hooks'
 import { ListLogo } from 'components/Logo'
 import { useTranslation } from 'contexts/Localization'
+import { ExplorerText } from 'config'
 
 interface ImportProps {
   tokens: Token[]
@@ -68,7 +69,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
               <Flex justifyContent="space-between" width="100%">
                 <Text mr="4px">{address}</Text>
                 <Link href={getCallistoExpLink(token.address, 'address', chainId)} external>
-                  ({t('View on CallistoExp')})
+                  ({t(`View on ${ExplorerText[chainId]}`)})
                 </Link>
               </Flex>
             )}

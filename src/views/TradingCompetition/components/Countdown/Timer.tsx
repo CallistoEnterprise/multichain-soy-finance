@@ -4,6 +4,8 @@ import { Flex, Heading, Text, Link, useTooltip } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { ContextApi } from 'contexts/Localization/types'
 import { getCallistoExpLink } from 'utils'
+import { ExplorerText } from 'config'
+import { useWeb3React } from '@web3-react/core'
 
 export interface TimerProps {
   prefix?: string
@@ -62,16 +64,19 @@ const DefaultBodyTextComponent = ({ children, ...props }) => (
   </Text>
 )
 
-const TooltipContent = ({ blockNumber, t }: { blockNumber: number; t: ContextApi['t'] }): JSX.Element => (
-  <>
-    <Text color="body" mb="10px" fontWeight="600">
-      {t('Block %num%', { num: blockNumber })}
-    </Text>
-    <Link external href={getCallistoExpLink(blockNumber, 'block')}>
-      {t('View on CallistoExp')}
-    </Link>
-  </>
-)
+const TooltipContent = ({ blockNumber, t }: { blockNumber: number; t: ContextApi['t'] }): JSX.Element => {
+  const { chainId } = useWeb3React()
+  return (
+    <>
+      <Text color="body" mb="10px" fontWeight="600">
+        {t('Block %num%', { num: blockNumber })}
+      </Text>
+      <Link external href={getCallistoExpLink(blockNumber, 'block')}>
+        {t(`View on ${ExplorerText[chainId]}`)}
+      </Link>
+    </>
+  )
+}
 
 const Wrapper: React.FC<TimerProps> = ({
   prefix,

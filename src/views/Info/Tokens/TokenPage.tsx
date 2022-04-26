@@ -40,6 +40,8 @@ import TransactionTable from 'views/Info/components/InfoTables/TransactionsTable
 import { ONE_HOUR_SECONDS } from 'config/constants/info'
 import { useTranslation } from 'contexts/Localization'
 import ChartCard from 'views/Info/components/InfoCharts/ChartCard'
+import { ExplorerText } from 'config'
+import { useWeb3React } from '@web3-react/core'
 
 const ContentLayout = styled.div`
   margin-top: 16px;
@@ -70,7 +72,7 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
 }) => {
   const { isXs, isSm } = useMatchBreakpoints()
   const { t } = useTranslation()
-
+  const { chainId } = useWeb3React()
   // Needed to scroll up if user comes to this page by clicking on entry in the table
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -142,7 +144,7 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
               </Breadcrumbs>
               <Flex justifyContent={[null, null, 'flex-end']} mt={['8px', '8px', 0]}>
                 <LinkExternal mr="8px" color="primary" href={getCallistoExpLink(address, 'address')}>
-                  {t('View on Callisto Explorer')}
+                  {t(`View on ${ExplorerText[chainId]}`)}
                 </LinkExternal>
                 {cmcLink && (
                   <StyledCMCLink href={cmcLink} rel="noopener noreferrer nofollow" target="_blank">

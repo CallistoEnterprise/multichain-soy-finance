@@ -51,7 +51,7 @@ export const Networks = [
       chainId: "199",
       hexChainId: "0xc7",
       rpcs: ["https://rpc.bt.io/"],
-      explorer: "https://scan.bt.io/#/" 
+      explorer: "https://bttcscan.com/" 
   },
 ]
 
