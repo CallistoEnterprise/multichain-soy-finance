@@ -96,7 +96,6 @@ export default function Swap({ history }: RouteComponentProps) {
   const { independentField, typedValue, recipient } = useSwapState()
   const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo()
 
-  // console.log("derived swap info ::", currencyBalances, parsedAmount, currencies)
   const {
     wrapType,
     execute: onWrap,

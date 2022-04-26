@@ -179,7 +179,6 @@ export function useCombinedActiveList(): TokenAddressMap {
     return tokenLists[chainId]
   }, [chainId])
 
-  // console.log(chainId, tokens, "<=========")
   const defaultTokenMap = listToTokenMap(tokens ?? DEFAULT_TOKEN_LIST)
   
   return combineMaps(activeTokens, defaultTokenMap)

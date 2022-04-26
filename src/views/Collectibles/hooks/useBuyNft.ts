@@ -20,7 +20,6 @@ const useBuyNft = () => {
         }
         return false
       } catch(err: {data?: {message?: string}} | any) {
-        // console.log(err, "<==== error")
         toastError(err?.data?.message)
         return false
       }

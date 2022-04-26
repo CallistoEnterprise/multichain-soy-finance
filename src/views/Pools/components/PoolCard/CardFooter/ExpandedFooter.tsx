@@ -80,7 +80,6 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account, endTimeS
   // const nextTimeStr = nextHarvest === 0 ? '' : getTimeFromTimeStamp2(nextHarvest)
   // const endTimeStr = endStaking === 0 ? '' : getTimeFromTimeStamp2(endStaking)
 
-  // console.log(nextTimeStr, endTimeStr, "<======")
   const getTotalStakedBalance = () => {
     if (isAutoVault) {
       return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
