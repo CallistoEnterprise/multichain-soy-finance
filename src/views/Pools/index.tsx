@@ -88,7 +88,7 @@ const Pools: React.FC = () => {
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
   const [viewMode, setViewMode] = usePersistState(ViewMode.CARD, { localStorageKey: 'soyfinance_pool_view' })
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, ] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
 

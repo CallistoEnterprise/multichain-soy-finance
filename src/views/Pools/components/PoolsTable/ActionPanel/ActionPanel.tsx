@@ -5,17 +5,17 @@ import {
   Button,
   Flex,
   HelpIcon,
-  Link,
+  // Link,
   LinkExternal,
   MetamaskIcon,
   Skeleton,
   Text,
-  TimerIcon,
+  // TimerIcon,
   useTooltip,
 } from '@soy-libs/uikit2'
 import { BASE_CALLISTO_SCAN_URL } from 'config'
-import { getCallistoExpLink } from 'utils'
-import { useBlock } from 'state/block/hooks'
+// import { getCallistoExpLink } from 'utils'
+// import { useBlock } from 'state/block/hooks'
 import { useCakeVault } from 'state/pools/hooks'
 import BigNumber from 'bignumber.js'
 import { Pool } from 'state/types'
@@ -24,8 +24,8 @@ import Balance from 'components/Balance'
 import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
 import { getAddress, getPmoonVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
-import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
-import { getPoolBlockInfo } from 'views/Pools/helpers'
+import { getBalanceNumber } from 'utils/formatBalance'
+// import { getPoolBlockInfo } from 'views/Pools/helpers'
 import { getTimeFromTimeStamp2 } from 'utils/formatTimePeriod'
 import Harvest from './Harvest'
 import Stake from './Stake'
@@ -117,9 +117,8 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     stakingToken,
     earningToken,
     totalStaked,
-    startBlock,
-    endBlock,
-    stakingLimit,
+    // startBlock,
+    // endBlock,
     contractAddress,
     isAutoVault,
     userData,
@@ -127,12 +126,12 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const { t } = useTranslation()
   const poolContractAddress = getAddress(contractAddress)
   const cakeVaultContractAddress = getPmoonVaultAddress()
-  const { currentBlock } = useBlock()
+  // const { currentBlock } = useBlock()
   const { isXs, isSm, isMd } = breakpoints
   const showSubtitle = (isXs || isSm) && sousId === 0
 
-  const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
-    getPoolBlockInfo(pool, currentBlock)
+  // const { blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
+  //   getPoolBlockInfo(pool, currentBlock)
 
   const isMetaMaskInScope = !!window.ethereum?.isMetaMask
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
@@ -197,23 +196,23 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   //   </Flex>
   // ) : null
 
-  const blocksRow =
-    blocksRemaining || blocksUntilStart ? (
-      <Flex mb="8px" justifyContent="space-between">
-        <Text>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
-        <Flex>
-          <Link external href={getCallistoExpLink(hasPoolStarted ? endBlock : startBlock, 'countdown')}>
-            <Balance fontSize="16px" value={blocksToDisplay} decimals={0} color="primary" />
-            <Text ml="4px" color="primary" textTransform="lowercase">
-              {t('Blocks')}
-            </Text>
-            <TimerIcon ml="4px" color="primary" />
-          </Link>
-        </Flex>
-      </Flex>
-    ) : (
-      <Skeleton width="56px" height="16px" />
-    )
+  // const blocksRow =
+  //   blocksRemaining || blocksUntilStart ? (
+  //     <Flex mb="8px" justifyContent="space-between">
+  //       <Text>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
+  //       <Flex>
+  //         <Link external href={getCallistoExpLink(hasPoolStarted ? endBlock : startBlock, 'countdown')}>
+  //           <Balance fontSize="16px" value={blocksToDisplay} decimals={0} color="primary" />
+  //           <Text ml="4px" color="primary" textTransform="lowercase">
+  //             {t('Blocks')}
+  //           </Text>
+  //           <TimerIcon ml="4px" color="primary" />
+  //         </Link>
+  //       </Flex>
+  //     </Flex>
+  //   ) : (
+  //     <Skeleton width="56px" height="16px" />
+  //   )
 
   const aprRow = (
     <Flex justifyContent="space-between" alignItems="center" mb="8px">

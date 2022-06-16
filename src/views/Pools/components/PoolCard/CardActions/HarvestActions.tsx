@@ -25,7 +25,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   isBnbPool,
   earningTokenPrice,
   isLoading = false,
-  endTimeStr = null,
+  // endTimeStr = null,
   havestDayStr = null,
 }) => {
   const { t } = useTranslation()

@@ -80,7 +80,7 @@ const App: React.FC = () => {
   // useEagerConnect()
   usePollCoreFarmData()
 
-  window.ethereum.removeAllListeners(["networkChanged"])
+  window.ethereum?.removeAllListeners(["networkChanged"])
 
   return (
     <Router history={history}>
@@ -92,12 +92,6 @@ const App: React.FC = () => {
           <BodyWrapper>
             <SuspenseWithChunkError fallback={<PageLoader />}>
               <Switch>
-                {/* <Route path="/" exact>
-                  <Home />
-                </Route> */}
-                {/* <Route exact path="/farms/auction">
-                  <FarmAuction />
-                </Route> */}
                 <Route path="/pools">
                   <Pools />
                 </Route>
@@ -105,7 +99,6 @@ const App: React.FC = () => {
                   <Collectibles />
                 </Route>
 
-                {/* Using this format because these components use routes injected props. We need to rework them with hooks */}
                 <Route exact strict path="/swap" component={Swap} />
                 <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
                 <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
@@ -128,7 +121,6 @@ const App: React.FC = () => {
                 </Route>
                 <Route exact strict path="/ido" component={IDO} />
                 <Route exact strict path="/ido-week" component={IDOWeek} />
-                {/* Redirect */}
                 <Route path="/home">
                   <Redirect to="/swap" />
                 </Route>
@@ -138,9 +130,6 @@ const App: React.FC = () => {
                 <Route path="/staking">
                   <Redirect to="/pools" />
                 </Route>
-                {/* <Route path="/psyrup">
-                  <Redirect to="/pools" />
-                </Route> */}
                 <Route path="/nft">
                   <Redirect to="/nft" />
                 </Route>

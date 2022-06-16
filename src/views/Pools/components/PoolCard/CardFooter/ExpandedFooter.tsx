@@ -46,7 +46,6 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account, endTimeS
   // const { currentBlock } = useBlock()
   const {
     totalCakeInVault,
-    fees: { performanceFee },
   } = useCakeVault()
 
   const {
