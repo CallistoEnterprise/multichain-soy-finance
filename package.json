@@ -45,7 +45,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/react-window": "^1.8.3",
     "@types/styled-components": "^5.1.7",
-    "@uauth/js": "^1.2.1",
+    "@uauth/js": "^1.1.0",
     "@uauth/web3-react": "^1.1.0",
     "@uniswap/token-lists": "^1.0.0-beta.19",
     "@uniswap/v2-core": "^1.0.0",

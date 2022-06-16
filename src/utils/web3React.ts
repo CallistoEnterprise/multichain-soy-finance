@@ -32,12 +32,12 @@ export const uauth = new UAuthConnector({
 
   connectors: { injected, walletconnect },
 
-  // uauth: new UAuth({
-  //   clientID: process.env.REACT_APP_UNSTOPPABLE_CLIENT_ID,
-  //   redirectUri: 'https://app.soy.finance',
-  //   postLogoutRedirectUri: 'https://app.soy.finance',
-  //   scope: 'openid wallet',
-  // })
+  uauth: new UAuth({
+    clientID: process.env.REACT_APP_UNSTOPPABLE_CLIENT_ID,
+    redirectUri: 'https://app.soy.finance',
+    postLogoutRedirectUri: 'https://app.soy.finance',
+    scope: 'openid wallet',
+  })
 })
 
 export const connectors: Record<string, AbstractConnector> = {
