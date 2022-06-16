@@ -7,7 +7,6 @@ import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 import { getCallistoExpLink } from 'utils'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import { ExplorerText } from 'config'
 import CopyAddress from './CopyAddress'
 
 interface WalletInfoProps {
@@ -17,7 +16,7 @@ interface WalletInfoProps {
 
 const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) => {
   const { t } = useTranslation()
-  const { account, chainId } = useWeb3React()
+  const { account } = useWeb3React()
   const { balance } = useGetBnbBalance()
   const { balance: cakeBalance } = useTokenBalance(getPmoonAddress())
   const { logout } = useAuth()
@@ -50,7 +49,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
         <Text>{getFullDisplayBalance(cakeBalance, 18, 3)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="end" mb="24px">
-        <LinkExternal href={getCallistoExpLink(account, 'address')}>{t(`View on ${ExplorerText[chainId]}`)}</LinkExternal>
+        <LinkExternal href={getCallistoExpLink(account, 'address')}>{t('View on Callisto Explorer')}</LinkExternal>
       </Flex>
       <Button variant="secondary" width="100%" onClick={handleLogout}>
         {t('Disconnect Wallet')}

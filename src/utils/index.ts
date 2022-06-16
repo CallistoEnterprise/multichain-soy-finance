@@ -79,7 +79,7 @@ export function calculateSlippageAmount(value: CurrencyAmount, slippage: number)
 
 // account is not optional
 export function getSigner(library: Web3Provider, account: string): JsonRpcSigner {
-  return library.getSigner(account).connectUnchecked()
+  return library?.getSigner(account).connectUnchecked()
 }
 
 // account is optional

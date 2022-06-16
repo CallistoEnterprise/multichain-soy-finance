@@ -32,7 +32,7 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
   const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
     useApproveConfirmTransaction({
       onApprove: () => {
-        const contract = getErc721Contract(selectedNft.nftAddress, library.getSigner())
+        const contract = getErc721Contract(selectedNft.nftAddress, library?.getSigner())
         return contract.approve(getPancakeProfileAddress(), selectedNft.tokenId)
       },
       onConfirm: () => {

@@ -31,15 +31,15 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'PoolIcon',
     href: '/staking',
   },
-  {
-    label: t('Launchpads'),
-    icon: 'LaunchpadIcon',
-    href: '/launchpad',
-  },
+  // {
+  //   label: t('Launchpads'),
+  //   icon: 'LaunchpadIcon',
+  //   href: '/launchpad',
+  // },
   {
     label: t('Bridge'),
     icon: 'BridgeIcon',
-    href: 'https://callistobridge.netlify.app/',
+    href: 'https://bridge.soy.finance/',
     target: "_blank"
   },
   {
@@ -125,7 +125,7 @@ export const bttConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Bridge'),
     icon: 'BridgeIcon',
-    href: 'https://callistobridge.netlify.app/',
+    href: 'https://bridge.soy.finance/',
     target: "_blank"
   },
   // {

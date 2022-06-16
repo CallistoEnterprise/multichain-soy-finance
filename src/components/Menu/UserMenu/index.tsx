@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import React, { useEffect, useState } from 'react'
+import { useWeb3React } from '@web3-react/core'
 import {
   Flex,
   LogoutIcon,
@@ -7,27 +7,24 @@ import {
   UserMenu as UIKitUserMenu,
   UserMenuDivider,
   UserMenuItem,
+  connectorLocalStorageKey,
+  ConnectorNames
 } from '@soy-libs/uikit2'
-import { Networks } from 'config/constants/networks';
-
 import useAuth from 'hooks/useAuth'
 import { useProfile } from 'state/profile/hooks'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
-import { switchNetwork } from 'utils/wallet';
-import NetworkMenu from '../NetworkMenu'
+import { uauth } from 'utils/web3React'
 import WalletModal, { WalletView, LOW_BNB_BALANCE } from './WalletModal'
 // import ProfileUserMenuItem from './ProfileUserMenutItem'
 import WalletUserMenuItem from './WalletUserMenuItem'
-import { NetworkIcon } from '../NetworkMenu/MenuIcon';
 
 const UserMenu = () => {
   const { t } = useTranslation()
-  const { account, chainId, library } = useActiveWeb3React()
+  const [unstoppable, setUnstoppable] = useState(null)
+  const { account } = useWeb3React()
   const { logout } = useAuth()
-  const [networkAvatar, setNetworkAvatar] = useState(undefined)
-  const [networkText, setNetworkText] = useState('')
   const { balance, fetchStatus } = useGetBnbBalance()
   const { profile } = useProfile()
   const [onPresentWalletModal] = useModal(<WalletModal initialView={WalletView.WALLET_INFO} />)
@@ -36,63 +33,42 @@ const UserMenu = () => {
   const avatarSrc = profile && profile.nft ? `/images/nfts/${profile.nft.images.sm}` : undefined
   const hasLowBnbBalance = fetchStatus === FetchStatus.SUCCESS && balance.lte(LOW_BNB_BALANCE)
 
-  useEffect(() => {
-    const init = () => {
-      const filtered = Networks.filter((_) => Number(_.chainId) === chainId)
-      if (filtered.length) {
-        setNetworkAvatar(filtered[0].img)
-        setNetworkText(filtered[0].name)
-      }
-    }
-    if (chainId) {
-      init()
-    }
-  }, [chainId])
+  const connectorId = window.localStorage.getItem(connectorLocalStorageKey)
 
-  const handleSwitchNetwork = (curNet) => {
-    switchNetwork(library, curNet);
-    // setNetworkAvatar(curNet.img)
-    // setNetworkText(curNet.name)
-  }
+  const isUnstoppable = connectorId === ConnectorNames.Unstoppable
+
+  useEffect(() => {
+    const get = async () => {
+      uauth.uauth.user().then((res) => {
+        setUnstoppable(res.sub)
+      })
+      .catch((err) => {
+        setUnstoppable(null)
+      })
+    }
+    get();
+  }, [account])
 
   if (!account) {
     return <ConnectWalletButton scale="sm" />
   }
 
   return (
-    <Flex>
-      <NetworkMenu text={networkText} avatarSrc={networkAvatar}>
-        {/* <UserMenuItem as="button" onClick={onPresentTransactionModal}>
-          {t('Callisto')}
-        </UserMenuItem> */}
-        {
-          Networks.map((item) => {
-            return (
-              <UserMenuItem as="button" onClick={() => handleSwitchNetwork(item)} key = {item.name}>
-                <Flex alignItems="center" justifyContent="flex-start" width="100%">
-                  <NetworkIcon avatarSrc={item.img} />
-                  {t(`${item.name}`)}
-                </Flex>
-              </UserMenuItem>
-            )
-          })
-        }        
-      </NetworkMenu>
-
-      <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
-        <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
-        <UserMenuItem as="button" onClick={onPresentTransactionModal}>
-          {t('Transactions')}
-        </UserMenuItem>
-        <UserMenuDivider />
-        <UserMenuItem as="button" onClick={logout}>
-          <Flex alignItems="center" justifyContent="space-between" width="100%">
-            {t('Disconnect')}
-            <LogoutIcon />
-          </Flex>
-        </UserMenuItem>
-      </UIKitUserMenu>
-    </Flex>
+    <UIKitUserMenu account={isUnstoppable ? 'test' : account} text = {isUnstoppable ? unstoppable : null} avatarSrc={avatarSrc}>
+      <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
+      <UserMenuItem as="button" onClick={onPresentTransactionModal}>
+        {t('Transactions')}
+      </UserMenuItem>
+      {/* <UserMenuDivider /> */}
+      {/* <ProfileUserMenuItem isLoading={isLoading} hasProfile={hasProfile} /> */}
+      <UserMenuDivider />
+      <UserMenuItem as="button" onClick={logout}>
+        <Flex alignItems="center" justifyContent="space-between" width="100%">
+          {t('Disconnect')}
+          <LogoutIcon />
+        </Flex>
+      </UserMenuItem>
+    </UIKitUserMenu>
   )
 }
 

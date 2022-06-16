@@ -78,7 +78,7 @@ export function isAddress(value: any): string | false {
 
 // account is not optional
 export function getSigner(library: Web3Provider, account: string): JsonRpcSigner {
-  return library.getSigner(account).connectUnchecked()
+  return library?.getSigner(account).connectUnchecked()
 }
 
 // account is optional

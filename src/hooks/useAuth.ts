@@ -24,8 +24,16 @@ const useAuth = () => {
   const { toastError } = useToast()
 
   const login = useCallback(
-    (connectorID: ConnectorNames) => {
+    async (connectorID: ConnectorNames) => {
       const connector = connectorsByName[connectorID]
+
+      if (connector === connectorsByName.Unstoppable) {
+        const hasSetup1 = await setupNetwork()
+        if (!hasSetup1) {
+          return
+        }
+      }
+
       if (connector) {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
@@ -63,7 +71,7 @@ const useAuth = () => {
     deactivate()
     // This localStorage key is set by @web3-react/walletconnect-connector
     if (window.localStorage.getItem('walletconnect')) {
-      connectorsByName.walletconnect.disconnect()
+      connectorsByName.walletconnect.close()
       connectorsByName.walletconnect.walletConnectProvider = null
     }
   }, [deactivate, dispatch])

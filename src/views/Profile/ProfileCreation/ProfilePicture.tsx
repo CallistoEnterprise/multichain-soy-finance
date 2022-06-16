@@ -32,7 +32,7 @@ const ProfilePicture: React.FC = () => {
   const { toastError } = useToast()
 
   const handleApprove = async () => {
-    const contract = getErc721Contract(selectedNft.nftAddress, library.getSigner())
+    const contract = getErc721Contract(selectedNft.nftAddress, library?.getSigner())
     const tx = await contract.approve(getPancakeProfileAddress(), selectedNft.tokenId)
     setIsApproving(true)
     const receipt = await tx.wait()
