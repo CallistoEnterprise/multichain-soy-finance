@@ -19,28 +19,44 @@
       "logoURI": "https://app.soy.finance/images/coins/0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53.png"
     },
     {
-      "name": "Metronotes",
-      "symbol": "XMN",
-      "address": "0x5d9a3948a688aa40b5F2e1Ab58B80872FfF038A7",
+      "name": "Soy-ERC223",
+      "symbol": "SOY",
+      "address": "0xcC00860947035a26Ffe24EcB1301ffAd3a89f910",
       "chainId": 199,
-      "decimals": 9,
-      "logoURI": "https://app.soy.finance/images/coins/0x5d9a3948a688aa40b5F2e1Ab58B80872FfF038A7.png"
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65.png"
     },
     {
-      "name": "Tether USD_TRON",
-      "symbol": "USDT_t",
-      "address": "0xdB28719F7f938507dBfe4f0eAe55668903D34a15",
+      "name": "Tether",
+      "symbol": "USDT",
+      "address": "0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF",
       "chainId": 199,
       "decimals": 6,
-      "logoURI": "https://app.soy.finance/images/coins/0xdB28719F7f938507dBfe4f0eAe55668903D34a15.png"
+      "logoURI": "https://app.soy.finance/images/coins/0xbf6c50889d3a620eb42C0F188b65aDe90De958c4.png"
     },
     {
-      "name": "TRON",
-      "symbol": "TRX",
-      "address": "0xEdf53026aeA60f8F75FcA25f8830b7e2d6200662",
+      "name": "Wrapped BNB",
+      "symbol": "BNB",
+      "address": "0x185a4091027E2dB459a2433F85f894dC3013aeB5",
       "chainId": 199,
-      "decimals": 6,
-      "logoURI": "https://app.soy.finance/images/coins/0xEdf53026aeA60f8F75FcA25f8830b7e2d6200662.png"
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9.png"
+    },
+    {
+      "name": "Wrapped ETH",
+      "symbol": "ETH",
+      "address": "0x1249C65AfB11D179FFB3CE7D4eEDd1D9b98AD006",
+      "chainId": 199,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xcC208c32Cc6919af5d8026dAB7A3eC7A57CD1796.png"
+    },
+    {
+      "name": "Ethereum Classic",
+      "symbol": "ETC",
+      "address": "0xCc944bF3e76d483e41CC6154d5196E2e5d348fB0",
+      "chainId": 199,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F.png"
     }
   ]
 }

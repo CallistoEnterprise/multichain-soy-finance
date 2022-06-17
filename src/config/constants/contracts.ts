@@ -2,14 +2,17 @@ export default {
   masterChef: {
     20729: '0xacF8e19A8F9E466c074ed20641df36116D24340e',
     820: '0x64Fa36ACD0d13472FD786B03afC9C52aD5FCf023',
+    199: '0x06dC704b8313ab9216a79363b870fc6E558B4438'
   },
   dailyIdo: {
     20729: '',
     820: '0xEbBDd505bA4E6CaD0C17ccd5cbd88CBA073Fe934',
+    199: ''
   },
   weeklyIdo: {
     20729: '',
     820: '0xAD2e597F27F5988ADB8876D1c3b1A5C64c6d7403',
+    199: '',
   }, 
 
 
