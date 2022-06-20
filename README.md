@@ -1,1 +1,1 @@
-# soyfinance-v2-frontend
+# Multichain SOY Finanace UI
