@@ -44,6 +44,7 @@ const tokens = {
     address: {
       820: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
       20729: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
+      199: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910'
     },
     decimals: 18,
     projectLink: 'https://app.soy.finance/',
@@ -53,6 +54,7 @@ const tokens = {
     address: {
       820: '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
       20729: '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
+      199: '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53'
     },
     decimals: 18,
     projectLink: 'https://callisto.network/',
@@ -62,8 +64,19 @@ const tokens = {
     address: {
       820: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
       20729: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
+      199: ''
     },
     decimals: 18,
+    projectLink: 'https://bullsinvesting.club/',
+  },
+  usdt: {
+    symbol: 'USDT',
+    address: {
+      820: '',
+      20729: '',
+      199: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF'
+    },
+    decimals: 6,
     projectLink: 'https://bullsinvesting.club/',
   },
   cloe:{
@@ -80,6 +93,7 @@ const tokens = {
     address: {
       820: '0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F',
       20729: '0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F',
+      199: '0xCc944bF3e76d483e41CC6154d5196E2e5d348fB0'
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F/transactions',
@@ -89,6 +103,7 @@ const tokens = {
     address: {
       820: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
       20729: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
+      199: '0x185a4091027E2dB459a2433F85f894dC3013aeB5'
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF/transactions',
@@ -98,6 +113,7 @@ const tokens = {
     address: {
       820: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
       20729: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
+      199: '0x1249C65AfB11D179FFB3CE7D4eEDd1D9b98AD006'
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xcC00860947035a26Ffe24EcB1301ffAd3a89f910/transactions',
