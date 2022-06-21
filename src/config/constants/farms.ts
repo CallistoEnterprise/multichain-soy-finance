@@ -452,14 +452,14 @@ const bttFarms: FarmConfig[] = [
   },
   {
     pid: 7,
-    lpSymbol: 'BUSDT-BTT LP',
+    lpSymbol: 'USDT-BTT LP',
     lpAddresses: {
       199: '0x8d41B1B6bF0Dd2FaFf25B48D1D36B94f41353124',
     },
     localFarmAddresses: {
       199: '0x71Db9B83562b2242787D43871848Fe10AA5a7d46',
     },
-    token: tokens.busdt,
+    token: tokens.usdt,
     quoteToken: tokens.wbtt,
   },
   {

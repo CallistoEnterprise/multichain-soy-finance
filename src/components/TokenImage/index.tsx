@@ -19,7 +19,7 @@ interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc
 const getImageUrlFromToken = (token: Token, chainId?: number) => {
   const chId = Number(localStorage.getItem(localStorageChainIdKey) ?? chainId)
   const address = getAddress(token.symbol === 'CLO' ? tokens.wclo.address : token.symbol === 'BTT' ? tokens.wbtt.address : token.address, chId)
-  return `https://app.soy.finance/images/coins/${chId}/${address}.png`
+  return `images/coins/${chId}/${address}.png`
 }
 
 export const TokenPairImage: React.FC<TokenPairImageProps> = ({ primaryToken, secondaryToken, ...props }) => {

@@ -142,7 +142,7 @@ const Farms: React.FC = () => {
   }, [isActive])
 
   const chId = parseInt(localStorage.getItem(localStorageChainIdKey) ?? '820')
-  console.log("chain id ::", chId)
+  
   const activeFarms = farmsLP[chId].filter((farm) => farm.pid !== 0 && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP[chId].filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
   const archivedFarms = farmsLP[chId].filter((farm) => isArchivedPid(farm.pid))
