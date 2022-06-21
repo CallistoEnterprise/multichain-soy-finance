@@ -5,6 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
 import BigNumber from 'bignumber.js'
+import { localStorageChainIdKey } from 'config'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import { getFormattedDateFromTimeStamp, getTimeFromTimeStamp } from 'utils/formatTimePeriod'
 import { useBlockLatestTimestamp } from 'utils'
@@ -47,6 +48,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const [percent, setPercent] = useState(0)
   const [periods, setPeriods] = useState(0)
 
+  const chainId = Number(localStorage.getItem(localStorageChainIdKey) ?? '820')
   const getCalculatedStakingLimit = () => {
     if (isRemovingStake) {
       return userData.stakedBalance
@@ -162,8 +164,8 @@ const StakeModal: React.FC<StakeModalProps> = ({
           <Image
             src={
               isBnbPool
-                ? `https://app.soy.finance/images/coins/clo.png`
-                : `https://app.soy.finance/images/coins/${getAddress(stakingToken.address)}.png`
+                ? `images/coins/clo.png`
+                : `images/coins/${chainId ?? 820}/${getAddress(stakingToken.address)}.png`
             }
             width={24}
             height={24}

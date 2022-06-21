@@ -43,11 +43,11 @@ export default function CurrencyLogo({
   }, [currency, uriLocations])
 
   if (currency === ETHER) {
-    return <LogoImg size={size} src="https://app.soy.finance/images/networks/clo.png" alt="clo"/>
+    return <LogoImg size={size} src="images/networks/clo.png" alt="clo"/>
   }
 
   if (currency === BTTETHER) {
-    return <LogoImg size={size} src="https://app.soy.finance/images/networks/btt.png" alt="btt"/>
+    return <LogoImg size={size} src="images/networks/btt.png" alt="btt"/>
   }
 
   return <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />

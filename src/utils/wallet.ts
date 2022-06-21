@@ -2,6 +2,7 @@
 
 import { BASE_CALLISTO_SCAN_URL } from 'config'
 import { nodes } from './getRpcUrl'
+import { localStorageChainIdKey } from '../config/index';
 
 /**
  * Prompt the user to add Polygon as a network on Metamask, or switch to Polygon if the wallet is on a different network
@@ -95,6 +96,7 @@ export const switchNetwork = async (library, curNet: any) => {
  * @returns {boolean} true if the token has been added, false otherwise
  */
 export const registerToken = async (tokenAddress: string, tokenSymbol: string, tokenDecimals: number) => {
+  const chId = Number(localStorage.getItem(localStorageChainIdKey) ?? '820')
   const tokenAdded = await window.ethereum.request({
     method: 'wallet_watchAsset',
     params: {
@@ -103,7 +105,7 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
         address: tokenAddress,
         symbol: tokenSymbol,
         decimals: tokenDecimals,
-        image: `https://app.soy.finance/images/coins/${tokenAddress}.png`,
+        image: `images/coins/${chId}/${tokenAddress}.png`,
       },
     },
   })

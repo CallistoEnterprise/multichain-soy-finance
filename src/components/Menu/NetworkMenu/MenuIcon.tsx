@@ -80,7 +80,7 @@ const MenuIcon: React.FC<{ avatarSrc?: string; variant?: Variant }> = ({ avatarS
   //   return <NoProfileMenuIcon />;
   // }
 
-  return <ProfileIcon src={avatarSrc ?? 'https://app.soy.finance/images/coins/clo.png'} height={28} width={28} />;
+  return <ProfileIcon src={avatarSrc ?? 'images/coins/clo.png'} height={28} width={28} />;
 };
 
 export const NetworkIcon: React.FC<{ avatarSrc?: string; }> = ({ avatarSrc}) => {

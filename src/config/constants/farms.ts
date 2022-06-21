@@ -445,7 +445,7 @@ const bttFarms: FarmConfig[] = [
       199: '0xb812Bf355bEC388390E24B34936a440fc25EaD01',
     },
     localFarmAddresses: {
-      199: '0xb812Bf355bEC388390E24B34936a440fc25EaD01',
+      199: '0x1019314024B8B0c5D2ee733A7Aee7Ed7D4A655fB',
     },
     token: tokens.soy,
     quoteToken: tokens.cceth,
@@ -454,7 +454,7 @@ const bttFarms: FarmConfig[] = [
     pid: 7,
     lpSymbol: 'BUSDT-BTT LP',
     lpAddresses: {
-      199: '0x71Db9B83562b2242787D43871848Fe10AA5a7d46',
+      199: '0x8d41B1B6bF0Dd2FaFf25B48D1D36B94f41353124',
     },
     localFarmAddresses: {
       199: '0x71Db9B83562b2242787D43871848Fe10AA5a7d46',
@@ -469,7 +469,7 @@ const bttFarms: FarmConfig[] = [
       199: '0x535c3B730a28Da2a45496C8fD0c561711c2DC6D4',
     },
     localFarmAddresses: {
-      199: '0x535c3B730a28Da2a45496C8fD0c561711c2DC6D4',
+      199: '0x6b5e2f20eEC0C5682F7E5a60A7444B7ab3B36558',
     },
     token: tokens.wclo,
     quoteToken: tokens.wbtt,
@@ -478,7 +478,7 @@ const bttFarms: FarmConfig[] = [
     pid: 9,
     lpSymbol: 'CLO-ETC LP',
     lpAddresses: {
-      199: '0xf89778306E83e13D00644044b10bBe3470a8EaC1',
+      199: '0x82983fA0E59172b4A5650c5FaE057faCeD5F22Aa',
     },
     localFarmAddresses: {
       199: '0xf89778306E83e13D00644044b10bBe3470a8EaC1',

@@ -5,6 +5,7 @@ import {
   TokenImage as UIKitTokenImage,
   ImageProps,
 } from '@soy-libs/uikit2'
+import { localStorageChainIdKey } from 'config'
 import tokens from 'config/constants/tokens'
 import { Token } from 'config/constants/types'
 import { getAddress } from 'utils/addressHelpers'
@@ -16,8 +17,9 @@ interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc
 }
 
 const getImageUrlFromToken = (token: Token, chainId?: number) => {
-  const address = getAddress(token.symbol === 'CLO' ? tokens.wclo.address : token.symbol === 'BTT' ? tokens.wbtt.address : token.address, chainId)
-  return `https://app.soy.finance/images/coins/${address}.png`
+  const chId = Number(localStorage.getItem(localStorageChainIdKey) ?? chainId)
+  const address = getAddress(token.symbol === 'CLO' ? tokens.wclo.address : token.symbol === 'BTT' ? tokens.wbtt.address : token.address, chId)
+  return `https://app.soy.finance/images/coins/${chId}/${address}.png`
 }
 
 export const TokenPairImage: React.FC<TokenPairImageProps> = ({ primaryToken, secondaryToken, ...props }) => {
