@@ -10,7 +10,7 @@ export const fetchFarmUserAllowances = async (account: string, farmsToFetch: Far
   // const masterChefAddress = getMasterChefAddress()
 
   const calls = farmsToFetch.map((farm) => {
-    const lpContractAddress = getAddress(farm.lpAddresses)
+    const lpContractAddress = getAddress(farm?.lpAddresses)
     const localFarmAddress = getAddress(farm.localFarmAddresses)
     return { address: lpContractAddress, name: 'allowance', params: [account, localFarmAddress] }
   })
@@ -24,7 +24,7 @@ export const fetchFarmUserAllowances = async (account: string, farmsToFetch: Far
 
 export const fetchFarmUserTokenBalances = async (account: string, farmsToFetch: FarmConfig[]) => {
   const calls = farmsToFetch.map((farm) => {
-    const lpContractAddress = getAddress(farm.lpAddresses)
+    const lpContractAddress = getAddress(farm?.lpAddresses)
     return {
       address: lpContractAddress,
       name: 'balanceOf',

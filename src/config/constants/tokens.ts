@@ -122,6 +122,7 @@ const tokens = {
     symbol: 'ccBNB',
     address: {
       820: '0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9',
+      199: '0x185a4091027E2dB459a2433F85f894dC3013aeB5',
       20729: '',
     },
     decimals: 18,
@@ -132,6 +133,7 @@ const tokens = {
     address: {
       820: '0xcC208c32Cc6919af5d8026dAB7A3eC7A57CD1796',
       20729: '',
+      199: '0x1249C65AfB11D179FFB3CE7D4eEDd1D9b98AD006'
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xcC208c32Cc6919af5d8026dAB7A3eC7A57CD1796/transactions',

@@ -19,7 +19,7 @@ export const Networks = [
       img: '/images/networks/clo.png',
       chainId: "820",
       hexChainId: "0x334",
-      rpcs: ["https://clo-geth.0xinfra.com/"],
+      rpcs: ["https://rpc.callisto.network/"],
       explorer: "https://explorer.callisto.network/"
   },
   // {

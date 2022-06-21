@@ -15,6 +15,12 @@ export const BASE_CALLISTO_SCAN_URLS = {
   [ChainId.BTTMAINNET]: 'https://bttcscan.com',
 }
 
+export const RPC_URLS = {
+  [ChainId.MAINNET]: 'https://rpc.callisto.network',
+  [ChainId.CLOTESTNET]: 'https://testnet-rpc.callisto.network',
+  [ChainId.BTTMAINNET]: 'https://rpc.bt.io/',
+}
+
 export const ExplorerText = {
   [ChainId.MAINNET]: 'CallistoScan',
   [ChainId.BTTMAINNET]: 'BttcScan'
@@ -44,3 +50,5 @@ export const RECLAIM_AUCTIONS_TO_FETCH = 500
 export const AUCTION_WHITELISTED_BIDDERS_TO_FETCH = 500
 export const ONE_YEAR_TIMESTAMP = 365 * 24 * 60 * 60
 export const REWARD_TOKENS_PER_YEAR = new BigNumber(50000000)
+
+export const localStorageChainIdKey = "soyfinanceChainId"

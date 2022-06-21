@@ -14,19 +14,19 @@ export interface FarmWithBalance extends FarmConfig {
 
 const useFarmsWithBalance = () => {
   const [farmsWithBalances, setFarmsWithBalances] = useState<FarmWithBalance[]>([])
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
     const fetchBalances = async () => {
-      const calls = farmsConfig.map((farm) => ({
+      const calls = farmsConfig[chainId].map((farm) => ({
         address: getMasterChefAddress(),
         name: 'pendingReward',
         params: [farm.pid, account],
       }))
 
       const rawResults = await multicall3(masterChefABI, calls)
-      const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
+      const results = farmsConfig[chainId].map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
 
       setFarmsWithBalances(results)
     }
@@ -34,7 +34,7 @@ const useFarmsWithBalance = () => {
     if (account) {
       fetchBalances()
     }
-  }, [account, fastRefresh])
+  }, [account, chainId, fastRefresh])
 
   return farmsWithBalances
 }

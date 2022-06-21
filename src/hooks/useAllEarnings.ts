@@ -9,12 +9,12 @@ import useRefresh from './useRefresh'
 const useAllEarnings = () => {
 
   const [balances, setBalance] = useState([])
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
     const fetchAllBalances = async () => {
-      const calls = farmsConfig.map((farm) => ({
+      const calls = farmsConfig[chainId].map((farm) => ({
         address: getMasterChefAddress(),
         name: 'pendingReward',
         params: [farm.pid, account],
@@ -28,7 +28,7 @@ const useAllEarnings = () => {
     if (account) {
       fetchAllBalances()
     }
-  }, [account, fastRefresh])
+  }, [account, chainId, fastRefresh])
 
   return balances
 }

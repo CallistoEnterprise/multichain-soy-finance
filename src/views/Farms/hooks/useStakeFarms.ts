@@ -5,11 +5,14 @@ import { stakeFarm } from 'utils/calls'
 import farms from 'config/constants/farms'
 import { getLpContractWithAccount } from 'utils/contractHelpers'
 import { getAddress } from 'utils/addressHelpers'
+import { localStorageChainIdKey } from 'config'
 
 const useStakeFarms = (pid: number) => {
   const { account, library } = useWeb3React()
+  const locChainId = parseInt(localStorage.getItem(localStorageChainIdKey) ?? '820')
+
   // const masterChefContract = useMasterchef()
-  const currentFarm = farms.find((farm) => farm.pid === pid)
+  const currentFarm = farms[locChainId].find((farm) => farm.pid === pid)
   const { lpAddresses, localFarmAddresses }= currentFarm
   const lpContract = getLpContractWithAccount(getAddress(lpAddresses), library, account)
   const farmAddress = getAddress(localFarmAddresses)

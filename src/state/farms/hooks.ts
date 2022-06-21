@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
+import { localStorageChainIdKey } from 'config'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { farmsConfig } from 'config/constants'
@@ -14,18 +15,18 @@ import { State, Farm, FarmsState } from '../types'
 export const usePollFarmsData = (includeArchive = false) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
 
   useEffect(() => {
     const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
-    const pids = farmsToFetch.map((farmToFetch) => farmToFetch.pid)
+    const pids = farmsToFetch[chainId]?.map((farmToFetch) => farmToFetch.pid)
 
     dispatch(fetchFarmsPublicDataAsync(pids))
 
     if (account) {
       dispatch(fetchFarmUserDataAsync({ account, pids }))
     }
-  }, [includeArchive, dispatch, slowRefresh, account])
+  }, [includeArchive, dispatch, slowRefresh, account, chainId])
 }
 
 /**
@@ -48,12 +49,14 @@ export const useFarms = (): FarmsState => {
 }
 
 export const useFarmFromPid = (pid): Farm => {
-  const farm = useSelector((state: State) => state.farms.data.find((f) => f.pid === pid))
+  const chId = Number(localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const farm = useSelector((state: State) => state.farms.data[chId].find((f) => f.pid === pid))
   return farm
 }
 
 export const useFarmFromLpSymbol = (lpSymbol: string): Farm => {
-  const farm = useSelector((state: State) => state.farms.data.find((f) => f.lpSymbol === lpSymbol))
+  const chId = Number(localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const farm = useSelector((state: State) => state.farms.data[chId]).find((f) => f?.lpSymbol === lpSymbol)
   return farm
 }
 
@@ -61,10 +64,10 @@ export const useFarmUser = (pid) => {
   const farm = useFarmFromPid(pid)
 
   return {
-    allowance: farm.userData ? new BigNumber(farm.userData.allowance) : BIG_ZERO,
-    tokenBalance: farm.userData ? new BigNumber(farm.userData.tokenBalance) : BIG_ZERO,
-    stakedBalance: farm.userData ? new BigNumber(farm.userData.stakedBalance) : BIG_ZERO,
-    earnings: farm.userData ? new BigNumber(farm.userData.earnings) : BIG_ZERO,
+    allowance: farm?.userData ? new BigNumber(farm?.userData.allowance) : BIG_ZERO,
+    tokenBalance: farm?.userData ? new BigNumber(farm?.userData.tokenBalance) : BIG_ZERO,
+    stakedBalance: farm?.userData ? new BigNumber(farm?.userData.stakedBalance) : BIG_ZERO,
+    earnings: farm?.userData ? new BigNumber(farm?.userData.earnings) : BIG_ZERO,
   }
 }
 

@@ -7,9 +7,9 @@ import { getLpContractWithAccount } from 'utils/contractHelpers'
 // import { useMasterchef } from 'hooks/useContract'
 
 const useHarvestFarm = (farmPid: number) => {
-  const { account, library } = useWeb3React()
+  const { account, chainId, library } = useWeb3React()
   // const masterChefContract = useMasterchef()
-  const currentFarm = farms.find((farm) => farm.pid === farmPid)
+  const currentFarm = farms[chainId].find((farm) => farm.pid === farmPid)
   const { lpAddresses, localFarmAddresses }= currentFarm
   const lpContract = getLpContractWithAccount(getAddress(lpAddresses), library, account)
   const farmAddress = getAddress(localFarmAddresses)

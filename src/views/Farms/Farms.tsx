@@ -14,6 +14,7 @@ import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getFarmApr } from 'utils/apr'
 import { orderBy } from 'lodash'
+import { localStorageChainIdKey } from 'config'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
 import PageHeader from 'components/PageHeader'
@@ -140,20 +141,22 @@ const Farms: React.FC = () => {
     setStakedOnly(!isActive)
   }, [isActive])
 
-  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && !isArchivedPid(farm.pid))
-  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
-  const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
+  const chId = parseInt(localStorage.getItem(localStorageChainIdKey) ?? '820')
+  console.log("chain id ::", chId)
+  const activeFarms = farmsLP[chId].filter((farm) => farm.pid !== 0 && !isArchivedPid(farm.pid))
+  const inactiveFarms = farmsLP[chId].filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  const archivedFarms = farmsLP[chId].filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+    (farm) => farm?.userData && new BigNumber(farm?.userData.stakedBalance).isGreaterThan(0),
   )
 
   const stakedInactiveFarms = inactiveFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+    (farm) => farm?.userData && new BigNumber(farm?.userData.stakedBalance).isGreaterThan(0),
   )
 
   const stakedArchivedFarms = archivedFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+    (farm) => farm?.userData && new BigNumber(farm?.userData.stakedBalance).isGreaterThan(0),
   )
 
   const farmsList = useCallback(
@@ -164,7 +167,7 @@ const Farms: React.FC = () => {
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.usdcPrice)
         const { cakeRewardsApr, lpRewardsApr } = isActive
-          ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
+          ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm?.lpAddresses[ChainId.MAINNET])
           : { cakeRewardsApr: 0, lpRewardsApr: 0 }
 
         return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
@@ -173,7 +176,7 @@ const Farms: React.FC = () => {
       if (query) {
         const lowercaseQuery = latinise(query.toLowerCase())
         farmsToDisplayWithAPR = farmsToDisplayWithAPR.filter((farm: FarmWithStakedValue) => {
-          return latinise(farm.lpSymbol.toLowerCase()).includes(lowercaseQuery)
+          return latinise(farm?.lpSymbol.toLowerCase()).includes(lowercaseQuery)
         })
       }
       return farmsToDisplayWithAPR
@@ -206,7 +209,7 @@ const Farms: React.FC = () => {
         case 'earned':
           return orderBy(
             farms,
-            (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
+            (farm: FarmWithStakedValue) => (farm?.userData ? Number(farm?.userData.earnings) : 0),
             'desc',
           )
         case 'liquidity':
@@ -272,7 +275,7 @@ const Farms: React.FC = () => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
-    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('POLYSAFEMOON', '')
+    const lpLabel = farm?.lpSymbol && farm?.lpSymbol.split(' ')[0].toUpperCase().replace('POLYSAFEMOON', '')
 
     const row: RowProps = {
       apr: {
@@ -291,7 +294,7 @@ const Farms: React.FC = () => {
         quoteToken: farm.quoteToken,
       },
       earned: {
-        earnings: getBalanceNumber(new BigNumber(farm.userData.earnings)),
+        earnings: getBalanceNumber(new BigNumber(farm?.userData.earnings)),
         pid: farm.pid,
       },
       liquidity: {

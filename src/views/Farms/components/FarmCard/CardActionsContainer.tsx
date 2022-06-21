@@ -35,7 +35,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
     tokenBalance: tokenBalanceAsString = 0,
     stakedBalance: stakedBalanceAsString = 0,
     earnings: earningsAsString = 0,
-  } = farm.userData || {}
+  } = farm?.userData || {}
   const allowance = new BigNumber(allowanceAsString)
   const tokenBalance = new BigNumber(tokenBalanceAsString)
   const stakedBalance = new BigNumber(stakedBalanceAsString)
@@ -63,7 +63,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
       <StakeAction
         stakedBalance={stakedBalance}
         tokenBalance={tokenBalance}
-        tokenName={farm.lpSymbol}
+        tokenName={farm?.lpSymbol}
         pid={pid}
         addLiquidityUrl={addLiquidityUrl}
       />
@@ -87,7 +87,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
       <HarvestAction earnings={earnings} pid={pid} />
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          {farm.lpSymbol}
+          {farm?.lpSymbol}
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Staked')}

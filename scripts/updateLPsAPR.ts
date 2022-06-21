@@ -4,6 +4,7 @@ import BigNumber from 'bignumber.js'
 import { ChainId } from '@soy-libs/sdk-multichain'
 import chunk from 'lodash/chunk'
 import { sub, getUnixTime } from 'date-fns'
+import { localStorageChainIdKey } from '../src/config'
 import farmsConfig from '../src/config/constants/farms'
 
 const BLOCK_SUBGRAPH_ENDPOINT = 'https://api.thegraph.com/subgraphs/name/polysafemoon/blocks'
@@ -55,7 +56,7 @@ const getBlockAtTimestamp = async (timestamp: number) => {
   }
 }
 
-const getAprsForFarmGroup = async (addresses: string[], blockWeekAgo: number): Promise<AprMap> => {
+const getAprsForFarmGroup = async (addresses: (string | undefined | unknown)[], blockWeekAgo: number): Promise<AprMap> => {
   try {
     const { farmsAtLatestBlock, farmsOneWeekAgo } = await request<FarmsResponse>(
       STREAMING_FAST_ENDPOINT,
@@ -101,10 +102,11 @@ const getAprsForFarmGroup = async (addresses: string[], blockWeekAgo: number): P
 }
 
 const fetchAndUpdateLPsAPR = async () => {
+  const chainId = parseInt(localStorage.getItem(localStorageChainIdKey) ?? '820')
   // pids before 250 are inactive farms from v1 and failed v2 migration
-  const lowerCaseAddresses = farmsConfig
+  const lowerCaseAddresses = farmsConfig[chainId]
     .filter((farm) => farm.pid > 250)
-    .map((farm) => farm.lpAddresses[ChainId.MAINNET].toLowerCase())
+    .map((farm) => farm?.lpAddresses[chainId]?.toLowerCase())
   console.info(`Fetching farm data for ${lowerCaseAddresses.length} addresses`)
   // Split it into chunks of 30 addresses to avoid gateway timeout
   const addressesInGroups = chunk(lowerCaseAddresses, 30)
