@@ -5,7 +5,7 @@ import { getRpcProvider } from 'utils/providers'
 import { setBlock } from '.'
 import { State } from '../types'
 
-const useGetRpcProvider = () => {
+export const useGetRpcProvider = () => {
   const [provider, setProvider] = useState(null)
 
   useEffect(() => {

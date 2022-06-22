@@ -3,8 +3,8 @@ import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
-import { simpleRpcProvider } from 'utils/providers'
 import useRefresh from 'hooks/useRefresh'
+import { useGetRpcProvider } from 'state/block/hooks'
 import {
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
@@ -20,6 +20,7 @@ export const useFetchPublicPoolsData = (rewardBlockCount?: BigNumber, rwBLCntOfS
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
 
+  const simpleRpcProvider = useGetRpcProvider()
   useEffect(() => {
     const fetchPoolsPublicData = async () => {
       const blockNumber = await simpleRpcProvider.getBlockNumber()
@@ -27,10 +28,11 @@ export const useFetchPublicPoolsData = (rewardBlockCount?: BigNumber, rwBLCntOfS
       // console.log(pubData)
       dispatch(fetchPoolsPublicDataAsync(blockNumber, new BigNumber(5))) // , rwBLCntOfSousChef, rwBLCntOfMaticStaking
     }
-
-    fetchPoolsPublicData()
-    dispatch(fetchPoolsStakingLimitsAsync())
-  }, [dispatch, slowRefresh])
+    if (simpleRpcProvider){
+      fetchPoolsPublicData()
+      dispatch(fetchPoolsStakingLimitsAsync())
+    }
+  }, [dispatch, slowRefresh, simpleRpcProvider])
 }
 
 export const usePools = (account): { pools: Pool[]; userDataLoaded: boolean } => {
