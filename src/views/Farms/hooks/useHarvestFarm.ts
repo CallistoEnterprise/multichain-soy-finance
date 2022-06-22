@@ -1,4 +1,5 @@
 import { useWeb3React } from '@web3-react/core'
+import { localStorageChainIdKey } from 'config'
 import farms from 'config/constants/farms'
 import { useCallback } from 'react'
 import { getAddress } from 'utils/addressHelpers'
@@ -7,7 +8,8 @@ import { getLpContractWithAccount } from 'utils/contractHelpers'
 // import { useMasterchef } from 'hooks/useContract'
 
 const useHarvestFarm = (farmPid: number) => {
-  const { account, chainId, library } = useWeb3React()
+  const { account, library } = useWeb3React()
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
   // const masterChefContract = useMasterchef()
   const currentFarm = farms[chainId].find((farm) => farm.pid === farmPid)
   const { lpAddresses, localFarmAddresses }= currentFarm

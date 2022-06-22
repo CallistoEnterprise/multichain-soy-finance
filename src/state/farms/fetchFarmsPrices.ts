@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js'
+import { localStorageChainIdKey } from 'config'
 import { BIG_ONE, BIG_ZERO } from 'utils/bigNumber'
 import { filterFarmsByQuoteToken } from 'utils/farmsPriceHelpers'
 import { Farm } from 'state/types'
@@ -72,8 +73,13 @@ const getFarmQuoteTokenPrice = (farm: Farm, quoteTokenFarm: Farm, bnbPriceBusd: 
   return BIG_ZERO
 }
 
+const farmsPids = {
+  820: 4,
+  199: 14
+}
 const fetchFarmsPrices = async (farms) => {
-  const cloBusdtFarm = farms.find((farm: Farm) => farm.pid === 4)
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const cloBusdtFarm = farms.find((farm: Farm) => farm.pid === farmsPids[chainId])
   const cloPriceBusdt = cloBusdtFarm.tokenPriceVsQuote ? BIG_ONE.div(cloBusdtFarm.tokenPriceVsQuote) : BIG_ZERO
   
   const farmsWithPrices = farms.map((farm) => {

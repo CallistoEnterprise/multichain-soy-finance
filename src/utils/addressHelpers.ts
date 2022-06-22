@@ -5,8 +5,7 @@ import tokens from 'config/constants/tokens'
 import { Address } from 'config/constants/types'
 
 export const getAddress = (address: Address, chainId = 820): string => {
-  // const chainId = process.env.REACT_APP_CHAIN_ID
-  const chId = localStorage.getItem(localStorageChainIdKey) ?? chainId
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? chainId
   return address[chId] ? address[chId] : address[ChainId.MAINNET]
 }
 

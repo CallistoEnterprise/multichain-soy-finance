@@ -11,7 +11,7 @@ import { localStorageChainIdKey } from '../config/index';
 export const setupNetwork = async () => {
   const provider = window.ethereum
   if (provider) {
-    const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+    const chainId = window.localStorage.getItem(localStorageChainIdKey) ? Number(window.localStorage.getItem(localStorageChainIdKey)) : parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
     try {
       await provider.request({
@@ -88,6 +88,31 @@ export const switchNetwork = async (library, curNet: any) => {
   }
 };
 
+export const setupNetwork2 = async () => {
+  const provider = window.ethereum;
+  if (provider) {
+    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? 820)
+
+    try {
+      await provider.request({
+        method: 'wallet_switchEthereumChain',
+        params: [
+          {
+            chainId: `0x${chainId.toString(16)}`,
+          },
+        ],
+      });
+      return true;
+    } catch (error) {
+      console.error('Failed to setup the network in Metamask:', error);
+      return false;
+    }
+  } else {
+    console.error("Can't setup the BSC network on metamask because window.ethereum is undefined");
+    return false;
+  }
+}
+
 /**
  * Prompt the user to add a custom token to metamask
  * @param tokenAddress
@@ -96,7 +121,7 @@ export const switchNetwork = async (library, curNet: any) => {
  * @returns {boolean} true if the token has been added, false otherwise
  */
 export const registerToken = async (tokenAddress: string, tokenSymbol: string, tokenDecimals: number) => {
-  const chId = Number(localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
   const tokenAdded = await window.ethereum.request({
     method: 'wallet_watchAsset',
     params: {

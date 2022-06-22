@@ -44,12 +44,12 @@ const UserMenu = () => {
 
   const isUnstoppable = connectorId === ConnectorNames.Unstoppable
 
-  useEffect(() => {
-    const chId = localStorage.getItem(localStorageChainIdKey)
-    if (!chId) {
-      localStorage.setItem(localStorageChainIdKey, '820')
-   }
-  }, [])
+  // useEffect(() => {
+  //   const chId = window.localStorage.getItem(localStorageChainIdKey)
+  //   if (!chId) {
+  //     window.localStorage.setItem(localStorageChainIdKey, '820')
+  //  }
+  // }, [])
 
   useEffect(() => {
     const get = async () => {
@@ -69,7 +69,7 @@ const UserMenu = () => {
     const init = () => {
       const filtered = Networks.filter((_) => Number(_.chainId) === chainId)
       if (filtered.length) {
-        localStorage.setItem(localStorageChainIdKey, chainId.toString())
+        window.localStorage.setItem(localStorageChainIdKey, filtered[0].chainId)
         setNetworkAvatar(filtered[0].img)
         setNetworkText(filtered[0].name)
       }

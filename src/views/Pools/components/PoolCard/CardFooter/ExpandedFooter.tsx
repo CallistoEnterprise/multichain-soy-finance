@@ -38,8 +38,6 @@ const ExpandedWrapper = styled(Flex)`
     width: 14px;
   }
 `
-// const chainId = process.env.REACT_APP_CHAIN_ID
-// const expLink = BASE_CALLISTO_SCAN_URLS[chainId]
 
 const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account, endTimeStr }) => {
   const { t } = useTranslation()

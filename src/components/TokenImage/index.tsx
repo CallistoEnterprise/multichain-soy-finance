@@ -17,7 +17,7 @@ interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc
 }
 
 const getImageUrlFromToken = (token: Token, chainId?: number) => {
-  const chId = Number(localStorage.getItem(localStorageChainIdKey) ?? chainId)
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? chainId)
   const address = getAddress(token.symbol === 'CLO' ? tokens.wclo.address : token.symbol === 'BTT' ? tokens.wbtt.address : token.address, chId)
   return `images/coins/${chId}/${address}.png`
 }

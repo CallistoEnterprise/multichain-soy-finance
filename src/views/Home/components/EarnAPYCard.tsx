@@ -30,7 +30,7 @@ const EarnAPYCard = () => {
   const bnbPrice = usePriceBnbBusd()
 
   const maxAPY = useRef(Number.MIN_VALUE)
-  const chId = Number(localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
 
   const getHighestAPY = () => {
     const activeFarms = farmsLP.data[chId].filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')

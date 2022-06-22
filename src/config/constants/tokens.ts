@@ -14,6 +14,13 @@ export const SOY: { [chainId: number]: Token } = {
     18,
     'SOY',
     'SoyERC223-Token',
+  ),
+  [ChainId.BTTMAINNET]: new Token(
+    ChainId.BTTMAINNET,
+    '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
+    18,
+    'SOY',
+    'SoyERC223-Token',
   )
 }
 

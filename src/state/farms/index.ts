@@ -46,7 +46,7 @@ export const nonArchivedFarms = {
 export const fetchFarmsPublicDataAsync = createAsyncThunk<Farm[], number[]>(
   'farms/fetchFarmsPublicDataAsync',
   async (pids) => {
-    const chId = parseInt(localStorage.getItem(localStorageChainIdKey) ?? '820')
+    const chId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
     const farmsToFetch = farmsConfig[chId].filter((farmConfig) => pids.includes(farmConfig.pid))
 
     // Add price helper farms
@@ -54,7 +54,6 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<Farm[], number[]>(
 
     const farms = await fetchFarms(farmsToFetch)
     const farmsWithPrices = await fetchFarmsPrices(farms)
-
     // Filter out price helper LP config farms
     const farmsWithoutHelperLps = farmsWithPrices.filter((farm: Farm) => {
       return farm.pid
@@ -75,7 +74,7 @@ interface FarmUserDataResponse {
 export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], { account: string; pids: number[] }>(
   'farms/fetchFarmUserDataAsync',
   async ({ account, pids }) => {
-    const chId = parseInt(localStorage.getItem(localStorageChainIdKey) ?? '820')
+    const chId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
     const farmsToFetch = farmsConfig[chId].filter((farmConfig) => pids.includes(farmConfig.pid))
     const userFarmAllowances = await fetchFarmUserAllowances(account, farmsToFetch)
     const userFarmTokenBalances = await fetchFarmUserTokenBalances(account, farmsToFetch)
@@ -106,7 +105,7 @@ export const farmsSlice = createSlice({
   extraReducers: (builder) => {
     // Update farms with live data
     builder.addCase(fetchFarmsPublicDataAsync.fulfilled, (state, action) => {
-      const chId = Number(localStorage.getItem(localStorageChainIdKey) ?? '820')
+      const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
       state.data[chId] = state.data[chId].map((farm) => {
         const liveFarmData = action.payload.find((farmData) => farmData.pid === farm.pid)
         return { ...farm, ...liveFarmData }
@@ -115,7 +114,7 @@ export const farmsSlice = createSlice({
 
     // Update farms with user data
     builder.addCase(fetchFarmUserDataAsync.fulfilled, (state, action) => {
-      const chId = Number(localStorage.getItem(localStorageChainIdKey) ?? '820')
+      const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
       action.payload.forEach((userDataEl) => {
         const { pid } = userDataEl
         const index = state.data[chId].findIndex((farm) => farm.pid === pid)

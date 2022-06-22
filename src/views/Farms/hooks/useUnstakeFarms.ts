@@ -8,7 +8,7 @@ import { localStorageChainIdKey } from 'config'
 
 const useUnstakeFarms = (pid: number) => {
   const { account, library } = useWeb3React()
-  const locChainId = parseInt(localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const locChainId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
 
   // const masterChefContract = useMasterchef()
   const currentFarm = farms[locChainId].find((farm) => farm.pid === pid)

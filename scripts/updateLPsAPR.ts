@@ -102,7 +102,7 @@ const getAprsForFarmGroup = async (addresses: (string | undefined | unknown)[], 
 }
 
 const fetchAndUpdateLPsAPR = async () => {
-  const chainId = parseInt(localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
   // pids before 250 are inactive farms from v1 and failed v2 migration
   const lowerCaseAddresses = farmsConfig[chainId]
     .filter((farm) => farm.pid > 250)
