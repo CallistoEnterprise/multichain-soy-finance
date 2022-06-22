@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { ResetCSS } from '@soy-libs/uikit2'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import useEagerConnect from 'hooks/useEagerConnect'
 import { setupNetwork2 } from 'utils/wallet';
 import { usePollBlockNumber } from 'state/block/hooks'
 import { usePollCoreFarmData } from 'state/farms/hooks'
@@ -79,7 +80,7 @@ BigNumber.config({
 const App: React.FC = () => {
   const { account, chainId } = useActiveWeb3React()
   usePollBlockNumber()
-  // useEagerConnect()
+  useEagerConnect()
   usePollCoreFarmData()
 
   useEffect(() => {

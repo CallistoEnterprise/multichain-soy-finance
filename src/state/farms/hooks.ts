@@ -17,7 +17,7 @@ export const usePollFarmsData = (includeArchive = false) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
   const { account } = useWeb3React()
-  
+
   const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
 
   useEffect(() => {
@@ -40,6 +40,14 @@ export const usePollFarmsData = (includeArchive = false) => {
 const coreFarms = {
   820: [2, 4],
   199: [10, 14],
+}
+const coreEthFarms = {
+  820: 2,
+  199: 10,
+}
+const busdtFarms = {
+  820: 4,
+  199: 14,
 }
 
 export const usePollCoreFarmData = () => {
@@ -107,14 +115,15 @@ export const useLpTokenPrice = (symbol: string) => {
 // /!\ Deprecated , use the USDC hook in /hooks
 
 export const usePriceBnbBusd = (): BigNumber => {
-  const { chainId } = useActiveWeb3React()
-  const cloBusdtFarm = useFarmFromPid(chainId === 199 ? 14 : 4)
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const cloBusdtFarm = useFarmFromPid(busdtFarms[chainId])
   return new BigNumber(cloBusdtFarm.quoteToken.usdcPrice)
 }
 
 export const usePriceCakeBusd = (): BigNumber => {
-  const { chainId } = useActiveWeb3React()
-  const soyCloFarm = useFarmFromPid(chainId === 199 ? 10 : 2)
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const soyCloFarm = useFarmFromPid(coreEthFarms[chainId])
+  // console.log(chainId, soyCloFarm)
   const soyPriceBusdtAsString = soyCloFarm?.token.usdcPrice
   const soyPriceBusdt = useMemo(() => {
     return new BigNumber(soyPriceBusdtAsString)

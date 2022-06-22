@@ -24,10 +24,16 @@ export const SOY: { [chainId: number]: Token } = {
   )
 }
 
-export const WCLO = new Token(ChainId.MAINNET, '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a', 18, 'WCLO', 'Wrapped CLO')
-export const BUSDT = new Token(ChainId.MAINNET, '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4', 18, 'BUSDT', 'Tether USD')
+export const WCLO: { [chainId: number]: Token } = {
+  [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a', 18, 'WCLO', 'Wrapped CLO'),
+  [ChainId.BTTMAINNET]: new Token(ChainId.BTTMAINNET, '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53', 18, 'ccCLO', 'Wrapped Callisto Coin'),
+}
+export const BUSDT = {
+  [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4', 18, 'BUSDT', 'Tether USD'),
+  [ChainId.BTTMAINNET]: new Token(ChainId.BTTMAINNET, '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF', 18, 'USDT', 'Tether USD')
+}
 export const WBTT = new Token(ChainId.BTTMAINNET, '0x33e85f0e26600a6644b6c910639B0bc7a99fd34e', 18, 'WBTT', 'Wrapped BTT')
-export const CCCLO = new Token(ChainId.BTTMAINNET, '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53', 18, 'ccCLO', 'Wrapped Callisto Coin')
+// export const CCCLO = new Token(ChainId.BTTMAINNET, '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53', 18, 'ccCLO', 'Wrapped Callisto Coin')
 
 export const ETH = new Token(
   ChainId.MAINNET,
@@ -71,7 +77,7 @@ const tokens = {
     address: {
       820: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
       20729: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
-      199: ''
+      199: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF'
     },
     decimals: 18,
     projectLink: 'https://bullsinvesting.club/',
@@ -83,7 +89,7 @@ const tokens = {
       20729: '',
       199: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF'
     },
-    decimals: 6,
+    decimals: 18,
     projectLink: 'https://bullsinvesting.club/',
   },
   cloe:{
@@ -130,7 +136,7 @@ const tokens = {
     address: {
       820: '0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9',
       199: '0x185a4091027E2dB459a2433F85f894dC3013aeB5',
-      20729: '',
+      20729: '0x185a4091027E2dB459a2433F85f894dC3013aeB5',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9/transactions',
