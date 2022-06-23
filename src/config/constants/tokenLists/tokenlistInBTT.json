@@ -31,7 +31,7 @@
       "symbol": "BUSDT",
       "address": "0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF",
       "chainId": 199,
-      "decimals": 6,
+      "decimals": 18,
       "logoURI": "images/coins/199/0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF.png"
     },
     {
