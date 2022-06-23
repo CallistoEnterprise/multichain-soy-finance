@@ -15,6 +15,7 @@ import {
   EllipsisIcon,
   LinkExternal,
 } from '@soy-libs/uikit2'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getCallistoExpLink } from 'utils'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
@@ -45,6 +46,7 @@ interface LeaderboardRowProps {
 }
 
 const LeaderboardRow: React.FC<LeaderboardRowProps> = ({ bidder, cakePriceBusd, isMobile }) => {
+  const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const { isTopPosition, position, samePositionAsAbove, farmName, tokenName, amount, projectSite, lpAddress, account } =
     bidder
@@ -99,7 +101,7 @@ const LeaderboardRow: React.FC<LeaderboardRowProps> = ({ bidder, cakePriceBusd, 
             </SubMenuItem>
           )}
           {account && (
-            <SubMenuItem as={LinkExternal} href={getCallistoExpLink(account, 'address')} bold={false} color="text">
+            <SubMenuItem as={LinkExternal} href={getCallistoExpLink(account, 'address', chainId)} bold={false} color="text">
               {t('Bidder Address')}
             </SubMenuItem>
           )}

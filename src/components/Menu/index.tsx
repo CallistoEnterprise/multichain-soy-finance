@@ -41,7 +41,7 @@ const Menu = (props) => {
         noProfileLink: '/profile',
         showPip: !profile?.username,
       }}
-      addSoyToMetamask={addSoyToMetamask}
+      addSoyToMetamask={() => addSoyToMetamask(chainId)}
       {...props}
     />
   )

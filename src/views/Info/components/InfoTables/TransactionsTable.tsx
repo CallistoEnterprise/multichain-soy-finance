@@ -6,6 +6,7 @@ import { formatDistanceToNowStrict } from 'date-fns'
 import { Text, Flex, Box, Radio, Skeleton, LinkExternal, ArrowForwardIcon, ArrowBackIcon } from '@soy-libs/uikit2'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import { getCallistoExpLink } from 'utils'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import truncateHash from 'utils/truncateHash'
 import { Transaction, TransactionType } from 'state/info/types'
 import { ITEMS_PER_INFO_TABLE_PAGE } from 'config/constants/info'
@@ -93,6 +94,7 @@ const TableLoader: React.FC = () => {
 }
 
 const DataRow: React.FC<{ transaction: Transaction }> = ({ transaction }) => {
+  const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const abs0 = Math.abs(transaction.amountToken0)
   const abs1 = Math.abs(transaction.amountToken1)
@@ -101,7 +103,7 @@ const DataRow: React.FC<{ transaction: Transaction }> = ({ transaction }) => {
 
   return (
     <ResponsiveGrid>
-      <LinkExternal href={getCallistoExpLink(transaction.hash, 'transaction')}>
+      <LinkExternal href={getCallistoExpLink(transaction.hash, 'transaction', chainId)}>
         <Text>
           {transaction.type === TransactionType.MINT
             ? t('Add %token0% and %token1%', { token0: transaction.token0Symbol, token1: transaction.token1Symbol })
@@ -117,7 +119,7 @@ const DataRow: React.FC<{ transaction: Transaction }> = ({ transaction }) => {
       <Text>
         <Text>{`${formatAmount(abs1)} ${transaction.token1Symbol}`}</Text>
       </Text>
-      <LinkExternal href={getCallistoExpLink(transaction.sender, 'address')}>
+      <LinkExternal href={getCallistoExpLink(transaction.sender, 'address', chainId)}>
         {truncateHash(transaction.sender)}
       </LinkExternal>
       <Text>{formatDistanceToNowStrict(parseInt(transaction.timestamp, 10) * 1000)}</Text>

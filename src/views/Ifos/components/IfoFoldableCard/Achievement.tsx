@@ -4,6 +4,7 @@ import { Flex, LinkExternal, Image, Text, PrizeIcon, Skeleton } from '@soy-libs/
 import { useTranslation } from 'contexts/Localization'
 import { PublicIfoData } from 'views/Ifos/types'
 import { Ifo } from 'config/constants/types'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { BIG_TEN } from 'utils/bigNumber'
 import { getCallistoExpLink } from 'utils'
 
@@ -37,6 +38,7 @@ const StyledLinkExternal = styled(LinkExternal)`
 
 const Achievement: React.FC<Props> = ({ ifo, publicIfoData }) => {
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   const tokenName = ifo.token.symbol.toLowerCase()
   const campaignTitle = ifo.name
   const minLpForAchievement = MIN_DOLLAR_FOR_ACHIEVEMENT.div(publicIfoData.currencyPriceInUSD).toNumber()
@@ -71,7 +73,7 @@ const Achievement: React.FC<Props> = ({ ifo, publicIfoData }) => {
         <StyledLinkExternal href={ifo.articleUrl} mb="8px">
           {t('Learn more about %title%', { title: campaignTitle })}
         </StyledLinkExternal>
-        <StyledLinkExternal href={getCallistoExpLink(ifo.address, 'address')}>{t('View Contract')}</StyledLinkExternal>
+        <StyledLinkExternal href={getCallistoExpLink(ifo.address, 'address', chainId)}>{t('View Contract')}</StyledLinkExternal>
       </Flex>
     </Container>
   )

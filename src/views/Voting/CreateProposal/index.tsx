@@ -21,7 +21,7 @@ import isEmpty from 'lodash/isEmpty'
 import { useInitialBlock } from 'state/block/hooks'
 import { SnapshotCommand } from 'state/types'
 import useToast from 'hooks/useToast'
-import useWeb3Provider from 'hooks/useActiveWeb3React'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getCallistoExpLink } from 'utils'
 import truncateWalletAddress from 'utils/truncateWalletAddress'
 import { signMessage } from 'utils/web3React'
@@ -56,10 +56,9 @@ const CreateProposal = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [fieldsState, setFieldsState] = useState<{ [key: string]: boolean }>({})
   const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const { account, library, chainId } = useActiveWeb3React()
   const initialBlock = useInitialBlock()
   const { push } = useHistory()
-  const { library } = useWeb3Provider()
   const { toastSuccess, toastError } = useToast()
   const [onPresentVoteDetailsModal] = useModal(<VoteDetailsModal block={state.snapshot} />)
   const { name, body, choices, startDate, startTime, endDate, endTime, snapshot } = state
@@ -259,7 +258,7 @@ const CreateProposal = () => {
                     <Text color="textSubtle" mr="16px">
                       {t('Creator')}
                     </Text>
-                    <LinkExternal href={getCallistoExpLink(account, 'address')}>
+                    <LinkExternal href={getCallistoExpLink(account, 'address', chainId)}>
                       {truncateWalletAddress(account)}
                     </LinkExternal>
                   </Flex>
@@ -268,7 +267,7 @@ const CreateProposal = () => {
                   <Text color="textSubtle" mr="16px">
                     {t('Snapshot')}
                   </Text>
-                  <LinkExternal href={getCallistoExpLink(snapshot, 'block')}>{snapshot}</LinkExternal>
+                  <LinkExternal href={getCallistoExpLink(snapshot, 'block', chainId)}>{snapshot}</LinkExternal>
                 </Flex>
                 {account ? (
                   <>

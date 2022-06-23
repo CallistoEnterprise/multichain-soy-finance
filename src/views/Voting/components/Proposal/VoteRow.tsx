@@ -1,6 +1,7 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import { Flex, LinkExternal, Text, Tag, CheckmarkCircleIcon } from '@soy-libs/uikit2'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import truncateWalletAddress from 'utils/truncateWalletAddress'
 import { getCallistoExpLink } from 'utils'
 import { useTranslation } from 'contexts/Localization'
@@ -15,6 +16,7 @@ interface VoteRowProps {
 }
 
 const VoteRow: React.FC<VoteRowProps> = ({ vote, isVoter }) => {
+  const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const hasVotingPower = !!vote.metadata?.votingPower
   const votingPower = hasVotingPower ? new BigNumber(vote.metadata.votingPower).toFormat(3) : '--'
@@ -23,7 +25,7 @@ const VoteRow: React.FC<VoteRowProps> = ({ vote, isVoter }) => {
     <Row>
       <AddressColumn>
         <Flex alignItems="center">
-          <LinkExternal href={getCallistoExpLink(vote.voter, 'address')}>{truncateWalletAddress(vote.voter)}</LinkExternal>
+          <LinkExternal href={getCallistoExpLink(vote.voter, 'address', chainId)}>{truncateWalletAddress(vote.voter)}</LinkExternal>
           {isVoter && (
             <Tag variant="success" outline ml="8px">
               <CheckmarkCircleIcon mr="4px" /> {t('Voted')}

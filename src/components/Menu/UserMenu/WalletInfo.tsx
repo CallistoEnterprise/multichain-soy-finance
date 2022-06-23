@@ -1,9 +1,9 @@
 import React from 'react'
 import { Box, Button, Flex, InjectedModalProps, LinkExternal, Message, Text } from '@soy-libs/uikit2'
-import { useWeb3React } from '@web3-react/core'
 import useTokenBalance, { useGetBnbBalance } from 'hooks/useTokenBalance'
 import { getPmoonAddress } from 'utils/addressHelpers'
 import useAuth from 'hooks/useAuth'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'
 import { getCallistoExpLink } from 'utils'
 import { getFullDisplayBalance } from 'utils/formatBalance'
@@ -17,7 +17,7 @@ interface WalletInfoProps {
 
 const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) => {
   const { t } = useTranslation()
-  const { account, chainId } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const { balance } = useGetBnbBalance()
   const { balance: cakeBalance } = useTokenBalance(getPmoonAddress())
   const { logout } = useAuth()
@@ -50,7 +50,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
         <Text>{getFullDisplayBalance(cakeBalance, 18, 3)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="end" mb="24px">
-        <LinkExternal href={getCallistoExpLink(account, 'address')}>{t(`View on ${ExplorerText[chainId]}`)}</LinkExternal>
+        <LinkExternal href={getCallistoExpLink(account, 'address', chainId)}>{t(`View on ${ExplorerText[chainId]}`)}</LinkExternal>
       </Flex>
       <Button variant="secondary" width="100%" onClick={handleLogout}>
         {t('Disconnect Wallet')}

@@ -138,13 +138,19 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
   return tokenAdded
 }
 
-export const addSoyToMetamask = async () => {
+const SOY = {
+  820: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
+  199: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910'
+}
+
+export const addSoyToMetamask = async (chainId: number) => {
+  
   await window.ethereum.request({
     method: 'wallet_watchAsset',
     params: {
       type: 'ERC20',
       options: {
-        address: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
+        address: SOY[chainId],
         symbol: 'SOY',
         decimals: 18,
         image: `https://app.soy.finance/images/coins/0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65.png`,
