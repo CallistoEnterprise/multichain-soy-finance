@@ -5,7 +5,7 @@ export const DEFAULT_META: PageMeta = {
   title: 'soyfinance',
   description:
     'The most popular AMM on Polygon by user count! Earn SOY through yield farming, then stake it in PSyrup Pools to earn more tokens!',
-  image: 'http://localhost:3000/images/hero.png',
+  image: 'images/hero.png',
 }
 
 export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {

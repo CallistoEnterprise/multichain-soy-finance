@@ -3,6 +3,7 @@ import styled, { keyframes, css } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Text } from '@soy-libs/uikit2'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getAddress } from 'utils/addressHelpers'
 import { getCallistoExpLink } from 'utils'
@@ -139,17 +140,17 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   expanded,
 }) => {
   const farm = details
-
+  const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const isActive = farm.multiplier !== '0X'
   const { quoteToken, token, dual } = farm
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('POLYSAFEMOON', '')
+  const lpLabel = farm?.lpSymbol && farm?.lpSymbol.toUpperCase().replace('POLYSAFEMOON', '')
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: quoteToken.address,
     tokenAddress: token.address,
   })
-  const lpAddress = getAddress(farm.lpAddresses)
-  const polygon = getCallistoExpLink(lpAddress, 'address')
+  const lpAddress = getAddress(farm?.lpAddresses)
+  const polygon = getCallistoExpLink(lpAddress, 'address', chainId)
   // const info = `https://soyfinance.info/pool/${lpAddress}`
 
   return (

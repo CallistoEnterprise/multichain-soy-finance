@@ -15,6 +15,12 @@ export const BASE_CALLISTO_SCAN_URLS = {
   [ChainId.BTTMAINNET]: 'https://bttcscan.com',
 }
 
+export const RPC_URLS = {
+  [ChainId.MAINNET]: 'https://rpc.callisto.network/',
+  [ChainId.CLOTESTNET]: 'https://testnet-rpc.callisto.network/',
+  [ChainId.BTTMAINNET]: 'https://rpc.bittorrentchain.io/',
+}
+
 export const ExplorerText = {
   [ChainId.MAINNET]: 'CallistoScan',
   [ChainId.BTTMAINNET]: 'BttcScan'
@@ -30,7 +36,7 @@ export const ExplorerText = {
 export const SOY_PER_BLOCK = new BigNumber(5)
 export const BLOCKS_PER_YEAR = new BigNumber((60 / CALLISTO_BLOCK_TIME) * 60 * 24 * 365)
 export const SOY_PER_YEAR = SOY_PER_BLOCK.times(BLOCKS_PER_YEAR)
-export const BASE_URL = 'https://app.soy.finance'
+export const BASE_URL = 'https://deploy-preview-7--multichain-soy-finance.netlify.app'
 export const BASE_ADD_LIQUIDITY_URL = `${BASE_URL}/add`
 export const BASE_LIQUIDITY_POOL_URL = `${BASE_URL}/pool`
 export const BASE_CALLISTO_SCAN_URL = BASE_CALLISTO_SCAN_URLS[ChainId.MAINNET]
@@ -44,3 +50,5 @@ export const RECLAIM_AUCTIONS_TO_FETCH = 500
 export const AUCTION_WHITELISTED_BIDDERS_TO_FETCH = 500
 export const ONE_YEAR_TIMESTAMP = 365 * 24 * 60 * 60
 export const REWARD_TOKENS_PER_YEAR = new BigNumber(50000000)
+
+export const localStorageChainIdKey = "soyfinanceChainId"

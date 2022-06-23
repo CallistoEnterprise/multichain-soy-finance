@@ -18,8 +18,8 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
         chainId && wrapped && currencyEquals(WETH[chainId], wrapped) ? undefined : currency,
         chainId ? WETH[chainId] : undefined,
       ],
-      [wrapped?.equals(BUSDT) ? undefined : wrapped, chainId === ChainId.MAINNET ? BUSDT : undefined],
-      [chainId ? WETH[chainId] : undefined, chainId === ChainId.MAINNET ? BUSDT : undefined],
+      [wrapped?.equals(BUSDT[chainId]) ? undefined : wrapped, chainId === ChainId.MAINNET ? BUSDT[chainId] : undefined],
+      [chainId ? WETH[chainId] : undefined, chainId === ChainId.MAINNET ? BUSDT[chainId] : undefined],
     ],
     [chainId, currency, wrapped],
   )
@@ -33,13 +33,13 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
     if (wrapped.equals(WETH[chainId])) {
       if (busdPair) {
         const price = busdPair.priceOf(WETH[chainId])
-        return new Price(currency, BUSDT, price.denominator, price.numerator)
+        return new Price(currency, BUSDT[chainId], price.denominator, price.numerator)
       }
       return undefined
     }
     // handle usdc
-    if (wrapped.equals(BUSDT)) {
-      return new Price(BUSDT, BUSDT, '1', '1')
+    if (wrapped.equals(BUSDT[chainId])) {
+      return new Price(BUSDT[chainId], BUSDT[chainId], '1', '1')
     }
 
     const ethPairETHAmount = ethPair?.reserveOf(WETH[chainId])
@@ -51,17 +51,17 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
     if (
       busdPairState === PairState.EXISTS &&
       busdPair &&
-      busdPair.reserveOf(BUSDT).greaterThan(ethPairETHBUSDValue)
+      busdPair.reserveOf(BUSDT[chainId]).greaterThan(ethPairETHBUSDValue)
     ) {
       const price = busdPair.priceOf(wrapped)
-      return new Price(currency, BUSDT, price.denominator, price.numerator)
+      return new Price(currency, BUSDT[chainId], price.denominator, price.numerator)
     }
     if (ethPairState === PairState.EXISTS && ethPair && busdEthPairState === PairState.EXISTS && busdEthPair) {
-      if (busdEthPair.reserveOf(BUSDT).greaterThan('0') && ethPair.reserveOf(WETH[chainId]).greaterThan('0')) {
-        const ethBusdPrice = busdEthPair.priceOf(BUSDT)
+      if (busdEthPair.reserveOf(BUSDT[chainId]).greaterThan('0') && ethPair.reserveOf(WETH[chainId]).greaterThan('0')) {
+        const ethBusdPrice = busdEthPair.priceOf(BUSDT[chainId])
         const currencyEthPrice = ethPair.priceOf(WETH[chainId])
         const busdPrice = ethBusdPrice.multiply(currencyEthPrice).invert()
-        return new Price(currency, BUSDT, busdPrice.denominator, busdPrice.numerator)
+        return new Price(currency, BUSDT[chainId], busdPrice.denominator, busdPrice.numerator)
       }
     }
     return undefined

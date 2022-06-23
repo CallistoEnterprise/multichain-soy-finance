@@ -3,6 +3,7 @@ import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { Flex, Text, Skeleton } from '@soy-libs/uikit2'
 import { Farm } from 'state/types'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getCallistoExpLink } from 'utils'
 import { useTranslation } from 'contexts/Localization'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
@@ -81,6 +82,7 @@ interface FarmCardProps {
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePrice, account }) => {
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
@@ -89,7 +91,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
       ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
       : ''
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('SOYFINANCE', '')
+  const lpLabel = farm?.lpSymbol && farm?.lpSymbol.toUpperCase().replace('SOYFINANCE', '')
   const earnLabel = farm.dual ? farm.dual.earnLabel : t('SOY + Fees')
 
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
@@ -97,7 +99,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
     tokenAddress: farm.token.address,
   })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
-  const lpAddress = getAddress(farm.lpAddresses)
+  const lpAddress = getAddress(farm?.lpAddresses)
   const isPromotedFarm = farm.token.symbol === 'SOY'
 
   // const oneThousandDollarsWorthOfToken = 1000 / cakePrice.toNumber()
@@ -157,7 +159,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
       <ExpandingWrapper expanded={showExpandableSection}>
         <DetailsSection
           removed={removed}
-          CallistoExpAddress={getCallistoExpLink(lpAddress, 'address')}
+          CallistoExpAddress={getCallistoExpLink(lpAddress, 'address', chainId)}
           infoAddress={`https://soyfinance.info/pool/${lpAddress}`}
           totalValueFormatted={totalValueFormatted}
           lpLabel={lpLabel}

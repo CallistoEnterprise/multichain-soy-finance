@@ -5,6 +5,7 @@ import { Web3Provider } from '@ethersproject/providers'
 // import { simpleRpcProvider } from 'utils/providers'
 // eslint-disable-next-line import/no-unresolved
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
+import { localStorageChainIdKey } from 'config'
 import { Networks } from 'config/constants/networks';
 import { getRpcForMulti } from 'utils/getRpcUrl'
 
@@ -45,6 +46,7 @@ const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> => {
   const simpleRpcProviderInMulti = useGetSimpleRpcProvider(chainId)
   const [provider, setprovider] = useState(library || simpleRpcProviderInMulti)
   
+  const locChainId = Number(window.localStorage.getItem(localStorageChainIdKey))
   useEffect(() => {
     if (library !== refEth.current && simpleRpcProviderInMulti) {
       setprovider(library || simpleRpcProviderInMulti)
@@ -52,7 +54,7 @@ const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> => {
     }
   }, [library, simpleRpcProviderInMulti])
 
-  return { library: provider, chainId: chainId ?? parseInt(process.env.REACT_APP_CHAIN_ID, 10), ...web3React }
+  return { library: provider, chainId: chainId ?? locChainId, ...web3React }
 }
 
 export default useActiveWeb3React

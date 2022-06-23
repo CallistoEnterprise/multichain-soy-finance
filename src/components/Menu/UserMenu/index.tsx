@@ -18,6 +18,7 @@ import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
 import { uauth } from 'utils/web3React'
 import { switchNetwork } from 'utils/wallet'
+import { localStorageChainIdKey } from 'config'
 import NetworkMenu from '../NetworkMenu'
 import WalletModal, { WalletView, LOW_BNB_BALANCE } from './WalletModal'
 // import ProfileUserMenuItem from './ProfileUserMenutItem'
@@ -43,6 +44,13 @@ const UserMenu = () => {
 
   const isUnstoppable = connectorId === ConnectorNames.Unstoppable
 
+  // useEffect(() => {
+  //   const chId = window.localStorage.getItem(localStorageChainIdKey)
+  //   if (!chId) {
+  //     window.localStorage.setItem(localStorageChainIdKey, '820')
+  //  }
+  // }, [])
+
   useEffect(() => {
     const get = async () => {
       uauth.uauth
@@ -61,6 +69,7 @@ const UserMenu = () => {
     const init = () => {
       const filtered = Networks.filter((_) => Number(_.chainId) === chainId)
       if (filtered.length) {
+        window.localStorage.setItem(localStorageChainIdKey, filtered[0].chainId)
         setNetworkAvatar(filtered[0].img)
         setNetworkText(filtered[0].name)
       }

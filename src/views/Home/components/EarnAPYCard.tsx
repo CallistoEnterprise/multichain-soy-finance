@@ -6,7 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 import BigNumber from 'bignumber.js'
 import { QuoteToken } from 'config/constants/types'
 import { useFarms, usePriceBnbBusd } from 'state/farms/hooks'
-import { BLOCKS_PER_YEAR, SOY_PER_BLOCK } from 'config'
+import { BLOCKS_PER_YEAR, SOY_PER_BLOCK, localStorageChainIdKey } from 'config'
 
 const SOY_POOL_PID = 1
 
@@ -30,9 +30,10 @@ const EarnAPYCard = () => {
   const bnbPrice = usePriceBnbBusd()
 
   const maxAPY = useRef(Number.MIN_VALUE)
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
 
   const getHighestAPY = () => {
-    const activeFarms = farmsLP.data.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
+    const activeFarms = farmsLP.data[chId].filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
 
     calculateAPY(activeFarms)
 
@@ -41,7 +42,7 @@ const EarnAPYCard = () => {
 
   const calculateAPY = useCallback(
     (farmsToDisplay) => {
-      const cakePriceVsBNB = new BigNumber(farmsLP.data.find((farm) => farm.pid === SOY_POOL_PID)?.tokenPriceVsQuote || 0)
+      const cakePriceVsBNB = new BigNumber(farmsLP.data[chId].find((farm) => farm.pid === SOY_POOL_PID)?.tokenPriceVsQuote || 0)
 
       farmsToDisplay.map((farm) => {
         if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {
@@ -74,7 +75,7 @@ const EarnAPYCard = () => {
         return apy
       })
     },
-    [bnbPrice, farmsLP],
+    [bnbPrice, chId, farmsLP],
   )
 
   return (

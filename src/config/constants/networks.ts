@@ -1,4 +1,5 @@
 import { ChainId } from '@soy-libs/sdk-multichain'
+import { BASE_URL } from 'config'
 
 const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: 'https://clo-geth.0xinfra.com/',
@@ -9,17 +10,17 @@ const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.BSC]: 'https://bsc-dataseed.binance.org/',
   [ChainId.BSCTESTNET]: '',
   [ChainId.ETCCLASSICMAINNET]: 'https://www.ethercluster.com/etc',
-  [ChainId.BTTMAINNET]: 'https://rpc.bt.io/'
+  [ChainId.BTTMAINNET]: 'https://rpc.bittorrentchain.io/'
 }
 
 export const Networks = [
   {
       name: "Callisto",
       symbol: "CLO",
-      img: '/images/networks/clo.png',
+      img: `${BASE_URL}/images/networks/clo.png`,
       chainId: "820",
       hexChainId: "0x334",
-      rpcs: ["https://clo-geth.0xinfra.com/"],
+      rpcs: ["https://rpc.callisto.network/"],
       explorer: "https://explorer.callisto.network/"
   },
   // {
@@ -50,7 +51,7 @@ export const Networks = [
       img: '/images/networks/btt.png',
       chainId: "199",
       hexChainId: "0xc7",
-      rpcs: ["https://rpc.bt.io/"],
+      rpcs: ["https://rpc.bittorrentchain.io/"],
       explorer: "https://bttcscan.com/" 
   },
 ]

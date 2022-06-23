@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
 import { getCallistoExpLink } from 'utils'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Flex, Link, PocketWatchIcon, Text, Skeleton } from '@soy-libs/uikit2'
 import getTimePeriods from 'utils/getTimePeriods'
 import { PublicIfoData } from 'views/Ifos/types'
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const Timer: React.FC<Props> = ({ publicIfoData }) => {
+  const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const { status, secondsUntilStart, secondsUntilEnd, startBlockNum } = publicIfoData
   const countdownToUse = status === 'coming_soon' ? secondsUntilStart : secondsUntilEnd
@@ -34,7 +36,7 @@ const Timer: React.FC<Props> = ({ publicIfoData }) => {
               })}
             </Text>
             <Link
-              href={getCallistoExpLink(startBlockNum, 'countdown')}
+              href={getCallistoExpLink(startBlockNum, 'countdown', chainId)}
               target="blank"
               rel="noopener noreferrer"
               ml="8px"

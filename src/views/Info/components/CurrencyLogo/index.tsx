@@ -1,3 +1,4 @@
+import { BASE_URL, localStorageChainIdKey } from 'config'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { isAddress } from 'utils'
@@ -16,13 +17,15 @@ export const CurrencyLogo: React.FC<{
   address?: string
   size?: string
 }> = ({ address, size = '24px', ...rest }) => {
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+
   const src = useMemo(() => {
     const checksummedAddress = isAddress(address)
     if (checksummedAddress) {
-      return `https://app.soy.finance/images/coins/${checksummedAddress}.png`
+      return `${BASE_URL}/images/coins/${chId}/${checksummedAddress}.png`
     }
     return null
-  }, [address])
+  }, [address, chId])
 
   return <StyledLogo size={size} src={src} alt="token logo" {...rest} />
 }

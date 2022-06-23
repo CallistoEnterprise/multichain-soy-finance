@@ -42,7 +42,7 @@ export default function Updater(): null {
 
     library.on('block', blockNumberCallback)
     return () => {
-      library.removeListener('block', blockNumberCallback)
+      library?.removeListener('block', blockNumberCallback)
     }
   }, [dispatch, chainId, library, blockNumberCallback, windowVisible])
 

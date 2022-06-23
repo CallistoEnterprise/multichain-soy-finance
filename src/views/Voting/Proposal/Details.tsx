@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { format } from 'date-fns'
 import { Proposal } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getCallistoExpLink } from 'utils'
 import truncateWalletAddress from 'utils/truncateWalletAddress'
 import { IPFS_GATEWAY } from '../config'
@@ -21,6 +22,7 @@ const DetailBox = styled(Box)`
 
 const Details: React.FC<DetailsProps> = ({ proposal }) => {
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   const startDate = new Date(proposal.start * 1000)
   const endDate = new Date(proposal.end * 1000)
 
@@ -40,13 +42,13 @@ const Details: React.FC<DetailsProps> = ({ proposal }) => {
         </Flex>
         <Flex alignItems="center" mb="8px">
           <Text color="textSubtle">{t('Creator')}</Text>
-          <LinkExternal href={getCallistoExpLink(proposal.author, 'address')} ml="8px">
+          <LinkExternal href={getCallistoExpLink(proposal.author, 'address', chainId)} ml="8px">
             {truncateWalletAddress(proposal.author)}
           </LinkExternal>
         </Flex>
         <Flex alignItems="center" mb="16px">
           <Text color="textSubtle">{t('Snapshot')}</Text>
-          <LinkExternal href={getCallistoExpLink(proposal.snapshot, 'block')} ml="8px">
+          <LinkExternal href={getCallistoExpLink(proposal.snapshot, 'block', chainId)} ml="8px">
             {proposal.snapshot}
           </LinkExternal>
         </Flex>

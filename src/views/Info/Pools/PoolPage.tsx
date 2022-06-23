@@ -25,6 +25,7 @@ import { CurrencyLogo, DoubleCurrencyLogo } from 'views/Info/components/Currency
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import Percent from 'views/Info/components/Percent'
 import SaveIcon from 'views/Info/components/SaveIcon'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { usePoolDatas, usePoolChartData, usePoolTransactions } from 'state/info/hooks'
 import TransactionTable from 'views/Info/components/InfoTables/TransactionsTable'
 import { useWatchlistPools } from 'state/user/hooks'
@@ -68,9 +69,9 @@ const PoolPage: React.FC<RouteComponentProps<{ address: string }>> = ({
     params: { address: routeAddress },
   },
 }) => {
+  const { chainId } = useActiveWeb3React()
   const { isXs, isSm } = useMatchBreakpoints()
   const { t } = useTranslation()
-  const { chainId } = useWeb3React()
   const [showWeeklyData, setShowWeeklyData] = useState(0)
   const { tooltip, tooltipVisible, targetRef } = useTooltip(
     t(`Based on last 7 days' performance. Does not account for impermanent loss`),
@@ -109,7 +110,7 @@ const PoolPage: React.FC<RouteComponentProps<{ address: string }>> = ({
               </Flex>
             </Breadcrumbs>
             <Flex justifyContent={[null, null, 'flex-end']} mt={['8px', '8px', 0]}>
-              <LinkExternal mr="8px" href={getCallistoExpLink(address, 'address')}>
+              <LinkExternal mr="8px" href={getCallistoExpLink(address, 'address', chainId)}>
                 {t(`View on ${ExplorerText[chainId]}`)}
               </LinkExternal>
               <SaveIcon fill={watchlistPools.includes(address)} onClick={() => addPoolToWatchlist(address)} />

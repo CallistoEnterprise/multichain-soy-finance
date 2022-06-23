@@ -1,9 +1,11 @@
-import React, { lazy } from 'react'
+import React, { useEffect, lazy } from 'react'
 import { Router, Redirect, Route, Switch } from 'react-router-dom'
 import styled from "styled-components";
 import { ResetCSS } from '@soy-libs/uikit2'
 import BigNumber from 'bignumber.js'
-// import useEagerConnect from 'hooks/useEagerConnect'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import useEagerConnect from 'hooks/useEagerConnect'
+import { setupNetwork2 } from 'utils/wallet';
 import { usePollBlockNumber } from 'state/block/hooks'
 import { usePollCoreFarmData } from 'state/farms/hooks'
 import { DatePickerPortal } from 'components/DatePicker'
@@ -76,9 +78,19 @@ BigNumber.config({
 })
 
 const App: React.FC = () => {
+  const { account, chainId } = useActiveWeb3React()
   usePollBlockNumber()
-  // useEagerConnect()
+  useEagerConnect()
   usePollCoreFarmData()
+
+  useEffect(() => {
+    const init = async () => {
+      setupNetwork2()
+    }
+    if (account && chainId !== 820 && chainId !== 199) {
+      init()
+    }
+  }, [account, chainId])
 
   window.ethereum?.removeAllListeners(["networkChanged"])
 

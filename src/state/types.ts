@@ -78,7 +78,10 @@ export interface Profile {
 // Slices states
 
 export interface FarmsState {
-  data: Farm[]
+  data: {
+    820: Farm[],
+    199: Farm[],
+  }
   loadArchivedFarmsData: boolean
   userDataLoaded: boolean
 }

@@ -41,7 +41,7 @@ import { ONE_HOUR_SECONDS } from 'config/constants/info'
 import { useTranslation } from 'contexts/Localization'
 import ChartCard from 'views/Info/components/InfoCharts/ChartCard'
 import { ExplorerText } from 'config'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const ContentLayout = styled.div`
   margin-top: 16px;
@@ -72,7 +72,7 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
 }) => {
   const { isXs, isSm } = useMatchBreakpoints()
   const { t } = useTranslation()
-  const { chainId } = useWeb3React()
+  const { chainId } = useActiveWeb3React()
   // Needed to scroll up if user comes to this page by clicking on entry in the table
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -143,7 +143,7 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
                 </Flex>
               </Breadcrumbs>
               <Flex justifyContent={[null, null, 'flex-end']} mt={['8px', '8px', 0]}>
-                <LinkExternal mr="8px" color="primary" href={getCallistoExpLink(address, 'address')}>
+                <LinkExternal mr="8px" color="primary" href={getCallistoExpLink(address, 'address', chainId)}>
                   {t(`View on ${ExplorerText[chainId]}`)}
                 </LinkExternal>
                 {cmcLink && (

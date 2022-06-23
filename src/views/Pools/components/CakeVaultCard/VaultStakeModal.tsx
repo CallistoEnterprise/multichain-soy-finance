@@ -16,6 +16,7 @@ import useToast from 'hooks/useToast'
 import { fetchCakeVaultUserData } from 'state/pools'
 import { Pool } from 'state/types'
 import { getAddress } from 'utils/addressHelpers'
+import { BASE_URL } from 'config'
 import { convertCakeToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
 
@@ -37,7 +38,7 @@ const callOptions = {
 const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isRemovingStake = false, onDismiss }) => {
   const dispatch = useAppDispatch()
   const { stakingToken } = pool
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const cakeVaultContract = usePmoonVaultContract()
   const {
     userData: { lastDepositedTime, userShares },
@@ -157,7 +158,13 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
           <Image
-            src={pool.stakingToken.symbol === 'CLO' ? `https://app.soy.finance/images/coins/clo.png` : pool.stakingToken.symbol === 'BTT' ? `https://app.soy.finance/images/coins/btt.png` : `https://app.soy.finance/images/coins/${getAddress(stakingToken.address)}.png`}
+            src={
+              pool.stakingToken.symbol === 'CLO'
+                ? `${BASE_URL}/images/coins/clo.png`
+                : pool.stakingToken.symbol === 'BTT'
+                ? `${BASE_URL}/images/coins/btt.png`
+                : `${BASE_URL}/images/coins/${chainId ?? 820}/${getAddress(stakingToken.address)}.png`
+            }
             width={24}
             height={24}
             alt={stakingToken.symbol}

@@ -2,7 +2,7 @@ import { ethers } from 'ethers'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { Contract } from '@ethersproject/contracts'
-import { simpleRpcProvider } from 'utils/providers'
+import { getRpcProvider, simpleRpcProvider } from 'utils/providers'
 import { poolsConfig } from 'config/constants'
 import { Address, PoolCategory } from 'config/constants/types'
 
@@ -66,7 +66,7 @@ import MultiCallAbi from 'config/abi/Multicall.json'
 import bunnySpecialCakeVaultAbi from 'config/abi/bunnySpecialCakeVault.json'
 import bunnySpecialPredictionAbi from 'config/abi/bunnySpecialPrediction.json'
 import farmAuctionAbi from 'config/abi/farmAuction.json'
-import { ChainLinkOracleContract, FarmAuctionContract, PredictionsContract } from './types'
+// import { ChainLinkOracleContract, FarmAuctionContract, PredictionsContract } from './types'
 
 export function isAddress(value: any): string | false {
   try {
@@ -96,7 +96,7 @@ export function getContract2(address: string, ABI: any, library: Web3Provider, a
 }
 
 const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
-  const signerOrProvider = signer ?? simpleRpcProvider
+  const signerOrProvider = signer ?? getRpcProvider()
   return new ethers.Contract(address, abi, signerOrProvider)
 }
 
@@ -206,11 +206,11 @@ export const getPmoonVaultContract = (signer?: ethers.Signer | ethers.providers.
 }
 
 export const getPredictionsContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(predictionsAbi, getPredictionsAddress(), signer) as PredictionsContract
+  return getContract(predictionsAbi, getPredictionsAddress(), signer)
 }
 
 export const getChainlinkOracleContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(chainlinkOracleAbi, getChainlinkOracleAddress(), signer) as ChainLinkOracleContract
+  return getContract(chainlinkOracleAbi, getChainlinkOracleAddress(), signer)
 }
 export const getMulticallContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(MultiCallAbi, getMulticallAddress(), signer)
@@ -222,5 +222,5 @@ export const getBunnySpecialPredictionContract = (signer?: ethers.Signer | ether
   return getContract(bunnySpecialPredictionAbi, getBunnySpecialPredictionAddress(), signer)
 }
 export const getFarmAuctionContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(farmAuctionAbi, getFarmAuctionAddress(), signer) as FarmAuctionContract
+  return getContract(farmAuctionAbi, getFarmAuctionAddress(), signer)
 }

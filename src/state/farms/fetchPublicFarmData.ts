@@ -24,7 +24,7 @@ type PublicFarmData = {
 const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
   const { lpAddresses, token, quoteToken, localFarmAddresses } = farm
   const lpAddress = getAddress(lpAddresses)
-
+  
   const calls = [
     // Balance of token in the LP contract
     {

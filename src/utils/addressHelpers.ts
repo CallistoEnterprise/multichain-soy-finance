@@ -1,11 +1,12 @@
 import { ChainId } from '@soy-libs/sdk-multichain'
+import { localStorageChainIdKey } from 'config'
 import addresses from 'config/constants/contracts'
 import tokens from 'config/constants/tokens'
 import { Address } from 'config/constants/types'
 
 export const getAddress = (address: Address, chainId = 820): string => {
-  // const chainId = process.env.REACT_APP_CHAIN_ID
-  return address[chainId] ? address[chainId] : address[ChainId.MAINNET]
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? chainId
+  return address[chId] ? address[chId] : address[ChainId.MAINNET]
 }
 
 export const getPmoonAddress = () => {
