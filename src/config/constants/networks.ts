@@ -10,7 +10,7 @@ const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.BSC]: 'https://bsc-dataseed.binance.org/',
   [ChainId.BSCTESTNET]: '',
   [ChainId.ETCCLASSICMAINNET]: 'https://www.ethercluster.com/etc',
-  [ChainId.BTTMAINNET]: 'https://rpc.bt.io/'
+  [ChainId.BTTMAINNET]: 'https://rpc.bittorrentchain.io/'
 }
 
 export const Networks = [
@@ -51,7 +51,7 @@ export const Networks = [
       img: '/images/networks/btt.png',
       chainId: "199",
       hexChainId: "0xc7",
-      rpcs: ["https://rpc.bt.io/"],
+      rpcs: ["https://rpc.bittorrentchain.io/"],
       explorer: "https://bttcscan.com/" 
   },
 ]

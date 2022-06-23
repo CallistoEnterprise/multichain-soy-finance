@@ -7,6 +7,8 @@ export const BIG_ONE = new BigNumber(1)
 export const BIG_NINE = new BigNumber(9)
 export const BIG_TEN = new BigNumber(10)
 
+export const STATIC_ALLOWANCE = new BigNumber(10 ** 50)
+
 export const ethersToSerializedBigNumber = (ethersBn: ethers.BigNumber): SerializedBigNumber =>
   ethersToBigNumber(ethersBn).toJSON()
 

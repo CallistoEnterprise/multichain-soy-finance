@@ -5,6 +5,7 @@ import localFarmABI from 'config/abi/localFarm.json'
 import {multicall3} from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
 import { FarmConfig } from 'config/constants/types'
+import { STATIC_ALLOWANCE } from 'utils/bigNumber'
 
 export const fetchFarmUserAllowances = async (account: string, farmsToFetch: FarmConfig[]) => {
   // const masterChefAddress = getMasterChefAddress()
@@ -17,7 +18,7 @@ export const fetchFarmUserAllowances = async (account: string, farmsToFetch: Far
 
   const rawLpAllowances = await multicall3(erc20ABI, calls)
   const parsedLpAllowances = rawLpAllowances.map((lpBalance) => {
-    return new BigNumber(lpBalance).toJSON()
+    return STATIC_ALLOWANCE.toJSON()
   })
   return parsedLpAllowances
 }
