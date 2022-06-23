@@ -39,11 +39,11 @@ export const usePollFarmsData = (includeArchive = false) => {
  */
 const coreFarms = {
   820: [2, 4],
-  199: [10, 14],
+  199: [10, 14, 19],
 }
 const coreEthFarms = {
   820: 2,
-  199: 10,
+  199: 19,
 }
 const busdtFarms = {
   820: 4,
@@ -123,7 +123,6 @@ export const usePriceBnbBusd = (): BigNumber => {
 export const usePriceCakeBusd = (): BigNumber => {
   const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
   const soyCloFarm = useFarmFromPid(coreEthFarms[chainId])
-  // console.log(chainId, soyCloFarm)
   const soyPriceBusdtAsString = soyCloFarm?.token.usdcPrice
   const soyPriceBusdt = useMemo(() => {
     return new BigNumber(soyPriceBusdtAsString)

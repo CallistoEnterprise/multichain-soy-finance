@@ -399,8 +399,8 @@ const bttFarms: FarmConfig[] = [
     localFarmAddresses: {
       199: '0xF9A65D050323Ec4981ad9c2a43c1E624D71d6bB8',
     },
-    token: tokens.soy,
-    quoteToken: tokens.wbtt,
+    token: tokens.wbtt,
+    quoteToken: tokens.soy,
   },
   {
     pid: 14,
@@ -411,8 +411,20 @@ const bttFarms: FarmConfig[] = [
     localFarmAddresses: {
       199: '0x71Db9B83562b2242787D43871848Fe10AA5a7d46',
     },
-    token: tokens.busdt,
-    quoteToken: tokens.wbtt,
+    token: tokens.wbtt,
+    quoteToken: tokens.busdt,
+  },
+  {
+    pid: 19,
+    lpSymbol: 'SOY-BUSDT LP',
+    lpAddresses: {
+      199: '0x81e8168e9EC44c490E843E69b20ac0A080b3c4cD',
+    },
+    localFarmAddresses: {
+      199: '0x97BfcF06464e77B56C22F3Db4a76899d19826DC7',
+    },
+    token: tokens.soy,
+    quoteToken: tokens.busdt,
   },
   {
     pid: 9,
@@ -471,8 +483,8 @@ const bttFarms: FarmConfig[] = [
     localFarmAddresses: {
       199: '0x6b5e2f20eEC0C5682F7E5a60A7444B7ab3B36558',
     },
-    token: tokens.wclo,
-    quoteToken: tokens.wbtt,
+    token: tokens.wbtt,
+    quoteToken: tokens.wclo,
   },
   {
     pid: 16,

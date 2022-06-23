@@ -3,7 +3,7 @@ import { Farm } from 'state/types'
 
 const preferredQuoteTokensForMulti = {
   820: ['BUSDT', 'WCLO'],
-  199: ['BUSDT', 'WBTT']
+  199: ['BUSDT', 'WBTT', 'WCLO', 'SOY']
 }
 /**
  * Returns the first farm with a quote token that matches from an array of preferred quote tokens
@@ -18,7 +18,7 @@ export const filterFarmsByQuoteToken = (farms: Farm[]): Farm => {
       return farm.quoteToken.symbol === quoteToken
     })
   })
-  return preferredFarm || farms[1]
+  return preferredFarm || farms[2]
 }
 
 export default filterFarmsByQuoteToken
