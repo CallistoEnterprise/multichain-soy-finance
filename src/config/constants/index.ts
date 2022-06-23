@@ -60,7 +60,7 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.MAINNET]: [SOY[ChainId.MAINNET]],
+  [ChainId.MAINNET]: [SOY[ChainId.MAINNET], BUSDT[ChainId.MAINNET]],
   [ChainId.CLOTESTNET]: [WETH[ChainId.CLOTESTNET], SOY[ChainId.CLOTESTNET], BUSDT[ChainId.CLOTESTNET],],
   [ChainId.ETHEREUM]: [WETH[ChainId.ETHEREUM]],
   [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
@@ -68,7 +68,7 @@ export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.BSC]: [WETH[ChainId.BSC]],
   [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
   [ChainId.ETCCLASSICMAINNET]: [WETH[ChainId.ETCCLASSICMAINNET]],
-  [ChainId.BTTMAINNET]: [WETH[ChainId.BTTMAINNET], SOY[ChainId.BTTMAINNET], BUSDT[ChainId.BTTMAINNET], WCLO[ChainId.BTTMAINNET]]
+  [ChainId.BTTMAINNET]: [SOY[ChainId.BTTMAINNET], BUSDT[ChainId.BTTMAINNET], WCLO[ChainId.BTTMAINNET]]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend

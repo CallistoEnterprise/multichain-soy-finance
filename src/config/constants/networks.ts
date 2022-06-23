@@ -1,4 +1,5 @@
 import { ChainId } from '@soy-libs/sdk-multichain'
+import { BASE_URL } from 'config'
 
 const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: 'https://clo-geth.0xinfra.com/',
@@ -16,7 +17,7 @@ export const Networks = [
   {
       name: "Callisto",
       symbol: "CLO",
-      img: '/images/networks/clo.png',
+      img: `${BASE_URL}/images/networks/clo.png`,
       chainId: "820",
       hexChainId: "0x334",
       rpcs: ["https://rpc.callisto.network/"],

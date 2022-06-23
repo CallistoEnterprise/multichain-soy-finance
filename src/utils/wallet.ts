@@ -1,6 +1,6 @@
 // Set of helper functions to facilitate wallet setup
 
-import { BASE_CALLISTO_SCAN_URL } from 'config'
+import { BASE_CALLISTO_SCAN_URL, BASE_URL } from 'config'
 import { nodes } from './getRpcUrl'
 import { localStorageChainIdKey } from '../config/index';
 
@@ -130,7 +130,7 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
         address: tokenAddress,
         symbol: tokenSymbol,
         decimals: tokenDecimals,
-        image: `images/coins/${chId}/${tokenAddress}.png`,
+        image: `${BASE_URL}/images/coins/${chId}/${tokenAddress}.png`,
       },
     },
   })

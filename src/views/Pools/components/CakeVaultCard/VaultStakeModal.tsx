@@ -16,6 +16,7 @@ import useToast from 'hooks/useToast'
 import { fetchCakeVaultUserData } from 'state/pools'
 import { Pool } from 'state/types'
 import { getAddress } from 'utils/addressHelpers'
+import { BASE_URL } from 'config'
 import { convertCakeToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
 
@@ -157,7 +158,13 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
           <Image
-            src={pool.stakingToken.symbol === 'CLO' ? `images/coins/clo.png` : pool.stakingToken.symbol === 'BTT' ? `images/coins/btt.png` : `images/coins/${chainId ?? 820}/${getAddress(stakingToken.address)}.png`}
+            src={
+              pool.stakingToken.symbol === 'CLO'
+                ? `${BASE_URL}/images/coins/clo.png`
+                : pool.stakingToken.symbol === 'BTT'
+                ? `${BASE_URL}/images/coins/btt.png`
+                : `${BASE_URL}/images/coins/${chainId ?? 820}/${getAddress(stakingToken.address)}.png`
+            }
             width={24}
             height={24}
             alt={stakingToken.symbol}

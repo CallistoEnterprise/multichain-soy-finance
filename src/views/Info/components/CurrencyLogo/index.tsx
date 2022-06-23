@@ -1,4 +1,4 @@
-import { localStorageChainIdKey } from 'config'
+import { BASE_URL, localStorageChainIdKey } from 'config'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { isAddress } from 'utils'
@@ -22,7 +22,7 @@ export const CurrencyLogo: React.FC<{
   const src = useMemo(() => {
     const checksummedAddress = isAddress(address)
     if (checksummedAddress) {
-      return `images/coins/${chId}/${checksummedAddress}.png`
+      return `${BASE_URL}/images/coins/${chId}/${checksummedAddress}.png`
     }
     return null
   }, [address, chId])

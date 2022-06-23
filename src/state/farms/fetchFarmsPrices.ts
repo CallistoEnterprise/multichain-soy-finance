@@ -7,7 +7,7 @@ import { Farm } from 'state/types'
 const getFarmFromTokenSymbol = (farms: Farm[], tokenSymbol: string): Farm => {
   const farmsWithTokenSymbol = farms.filter((farm) => farm.token.symbol === tokenSymbol)
   const filteredFarm = filterFarmsByQuoteToken(farmsWithTokenSymbol)
-  console.log(farmsWithTokenSymbol, filteredFarm, tokenSymbol)
+  // console.log(farmsWithTokenSymbol, filteredFarm, tokenSymbol)
   return filteredFarm
 }
 

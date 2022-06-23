@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Image, RefreshIcon, WalletFilledIcon, WarningIcon } from '@soy-libs/uikit2'
-import { Variant, variants } from "./types";
+import { BASE_URL } from "config";
+import { Variant } from "./types";
 // import { Colors } from "../../../../theme/types";
 
 const MenuIconWrapper = styled.div<{ borderColor: string }>`
@@ -80,7 +81,7 @@ const MenuIcon: React.FC<{ avatarSrc?: string; variant?: Variant }> = ({ avatarS
   //   return <NoProfileMenuIcon />;
   // }
 
-  return <ProfileIcon src={avatarSrc ?? 'images/coins/clo.png'} height={28} width={28} />;
+  return <ProfileIcon src={avatarSrc ?? `${BASE_URL}/images/coins/clo.png`} height={28} width={28} />;
 };
 
 export const NetworkIcon: React.FC<{ avatarSrc?: string; }> = ({ avatarSrc}) => {
