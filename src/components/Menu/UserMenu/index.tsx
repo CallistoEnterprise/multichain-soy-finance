@@ -81,8 +81,6 @@ const UserMenu = () => {
 
   const handleSwitchNetwork = (curNet) => {
     switchNetwork(library, curNet)
-    // setNetworkAvatar(curNet.img)
-    // setNetworkText(curNet.name)
   }
 
   if (!account) {

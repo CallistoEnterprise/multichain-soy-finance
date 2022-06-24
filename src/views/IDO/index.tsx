@@ -166,7 +166,7 @@ export default function IDODaily() {
   // the callback to execute the swap
   const { error: swapCallbackError } = useSwapCallback(trade, allowedSlippage, recipient)
 
-  const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade)
+  const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade, chainId)
 
   const balance = selectedCurrencyBalance?.toSignificant(6) ?? '0'
 

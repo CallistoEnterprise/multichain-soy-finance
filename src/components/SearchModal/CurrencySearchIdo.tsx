@@ -3,6 +3,7 @@ import { Currency, ETHERS, Token } from '@soy-libs/sdk-multichain'
 import { Text, Input, Box } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { FixedSizeList } from 'react-window'
+import { NativeSymbols } from 'config'
 import { useAudioModeManager } from 'state/user/hooks'
 import useDebounce from 'hooks/useDebounce'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -56,8 +57,8 @@ function CurrencySearchIdo({
 
   const showETH: boolean = useMemo(() => {
     const s = debouncedQuery.toLowerCase().trim()
-    return s === '' || s === 'c' || s === 'cl' || s === 'clo'
-  }, [debouncedQuery])
+    return chainId === 820 ? s === '' || s === 'c' || s === 'cl' || s === 'clo' : s === '' || s === 'b' || s === 'bt' || s === 'btt'
+  }, [debouncedQuery, chainId])
 
   const tokenComparator = useTokenComparator(invertSearchOrder)
 
@@ -99,13 +100,7 @@ function CurrencySearchIdo({
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         const s = debouncedQuery.toLowerCase().trim()
-        if (
-          (s === 'clo' && chainId === 820) ||
-          (s === 'btt' && chainId === 199) ||
-          (s === 'bnb' && chainId === 56) ||
-          (s === 'etc' && chainId === 61) ||
-          (s === 'eth' && chainId === 1)
-        ) {
+        if (s === NativeSymbols[chainId]) {
           handleCurrencySelect(ETHERS[chainId])
         } else if (filteredSortedTokens.length > 0) {
           if (

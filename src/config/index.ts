@@ -13,17 +13,20 @@ export const BASE_CALLISTO_SCAN_URLS = {
   [ChainId.MAINNET]: 'https://explorer.callisto.network',
   [ChainId.CLOTESTNET]: 'https://testnet-explorer.callisto.network',
   [ChainId.BTTMAINNET]: 'https://bttcscan.com',
+  [ChainId.BSC]: 'https://www.bscscan.com'
 }
 
 export const RPC_URLS = {
   [ChainId.MAINNET]: 'https://rpc.callisto.network/',
   [ChainId.CLOTESTNET]: 'https://testnet-rpc.callisto.network/',
-  [ChainId.BTTMAINNET]: 'https://rpc.bittorrentchain.io/',
+  [ChainId.BTTMAINNET]: 'https://rpc.bt.io/', // 'https://rpc.bittorrentchain.io/',
+  [ChainId.BSC]: 'https://bsc-dataseed.binance.org/'
 }
 
 export const ExplorerText = {
   [ChainId.MAINNET]: 'CallistoScan',
-  [ChainId.BTTMAINNET]: 'BttcScan'
+  [ChainId.BTTMAINNET]: 'BttcScan',
+  [ChainId.BSC]: 'BSCScan'
 }
 
 export const NativeSymbols = {
@@ -36,8 +39,9 @@ export const NativeSymbols = {
 export const NativeAddress = {
   [ChainId.MAINNET]: '0x0000000000000000000000000000000000000001',
   [ChainId.BTTMAINNET]: '0x0000000000000000000000000000000000001010',
-  [ChainId.BSC]: '0x0000000000000000000000000000000000000001',
-  [ChainId.ETCCLASSICMAINNET]: '0x0000000000000000000000000000000000000001'
+  [ChainId.BSC]: '0x0000000000000000000000000000000000000007',
+  [ChainId.ETHEREUM]: '0x0000000000000000000000000000000000000006',
+  [ChainId.ETCCLASSICMAINNET]: '0x0000000000000000000000000000000000000005'
 }
 
 // SOY_PER_BLOCK details

@@ -1,6 +1,5 @@
 import { Currency, CurrencyAmount, ETHERS, JSBI, Token, TokenAmount } from '@soy-libs/sdk-multichain'
 import { useMemo } from 'react'
-import { useWeb3React } from '@web3-react/core'
 import ERC20_INTERFACE from 'config/abi/erc20'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useAllTokens } from 'hooks/Tokens'
@@ -14,6 +13,7 @@ import { useSingleContractMultipleData, useMultipleContractSingleData } from '..
 export function useBNBBalances(uncheckedAddresses?: (string | undefined)[]): {
   [address: string]: CurrencyAmount | undefined
 } {
+  const { chainId } = useActiveWeb3React()
   const multicallContract = useMulticallContract()
 
   const addresses: string[] = useMemo(
@@ -37,10 +37,10 @@ export function useBNBBalances(uncheckedAddresses?: (string | undefined)[]): {
     () =>
       addresses.reduce<{ [address: string]: CurrencyAmount }>((memo, address, i) => {
         const value = results?.[i]?.result?.[0]
-        if (value) memo[address] = CurrencyAmount.ether(JSBI.BigInt(value.toString()))
+        if (value) memo[address] = CurrencyAmount.ether(JSBI.BigInt(value.toString()), chainId)
         return memo
       }, {}),
-    [addresses, results],
+    [addresses, results, chainId],
   )
 }
 
@@ -130,7 +130,7 @@ export function useCurrencyBalance(account?: string, currency?: Currency): Curre
 
 // mimics useAllBalances
 export function useAllTokenBalances(): { [tokenAddress: string]: TokenAmount | undefined } {
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
   const allTokens = useAllTokens()
   const allTokensArray = useMemo(() => Object.values(allTokens ?? {}), [allTokens])
   const balances = useTokenBalances(account ?? undefined, allTokensArray)

@@ -10,7 +10,7 @@ const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.BSC]: 'https://bsc-dataseed.binance.org/',
   [ChainId.BSCTESTNET]: '',
   [ChainId.ETCCLASSICMAINNET]: 'https://www.ethercluster.com/etc',
-  [ChainId.BTTMAINNET]: 'https://rpc.bittorrentchain.io/'
+  [ChainId.BTTMAINNET]: 'https://rpc.bt.io/', // 'https://rpc.bittorrentchain.io/'
 }
 
 export const Networks = [
@@ -24,13 +24,15 @@ export const Networks = [
       explorer: "https://explorer.callisto.network/"
   },
   // {
-  //     name: "Binance Smart Chain",
+  //     name: "BSC",
   //     symbol: "BNB",
   //     img: '/images/networks/bnb.png',
   //     chainId: "56",
+  //     hexChainId: "0x38",
   //     rpcs: ["https://bsc-dataseed.binance.org/", "https://bsc-dataseed1.defibit.io/", "https://bsc-dataseed1.ninicoin.io/"],
   //     explorer: "https://bscscan.com/"
-  // },{
+  // },
+  // {
   //     name: "Ethereum Network",
   //     symbol: "ETH",
   //     img: '/images/networks/eth.png',
@@ -44,14 +46,14 @@ export const Networks = [
   //     chainId: "61",
   //     rpcs: ["https://www.ethercluster.com/etc"],
   //     explorer: "https://blockscout.com/etc/mainnet/"
-  // },
+  // },https://rpc.bittorrentchain.io/
   {
       name: "BitTorrent",
       symbol: "BTT",
       img: '/images/networks/btt.png',
       chainId: "199",
       hexChainId: "0xc7",
-      rpcs: ["https://rpc.bittorrentchain.io/"],
+      rpcs: ["https://rpc.bt.io/"],
       explorer: "https://bttcscan.com/" 
   },
 ]

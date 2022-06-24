@@ -111,7 +111,7 @@ export function useDerivedMintInfo(
             ? pair.priceOf(tokenA).quote(wrappedIndependentAmount)
             : pair.priceOf(tokenB).quote(wrappedIndependentAmount)
         return dependentCurrency === ETHERS[chainId]
-          ? CurrencyAmount.ether(dependentTokenAmount.raw)
+          ? CurrencyAmount.ether(dependentTokenAmount.raw, chainId)
           : dependentTokenAmount
       }
       return undefined
@@ -126,7 +126,6 @@ export function useDerivedMintInfo(
     }),
     [dependentAmount, independentAmount, independentField],
   )
-
   const price = useMemo(() => {
     if (noLiquidity) {
       const { [Field.CURRENCY_A]: currencyAAmount, [Field.CURRENCY_B]: currencyBAmount } = parsedAmounts

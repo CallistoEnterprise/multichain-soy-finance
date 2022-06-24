@@ -210,7 +210,7 @@ function parseCurrencyFromURLParameter(urlParam: any, chainId?: number): string 
     const valid = isAddress(urlParam)
     if (valid) return valid
     if (urlParam.toUpperCase() === NativeSymbols[chainId].toUpperCase()) return NativeSymbols[chainId].toUpperCase()
-    if (valid === false) return 'CLO'
+    if (valid === false) return NativeSymbols[chainId].toUpperCase()
   }
   return NativeSymbols[chainId].toUpperCase() ?? ''
 }
