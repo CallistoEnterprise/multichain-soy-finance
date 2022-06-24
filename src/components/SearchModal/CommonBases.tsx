@@ -1,19 +1,14 @@
 import React from 'react'
-import { ChainId, Currency, currencyEquals, ETHER, BTTETHER, Token } from '@soy-libs/sdk-multichain'
+import { ChainId, Currency, currencyEquals, ETHERS, Token } from '@soy-libs/sdk-multichain'
 import { Text } from '@soy-libs/uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-
+import { NativeSymbols } from 'config'
 import { SUGGESTED_BASES } from '../../config/constants'
 import { AutoColumn } from '../Layout/Column'
 import QuestionHelper from '../QuestionHelper'
 import { AutoRow } from '../Layout/Row'
 import { CurrencyLogo } from '../Logo'
-
-const ether = {
-  820: ETHER,
-  199: BTTETHER
-}
 
 const BaseWrapper = styled.div<{ disable?: boolean }>`
   border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.colors.dropdown)};
@@ -30,11 +25,6 @@ const BaseWrapper = styled.div<{ disable?: boolean }>`
   background-color: ${({ theme, disable }) => disable && theme.colors.dropdown};
   opacity: ${({ disable }) => disable && '0.4'};
 `
-
-const symbol = {
-  820: 'CLO',
-  199: 'BTT',
-}
 
 export default function CommonBases({
   chainId,
@@ -56,14 +46,14 @@ export default function CommonBases({
       <AutoRow gap="auto">
         <BaseWrapper
           onClick={() => {
-            if (!selectedCurrency || !currencyEquals(selectedCurrency, ether[chainId])) {
-              onSelect(ether[chainId])
+            if (!selectedCurrency || !currencyEquals(selectedCurrency, ETHERS[chainId])) {
+              onSelect(ETHERS[chainId])
             }
           }}
-          disable={selectedCurrency === ether[chainId]}
+          disable={selectedCurrency === ETHERS[chainId]}
         >
-          <CurrencyLogo currency={ether[chainId]} style={{ marginRight: 8 }} />
-          <Text>{symbol[chainId]}</Text>
+          <CurrencyLogo currency={ETHERS[chainId]} style={{ marginRight: 8 }} />
+          <Text>{NativeSymbols[chainId].toUpperCase()}</Text>
         </BaseWrapper>
         {(chainId ? SUGGESTED_BASES[chainId] : []).map((token: Token) => {
           const selected = selectedCurrency instanceof Token && selectedCurrency.address === token.address

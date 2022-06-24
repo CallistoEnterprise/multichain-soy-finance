@@ -1,7 +1,8 @@
-import { Currency, CurrencyAmount, ETHER, BTTETHER, JSBI, Token, TokenAmount } from '@soy-libs/sdk-multichain'
+import { Currency, CurrencyAmount, ETHERS, JSBI, Token, TokenAmount } from '@soy-libs/sdk-multichain'
 import { useMemo } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import ERC20_INTERFACE from 'config/abi/erc20'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useAllTokens } from 'hooks/Tokens'
 import { useMulticallContract } from 'hooks/useContract'
 import { isAddress } from 'utils'
@@ -98,13 +99,17 @@ export function useCurrencyBalances(
   account?: string,
   currencies?: (Currency | undefined)[],
 ): (CurrencyAmount | undefined)[] {
+  const { chainId } = useActiveWeb3React()
   const tokens = useMemo(
     () => currencies?.filter((currency): currency is Token => currency instanceof Token) ?? [],
     [currencies],
   )
 
   const tokenBalances = useTokenBalances(account, tokens)
-  const containsBNB: boolean = useMemo(() => currencies?.some((currency) => currency === ETHER || currency === BTTETHER) ?? false, [currencies])
+  const containsBNB: boolean = useMemo(
+    () => currencies?.some((currency) => currency === ETHERS[chainId]) ?? false,
+    [currencies, chainId],
+  )
   const ethBalance = useBNBBalances(containsBNB ? [account] : [])
 
   return useMemo(
@@ -112,10 +117,10 @@ export function useCurrencyBalances(
       currencies?.map((currency) => {
         if (!account || !currency) return undefined
         if (currency instanceof Token) return tokenBalances[currency.address]
-        if (currency === ETHER || currency === BTTETHER) return ethBalance[account]
+        if (currency === ETHERS[chainId]) return ethBalance[account]
         return undefined
       }) ?? [],
-    [account, currencies, ethBalance, tokenBalances],
+    [account, chainId, currencies, ethBalance, tokenBalances],
   )
 }
 

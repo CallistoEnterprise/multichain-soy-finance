@@ -1,13 +1,13 @@
-import { CurrencyAmount, ETHER, BTTETHER, JSBI } from '@soy-libs/sdk-multichain'
+import { CurrencyAmount, ETHERS, JSBI } from '@soy-libs/sdk-multichain'
 import { MIN_CLO } from '../config/constants'
 
 /**
  * Given some token amount, return the max that can be spent of it
  * @param currencyAmount to return max of
  */
-export function maxAmountSpend(currencyAmount?: CurrencyAmount): CurrencyAmount | undefined {
+export function maxAmountSpend(currencyAmount?: CurrencyAmount, chainId = 820): CurrencyAmount | undefined {
   if (!currencyAmount) return undefined
-  if (currencyAmount.currency === ETHER || currencyAmount.currency === BTTETHER) {
+  if (currencyAmount.currency === ETHERS[chainId]) {
     if (JSBI.greaterThan(currencyAmount.raw, MIN_CLO)) {
       return CurrencyAmount.ether(JSBI.subtract(currencyAmount.raw, MIN_CLO))
     }

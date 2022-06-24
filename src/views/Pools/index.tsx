@@ -2,7 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { useWeb3React } from '@web3-react/core'
+import history from 'routerHistory'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Heading, Flex, Text } from '@soy-libs/uikit2'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
@@ -81,7 +82,7 @@ const NUMBER_OF_POOLS_VISIBLE = 12
 const Pools: React.FC = () => {
   const location = useLocation()
   const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'soyfinance_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
@@ -115,6 +116,15 @@ const Pools: React.FC = () => {
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   // const rewardBlockCount = useRewardBlockCount()
+
+  useEffect(() => {
+    const init = () => {
+      history.push('/')
+    }
+    if (chainId !== 820) {
+      init()
+    }
+  }, [chainId])
 
   usePollFarmsData()
   useFetchPublicPoolsData()

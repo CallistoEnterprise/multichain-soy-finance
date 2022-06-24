@@ -72,6 +72,16 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://callisto.network/',
   },
+  ccclo: {
+    symbol: 'ccCLO',
+    address: {
+      820: '',
+      20729: '',
+      199: '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53'
+    },
+    decimals: 18,
+    projectLink: 'https://callisto.network/',
+  },
   busdt:{
     symbol: 'BUSDT',
     address: {
@@ -85,8 +95,8 @@ const tokens = {
   usdt: {
     symbol: 'USDT',
     address: {
-      820: '',
-      20729: '',
+      820: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
+      20729: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
       199: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF'
     },
     decimals: 18,
@@ -305,6 +315,11 @@ const tokens = {
     decimals: 18,
     projectLink: "https://wbtt.io/"
   }
+}
+
+export const wrappedNativeTokens = {
+  820: tokens.wclo,
+  199: tokens.wbtt,
 }
 
 export default tokens

@@ -26,6 +26,20 @@ export const ExplorerText = {
   [ChainId.BTTMAINNET]: 'BttcScan'
 }
 
+export const NativeSymbols = {
+  [ChainId.MAINNET]: 'clo',
+  [ChainId.BTTMAINNET]: 'btt',
+  [ChainId.BSC]: 'bnb',
+  [ChainId.ETCCLASSICMAINNET]: 'etc'
+}
+
+export const NativeAddress = {
+  [ChainId.MAINNET]: '0x0000000000000000000000000000000000000001',
+  [ChainId.BTTMAINNET]: '0x0000000000000000000000000000000000001010',
+  [ChainId.BSC]: '0x0000000000000000000000000000000000000001',
+  [ChainId.ETCCLASSICMAINNET]: '0x0000000000000000000000000000000000000001'
+}
+
 // SOY_PER_BLOCK details
 // 40 SOY is minted per block
 // 20 SOY per block is sent to Burn pool (A farm just for burning SOY)
@@ -36,7 +50,7 @@ export const ExplorerText = {
 export const SOY_PER_BLOCK = new BigNumber(5)
 export const BLOCKS_PER_YEAR = new BigNumber((60 / CALLISTO_BLOCK_TIME) * 60 * 24 * 365)
 export const SOY_PER_YEAR = SOY_PER_BLOCK.times(BLOCKS_PER_YEAR)
-export const BASE_URL = 'https://multichain-soy-finance.netlify.app'
+export const BASE_URL = 'http://localhost:3000' // 'https://multichain-soy-finance.netlify.app'
 export const BASE_ADD_LIQUIDITY_URL = `${BASE_URL}/add`
 export const BASE_LIQUIDITY_POOL_URL = `${BASE_URL}/pool`
 export const BASE_CALLISTO_SCAN_URL = BASE_CALLISTO_SCAN_URLS[ChainId.MAINNET]

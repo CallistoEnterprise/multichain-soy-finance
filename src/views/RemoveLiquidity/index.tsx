@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, BTTETHER, Percent, WETH } from '@soy-libs/sdk-multichain'
+import { Currency, currencyEquals, ETHERS, Percent, WETH } from '@soy-libs/sdk-multichain'
 import { Button, Text, AddIcon, ArrowDownIcon, CardBody, Slider, Box, Flex, useModal } from '@soy-libs/uikit2'
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
 import { useTranslation } from 'contexts/Localization'
+import { NativeSymbols } from 'config'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -37,16 +38,6 @@ import { useBurnActionHandlers, useDerivedBurnInfo, useBurnState } from '../../s
 import { Field } from '../../state/burn/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import Page from '../Page'
-
-const symbols = {
-  820: 'CLO',
-  199: 'BTT'
-}
-
-const ether = {
-  820: ETHER,
-  199: BTTETHER,
-}
 
 const BorderCard = styled.div`
   border: solid 1px ${({ theme }) => theme.colors.cardBorder};
@@ -203,8 +194,8 @@ export default function RemoveLiquidity({
     const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
     if (!liquidityAmount) throw new Error('missing liquidity amount')
 
-    const currencyBIsETH = currencyB === ether[chainId]
-    const oneCurrencyIsETH = currencyA === ether[chainId] || currencyBIsETH
+    const currencyBIsETH = currencyB === ETHERS[chainId]
+    const oneCurrencyIsETH = currencyA === ETHERS[chainId] || currencyBIsETH
 
     if (!tokenA || !tokenB) throw new Error('could not wrap')
 
@@ -403,7 +394,7 @@ export default function RemoveLiquidity({
     [onUserInput],
   )
 
-  const oneCurrencyIsETH = currencyA === ether[chainId] || currencyB === ether[chainId]
+  const oneCurrencyIsETH = currencyA === ETHERS[chainId] || currencyB === ETHERS[chainId]
   const oneCurrencyIsWETH = Boolean(
     chainId &&
       ((currencyA && currencyEquals(WETH[chainId], currencyA)) ||
@@ -542,16 +533,16 @@ export default function RemoveLiquidity({
                     <RowBetween style={{ justifyContent: 'flex-end', fontSize: '14px' }}>
                       {oneCurrencyIsETH ? (
                         <StyledInternalLink
-                          to={`/remove/${currencyA === ether[chainId] ? WETH[chainId].address : currencyIdA}/${
-                            currencyB === ether[chainId] ? WETH[chainId].address : currencyIdB
+                          to={`/remove/${currencyA === ETHERS[chainId] ? WETH[chainId].address : currencyIdA}/${
+                            currencyB === ETHERS[chainId] ? WETH[chainId].address : currencyIdB
                           }`}
                         >
                           {t('Receive WCLO')}
                         </StyledInternalLink>
                       ) : oneCurrencyIsWETH ? (
                         <StyledInternalLink
-                          to={`/remove/${currencyA && currencyEquals(currencyA, WETH[chainId]) ? symbols[chainId] : currencyIdA}/${
-                            currencyB && currencyEquals(currencyB, WETH[chainId]) ? symbols[chainId] : currencyIdB
+                          to={`/remove/${currencyA && currencyEquals(currencyA, WETH[chainId]) ? NativeSymbols[chainId].toUpperCase() : currencyIdA}/${
+                            currencyB && currencyEquals(currencyB, WETH[chainId]) ? NativeSymbols[chainId].toUpperCase() : currencyIdB
                           }`}
                         >
                           {t('Receive CLO')}

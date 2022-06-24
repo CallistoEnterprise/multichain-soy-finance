@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, BTTETHER, TokenAmount, WETH } from '@soy-libs/sdk-multichain'
+import { Currency, currencyEquals, ETHERS, TokenAmount, WETH } from '@soy-libs/sdk-multichain'
 import { Button, Text, Flex, AddIcon, CardBody, Message, useModal } from '@soy-libs/uikit2'
 import { RouteComponentProps } from 'react-router-dom'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import { useTranslation } from 'contexts/Localization'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { NativeSymbols } from 'config'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -36,16 +37,6 @@ import ConfirmAddModalBottom from './ConfirmAddModalBottom'
 import { currencyId } from '../../utils/currencyId'
 import PoolPriceBar from './PoolPriceBar'
 import Page from '../Page'
-
-const symbols = {
-  820: 'CLO',
-  199: 'BTT',
-}
-
-const ether = {
-  820: ETHER,
-  199: BTTETHER,
-}
 
 export default function AddLiquidity({
   match: {
@@ -106,7 +97,7 @@ export default function AddLiquidity({
     (accumulator, field) => {
       return {
         ...accumulator,
-        [field]: maxAmountSpend(currencyBalances[field]),
+        [field]: maxAmountSpend(currencyBalances[field], chainId),
       }
     },
     {},
@@ -123,8 +114,14 @@ export default function AddLiquidity({
   )
 
   // check whether the user has approved the router on the tokens
-  const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], ROUTER_ADDRESS[chainId ?? 820])
-  const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], ROUTER_ADDRESS[chainId ?? 820])
+  const [approvalA, approveACallback] = useApproveCallback(
+    parsedAmounts[Field.CURRENCY_A],
+    ROUTER_ADDRESS[chainId ?? 820],
+  )
+  const [approvalB, approveBCallback] = useApproveCallback(
+    parsedAmounts[Field.CURRENCY_B],
+    ROUTER_ADDRESS[chainId ?? 820],
+  )
 
   const addTransaction = useTransactionAdder()
 
@@ -146,8 +143,8 @@ export default function AddLiquidity({
     let method: (...args: any) => Promise<TransactionResponse>
     let args: Array<string | string[] | number>
     let value: BigNumber | null
-    if (currencyA === ether[chainId] || currencyB === ether[chainId]) {
-      const tokenBIsETH = currencyB === ether[chainId]
+    if (currencyA === ETHERS[chainId] || currencyB === ETHERS[chainId]) {
+      const tokenBIsETH = currencyB === ETHERS[chainId]
       estimate = router.estimateGas.addLiquidityCLO
       method = router.addLiquidityCLO
       args = [
@@ -281,7 +278,7 @@ export default function AddLiquidity({
           history.push(`/add/${newCurrencyIdB}`)
         }
       } else {
-        history.push(`/add/${currencyIdA || symbols[chainId]}/${newCurrencyIdB}`)
+        history.push(`/add/${currencyIdA || NativeSymbols[chainId].toUpperCase()}/${newCurrencyIdB}`)
       }
     },
     [currencyIdA, history, currencyIdB, chainId],

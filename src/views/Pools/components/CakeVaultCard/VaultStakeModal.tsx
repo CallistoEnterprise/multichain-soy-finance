@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useAppDispatch } from 'state'
 import { BIG_TEN } from 'utils/bigNumber'
 import { usePriceCakeBusd } from 'state/farms/hooks'
@@ -16,7 +16,7 @@ import useToast from 'hooks/useToast'
 import { fetchCakeVaultUserData } from 'state/pools'
 import { Pool } from 'state/types'
 import { getAddress } from 'utils/addressHelpers'
-import { BASE_URL } from 'config'
+import { BASE_URL, NativeSymbols } from 'config'
 import { convertCakeToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
 
@@ -38,7 +38,7 @@ const callOptions = {
 const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isRemovingStake = false, onDismiss }) => {
   const dispatch = useAppDispatch()
   const { stakingToken } = pool
-  const { account, chainId } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const cakeVaultContract = usePmoonVaultContract()
   const {
     userData: { lastDepositedTime, userShares },
@@ -159,11 +159,9 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         <Flex alignItems="center" minWidth="70px">
           <Image
             src={
-              pool.stakingToken.symbol === 'CLO'
-                ? `${BASE_URL}/images/coins/clo.png`
-                : pool.stakingToken.symbol === 'BTT'
-                ? `${BASE_URL}/images/coins/btt.png`
-                : `${BASE_URL}/images/coins/${chainId ?? 820}/${getAddress(stakingToken.address)}.png`
+              pool.stakingToken.symbol === NativeSymbols[chainId].toUpperCase()
+                ? `${BASE_URL}/images/coins/${NativeSymbols[chainId]}.png`
+                : `${BASE_URL}/images/coins/${chainId}/${getAddress(stakingToken.address)}.png`
             }
             width={24}
             height={24}

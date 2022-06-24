@@ -27,7 +27,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/farms',
   },
   {
-    label: t('Staking Pools'),
+    label: t('Staking Pools(Available only in Callisto)'),
     icon: 'PoolIcon',
     href: '/staking',
   },
