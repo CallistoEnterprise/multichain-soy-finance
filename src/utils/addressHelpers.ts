@@ -9,7 +9,7 @@ export const getAddress = (address: Address, chainId = 820): string => {
   return address[chId] ? address[chId] : address[ChainId.MAINNET]
 }
 
-export const getPmoonAddress = () => {
+export const getSoyAddress = () => {
   return getAddress(tokens.soy.address)
 }
 export const getMasterChefAddress = () => {

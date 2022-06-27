@@ -1,13 +1,13 @@
 import React from 'react'
 import { Box, Button, Flex, InjectedModalProps, LinkExternal, Message, Text } from '@soy-libs/uikit2'
 import useTokenBalance, { useGetBnbBalance } from 'hooks/useTokenBalance'
-import { getPmoonAddress } from 'utils/addressHelpers'
+import { getSoyAddress } from 'utils/addressHelpers'
 import useAuth from 'hooks/useAuth'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'
 import { getCallistoExpLink } from 'utils'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import { ExplorerText } from 'config'
+import { ExplorerText, NativeSymbols } from 'config'
 import CopyAddress from './CopyAddress'
 
 interface WalletInfoProps {
@@ -19,7 +19,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
   const { t } = useTranslation()
   const { account, chainId } = useActiveWeb3React()
   const { balance } = useGetBnbBalance()
-  const { balance: cakeBalance } = useTokenBalance(getPmoonAddress())
+  const { balance: cakeBalance } = useTokenBalance(getSoyAddress())
   const { logout } = useAuth()
 
   const handleLogout = () => {
@@ -36,13 +36,13 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
       {hasLowBnbBalance && (
         <Message variant="warning" mb="24px">
           <Box>
-            <Text fontWeight="bold">{t('CLO Balance Low')}</Text>
-            <Text as="p">{t('You need CLO for transaction fees.')}</Text>
+            <Text fontWeight="bold">{t(`${NativeSymbols[chainId].toUpperCase()} Balance Low`)}</Text>
+            <Text as="p">{t(`You need ${NativeSymbols[chainId].toUpperCase()} for transaction fees.`)}</Text>
           </Box>
         </Message>
       )}
       <Flex alignItems="center" justifyContent="space-between">
-        <Text color="textSubtle">{t('CLO Balance')}</Text>
+        <Text color="textSubtle">{t(`${NativeSymbols[chainId].toUpperCase()} Balance`)}</Text>
         <Text>{getFullDisplayBalance(balance, 18, 6)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="24px">

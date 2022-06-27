@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { getPmoonAddress } from 'utils/addressHelpers'
+import { getSoyAddress } from 'utils/addressHelpers'
 import { SNAPSHOT_HUB_API, SNAPSHOT_VOTING_API } from 'config/constants/endpoints'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { Proposal, ProposalState, ProposalType, Vote } from 'state/types'
@@ -39,7 +39,7 @@ export const generateMetaData = () => {
   return {
     plugins: {},
     network: 137,
-    strategies: [{ name: 'soy', params: { symbol: 'SOY', address: getPmoonAddress(), decimals: 18 } }],
+    strategies: [{ name: 'soy', params: { symbol: 'SOY', address: getSoyAddress(), decimals: 18 } }],
   }
 }
 

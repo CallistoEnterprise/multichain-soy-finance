@@ -3,7 +3,7 @@ import { Text } from '@soy-libs/uikit2'
 import { useWeb3React } from '@web3-react/core'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
-import { getPmoonAddress } from 'utils/addressHelpers'
+import { getSoyAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePriceCakeBusd } from 'state/farms/hooks'
 import { BigNumber } from 'bignumber.js'
@@ -12,7 +12,7 @@ import CardBusdValue from './CardBusdValue'
 
 const CakeWalletBalance = () => {
   const { t } = useTranslation()
-  const cakeBalance = useTokenBalance(getPmoonAddress())
+  const cakeBalance = useTokenBalance(getSoyAddress())
   const busdBalance = new BigNumber(getBalanceNumber(cakeBalance.balance)).multipliedBy(usePriceCakeBusd()).toNumber()
   const { account } = useWeb3React()
 

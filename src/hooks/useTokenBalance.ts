@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { getBep20Contract, getCakeContract } from 'utils/contractHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { simpleRpcProvider } from 'utils/providers'
+import { getRpcProvider } from 'utils/providers'
 import useRefresh from './useRefresh'
 import useLastUpdated from './useLastUpdated'
 
@@ -93,7 +93,8 @@ export const useGetBnbBalance = () => {
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        const walletBalance = await simpleRpcProvider.getBalance(account)
+        const rpcProvider = getRpcProvider()
+        const walletBalance = await rpcProvider.getBalance(account)
         setBalance(new BigNumber(walletBalance.toString()))
         setFetchStatus(FetchStatus.SUCCESS)
       } catch {

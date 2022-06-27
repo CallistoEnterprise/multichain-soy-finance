@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
-import { getPmoonAddress } from 'utils/addressHelpers'
+import { getSoyAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
 
 const StyledCakeStats = styled(Card)`
@@ -25,7 +25,7 @@ const CakeStats = () => {
   const { t } = useTranslation()
   const totalSupply = useTotalSupply()
   const marketCap = 0
-  const burnedBalance = getBalanceNumber(useBurnedBalance(getPmoonAddress()))
+  const burnedBalance = getBalanceNumber(useBurnedBalance(getSoyAddress()))
   const mintedBalance = 0
   const lockRewards = 0
   const circulatingSupply = 0
