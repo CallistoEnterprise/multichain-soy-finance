@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, ETHER, BTTETHER, JSBI, Pair, Percent, Price, TokenAmount } from '@soy-libs/sdk-multichain'
+import { Currency, CurrencyAmount, ETHERS, JSBI, Pair, Percent, Price, TokenAmount } from '@soy-libs/sdk-multichain'
 import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -110,7 +110,9 @@ export function useDerivedMintInfo(
           dependentField === Field.CURRENCY_B
             ? pair.priceOf(tokenA).quote(wrappedIndependentAmount)
             : pair.priceOf(tokenB).quote(wrappedIndependentAmount)
-        return dependentCurrency === ETHER || dependentCurrency === BTTETHER ? CurrencyAmount.ether(dependentTokenAmount.raw) : dependentTokenAmount
+        return dependentCurrency === ETHERS[chainId]
+          ? CurrencyAmount.ether(dependentTokenAmount.raw, chainId)
+          : dependentTokenAmount
       }
       return undefined
     }
@@ -124,7 +126,6 @@ export function useDerivedMintInfo(
     }),
     [dependentAmount, independentAmount, independentField],
   )
-
   const price = useMemo(() => {
     if (noLiquidity) {
       const { [Field.CURRENCY_A]: currencyAAmount, [Field.CURRENCY_B]: currencyBAmount } = parsedAmounts

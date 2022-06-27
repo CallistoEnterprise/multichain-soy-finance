@@ -1,6 +1,7 @@
 // Set of helper functions to facilitate wallet setup
 
 import { BASE_CALLISTO_SCAN_URL, BASE_URL } from 'config'
+import { Networks } from 'config/constants/networks';
 import { nodes } from './getRpcUrl'
 import { localStorageChainIdKey } from '../config/index';
 
@@ -13,6 +14,8 @@ export const setupNetwork = async () => {
   if (provider) {
     const chainId = window.localStorage.getItem(localStorageChainIdKey) ? Number(window.localStorage.getItem(localStorageChainIdKey)) : parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
+    const curNet = Networks.filter((_) => Number(_.chainId) === chainId)
+
     try {
       await provider.request({
         method: 'wallet_addEthereumChain',
@@ -21,12 +24,12 @@ export const setupNetwork = async () => {
             chainId: `0x${chainId.toString(16)}`,
             chainName: 'Callisto Mainnet',
             nativeCurrency: {
-              name: 'CLO',
-              symbol: 'clo',
+              name: curNet[0].name,
+              symbol: curNet[0].symbol,
               decimals: 18,
             },
-            rpcUrls: nodes,
-            blockExplorerUrls: [`${BASE_CALLISTO_SCAN_URL}/`],
+            rpcUrls: curNet[0].rpcs,
+            blockExplorerUrls: [`${curNet[0].explorer}`],
           },
         ],
       })

@@ -2,7 +2,7 @@ import { ethers } from 'ethers'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { Contract } from '@ethersproject/contracts'
-import { getRpcProvider, simpleRpcProvider } from 'utils/providers'
+import { getRpcProvider } from 'utils/providers'
 import { poolsConfig } from 'config/constants'
 import { Address, PoolCategory } from 'config/constants/types'
 
@@ -17,7 +17,7 @@ import {
   getPancakeRabbitsAddress,
   getBunnyFactoryAddress,
   getBunnySpecialAddress,
-  getPmoonAddress,
+  getSoyAddress,
   getLotteryV2Address,
   getMasterChefAddress,
   getPointCenterIfoAddress,
@@ -139,7 +139,7 @@ export const getPointCenterIfoContract = (signer?: ethers.Signer | ethers.provid
   return getContract(pointCenterIfo, getPointCenterIfoAddress(), signer)
 }
 export const getCakeContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(soyAbi, getPmoonAddress(), signer)
+  return getContract(soyAbi, getSoyAddress(), signer)
 }
 export const getProfileContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(profileABI, getPancakeProfileAddress(), signer)

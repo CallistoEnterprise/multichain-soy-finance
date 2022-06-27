@@ -1,5 +1,5 @@
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
-import { Currency, CurrencyAmount, currencyEquals, ETHER, BTTETHER, Token } from '@soy-libs/sdk-multichain'
+import { Currency, CurrencyAmount, currencyEquals, ETHERS, Token } from '@soy-libs/sdk-multichain'
 import { Text } from '@soy-libs/uikit2'
 import styled from 'styled-components'
 import { FixedSizeList } from 'react-window'
@@ -19,12 +19,15 @@ import { isTokenOnList } from '../../utils'
 import ImportRow from './ImportRow'
 
 function currencyKey(currency: Currency): string {
-  return currency instanceof Token ? currency.address : currency === ETHER || currency === BTTETHER ? 'ETHER' : ''
-}
-
-const mainCurrency = {
-  820: Currency.ETHER,
-  199: Currency.BTTETHER
+  return currency instanceof Token 
+    ? currency.address
+    : currency === ETHERS[820]
+    || currency === ETHERS[199]
+    || currency === ETHERS[61]
+    || currency === ETHERS[56]
+    || currency === ETHERS[1]
+    ? 'ETHER'
+    : ''
 }
 
 const StyledBalanceText = styled(Text)`
@@ -73,10 +76,10 @@ function CurrencyRow({
   otherSelected: boolean
   style: CSSProperties
 }) {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const key = currencyKey(currency)
   const selectedTokenList = useCombinedActiveList()
-  const isOnSelectedList = isTokenOnList(selectedTokenList, currency)
+  const isOnSelectedList = isTokenOnList(selectedTokenList, chainId, currency)
   const customAdded = useIsUserAddedToken(currency)
   const balance = useCurrencyBalance(account ?? undefined, currency)
 
@@ -129,7 +132,7 @@ export default function CurrencyList({
   const { chainId } = useActiveWeb3React()
 
   const etherCurrency = useMemo(() => {
-    return mainCurrency[chainId]
+    return ETHERS[chainId]
   }, [chainId])
 
   const itemData: (Currency | undefined)[] = useMemo(() => {

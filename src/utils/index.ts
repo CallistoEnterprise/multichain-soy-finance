@@ -5,7 +5,7 @@ import { getAddress } from '@ethersproject/address'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
-import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER, BTTETHER } from '@soy-libs/sdk-multichain'
+import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHERS } from '@soy-libs/sdk-multichain'
 import SoyRouterABI from '../config/abi/soyRouter.json'
 import { ROUTER_ADDRESS } from '../config/constants'
 import { BASE_CALLISTO_SCAN_URLS } from '../config'
@@ -105,8 +105,8 @@ export function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
 }
 
-export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
-  if (currency === ETHER || currency === BTTETHER) return true
+export function isTokenOnList(defaultTokens: TokenAddressMap, chainId: number, currency?: Currency): boolean {
+  if (currency === ETHERS[chainId]) return true
   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address])
 }
 
@@ -114,13 +114,13 @@ export const useBlockLatestTimestamp = () => {
   const [time, setTime] = useState(0)
 
   useEffect(() => {
-      const getTimeStamp = async () => {
-          const { timestamp } = await blocks.getDate('latest')
-          // const d = new Date()
-          // const timestamp = parseInt((d.getTime() / 1000).toString())
-          setTime(timestamp)
-      }
-      getTimeStamp()
+    const getTimeStamp = async () => {
+      const { timestamp } = await blocks.getDate('latest')
+      // const d = new Date()
+      // const timestamp = parseInt((d.getTime() / 1000).toString())
+      setTime(timestamp)
+    }
+    getTimeStamp()
   }, [])
   return time
 }

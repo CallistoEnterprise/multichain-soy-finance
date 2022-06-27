@@ -59,5 +59,5 @@ export const formatAmount = (
   const amountWithPrecision = parseFloat(amount.toFixed(precision))
 
   // toUpperCase is needed cause numeral doesn't have support for capital K M B out of the box
-  return numeral(amountWithPrecision).format(format).toUpperCase()
+  return numeral(amountWithPrecision).format(format)?.toUpperCase()
 }

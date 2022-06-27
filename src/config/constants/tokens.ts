@@ -72,12 +72,22 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://callisto.network/',
   },
+  ccclo: {
+    symbol: 'ccCLO',
+    address: {
+      820: '',
+      20729: '',
+      199: '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53',
+    },
+    decimals: 18,
+    projectLink: 'https://callisto.network/',
+  },
   busdt:{
     symbol: 'BUSDT',
     address: {
       820: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
       20729: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
-      199: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF'
+      199: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
     },
     decimals: 18,
     projectLink: 'https://bullsinvesting.club/',
@@ -85,9 +95,9 @@ const tokens = {
   usdt: {
     symbol: 'USDT',
     address: {
-      820: '',
-      20729: '',
-      199: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF'
+      820: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
+      20729: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
+      199: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
     },
     decimals: 18,
     projectLink: 'https://bullsinvesting.club/',
@@ -102,7 +112,7 @@ const tokens = {
     projectLink: 'https://callistoenterprise.com/',
   },
   ccetc:{
-    symbol: 'ccETC',
+    symbol: 'ETC',
     address: {
       820: '0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F',
       20729: '0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F',
@@ -112,17 +122,17 @@ const tokens = {
     projectLink: 'https://explorer.callisto.network/address/0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F/transactions',
   },
   ccbnb:{
-    symbol: 'ccBNB',
+    symbol: 'BNB',
     address: {
       820: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
       20729: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
-      199: '0x185a4091027E2dB459a2433F85f894dC3013aeB5'
+      199: '0x185a4091027E2dB459a2433F85f894dC3013aeB5',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF/transactions',
   },
   cceth:{
-    symbol: 'ccETH',
+    symbol: 'ETH',
     address: {
       820: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
       20729: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
@@ -132,7 +142,7 @@ const tokens = {
     projectLink: 'https://explorer.callisto.network/address/0xcC00860947035a26Ffe24EcB1301ffAd3a89f910/transactions',
   },
   "ccbnb_erc223":{
-    symbol: 'ccBNB',
+    symbol: 'BNB',
     address: {
       820: '0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9',
       199: '0x185a4091027E2dB459a2433F85f894dC3013aeB5',
@@ -142,7 +152,7 @@ const tokens = {
     projectLink: 'https://explorer.callisto.network/address/0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9/transactions',
   },
   "cceth_erc223":{
-    symbol: 'ccETH',
+    symbol: 'ETH',
     address: {
       820: '0xcC208c32Cc6919af5d8026dAB7A3eC7A57CD1796',
       20729: '',
@@ -152,7 +162,7 @@ const tokens = {
     projectLink: 'https://explorer.callisto.network/address/0xcC208c32Cc6919af5d8026dAB7A3eC7A57CD1796/transactions',
   },
   cake: {
-    symbol: 'ccCAKE',
+    symbol: 'CAKE',
     address: {
       820: '0xCC2D45F7fE1b8864a13F5D552345eB3f5a005FEd',
       20729: '',
@@ -161,7 +171,7 @@ const tokens = {
     projectLink: 'https://explorer.callisto.network/address/0xCC2D45F7fE1b8864a13F5D552345eB3f5a005FEd/transactions',
   },
   twt: {
-    symbol: 'ccTWT',
+    symbol: 'TWT',
     address: {
       820: '0xCC099e75152ACCda96d54FAbaf6e333ca44AD86e',
       20729: '',
@@ -170,34 +180,34 @@ const tokens = {
     projectLink: 'https://explorer.callisto.network/address/0xCC099e75152ACCda96d54FAbaf6e333ca44AD86e/transactions',
   },
   wsg: {
-    symbol: "ccWSG",
+    symbol: "WSG",
     address: {
       820: "0xccEbb9f0EE6D720DebccEE42f52915037f774A70",
-      20729: ''
+      20729: '',
     },
     decimals: 18,
     projectLink: "https://wsg.gg/"
   },
   reef: {
-    symbol: "ccREEF",
+    symbol: "REEF",
     address: {
       820: "0xCc1530716A7eBecFdc7572eDCbF01766f042155c",
-      20729: ''
+      20729: '',
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xCc1530716A7eBecFdc7572eDCbF01766f042155c/transactions"
   },
   bake: {
-    symbol: "ccBAKE",
+    symbol: "BAKE",
     address: {
       820: "0xCCeC9F26F52E8e0D1d88365004f4F475f5274279",
-      20729: ''
+      20729: '',
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xCCeC9F26F52E8e0D1d88365004f4F475f5274279/transactions"
   },
   shib: {
-    symbol: "ccSHIB",
+    symbol: "SHIB",
     address: {
       820: "0xccA4F2ED7Fc093461c13f7F5d79870625329549A",
       20729: ''
@@ -206,43 +216,43 @@ const tokens = {
     projectLink: "https://explorer.callisto.network/address/0xccA4F2ED7Fc093461c13f7F5d79870625329549A/transactions"
   },
   raca: {
-    symbol: "ccRACA",
+    symbol: "RACA",
     address: {
       820: "0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b",
-      20729: ''
+      20729: '',
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b/transactions"
   },
   lina: {
-    symbol: "ccLINA",
+    symbol: "LINA",
     address: {
       820: "0xCC10A4050917f771210407DF7A4C048e8934332c",
-      20729: ''
+      20729: '',
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xCC10A4050917f771210407DF7A4C048e8934332c/transactions"
   },
   ton: {
-    symbol: "ccTON",
+    symbol: "TONCOIN",
     address: {
       820: "0xCC50D400042177B9DAb6bd31ede73aE8e1ED6F08",
-      20729: ''
+      20729: '',
     },
     decimals: 9,
     projectLink: "https://explorer.callisto.network/address/0xCC50D400042177B9DAb6bd31ede73aE8e1ED6F08/transactions"
   },
   xms: {
-    symbol: "ccXMS",
+    symbol: "XMS",
     address: {
       820: "0xcc45afedd2065EDcA770801055d1E376473a871B",
-      20729: ''
+      20729: '',
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xcc45afedd2065EDcA770801055d1E376473a871B/transactions"
   },
   ftm: {
-    symbol: "ccFTM",
+    symbol: "FTM",
     address: {
       820: "0xcc50aB63766660C6C1157B8d6A5D51ceA82Dff34",
       20729: ''
@@ -260,37 +270,37 @@ const tokens = {
     projectLink: "https://explorer.callisto.network/address/0xCc99C6635Fae4DAcF967a3fc2913ab9fa2b349C3/transactions"
   },
   bbt: {
-    symbol: "ccBBT",
+    symbol: "BBT",
     address: {
       820: "0xcCCaC2f22752bbe77D4DAb4e9421F2AC6c988427",
-      20729: ''
+      20729: '',
     },
     decimals: 8,
     projectLink: "https://explorer.callisto.network/address/0xcCCaC2f22752bbe77D4DAb4e9421F2AC6c988427/transactions"
   },
   antex: {
-    symbol: "ccANTEX",
+    symbol: "ANTEX",
     address: {
       820: "0xCCd792f5D06b73685a1b54A32fE786346cAd1894",
-      20729: ''
+      20729: '',
     },
     decimals: 8,
     projectLink: "https://explorer.callisto.network/address/0xCCd792f5D06b73685a1b54A32fE786346cAd1894/transactions"
   },
   zoo: {
-    symbol: "ccZOO",
+    symbol: "ZOO",
     address: {
       820: "0xCC9aFcE1e164fC2b381A3a104909e2D9E52cfB5D",
-      20729: ''
+      20729: '',
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xCC9aFcE1e164fC2b381A3a104909e2D9E52cfB5D/transactions"
   },
   bcoin: {
-    symbol: "ccBCOIN",
+    symbol: "BCOIN",
     address: {
       820: "0xcC6e7E97A46B6F0eD3bC81518Fc816da78F7cb65",
-      20729: ''
+      20729: '',
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xcC6e7E97A46B6F0eD3bC81518Fc816da78F7cb65/transactions"
@@ -305,6 +315,11 @@ const tokens = {
     decimals: 18,
     projectLink: "https://wbtt.io/"
   }
+}
+
+export const wrappedNativeTokens = {
+  820: tokens.wclo,
+  199: tokens.wbtt,
 }
 
 export default tokens

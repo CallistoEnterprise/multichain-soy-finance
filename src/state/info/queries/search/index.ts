@@ -87,9 +87,9 @@ const useFetchSearchResults = (
     const search = async () => {
       try {
         const tokens = await request<TokenSearchResponse>(INFO_CLIENT, TOKEN_SEARCH, {
-          symbol: searchString.toUpperCase(),
+          symbol: searchString?.toUpperCase(),
           // Most well known tokens have first letter capitalized
-          name: searchString.charAt(0).toUpperCase() + searchString.slice(1),
+          name: searchString.charAt(0)?.toUpperCase() + searchString.slice(1),
           id: searchString.toLowerCase(),
         })
         const tokenIds = getIds([tokens.asAddress, tokens.asSymbol, tokens.asName])

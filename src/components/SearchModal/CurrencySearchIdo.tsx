@@ -1,8 +1,9 @@
 import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from 'react'
-import { Currency, ETHER, BTTETHER, Token } from '@soy-libs/sdk-multichain'
+import { Currency, ETHERS, Token } from '@soy-libs/sdk-multichain'
 import { Text, Input, Box } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { FixedSizeList } from 'react-window'
+import { NativeSymbols } from 'config'
 import { useAudioModeManager } from 'state/user/hooks'
 import useDebounce from 'hooks/useDebounce'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -27,11 +28,6 @@ interface CurrencySearchProps {
 }
 
 const swapSound = new Audio('swap.mp3')
-
-const ether = {
-  820: ETHER,
-  199: BTTETHER
-}
 
 function CurrencySearchIdo({
   selectedCurrency,
@@ -61,8 +57,8 @@ function CurrencySearchIdo({
 
   const showETH: boolean = useMemo(() => {
     const s = debouncedQuery.toLowerCase().trim()
-    return s === '' || s === 'c' || s === 'cl' || s === 'clo'
-  }, [debouncedQuery])
+    return chainId === 820 ? s === '' || s === 'c' || s === 'cl' || s === 'clo' : s === '' || s === 'b' || s === 'bt' || s === 'btt'
+  }, [debouncedQuery, chainId])
 
   const tokenComparator = useTokenComparator(invertSearchOrder)
 
@@ -104,8 +100,8 @@ function CurrencySearchIdo({
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         const s = debouncedQuery.toLowerCase().trim()
-        if (s === 'clo' || s === 'btt') {
-          handleCurrencySelect(ether[chainId])
+        if (s === NativeSymbols[chainId]) {
+          handleCurrencySelect(ETHERS[chainId])
         } else if (filteredSortedTokens.length > 0) {
           if (
             filteredSortedTokens[0].symbol?.toLowerCase() === debouncedQuery.trim().toLowerCase() ||

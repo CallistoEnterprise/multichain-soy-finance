@@ -17,6 +17,7 @@ import {
 import { ethers } from 'ethers'
 import { parseUnits } from 'ethers/lib/utils'
 import { useWeb3React } from '@web3-react/core'
+import { NativeSymbols } from 'config'
 import { useGetMinBetAmount } from 'state/hooks'
 import { useTranslation } from 'contexts/Localization'
 import { usePredictionsContract } from 'hooks/useContract'
@@ -35,11 +36,6 @@ interface SetPositionCardProps {
   togglePosition: () => void
   onBack: () => void
   onSuccess: (decimalValue: string, hash: string) => Promise<void>
-}
-
-const symbols = {
-  820: 'CLO',
-  199: 'BTT'
 }
 
 // /!\ TEMPORARY /!\
@@ -180,7 +176,7 @@ const SetPositionCard: React.FC<SetPositionCardProps> = ({ position, togglePosit
     } else if (inputAmount.gt(0) && inputAmount.lt(minBetAmount)) {
       setErrorMessage({
         key: 'A minimum amount of %num% %token% is required',
-        data: { num: formatBigNumber(minBetAmount), token: `${symbols[chainId]}` },
+        data: { num: formatBigNumber(minBetAmount), token: `${NativeSymbols[chainId]}` },
       })
     } else {
       setErrorMessage(null)

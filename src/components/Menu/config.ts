@@ -112,39 +112,17 @@ export const bttConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'FarmIcon',
     href: '/farms',
   },
-  // {
-  //   label: t('Staking Pools'),
-  //   icon: 'PoolIcon',
-  //   href: '/staking',
-  // },
-  // {
-  //   label: t('Launchpads'),
-  //   icon: 'LaunchpadIcon',
-  //   href: '/launchpad',
-  // },
+  {
+    label: t('Staking Pools(Only available on Callisto)'),
+    icon: 'PoolIcon',
+    href: '/staking',
+  },
   {
     label: t('Bridge'),
     icon: 'BridgeIcon',
     href: 'https://bridge.soy.finance/',
     target: "_blank"
   },
-  // {
-  //   label: t('CHOAM'),
-  //   href: 'https://choamtoken.com/',
-  //   icon: "ChoamIcon",
-  //   target: "_blank",
-  //   status: menuStatus.SOLDOUT
-  // },
-  // {
-  //   label: t('NFT'),
-  //   icon: 'NftIcon',
-  //   href: '/nft',
-  // },
-  // {
-  //   label: t('Info'),
-  //   icon: 'InfoIcon',
-  //   href: '/info'
-  // },
   {
     label: t('More'),
     icon: 'MoreIcon',

@@ -13,17 +13,35 @@ export const BASE_CALLISTO_SCAN_URLS = {
   [ChainId.MAINNET]: 'https://explorer.callisto.network',
   [ChainId.CLOTESTNET]: 'https://testnet-explorer.callisto.network',
   [ChainId.BTTMAINNET]: 'https://bttcscan.com',
+  [ChainId.BSC]: 'https://www.bscscan.com'
 }
 
 export const RPC_URLS = {
   [ChainId.MAINNET]: 'https://rpc.callisto.network/',
   [ChainId.CLOTESTNET]: 'https://testnet-rpc.callisto.network/',
-  [ChainId.BTTMAINNET]: 'https://rpc.bittorrentchain.io/',
+  [ChainId.BTTMAINNET]: 'https://rpc.bt.io/', // 'https://rpc.bittorrentchain.io/',
+  [ChainId.BSC]: 'https://bsc-dataseed.binance.org/'
 }
 
 export const ExplorerText = {
   [ChainId.MAINNET]: 'CallistoScan',
-  [ChainId.BTTMAINNET]: 'BttcScan'
+  [ChainId.BTTMAINNET]: 'BttcScan',
+  [ChainId.BSC]: 'BSCScan'
+}
+
+export const NativeSymbols = {
+  [ChainId.MAINNET]: 'clo',
+  [ChainId.BTTMAINNET]: 'btt',
+  [ChainId.BSC]: 'bnb',
+  [ChainId.ETCCLASSICMAINNET]: 'etc'
+}
+
+export const NativeAddress = {
+  [ChainId.MAINNET]: '0x0000000000000000000000000000000000000001',
+  [ChainId.BTTMAINNET]: '0x0000000000000000000000000000000000001010',
+  [ChainId.BSC]: '0x0000000000000000000000000000000000000007',
+  [ChainId.ETHEREUM]: '0x0000000000000000000000000000000000000006',
+  [ChainId.ETCCLASSICMAINNET]: '0x0000000000000000000000000000000000000005'
 }
 
 // SOY_PER_BLOCK details
@@ -36,7 +54,7 @@ export const ExplorerText = {
 export const SOY_PER_BLOCK = new BigNumber(5)
 export const BLOCKS_PER_YEAR = new BigNumber((60 / CALLISTO_BLOCK_TIME) * 60 * 24 * 365)
 export const SOY_PER_YEAR = SOY_PER_BLOCK.times(BLOCKS_PER_YEAR)
-export const BASE_URL = 'https://deploy-preview-7--multichain-soy-finance.netlify.app'
+export const BASE_URL = 'https://multichain-soy-finance.netlify.app'
 export const BASE_ADD_LIQUIDITY_URL = `${BASE_URL}/add`
 export const BASE_LIQUIDITY_POOL_URL = `${BASE_URL}/pool`
 export const BASE_CALLISTO_SCAN_URL = BASE_CALLISTO_SCAN_URLS[ChainId.MAINNET]

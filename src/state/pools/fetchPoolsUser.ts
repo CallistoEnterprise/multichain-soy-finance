@@ -3,7 +3,7 @@ import sousChefABI from 'config/abi/sousChef.json'
 import erc20ABI from 'config/abi/erc20.json'
 import {multicall3} from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
-import { simpleRpcProvider } from 'utils/providers'
+import { getRpcProvider } from 'utils/providers'
 import BigNumber from 'bignumber.js'
 
 // Pool 0, SOY / SOY is a different kind of contract (master chef)
@@ -39,6 +39,7 @@ export const fetchUserBalances = async (account) => {
     {},
   )
 
+  const simpleRpcProvider = await getRpcProvider()
   // CLO pools
   const bnbBalance = await simpleRpcProvider.getBalance(account)
   const bnbBalances = bnbPools.reduce(

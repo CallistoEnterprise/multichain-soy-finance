@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Currency, ETHER, BTTETHER, JSBI, TokenAmount } from '@soy-libs/sdk-multichain'
+import { Currency, ETHERS, JSBI, TokenAmount } from '@soy-libs/sdk-multichain'
 import { Button, ChevronDownIcon, Text, AddIcon, useModal } from '@soy-libs/uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
@@ -24,11 +24,6 @@ enum Fields {
   TOKEN1 = 1,
 }
 
-const ether = {
-  820: ETHER,
-  199: BTTETHER
-}
-
 const StyledButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.input};
   color: ${({ theme }) => theme.colors.text};
@@ -41,7 +36,7 @@ export default function PoolFinder() {
   const { t } = useTranslation()
 
   const [activeField, setActiveField] = useState<number>(Fields.TOKEN1)
-  const [currency0, setCurrency0] = useState<Currency | null>(ether[chainId])
+  const [currency0, setCurrency0] = useState<Currency | null>(ETHERS[chainId])
   const [currency1, setCurrency1] = useState<Currency | null>(null)
 
   const [pairState, pair] = usePair(currency0 ?? undefined, currency1 ?? undefined)

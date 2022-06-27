@@ -1,8 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, ETHER, BTTETHER, Token, currencyEquals } from '@soy-libs/sdk-multichain'
+import { Currency, ETHERS, Token, currencyEquals } from '@soy-libs/sdk-multichain'
 import { useMemo } from 'react'
 import { arrayify } from 'ethers/lib/utils'
+import { NativeSymbols } from 'config'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
   TokenAddressMap,
@@ -188,9 +189,8 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
 }
 
 export function useCurrency(currencyId: string | undefined): Currency | null | undefined {
-  const isCLO = currencyId?.toUpperCase() === 'CLO'
-  const isBTT = currencyId?.toUpperCase() === 'BTT'
-  const isEther = isCLO || isBTT
-  const token = useToken(isEther ? undefined : currencyId)
-  return isCLO ? ETHER : isBTT ? BTTETHER : token
+  const { chainId } = useActiveWeb3React()
+  const isETHER = currencyId?.toUpperCase() === NativeSymbols[chainId]?.toUpperCase()
+  const token = useToken(isETHER ? undefined : currencyId)
+  return isETHER ? ETHERS[chainId] : token
 }

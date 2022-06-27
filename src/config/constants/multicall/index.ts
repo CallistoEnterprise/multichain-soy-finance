@@ -7,9 +7,9 @@ const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
   [ChainId.ETHEREUM]: '',
   [ChainId.RINKEBY]: '',
   [ChainId.KOVAN]: '',
-  [ChainId.BSC]: '',
+  [ChainId.BSC]: '0xfF6FD90A470Aaa0c1B8A54681746b07AcdFedc9B',
   [ChainId.BSCTESTNET]: '',
-  [ChainId.ETCCLASSICMAINNET]: '',
+  [ChainId.ETCCLASSICMAINNET]: '0x98194aaA67638498547Df929DF4926C7D0DCD135',
   [ChainId.BTTMAINNET]: '0x8dFbdEEeF41eefd92A663a34331db867CA6581AE'
 }
 

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { CurrencyAmount } from '@soy-libs/sdk-multichain'
 import { Button, Box, Card } from '@soy-libs/uikit2'
 import BigNumber from 'bignumber.js'
+import { NativeAddress, NativeSymbols } from 'config'
 import { useTranslation } from 'contexts/Localization'
 import { BidderHeader } from 'components/App/AppHeader'
 import { getAddress } from 'utils/addressHelpers'
@@ -76,7 +77,7 @@ export default function IDODaily() {
 
   const { t } = useTranslation()
 
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const { onStakeBet } = useStakeBet()
   const { onClaim } = useClaim()
   const { toastError, toastSuccess, toastWarning } = useToast()
@@ -145,7 +146,7 @@ export default function IDODaily() {
     }
   }, [approval, approvalSubmitted])
 
-  const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
+  const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT], chainId)
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
 
@@ -160,14 +161,14 @@ export default function IDODaily() {
   // the callback to execute the swap
   const { error: swapCallbackError } = useSwapCallback(trade, allowedSlippage, recipient)
 
-  const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade)
+  const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade, chainId)
 
   const balance = selectedCurrencyBalance?.toSignificant(6) ?? '0'
 
   const handleSubmit = async () => {
     if (
-      (parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance + 0.005) && (currencies[Field.INPUT].symbol === 'CLO' || currencies[Field.INPUT].symbol === 'BTT')) ||
-      (parseFloat(formattedAmounts[Field.INPUT]) >= parseFloat(balance) && (currencies[Field.INPUT].symbol !== 'CLO' || currencies[Field.INPUT].symbol !== 'BTT') )
+      (parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance + 0.005) && (currencies[Field.INPUT].symbol === NativeSymbols[chainId]?.toUpperCase())) ||
+      (parseFloat(formattedAmounts[Field.INPUT]) >= parseFloat(balance) && (currencies[Field.INPUT].symbol !== NativeSymbols[chainId]?.toUpperCase()) )
     ) {
       toastWarning("Warning!", "Insufficient balance.")
       return;
@@ -176,10 +177,8 @@ export default function IDODaily() {
     try {
       setTxPending(true)
       let tokenAddr = '';
-      if (currencies[Field.INPUT].symbol === 'CLO') {
-        tokenAddr = '0x0000000000000000000000000000000000000001'
-      } else if (currencies[Field.INPUT].symbol === 'BTT') {
-        tokenAddr = '0x0000000000000000000000000000000000001010'
+      if (currencies[Field.INPUT].symbol  === NativeSymbols[chainId]?.toUpperCase()) {
+        tokenAddr = NativeAddress[chainId]
       } else {
         tokenAddr = getAddress(otherToken.address)
       }

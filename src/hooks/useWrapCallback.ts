@@ -1,4 +1,4 @@
-import { Currency, currencyEquals, ETHER, BTTETHER, WETH } from '@soy-libs/sdk-multichain'
+import { Currency, currencyEquals, ETHERS, WETH } from '@soy-libs/sdk-multichain'
 import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { tryParseAmount } from '../state/swap/hooks'
@@ -36,7 +36,7 @@ export default function useWrapCallback(
 
     const sufficientBalance = inputAmount && balance && !balance.lessThan(inputAmount)
 
-    if ((inputCurrency === ETHER || inputCurrency === BTTETHER) && currencyEquals(WETH[chainId], outputCurrency)) {
+    if ((inputCurrency === ETHERS[chainId]) && currencyEquals(WETH[chainId], outputCurrency)) {
       return {
         wrapType: WrapType.WRAP,
         execute:
@@ -53,7 +53,7 @@ export default function useWrapCallback(
         inputError: sufficientBalance ? undefined : 'Insufficient CLO balance',
       }
     }
-    if (currencyEquals(WETH[chainId], inputCurrency) && (outputCurrency === ETHER || outputCurrency === BTTETHER)) {
+    if (currencyEquals(WETH[chainId], inputCurrency) && (outputCurrency === ETHERS[chainId])) {
       return {
         wrapType: WrapType.UNWRAP,
         execute:

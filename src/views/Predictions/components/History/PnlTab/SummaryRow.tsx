@@ -31,7 +31,7 @@ const SummaryRow: React.FC<SummaryRowProps> = ({ type, summary, bnbBusdPrice }) 
   const { rounds, amount } = summary[type]
   const totalRounds = summary.entered.rounds
   const roundsInPercents = ((rounds * 100) / totalRounds).toFixed(2)
-  const typeTranslationKey = type.charAt(0).toUpperCase() + type.slice(1)
+  const typeTranslationKey = type.charAt(0)?.toUpperCase() + type.slice(1)
   const displayAmount = type === 'won' ? summary[type].payout : amount
 
   return (

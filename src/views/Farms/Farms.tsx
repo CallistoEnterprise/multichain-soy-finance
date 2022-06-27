@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Heading, RowType, Toggle, Text, Flex } from '@soy-libs/uikit2'
 import { ChainId } from '@soy-libs/sdk-multichain'
 import styled from 'styled-components'
@@ -122,7 +122,7 @@ const Farms: React.FC = () => {
   const cakePrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'soyfinance_farm_view' })
-  const { account } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const chosenFarmsLength = useRef(0)
 
@@ -275,7 +275,7 @@ const Farms: React.FC = () => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
-    const lpLabel = farm?.lpSymbol && farm?.lpSymbol.split(' ')[0].toUpperCase().replace('POLYSAFEMOON', '')
+    const lpLabel = farm?.lpSymbol && farm?.lpSymbol.split(' ')[0]?.toUpperCase().replace('SOYFINANCE', '')
 
     const row: RowProps = {
       apr: {

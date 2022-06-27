@@ -1,5 +1,5 @@
 import { parseUnits } from '@ethersproject/units'
-import { Currency, CurrencyAmount, ETHER, BTTETHER, JSBI, Token, TokenAmount, Trade } from '@soy-libs/sdk-multichain'
+import { Currency, CurrencyAmount, ETHERS, JSBI, Token, TokenAmount, Trade } from '@soy-libs/sdk-multichain'
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,6 +11,7 @@ import useParsedQueryString from 'hooks/useParsedQueryString'
 import { useTranslation } from 'contexts/Localization'
 import { isAddress } from 'utils'
 import { computeSlippageAdjustedAmounts } from 'utils/prices'
+import { NativeSymbols } from 'config'
 import { AppDispatch, AppState } from '../index'
 import { useCurrencyBalances } from '../wallet/hooks'
 import { Field, replaceSwapState, selectCurrency, setRecipient, switchCurrencies, typeInput } from './actions'
@@ -27,17 +28,23 @@ export function useSwapActionHandlers(): {
   onUserInput: (field: Field, typedValue: string) => void
   onChangeRecipient: (recipient: string | null) => void
 } {
+  const { chainId } = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
   const onCurrencySelection = useCallback(
     (field: Field, currency: Currency) => {
       dispatch(
         selectCurrency({
           field,
-          currencyId: currency instanceof Token ? currency.address : currency === ETHER ? 'CLO' : currency === BTTETHER ? 'BTT' : '',
+          currencyId:
+            currency instanceof Token
+              ? currency.address
+              : currency === ETHERS[chainId]
+              ? NativeSymbols[chainId]?.toUpperCase()
+              : '',
         }),
       )
     },
-    [dispatch],
+    [dispatch, chainId],
   )
 
   const onSwitchTokens = useCallback(() => {
@@ -126,7 +133,7 @@ export function useDerivedSwapInfo(): {
   const outputCurrency = useCurrency(outputCurrencyId)
   const recipientLookup = useENS(recipient ?? undefined)
   const to: string | null = (recipient === null ? account : recipientLookup.address) ?? null
-  
+
   const relevantTokenBalances = useCurrencyBalances(account ?? undefined, [
     inputCurrency ?? undefined,
     outputCurrency ?? undefined,
@@ -198,20 +205,14 @@ export function useDerivedSwapInfo(): {
   }
 }
 
-const nativeSymbols = {
-  820: 'CLO',
-  199: 'BTT'
-}
-
 function parseCurrencyFromURLParameter(urlParam: any, chainId?: number): string {
   if (typeof urlParam === 'string') {
     const valid = isAddress(urlParam)
     if (valid) return valid
-    if (urlParam.toUpperCase() === 'CLO') return 'CLO'
-    if (urlParam.toUpperCase() === 'BTT') return 'BTT'
-    if (valid === false) return 'CLO'
+    if (urlParam?.toUpperCase() === NativeSymbols[chainId]?.toUpperCase()) return NativeSymbols[chainId]?.toUpperCase()
+    if (valid === false) return NativeSymbols[chainId]?.toUpperCase()
   }
-  return nativeSymbols[chainId] ?? ''
+  return NativeSymbols[chainId]?.toUpperCase() ?? ''
 }
 
 function parseTokenAmountURLParameter(urlParam: any): string {
