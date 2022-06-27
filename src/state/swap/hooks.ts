@@ -39,7 +39,7 @@ export function useSwapActionHandlers(): {
             currency instanceof Token
               ? currency.address
               : currency === ETHERS[chainId]
-              ? NativeSymbols[chainId].toUpperCase()
+              ? NativeSymbols[chainId]?.toUpperCase()
               : '',
         }),
       )
@@ -209,10 +209,10 @@ function parseCurrencyFromURLParameter(urlParam: any, chainId?: number): string 
   if (typeof urlParam === 'string') {
     const valid = isAddress(urlParam)
     if (valid) return valid
-    if (urlParam.toUpperCase() === NativeSymbols[chainId].toUpperCase()) return NativeSymbols[chainId].toUpperCase()
-    if (valid === false) return NativeSymbols[chainId].toUpperCase()
+    if (urlParam?.toUpperCase() === NativeSymbols[chainId]?.toUpperCase()) return NativeSymbols[chainId]?.toUpperCase()
+    if (valid === false) return NativeSymbols[chainId]?.toUpperCase()
   }
-  return NativeSymbols[chainId].toUpperCase() ?? ''
+  return NativeSymbols[chainId]?.toUpperCase() ?? ''
 }
 
 function parseTokenAmountURLParameter(urlParam: any): string {

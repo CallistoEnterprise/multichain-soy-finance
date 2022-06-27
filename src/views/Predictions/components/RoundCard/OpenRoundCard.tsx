@@ -50,7 +50,7 @@ const OpenRoundCard: React.FC<OpenRoundCardProps> = ({
   const { currentBlock } = useBlock()
   const { isSettingPosition, position } = state
   const isBufferPhase = currentBlock >= round.startBlock + (interval + BLOCK_PADDING)
-  const positionDisplay = position === BetPosition.BULL ? t('Up').toUpperCase() : t('Down').toUpperCase()
+  const positionDisplay = position === BetPosition.BULL ? t('Up')?.toUpperCase() : t('Down')?.toUpperCase()
   const { targetRef, tooltipVisible, tooltip } = useTooltip(
     <div style={{ whiteSpace: 'nowrap' }}>{`${formatBnbv2(betAmount)} CLO`}</div>,
     { placement: 'top' },

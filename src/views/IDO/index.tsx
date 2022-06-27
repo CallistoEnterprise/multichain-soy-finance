@@ -172,7 +172,7 @@ export default function IDODaily() {
 
   const handleSubmit = async () => {
     if (
-      (parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance + 0.005) && (currencies[Field.INPUT].symbol === NativeSymbols[chainId].toUpperCase())) ||
+      (parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance + 0.005) && (currencies[Field.INPUT].symbol === NativeSymbols[chainId]?.toUpperCase())) ||
       (parseFloat(formattedAmounts[Field.INPUT]) >= parseFloat(balance) && (currencies[Field.INPUT].symbol !== NativeSymbols[chainId].toLowerCase()))
     ) {
       toastWarning("Warning!", "Insufficient balance.")

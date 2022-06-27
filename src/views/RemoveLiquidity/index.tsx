@@ -541,8 +541,8 @@ export default function RemoveLiquidity({
                         </StyledInternalLink>
                       ) : oneCurrencyIsWETH ? (
                         <StyledInternalLink
-                          to={`/remove/${currencyA && currencyEquals(currencyA, WETH[chainId]) ? NativeSymbols[chainId].toUpperCase() : currencyIdA}/${
-                            currencyB && currencyEquals(currencyB, WETH[chainId]) ? NativeSymbols[chainId].toUpperCase() : currencyIdB
+                          to={`/remove/${currencyA && currencyEquals(currencyA, WETH[chainId]) ? NativeSymbols[chainId]?.toUpperCase() : currencyIdA}/${
+                            currencyB && currencyEquals(currencyB, WETH[chainId]) ? NativeSymbols[chainId]?.toUpperCase() : currencyIdB
                           }`}
                         >
                           {t('Receive CLO')}

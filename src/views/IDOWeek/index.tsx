@@ -167,8 +167,8 @@ export default function IDODaily() {
 
   const handleSubmit = async () => {
     if (
-      (parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance + 0.005) && (currencies[Field.INPUT].symbol === NativeSymbols[chainId].toUpperCase())) ||
-      (parseFloat(formattedAmounts[Field.INPUT]) >= parseFloat(balance) && (currencies[Field.INPUT].symbol !== NativeSymbols[chainId].toUpperCase()) )
+      (parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance + 0.005) && (currencies[Field.INPUT].symbol === NativeSymbols[chainId]?.toUpperCase())) ||
+      (parseFloat(formattedAmounts[Field.INPUT]) >= parseFloat(balance) && (currencies[Field.INPUT].symbol !== NativeSymbols[chainId]?.toUpperCase()) )
     ) {
       toastWarning("Warning!", "Insufficient balance.")
       return;
@@ -177,7 +177,7 @@ export default function IDODaily() {
     try {
       setTxPending(true)
       let tokenAddr = '';
-      if (currencies[Field.INPUT].symbol  === NativeSymbols[chainId].toUpperCase()) {
+      if (currencies[Field.INPUT].symbol  === NativeSymbols[chainId]?.toUpperCase()) {
         tokenAddr = NativeAddress[chainId]
       } else {
         tokenAddr = getAddress(otherToken.address)

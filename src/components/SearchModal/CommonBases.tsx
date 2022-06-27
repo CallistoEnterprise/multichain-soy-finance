@@ -53,7 +53,7 @@ export default function CommonBases({
           disable={selectedCurrency === ETHERS[chainId]}
         >
           <CurrencyLogo currency={ETHERS[chainId]} style={{ marginRight: 8 }} />
-          <Text>{NativeSymbols[chainId].toUpperCase()}</Text>
+          <Text>{NativeSymbols[chainId]?.toUpperCase()}</Text>
         </BaseWrapper>
         {(chainId ? SUGGESTED_BASES[chainId] : []).map((token: Token) => {
           const selected = selectedCurrency instanceof Token && selectedCurrency.address === token.address

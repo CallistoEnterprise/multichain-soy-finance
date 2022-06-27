@@ -159,7 +159,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         <Flex alignItems="center" minWidth="70px">
           <Image
             src={
-              pool.stakingToken.symbol === NativeSymbols[chainId].toUpperCase()
+              pool.stakingToken.symbol === NativeSymbols[chainId]?.toUpperCase()
                 ? `${BASE_URL}/images/coins/${NativeSymbols[chainId]}.png`
                 : `${BASE_URL}/images/coins/${chainId}/${getAddress(stakingToken.address)}.png`
             }

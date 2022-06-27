@@ -27,7 +27,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/farms',
   },
   {
-    label: t('Staking Pools(Available only in Callisto)'),
+    label: t('Staking Pools'),
     icon: 'PoolIcon',
     href: '/staking',
   },
@@ -113,7 +113,7 @@ export const bttConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/farms',
   },
   {
-    label: t('Staking Pools(Available only in Callisto)'),
+    label: t('Staking Pools(Only available on Callisto)'),
     icon: 'PoolIcon',
     href: '/staking',
   },

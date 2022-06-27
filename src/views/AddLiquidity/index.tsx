@@ -278,7 +278,7 @@ export default function AddLiquidity({
           history.push(`/add/${newCurrencyIdB}`)
         }
       } else {
-        history.push(`/add/${currencyIdA || NativeSymbols[chainId].toUpperCase()}/${newCurrencyIdB}`)
+        history.push(`/add/${currencyIdA || NativeSymbols[chainId]?.toUpperCase()}/${newCurrencyIdB}`)
       }
     },
     [currencyIdA, history, currencyIdB, chainId],
