@@ -36,6 +36,13 @@ export const NativeSymbols = {
   [ChainId.ETCCLASSICMAINNET]: 'etc'
 }
 
+export const WrappedNativeSymbols = {
+  [ChainId.MAINNET]: 'WCLO',
+  [ChainId.BTTMAINNET]: 'WBTT',
+  [ChainId.BSC]: 'WBNB',
+  [ChainId.ETCCLASSICMAINNET]: 'WETC'
+}
+
 export const NativeAddress = {
   [ChainId.MAINNET]: '0x0000000000000000000000000000000000000001',
   [ChainId.BTTMAINNET]: '0x0000000000000000000000000000000000001010',
