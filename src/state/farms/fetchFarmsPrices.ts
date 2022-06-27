@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { localStorageChainIdKey } from 'config'
+import { localStorageChainIdKey, WrappedNativeSymbols } from 'config'
 import { BIG_ONE, BIG_ZERO } from 'utils/bigNumber'
 import { filterFarmsByQuoteToken } from 'utils/farmsPriceHelpers'
 import { Farm } from 'state/types'
@@ -11,17 +11,26 @@ const getFarmFromTokenSymbol = (farms: Farm[], tokenSymbol: string): Farm => {
   return filteredFarm
 }
 
-const getFarmBaseTokenPrice = (farm: Farm, quoteTokenFarm: Farm, cloPriceBusd: BigNumber): BigNumber => {
+const getFarmBaseTokenPrice = (
+  farm: Farm,
+  quoteTokenFarm: Farm,
+  cloPriceBusd: BigNumber,
+  ccCloPrice: BigNumber,
+  chainId,
+): BigNumber => {
   const hasTokenPriceVsQuote = Boolean(farm.tokenPriceVsQuote)
 
   if (farm.quoteToken.symbol === 'BUSDT' || farm.quoteToken.symbol === 'USDT') {
     return hasTokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
-  if (farm.quoteToken.symbol === 'WCLO') {
+  if (farm.quoteToken.symbol === WrappedNativeSymbols[chainId]) {
     return hasTokenPriceVsQuote ? cloPriceBusd.times(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
+  if (chainId === 199 && farm.quoteToken.symbol === 'ccCLO') {
+    return hasTokenPriceVsQuote ? ccCloPrice.times(farm.tokenPriceVsQuote) : BIG_ZERO
+  }
   // We can only calculate profits without a quoteTokenFarm for BUSDT/CLO farms
   if (!quoteTokenFarm) {
     return BIG_ZERO
@@ -32,7 +41,7 @@ const getFarmBaseTokenPrice = (farm: Farm, quoteTokenFarm: Farm, cloPriceBusd: B
   // If the farm's quote token isn't BUSDT or wCLO, we then use the quote token, of the original farm's quote token
   // i.e. for farm PNT - pBTC we use the pBTC farm's quote token - CLO, (pBTC - CLO)
   // from the CLO - pBTC price, we can calculate the PNT - BUSDT price
-  if (quoteTokenFarm.quoteToken.symbol === 'WCLO') {
+  if (quoteTokenFarm.quoteToken.symbol === WrappedNativeSymbols[chainId]) {
     const quoteTokenInBusd = cloPriceBusd.times(quoteTokenFarm.tokenPriceVsQuote)
     return hasTokenPriceVsQuote && quoteTokenInBusd
       ? new BigNumber(farm.tokenPriceVsQuote).times(quoteTokenInBusd)
@@ -50,20 +59,32 @@ const getFarmBaseTokenPrice = (farm: Farm, quoteTokenFarm: Farm, cloPriceBusd: B
   return BIG_ZERO
 }
 
-const getFarmQuoteTokenPrice = (farm: Farm, quoteTokenFarm: Farm, bnbPriceBusd: BigNumber): BigNumber => {
+const getFarmQuoteTokenPrice = (
+  farm: Farm,
+  quoteTokenFarm: Farm,
+  bnbPriceBusd: BigNumber,
+  ccCloPrice: BigNumber,
+  chainId: number,
+): BigNumber => {
+  const hasTokenPriceVsQuote = Boolean(farm.tokenPriceVsQuote)
+
   if (farm.quoteToken.symbol === 'BUSDT' || farm.quoteToken.symbol === 'USDT') {
     return BIG_ONE
   }
 
-  if (farm.quoteToken.symbol === 'WCLO') {
+  if (farm.quoteToken.symbol === WrappedNativeSymbols[chainId]) {
     return bnbPriceBusd
+  }
+
+  if (chainId === 199 && farm.quoteToken.symbol === 'ccCLO') {
+    return hasTokenPriceVsQuote ? ccCloPrice.div(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
   if (!quoteTokenFarm) {
     return BIG_ZERO
   }
 
-  if (quoteTokenFarm.quoteToken.symbol === 'WCLO') {
+  if (quoteTokenFarm.quoteToken.symbol === WrappedNativeSymbols[chainId]) {
     return quoteTokenFarm.tokenPriceVsQuote ? bnbPriceBusd.times(quoteTokenFarm.tokenPriceVsQuote) : BIG_ZERO
   }
 
@@ -76,17 +97,36 @@ const getFarmQuoteTokenPrice = (farm: Farm, quoteTokenFarm: Farm, bnbPriceBusd: 
 
 const farmsPids = {
   820: 4,
-  199: 14
+  199: 14,
+}
+const busdtFarms = {
+  820: 5,
+  199: 19,
+}
+const refFarms = {
+  820: 2,
+  199: 9,
 }
 const fetchFarmsPrices = async (farms) => {
   const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
-  const cloBusdtFarm = farms.find((farm: Farm) => farm.pid === farmsPids[chainId])
-  const cloPriceBusdt = cloBusdtFarm.tokenPriceVsQuote ? BIG_ONE.div(cloBusdtFarm.tokenPriceVsQuote) : BIG_ZERO
-  
+  const nativeBusdtFarm = farms.find((farm: Farm) => farm.pid === farmsPids[chainId])
+  const soyBusdtFarm = farms.find((farm: Farm) => farm.pid === busdtFarms[chainId])
+  const soyCloFarm = farms.find((farm: Farm) => farm.pid === refFarms[chainId])
+
+  const soyPrice = soyBusdtFarm ? new BigNumber(soyBusdtFarm.tokenPriceVsQuote) : BIG_ZERO
+  const cloPrice = soyCloFarm ? soyPrice.times(soyCloFarm.tokenPriceVsQuote) : BIG_ZERO
+
+  const nativePriceBusdt = nativeBusdtFarm.tokenPriceVsQuote ? BIG_ONE.div(nativeBusdtFarm.tokenPriceVsQuote) : BIG_ZERO
   const farmsWithPrices = farms.map((farm) => {
     const quoteTokenFarm = getFarmFromTokenSymbol(farms, farm.quoteToken.symbol)
-    const baseTokenPrice = getFarmBaseTokenPrice(farm, quoteTokenFarm, cloPriceBusdt)
-    const quoteTokenPrice = getFarmQuoteTokenPrice(farm, quoteTokenFarm, cloPriceBusdt)
+    const baseTokenPrice =
+      farm.pid === 15 && chainId === 199
+        ? nativePriceBusdt
+        : getFarmBaseTokenPrice(farm, quoteTokenFarm, nativePriceBusdt, cloPrice, chainId)
+    const quoteTokenPrice =
+      farm.pid === 15 && chainId === 199
+        ? cloPrice
+        : getFarmQuoteTokenPrice(farm, quoteTokenFarm, nativePriceBusdt, cloPrice, chainId)
     const token = { ...farm.token, usdcPrice: baseTokenPrice.toJSON() }
     const quoteToken = { ...farm.quoteToken, usdcPrice: quoteTokenPrice.toJSON() }
     return { ...farm, token, quoteToken }

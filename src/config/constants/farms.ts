@@ -411,8 +411,8 @@ const bttFarms: FarmConfig[] = [
     localFarmAddresses: {
       199: '0x71Db9B83562b2242787D43871848Fe10AA5a7d46',
     },
-    token: tokens.wbtt,
-    quoteToken: tokens.busdt,
+    token: tokens.busdt,
+    quoteToken: tokens.wbtt,
   },
   {
     pid: 19,
@@ -435,7 +435,7 @@ const bttFarms: FarmConfig[] = [
     localFarmAddresses: {
       199: '0x79D65F4F1E44FEa4E77687a72122Bb2fCFEaD6af',
     },
-    token: tokens.wclo,
+    token: tokens.ccclo,
     quoteToken: tokens.soy,
   },
   {
@@ -484,7 +484,7 @@ const bttFarms: FarmConfig[] = [
       199: '0x6b5e2f20eEC0C5682F7E5a60A7444B7ab3B36558',
     },
     token: tokens.wbtt,
-    quoteToken: tokens.wclo,
+    quoteToken: tokens.ccclo,
   },
   {
     pid: 16,
@@ -496,7 +496,7 @@ const bttFarms: FarmConfig[] = [
       199: '0xf89778306E83e13D00644044b10bBe3470a8EaC1',
     },
     token: tokens.ccetc,
-    quoteToken: tokens.wclo,
+    quoteToken: tokens.ccclo,
   },
   {
     pid: 17,
@@ -508,7 +508,7 @@ const bttFarms: FarmConfig[] = [
       199: '0xd6aE8C78aa9cd32b9B50828cb2Bf36E2e28b7E91',
     },
     token: tokens.ccbnb_erc223,
-    quoteToken: tokens.wclo,
+    quoteToken: tokens.ccclo,
   },
   {
     pid: 18,
@@ -520,7 +520,7 @@ const bttFarms: FarmConfig[] = [
       199: '0x3f7B6dAfD37941520A8056eB22D26876ad22a8e7',
     },
     token: tokens.cceth_erc223,
-    quoteToken: tokens.wclo,
+    quoteToken: tokens.ccclo,
   },
 ]
 
