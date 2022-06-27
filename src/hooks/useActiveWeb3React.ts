@@ -44,7 +44,7 @@ const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> => {
   const simpleRpcProviderInMulti = useGetSimpleRpcProvider(chainId)
   const [provider, setprovider] = useState(library || simpleRpcProviderInMulti)
   
-  const locChainId = Number(window.localStorage.getItem(localStorageChainIdKey))
+  const locChainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
   useEffect(() => {
     if (library !== refEth.current && simpleRpcProviderInMulti) {
       setprovider(library || simpleRpcProviderInMulti)
