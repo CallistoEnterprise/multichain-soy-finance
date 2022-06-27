@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
+import useActiveWeb3React, { useGetSimpleRpcProvider } from 'hooks/useActiveWeb3React'
 import { CALLISTO_BLOCK_TIME } from 'config'
-import { simpleRpcProvider } from 'utils/providers'
+// import { simpleRpcProvider } from 'utils/providers'
 
 /**
  * Returns a countdown in seconds of a given block
  */
 const useBlockCountdown = (blockNumber: number) => {
+  const { chainId } = useActiveWeb3React()
   const timer = useRef<ReturnType<typeof setTimeout>>(null)
   const [secondsRemaining, setSecondsRemaining] = useState(0)
+  const simpleRpcProvider = useGetSimpleRpcProvider(chainId)
 
   useEffect(() => {
     const startCountdown = async () => {
@@ -38,7 +41,7 @@ const useBlockCountdown = (blockNumber: number) => {
     return () => {
       clearInterval(timer.current)
     }
-  }, [setSecondsRemaining, blockNumber, timer])
+  }, [setSecondsRemaining, blockNumber, timer, simpleRpcProvider])
 
   return secondsRemaining
 }

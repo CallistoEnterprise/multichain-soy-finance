@@ -1,7 +1,7 @@
 import { toDate, add, hoursToSeconds, differenceInHours } from 'date-fns'
 import { CALLISTO_BLOCK_TIME, DEFAULT_TOKEN_DECIMAL } from 'config'
 import { getBidderInfo } from 'config/constants/farmAuctions'
-import { simpleRpcProvider } from 'utils/providers'
+import { getRpcProvider } from 'utils/providers'
 import { AuctionsResponse, FarmAuctionContractStatus, BidsPerAuction, ViewBidderAuctionsResponse } from 'utils/types'
 import { Auction, AuctionStatus, Bidder, BidderAuction } from 'config/constants/types'
 import { ethersToBigNumber } from 'utils/bigNumber'
@@ -93,6 +93,7 @@ const getDateForBlock = async (currentBlock: number, block: number) => {
   // if block already happened we can get timestamp via .getBlock(block)
   if (currentBlock > block) {
     try {
+      const simpleRpcProvider = await getRpcProvider()
       const { timestamp } = await simpleRpcProvider.getBlock(block)
       return toDate(timestamp * 1000)
     } catch {
@@ -112,6 +113,7 @@ export const processAuctionData = async (auctionId: number, auctionResponse: Auc
     startBlock: auctionResponse.startBlock.toNumber(),
     endBlock: auctionResponse.endBlock.toNumber(),
   }
+  const simpleRpcProvider = await getRpcProvider()
 
   // Get all required datas and blocks
   const currentBlock = await simpleRpcProvider.getBlockNumber()

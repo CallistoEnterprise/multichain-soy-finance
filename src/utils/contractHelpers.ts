@@ -2,7 +2,7 @@ import { ethers } from 'ethers'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { Contract } from '@ethersproject/contracts'
-import { getRpcProvider, simpleRpcProvider } from 'utils/providers'
+import { getRpcProvider } from 'utils/providers'
 import { poolsConfig } from 'config/constants'
 import { Address, PoolCategory } from 'config/constants/types'
 

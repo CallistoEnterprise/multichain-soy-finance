@@ -3,7 +3,7 @@ import { useWeb3React } from '@web3-react/core'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getActivePools } from 'utils/calls'
 import { getAddress } from 'utils/addressHelpers'
-import { simpleRpcProvider } from 'utils/providers'
+import { getRpcProvider } from 'utils/providers'
 import BigNumber from 'bignumber.js'
 import { getVotingPower } from '../helpers'
 
@@ -35,7 +35,7 @@ const useGetVotingPower = (block?: number, isActive = true): State & { isLoading
   useEffect(() => {
     const fetchVotingPower = async () => {
       setIsLoading(true)
-
+      const simpleRpcProvider = await getRpcProvider()
       try {
         const blockNumber = block || (await simpleRpcProvider.getBlockNumber())
         const eligiblePools = await getActivePools(blockNumber)

@@ -1,7 +1,7 @@
 import request, { gql } from 'graphql-request'
 import { SNAPSHOT_API, SNAPSHOT_VOTING_API } from 'config/constants/endpoints'
 import { Proposal, ProposalState, Vote, VoteWhere } from 'state/types'
-import { simpleRpcProvider } from 'utils/providers'
+import { getRpcProvider } from 'utils/providers'
 
 export const getProposals = async (first = 5, skip = 0, state = ProposalState.ACTIVE): Promise<Proposal[]> => {
   const response: { proposals: Proposal[] } = await request(
@@ -93,6 +93,7 @@ export const getVoteVerificationStatuses = async (
   votes: Vote[],
   block?: number,
 ): Promise<{ [key: string]: boolean }> => {
+  const simpleRpcProvider = await getRpcProvider()
   const blockNumber = block || (await simpleRpcProvider.getBlockNumber())
 
   const votesToVerify = votes.map((vote) => ({

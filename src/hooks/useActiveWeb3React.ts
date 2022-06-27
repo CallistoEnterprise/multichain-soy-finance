@@ -2,8 +2,6 @@ import { ethers } from 'ethers'
 import { useEffect, useState, useRef } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
-// import { simpleRpcProvider } from 'utils/providers'
-// eslint-disable-next-line import/no-unresolved
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
 import { localStorageChainIdKey } from 'config'
 import { Networks } from 'config/constants/networks';
@@ -18,7 +16,7 @@ export const getProviderByChainId = (chainId) => {
   }
   return null
 }
-const useGetSimpleRpcProvider = (chainId) => {
+export const useGetSimpleRpcProvider = (chainId) => {
   const [provider, setSimpleProvider] = useState(null)
 
   useEffect(() => {
