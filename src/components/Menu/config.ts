@@ -113,7 +113,7 @@ export const bttConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/farms',
   },
   {
-    label: t('Staking Pools(Only available on Callisto)'),
+    label: t('Staking Pools(Only Callisto)'),
     icon: 'PoolIcon',
     href: '/staking',
   },
