@@ -1,4 +1,4 @@
-import { MenuEntry, menuStatus } from '@soy-libs/uikit2'
+import { MenuEntry } from '@soy-libs/uikit2'
 import { ContextApi } from 'contexts/Localization/types'
 
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
@@ -113,7 +113,8 @@ export const bttConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/farms',
   },
   {
-    label: t('Staking Pools(Only Callisto)'),
+    label: t('Staking Pools'),
+    sublabel: t('(Callisto chain only)'),
     icon: 'PoolIcon',
     href: '/staking',
   },
