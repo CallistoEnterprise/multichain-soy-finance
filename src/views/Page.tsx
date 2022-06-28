@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Text } from '@soy-libs/uikit2'
+import { Flex } from '@soy-libs/uikit2'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Footer from 'components/Menu/Footer'
 import SubNav from 'components/Menu/SubNav'
 
@@ -29,13 +30,13 @@ const StyledPage = styled.div`
 `
 
 const Page: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...props }) => {
+  const { chainId } = useActiveWeb3React()
   return (
     <StyledPage {...props}>
-      <Text mb="20px">Please migrate the old ccETH and ccBNB to ERC223 using BRIDGE.</Text>
       <SubNav />
       {children}
       <Flex flexGrow={1} />
-      <Footer />
+      {chainId === 820 && <Footer />}
     </StyledPage>
   )
 }
