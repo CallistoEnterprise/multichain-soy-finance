@@ -38,7 +38,9 @@ export const harvestFarm = async (lpContract, localFarmAddress) => {
   //   return receipt.status
   // }
 
-  const tx = await lpContract.transfer(localFarmAddress, '0', options)
+  const tx = await lpContract.transfer(localFarmAddress, '0', {
+    gasLimit: DEFAULT_GAS_LIMIT + 10000,
+  })
   const receipt = await tx.wait()
 
   return receipt.status
