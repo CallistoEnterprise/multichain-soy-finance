@@ -20,7 +20,7 @@ export const Networks = [
       img: `${BASE_URL}/images/networks/clo.png`,
       chainId: "820",
       hexChainId: "0x334",
-      rpcs: ["https://rpc.callisto.network/"],
+      rpcs: ["https://clo-geth.0xinfra.com/"],
       explorer: "https://explorer.callisto.network/"
   },
   // {

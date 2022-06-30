@@ -1,10 +1,10 @@
 import BigNumber from 'bignumber.js'
-import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
+import { DEFAULT_TOKEN_DECIMAL } from 'config'
 import { callWithEstimateGas } from './estimateGas'
 
-const options = {
-  gasLimit: DEFAULT_GAS_LIMIT,
-}
+// const options = {
+//   gasLimit: DEFAULT_GAS_LIMIT,
+// }
 
 export const stakeFarm = async (lpContract, localFarmAddress, amount) => {
   const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
