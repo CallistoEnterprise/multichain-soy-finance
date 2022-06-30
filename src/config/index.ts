@@ -17,7 +17,7 @@ export const BASE_CALLISTO_SCAN_URLS = {
 }
 
 export const RPC_URLS = {
-  [ChainId.MAINNET]: 'https://clo-geth.0xinfra.com/',
+  [ChainId.MAINNET]: 'https://rpc.callisto.network/',
   [ChainId.CLOTESTNET]: 'https://testnet-rpc.callisto.network/',
   [ChainId.BTTMAINNET]: 'https://rpc.bt.io/', // 'https://rpc.bittorrentchain.io/',
   [ChainId.BSC]: 'https://bsc-dataseed.binance.org/'

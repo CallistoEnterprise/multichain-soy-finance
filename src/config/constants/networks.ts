@@ -2,7 +2,7 @@ import { ChainId } from '@soy-libs/sdk-multichain'
 import { BASE_URL } from 'config'
 
 const NETWORK_URLS: { [chainId in ChainId]: string } = {
-  [ChainId.MAINNET]: 'https://clo-geth.0xinfra.com/',
+  [ChainId.MAINNET]: 'https://rpc.callisto.network/',
   [ChainId.CLOTESTNET]: 'https://testnet-rpc.callisto.network',
   [ChainId.ETHEREUM]: 'https://mainnet.infura.io/v3/d819f1add1a34a60adab4df578e0e741',
   [ChainId.RINKEBY]: 'https://rinkeby.infura.io/v3/d819f1add1a34a60adab4df578e0e741',
@@ -20,7 +20,7 @@ export const Networks = [
       img: `${BASE_URL}/images/networks/clo.png`,
       chainId: "820",
       hexChainId: "0x334",
-      rpcs: ["https://clo-geth.0xinfra.com/"],
+      rpcs: ["https://rpc.callisto.network/"],
       explorer: "https://explorer.callisto.network/"
   },
   // {
