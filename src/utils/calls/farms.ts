@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js'
 import { DEFAULT_TOKEN_DECIMAL, DEFAULT_GAS_LIMIT } from 'config'
+import { BIG_ZERO } from 'utils/bigNumber'
 // import { callWithEstimateGas } from './estimateGas'
 
 const options = {
@@ -24,7 +25,7 @@ export const unstakeFarm = async (localFarmContract, amount) => {
 
 export const harvestFarm = async (lpContract, localFarmAddress) => {
   // const tx = await callWithEstimateGas(lpContract, 'transfer', [localFarmAddress, '0'])
-  const tx = await lpContract.transfer(localFarmAddress, '1', options)
+  const tx = await lpContract.transfer(localFarmAddress, BIG_ZERO.toString(), options)
   const receipt = await tx.wait()
   return receipt.status
 }
