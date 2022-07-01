@@ -36,7 +36,7 @@
     "@ethersproject/experimental": "^5.0.1",
     "@reduxjs/toolkit": "^1.6.1",
     "@soy-libs/sdk-multichain": "0.0.9",
-    "@soy-libs/uikit2": "^0.3.5",
+    "@soy-libs/uikit2": "^0.3.6",
     "@types/multicodec": "^1.0.0",
     "@types/node": "^13.13.5",
     "@types/qs": "^6.9.6",
