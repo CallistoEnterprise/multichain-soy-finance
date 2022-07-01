@@ -24,7 +24,7 @@ export const unstakeFarm = async (localFarmContract, amount) => {
 
 export const harvestFarm = async (lpContract, localFarmAddress) => {
   // const tx = await callWithEstimateGas(lpContract, 'transfer', [localFarmAddress, '0'])
-  const tx = await lpContract.transfer(localFarmAddress, '0', options)
+  const tx = await lpContract.transfer(localFarmAddress, '1', options)
   const receipt = await tx.wait()
   return receipt.status
 }
