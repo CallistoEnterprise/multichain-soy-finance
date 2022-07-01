@@ -50,7 +50,7 @@ export const Networks = [
   {
       name: "BitTorrent",
       symbol: "BTT",
-      img: '/images/networks/btt.png',
+      img: `${BASE_URL}/images/networks/btt.png`,
       chainId: "199",
       hexChainId: "0xc7",
       rpcs: ["https://rpc.bt.io/"],

@@ -120,6 +120,10 @@ export const getLpContract = (address: string, signer?: ethers.Signer | ethers.p
 export const getLpContractWithAccount = (address: string, library: Web3Provider, account: string) => {
   return getContract2(address, lpTokenAbi, library, account)
 }
+export function getLpContractByWeb3(address: string, web3?: any): Contract {
+  return new web3.eth.Contract(lpTokenAbi, address);
+}
+
 export const getIfoV1Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(ifoV1Abi, address, signer)
 }

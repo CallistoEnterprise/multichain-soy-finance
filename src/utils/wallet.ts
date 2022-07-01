@@ -1,8 +1,7 @@
 // Set of helper functions to facilitate wallet setup
 
-import { BASE_CALLISTO_SCAN_URL, BASE_URL } from 'config'
+import { BASE_URL } from 'config'
 import { Networks } from 'config/constants/networks';
-import { nodes } from './getRpcUrl'
 import { localStorageChainIdKey } from '../config/index';
 
 /**
