@@ -1,11 +1,12 @@
 import { ethers } from 'ethers'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useMemo } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
 import { localStorageChainIdKey } from 'config'
 import { Networks } from 'config/constants/networks';
 import { getRpcForMulti } from 'utils/getRpcUrl'
+import Web3 from 'web3';
 
 export const getProviderByChainId = (chainId) => {
   const filtered = Networks.filter((_) => Number(_.chainId) === chainId)
@@ -34,6 +35,12 @@ export const useGetSimpleRpcProvider = (chainId) => {
 
   return provider
 }
+export const useWeb3ProviderByRpc = (chainId: number | string) => {
+  const filtered = Networks.filter((_) => Number(_.chainId) === chainId)
+
+  return useMemo(() => new Web3(new Web3.providers.HttpProvider(filtered[0].rpcs[0])), [filtered]);
+};
+
 /**
  * Provides a web3 provider with or without user's signer
  * Recreate web3 instance only if the provider change
