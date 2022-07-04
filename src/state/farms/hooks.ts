@@ -39,7 +39,7 @@ export const usePollFarmsData = (includeArchive = false) => {
  */
 const coreFarms = {
   820: [2, 4],
-  199: [10, 14, 19],
+  199: [10, 14, 19, 9],
 }
 const coreEthFarms = {
   820: 2,

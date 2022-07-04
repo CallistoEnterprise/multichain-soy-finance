@@ -63,6 +63,7 @@ const BodyWrapper = styled.div`
 // Route-based code splitting
 const Farms = lazy(() => import('./views/Farms'))
 const Collectibles = lazy(() => import('./views/Collectibles'))
+const Launchpad = lazy(() => import('./views/LaunchPad'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
@@ -109,6 +110,9 @@ const App: React.FC = () => {
                 </Route>
                 <Route path="/nft">
                   <Collectibles />
+                </Route>
+                <Route path="/launchpad">
+                  <Launchpad />
                 </Route>
 
                 <Route exact strict path="/swap" component={Swap} />

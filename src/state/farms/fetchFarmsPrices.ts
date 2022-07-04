@@ -66,8 +66,6 @@ const getFarmQuoteTokenPrice = (
   ccCloPrice: BigNumber,
   chainId: number,
 ): BigNumber => {
-  const hasTokenPriceVsQuote = Boolean(farm.tokenPriceVsQuote)
-
   if (farm.quoteToken.symbol === 'BUSDT' || farm.quoteToken.symbol === 'USDT') {
     return BIG_ONE
   }
@@ -77,7 +75,7 @@ const getFarmQuoteTokenPrice = (
   }
 
   if (chainId === 199 && farm.quoteToken.symbol === 'ccCLO') {
-    return hasTokenPriceVsQuote ? ccCloPrice.div(farm.tokenPriceVsQuote) : BIG_ZERO
+    return ccCloPrice
   }
 
   if (!quoteTokenFarm) {
@@ -127,6 +125,7 @@ const fetchFarmsPrices = async (farms) => {
       farm.pid === 15 && chainId === 199
         ? cloPrice
         : getFarmQuoteTokenPrice(farm, quoteTokenFarm, nativePriceBusdt, cloPrice, chainId)
+    
     const token = { ...farm.token, usdcPrice: baseTokenPrice.toJSON() }
     const quoteToken = { ...farm.quoteToken, usdcPrice: quoteTokenPrice.toJSON() }
     return { ...farm, token, quoteToken }

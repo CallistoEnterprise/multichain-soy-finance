@@ -1,15 +1,12 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
-import { AutoRenewIcon, Button, Card, CardBody, Heading, Skeleton, Text } from '@soy-libs/uikit2'
+import { AutoRenewIcon, Button, Card, CardBody, Heading, Text } from '@soy-libs/uikit2'
 import { useWeb3React } from '@web3-react/core'
 import { Link as RouterLink } from 'react-router-dom'
-import { getAddressByType } from 'utils/collectibles'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
 import { getErc721Contract } from 'utils/contractHelpers'
 import { useTranslation } from 'contexts/Localization'
-import { useGetCollectibles } from 'state/collectibles/hooks'
 import useToast from 'hooks/useToast'
-import SelectionCard from '../components/SelectionCard'
 import NextStepButton from '../components/NextStepButton'
 import { ProfileCreationContext } from './contexts/ProfileCreationProvider'
 
@@ -28,7 +25,6 @@ const ProfilePicture: React.FC = () => {
   const { selectedNft, actions } = useContext(ProfileCreationContext)
 
   const { t } = useTranslation()
-  const { isLoading, nftsInWallet, tokenIds } = useGetCollectibles()
   const { toastError } = useToast()
 
   const handleApprove = async () => {
@@ -43,24 +39,6 @@ const ProfilePicture: React.FC = () => {
       toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
       setIsApproving(false)
     }
-  }
-
-  if (!isLoading && nftsInWallet.length === 0) {
-    return (
-      <>
-        <Heading scale="xl" mb="24px">
-          {t('Oops!')}
-        </Heading>
-        <Text bold fontSize="20px" mb="24px">
-          {t('We couldn’t find any Polysafemoon Collectibles in your wallet.')}
-        </Text>
-        <Text as="p">
-          {t(
-            'You need a Polysafemoon Collectible to finish setting up your profile. If you sold or transferred your starter collectible to another wallet, you’ll need to get it back or acquire a new one somehow. You can’t make a new starter with this wallet address.',
-          )}
-        </Text>
-      </>
-    )
   }
 
   return (
@@ -85,29 +63,6 @@ const ProfilePicture: React.FC = () => {
               {t('See the list >')}
             </Link>
           </Text>
-          <NftWrapper>
-            {/* {isLoading ? (
-              <Skeleton height="80px" mb="16px" />
-            ) : (
-              nftsInWallet.map((walletNft) => {
-                const [firstTokenId] = tokenIds[walletNft.identifier]
-                const address = getAddressByType(walletNft.type)
-
-                return (
-                  <SelectionCard
-                    name="profilePicture"
-                    key={walletNft.identifier}
-                    value={firstTokenId}
-                    image={`/images/nfts/${walletNft.images.md}`}
-                    isChecked={firstTokenId === selectedNft.tokenId}
-                    onChange={(value: string) => actions.setSelectedNft(parseInt(value, 10), address)}
-                  >
-                    <Text bold>{walletNft.name}</Text>
-                  </SelectionCard>
-                )
-              })
-            )} */}
-          </NftWrapper>
           <Heading as="h4" scale="lg" mb="8px">
             {t('Allow collectible to be locked')}
           </Heading>

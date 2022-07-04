@@ -119,7 +119,7 @@ export type NftSource = {
 }
 
 export enum NftType {
-  SAFEMOON = 'polysafemoon',
+  SOY = 'soyfinance',
   MIXIE = 'mixie',
 }
 
