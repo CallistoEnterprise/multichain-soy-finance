@@ -25,7 +25,7 @@ export interface NftCardProps {
   canClaim?: boolean
   tokenIds?: number[]
   onClaim?: () => Promise<ethers.providers.TransactionResponse>
-  refresh: () => void
+  refresh?: () => void
 }
 
 const StyledCard = styled(Card)`
@@ -57,14 +57,13 @@ const PriceSection = styled.div`
   width: 100%;
 `
 
-const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
+const NftCard: React.FC<NftCardProps> = ({ nft }) => {
   const [isConfirming, setIsConfirming] = useState(false)
   const [inputAmount, setInputAmount] = useState('')
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const { toastSuccess, toastWarning } = useToast()
   const { name, subName } = nft
-  const walletOwnsNft = tokenIds.length > 0
 
   const { onBuyNft } = useBuyNft()
   const { balance } = useGetBnbBalance()
@@ -105,7 +104,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
   }
 
   return (
-    <StyledCard isActive={walletOwnsNft}>
+    <StyledCard isActive={false}>
       <Header bkColor = {nft.primaryColor}>
         <Heading textAlign="center" color="#000">{subName}</Heading>
         <Text textAlign="center" fontSize='18px'>{name}</Text>
@@ -113,7 +112,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
       <PriceSection>
         <Heading color="#000">{`${nft.minPrice} - ${nft.maxPrice === 'infinity' ? '∞' : nft.maxPrice}`} CLO</Heading>
       </PriceSection>
-      <Preview nft={nft} isOwned={walletOwnsNft} />
+      <Preview nft={nft} isOwned={false} />
 
       <NumericalInput
         className="token-amount-input"

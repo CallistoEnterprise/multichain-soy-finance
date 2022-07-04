@@ -2,7 +2,6 @@ import React from 'react'
 import { Heading, Text, Flex, ChevronRightIcon } from '@soy-libs/uikit2'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
-import { useGetCollectibles } from 'state/collectibles/hooks'
 import styled from 'styled-components'
 import CollectibleCard from './CollectibleCard'
 
@@ -29,7 +28,6 @@ const CollectibleList = styled.div`
 
 const Collectibles = () => {
   const { t } = useTranslation()
-  const { nftsInWallet } = useGetCollectibles()
 
   return (
     <>
@@ -42,20 +40,6 @@ const Collectibles = () => {
       <Text as="p">
         {t('NFTs in this user’s wallet that aren’t approved Polysafemoon Collectibles won’t be shown here.')}
       </Text>
-      {nftsInWallet.length > 0 && (
-        <CollectibleList>
-          {nftsInWallet.map((nftInWallet) => (
-            <CollectibleCard key={nftInWallet.name} nft={nftInWallet} />
-          ))}
-        </CollectibleList>
-      )}
-      {nftsInWallet.length === 0 && (
-        <Flex justifyContent="center" p="32px">
-          <Text fontSize="20px" bold color="textDisabled">
-            {t('No NFTs Found')}
-          </Text>
-        </Flex>
-      )}
       <Flex alignItems="center" justifyContent="flex-end">
         <Link to="/collectibles">{t('See all approved Polysafemoon Collectibles')}</Link>
         <ChevronRightIcon />

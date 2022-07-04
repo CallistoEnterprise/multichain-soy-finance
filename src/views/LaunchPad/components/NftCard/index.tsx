@@ -8,7 +8,6 @@ import {
 } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { Nft } from 'config/constants/types'
-import InfoRow from '../InfoRow'
 import Preview from './Preview'
 
 export interface NftCardProps {
@@ -16,7 +15,6 @@ export interface NftCardProps {
   canClaim?: boolean
   tokenIds?: number[]
   onClaim?: () => Promise<ethers.providers.TransactionResponse>
-  refresh: () => void
 }
 
 const StyledCard = styled(Card)`
@@ -28,27 +26,12 @@ const StyledCard = styled(Card)`
   background-color: transparent;
 `
 
-const Header = styled(InfoRow)<{bkColor?: string}>`
-  min-height: 70px;
-  width: 100%;
-  background-color: ${({bkColor}) => bkColor};
-  justify-content: center;
-  flex-direction: column;
-`
 const BuyButton = styled(Button)<{bkColor?: string}>`
   background-color: ${({bkColor}) => bkColor};
   color: #FFFFFF;
 `
 
-const PriceSection = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #FFFFFF;
-  min-height: 40px;
-  width: 100%;
-`
-const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
+const NftCard: React.FC<NftCardProps> = ({ nft }) => {
   const { t } = useTranslation()
 
   const handleConfirm = async () => {

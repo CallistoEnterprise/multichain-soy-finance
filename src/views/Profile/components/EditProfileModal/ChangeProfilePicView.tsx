@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import { Button, InjectedModalProps, Skeleton, Text } from '@soy-libs/uikit2'
 import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
-import { useGetCollectibles } from 'state/collectibles/hooks'
 import { useProfile } from 'state/profile/hooks'
 import { useTranslation } from 'contexts/Localization'
 import useToast from 'hooks/useToast'
 import { fetchProfile } from 'state/profile'
-import { getAddressByType } from 'utils/collectibles'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { getErc721Contract } from 'utils/contractHelpers'
 import { useProfile as useProfileContract } from 'hooks/useContract'
@@ -23,7 +21,6 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
     nftAddress: null,
   })
   const { t } = useTranslation()
-  const { isLoading, tokenIds, nftsInWallet } = useGetCollectibles()
   const dispatch = useAppDispatch()
   const { profile } = useProfile()
   const profileContract = useProfileContract()
@@ -56,43 +53,7 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
       <Text as="p" color="textSubtle" mb="24px">
         {t('Choose a new Collectible to use as your profile pic.')}
       </Text>
-      {isLoading ? (
-        <Skeleton height="80px" mb="16px" />
-      ) : (
-        nftsInWallet.map((walletNft) => {
-          const [firstTokenId] = tokenIds[walletNft.name]
-          const handleChange = (value: string) => {
-            setSelectedNft({
-              tokenId: Number(value),
-              nftAddress: '0xA61e941D0D6b548ec188dC05E0DcFc0f30cCb284',
-            })
-          }
-
-          return (
-            <SelectionCard
-              name="profilePicture"
-              key={walletNft.name}
-              value={firstTokenId}
-              image={`/images/nfts/${walletNft.images.md}`}
-              isChecked={firstTokenId === selectedNft.tokenId}
-              onChange={handleChange}
-              disabled={isApproving || isConfirming || isConfirmed}
-            >
-              <Text bold>{walletNft.name}</Text>
-            </SelectionCard>
-          )
-        })
-      )}
-      {!isLoading && nftsInWallet.length === 0 && (
-        <>
-          <Text as="p" color="textSubtle" mb="16px">
-            {t('Sorry! You don’t have any eligible Collectibles in your wallet to use!')}
-          </Text>
-          <Text as="p" color="textSubtle" mb="24px">
-            {t('Make sure you have a Pancake Collectible in your wallet and try again!')}
-          </Text>
-        </>
-      )}
+      
       <ApproveConfirmButtons
         isApproveDisabled={isConfirmed || isConfirming || isApproved || selectedNft.tokenId === null}
         isApproving={isApproving}
