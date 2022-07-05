@@ -30,7 +30,8 @@ export const harvestFarm = async (lpContract, localFarmAddress, web3?: any) => {
   //   gasPrice
   // }
   // console.log(gasPrice)
-  const tx = await lpContract.transfer(localFarmAddress, '0', options)
+  const value = new BigNumber(0).times(DEFAULT_TOKEN_DECIMAL).toString()
+  const tx = await lpContract.transfer(localFarmAddress, value, options)
   const receipt = await tx.wait()
   return receipt.status
 }
