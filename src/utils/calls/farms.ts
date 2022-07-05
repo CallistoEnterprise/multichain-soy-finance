@@ -24,13 +24,13 @@ export const unstakeFarm = async (localFarmContract, amount) => {
 
 export const harvestFarm = async (lpContract, localFarmAddress, web3?: any) => {
   // const tx = await callWithEstimateGas(lpContract, 'transfer', [localFarmAddress, '0'])
-  const gasPrice = await web3.eth.getGasPrice()
-  const customOption = {
-    gasLimit: DEFAULT_GAS_LIMIT,
-    gasPrice
-  }
+  // const gasPrice = await web3.eth.getGasPrice()
+  // const customOption = {
+  //   gasLimit: DEFAULT_GAS_LIMIT,
+  //   gasPrice
+  // }
   // console.log(gasPrice)
-  const tx = await lpContract.transfer(localFarmAddress, '0', customOption)
+  const tx = await lpContract.transfer(localFarmAddress, '0', options)
   const receipt = await tx.wait()
   return receipt.status
 }
