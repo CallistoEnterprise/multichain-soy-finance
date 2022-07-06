@@ -1,7 +1,6 @@
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
 import { DEFAULT_TOKEN_DECIMAL, DEFAULT_GAS_LIMIT } from 'config'
-// import { callWithEstimateGas } from './estimateGas'
 
 const options = {
   gasLimit: DEFAULT_GAS_LIMIT,
@@ -9,7 +8,6 @@ const options = {
 
 export const stakeFarm = async (lpContract, localFarmAddress, amount) => {
   const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
-  // const tx = await callWithEstimateGas(lpContract, 'transfer', [localFarmAddress, value])
   const tx = await lpContract.transfer(localFarmAddress, value, options)
   const receipt = await tx.wait()
   return receipt.status
@@ -17,7 +15,6 @@ export const stakeFarm = async (lpContract, localFarmAddress, amount) => {
 
 export const unstakeFarm = async (localFarmContract, amount) => {
   const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
-  // const tx = await callWithEstimateGas(localFarmContract, 'withdraw', [value])
   const tx = await localFarmContract.withdraw(value, options)
   const receipt = await tx.wait()
   return receipt.status
