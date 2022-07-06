@@ -1,6 +1,6 @@
 import { TokenAmount, Pair, Currency } from '@soy-libs/sdk-multichain'
 import { useMemo } from 'react'
-import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
+import IUniswapV2PairABI from 'config/abi/IUniswapV2Pair.json'
 import { Interface } from '@ethersproject/abi'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 

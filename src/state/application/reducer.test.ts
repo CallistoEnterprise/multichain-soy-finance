@@ -24,10 +24,10 @@ describe('application reducer', () => {
       expect(store.getState().blockNumber[ChainId.MAINNET]).toEqual(3)
     })
     it('works with non-set chains', () => {
-      store.dispatch(updateBlockNumber({ chainId: ChainId.TESTNET, blockNumber: 2 }))
+      store.dispatch(updateBlockNumber({ chainId: ChainId.CLOTESTNET, blockNumber: 2 }))
       expect(store.getState().blockNumber).toEqual({
         [ChainId.MAINNET]: 3,
-        [ChainId.TESTNET]: 2,
+        [ChainId.CLOTESTNET]: 2,
       })
     })
   })

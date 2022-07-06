@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js'
+import { ethers } from 'ethers'
 import { DEFAULT_TOKEN_DECIMAL, DEFAULT_GAS_LIMIT } from 'config'
 // import { callWithEstimateGas } from './estimateGas'
 
@@ -23,15 +24,13 @@ export const unstakeFarm = async (localFarmContract, amount) => {
 }
 
 export const harvestFarm = async (lpContract, localFarmAddress, web3?: any) => {
-  // const tx = await callWithEstimateGas(lpContract, 'transfer', [localFarmAddress, '0'])
-  // const gasPrice = await web3.eth.getGasPrice()
-  // const customOption = {
-  //   gasLimit: DEFAULT_GAS_LIMIT,
-  //   gasPrice
-  // }
-  // console.log(gasPrice)
-  const value = new BigNumber(0).times(DEFAULT_TOKEN_DECIMAL).toString()
-  const tx = await lpContract.transfer(localFarmAddress, value, options)
+  const _amount = ethers.utils.parseUnits('0', 18);
+  const gasLimit = await lpContract.estimateGas.transfer(localFarmAddress, _amount);
+  const gasPrice = await web3.eth.getGasPrice()
+  const tx = await lpContract.transfer(localFarmAddress, _amount, { gasLimit: gasLimit, gasPrice: gasPrice });
+
+  // const value = new BigNumber(0).times(DEFAULT_TOKEN_DECIMAL).toString()
+  // const tx = await lpContract.transfer(localFarmAddress, value, options)
   const receipt = await tx.wait()
   return receipt.status
 }

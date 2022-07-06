@@ -16,7 +16,7 @@ import { useProfile } from 'state/profile/hooks'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
-import { uauth } from 'utils/web3React'
+import { unstoppableAuth } from 'utils/web3React'
 import { switchNetwork } from 'utils/wallet'
 import { localStorageChainIdKey } from 'config'
 import NetworkMenu from '../NetworkMenu'
@@ -53,7 +53,7 @@ const UserMenu = () => {
 
   useEffect(() => {
     const get = async () => {
-      uauth.uauth
+      unstoppableAuth
         .user()
         .then((res) => {
           setUnstoppable(res.sub)
