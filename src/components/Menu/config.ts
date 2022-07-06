@@ -114,7 +114,7 @@ export const bttConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   },
   {
     label: t('Staking Pools'),
-    sublabel: t('(Callisto chain only)'),
+    sublabel: t('(Only Callisto)'),
     icon: 'PoolIcon',
     href: '/staking',
   },

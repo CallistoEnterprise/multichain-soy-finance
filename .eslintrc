@@ -11,7 +11,13 @@
     "browser": true,
     "jest": true
   },
-  "extends": "@pancakeswap/eslint-config-pancake",
+  "extends":  [
+    "react-app",
+    "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
+    "prettier/@typescript-eslint", // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+    "plugin:prettier/recommended" // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+  ],
+  "ignorePatterns": ["node_modules/", "build/", "craco.config.js"],
   "rules": {
     "no-console": ["warn", { "allow": ["info", "warn", "error", "debug"] }],
     "no-plusplus": 0,
@@ -21,7 +27,7 @@
     // Start temporary rules
     // These rules are here just to keep the lint error to 0 during the migration to the new rule set
     // They need to be removed and fixed as soon as possible
-    "@typescript-eslint/ban-ts-comment": [1, { "ts-ignore": false, "ts-nocheck": false }],
+    "@typescript-eslint/ban-ts-comment": 0,
     "@typescript-eslint/no-use-before-define": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-explicit-any": 0,
@@ -38,7 +44,8 @@
     "react/require-default-props": 0,
     "no-nested-ternary": 0,
     "max-classes-per-file": 0,
-    "react/destructuring-assignment": 0
-    // End temporary rules
+    "react/destructuring-assignment": 0,
+    "prettier/prettier": 0,
+    "react/prop-types": 0
   }
 }
