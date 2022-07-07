@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   masterChef: {
     20729: '0xacF8e19A8F9E466c074ed20641df36116D24340e',

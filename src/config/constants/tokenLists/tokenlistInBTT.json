@@ -11,7 +11,7 @@
   "keywords": ["soyfinance", "Bittorent"],
   "tokens": [
     {
-      "name": "Wrapped Callisto Coin",
+      "name": "Wrapped CLO",
       "symbol": "ccCLO",
       "address": "0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53",
       "chainId": 199,
@@ -19,7 +19,7 @@
       "logoURI": "images/coins/199/0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53.png"
     },
     {
-      "name": "Soy-ERC223",
+      "name": "Wrapped SOY",
       "symbol": "SOY",
       "address": "0xcC00860947035a26Ffe24EcB1301ffAd3a89f910",
       "chainId": 199,
@@ -51,7 +51,7 @@
       "logoURI": "images/coins/199/0x1249C65AfB11D179FFB3CE7D4eEDd1D9b98AD006.png"
     },
     {
-      "name": "Ethereum Classic",
+      "name": "Wrapped ETC",
       "symbol": "ETC",
       "address": "0xCc944bF3e76d483e41CC6154d5196E2e5d348fB0",
       "chainId": 199,

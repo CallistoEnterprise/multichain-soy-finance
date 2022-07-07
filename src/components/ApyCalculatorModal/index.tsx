@@ -199,7 +199,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text textAlign="right" mr="12px" ml="12px">
-            {parseInt(getRoi({
+            {(getRoi({
               amountEarned: tokenEarnedPerThousand365D,
               amountInvested: oneThousandDollarsWorthOfToken,
             }).toFixed(roundingDecimals))}
