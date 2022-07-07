@@ -524,6 +524,7 @@ const bttFarms: FarmConfig[] = [
   },
 ]
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   820: farms,
   20729: farms,

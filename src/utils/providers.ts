@@ -11,4 +11,5 @@ export const getRpcProvider = () => {
     return new ethers.providers.JsonRpcProvider(getRpcForMulti([RPC_URLS[chId]]),)
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default null
