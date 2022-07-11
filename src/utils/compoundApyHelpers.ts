@@ -23,12 +23,13 @@ export const tokenEarnedPerThousandDollarsCompounding = ({
   // Calculate the starting TOKEN balance with a dollar balance of $1000.
   const principal = 1000 / tokenPrice
   // This is a translation of the typical mathematical compounding APY formula. Details here: https://www.calculatorsoup.com/calculators/financial/compound-interest-calculator.php
-  const finalAmount = principal * (1 + aprAsDecimal / timesCompounded) * (timesCompounded * daysAsDecimalOfYear)
+  // const finalAmount = principal * (1 + aprAsDecimal / timesCompounded) * (timesCompounded * daysAsDecimalOfYear)
+  const finalAmount = principal * aprAsDecimal * daysAsDecimalOfYear
   // To get the TOKEN amount earned, deduct the amount after compounding (finalAmount) from the starting TOKEN balance (principal)
-  const interestEarned = finalAmount - principal
+  // const interestEarned = finalAmount - principal
 
   // return parseFloat((interestEarned * 10).toFixed(roundingDecimals))
-  return parseFloat((interestEarned).toFixed(roundingDecimals))
+  return parseFloat((finalAmount).toFixed(roundingDecimals))
 }
 
 export const getRoi = ({ amountEarned, amountInvested }) => {
