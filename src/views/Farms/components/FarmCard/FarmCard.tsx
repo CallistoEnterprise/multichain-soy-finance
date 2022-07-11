@@ -102,19 +102,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
   const lpAddress = getAddress(farm?.lpAddresses)
   const isPromotedFarm = farm.token.symbol === 'SOY'
 
-  // const oneThousandDollarsWorthOfToken = 1000 / cakePrice.toNumber()
-
-  // const tokenEarnedPerThousand1D = tokenEarnedPerThousandDollarsCompounding({
-  //   numberOfDays: 1,
-  //   farmApr: farm.apr,
-  //   tokenPrice: cakePrice,
-  //   roundingDecimals: 2,
-  //   compoundFrequency: 1,
-  //   performanceFee: 0,
-  // })
-
-  // const customAPR = (365 * getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken })).toFixed(2,)
-  
   return (
     <FCard isPromotedFarm={isPromotedFarm}>
       {isPromotedFarm && <StyledCardAccent />}

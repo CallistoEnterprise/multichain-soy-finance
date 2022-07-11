@@ -35,13 +35,14 @@ export const getPoolApr = (
  */
 export const getFarmApr = (
   poolWeight: BigNumber,
-  cakePriceUsd: BigNumber,
+  soyPriceUsd: BigNumber,
   poolLiquidityUsd: BigNumber,
   farmAddress: string,
+  chainId = 820
 ): { cakeRewardsApr: number; lpRewardsApr: number } => {
 
-  const yearlySoyRewardAllocation = REWARD_TOKENS_PER_YEAR.times(poolWeight)
-  const soyRewardsApr = yearlySoyRewardAllocation.times(cakePriceUsd).div(poolLiquidityUsd).times(100)
+  const yearlySoyRewardAllocation = REWARD_TOKENS_PER_YEAR[chainId].times(poolWeight)
+  const soyRewardsApr = yearlySoyRewardAllocation.times(soyPriceUsd).div(poolLiquidityUsd).times(100)
   let soyRewardsAprAsNumber = null
   if (!soyRewardsApr.isNaN() && soyRewardsApr.isFinite()) {
     soyRewardsAprAsNumber = soyRewardsApr.toNumber()
