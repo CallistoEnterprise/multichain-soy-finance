@@ -41,15 +41,6 @@ export const Networks = [
   //     explorer: "https://etherscan.io/"
   // },
   {
-      name: "ETC Chain",
-      symbol: "ETC",
-      img: `${BASE_URL}/images/networks/etc.png`,
-      chainId: "61",
-      hexChainId: "0x3D",
-      rpcs: ["https://www.ethercluster.com/etc/"],
-      explorer: "https://blockscout.com/etc/mainnet/"
-  },
-  {
       name: "BitTorrent",
       symbol: "BTT",
       img: `${BASE_URL}/images/networks/btt.png`,
@@ -57,6 +48,15 @@ export const Networks = [
       hexChainId: "0xc7",
       rpcs: ["https://rpc.bt.io/"],
       explorer: "https://bttcscan.com/" 
+  },
+  {
+      name: "ETC Chain",
+      symbol: "ETC",
+      img: `${BASE_URL}/images/networks/etc.png`,
+      chainId: "61",
+      hexChainId: "0x3D",
+      rpcs: ["https://www.ethercluster.com/etc/"],
+      explorer: "https://blockscout.com/etc/mainnet/"
   },
 ]
 
