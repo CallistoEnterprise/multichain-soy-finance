@@ -13,14 +13,16 @@ export const BASE_CALLISTO_SCAN_URLS = {
   [ChainId.MAINNET]: 'https://explorer.callisto.network',
   [ChainId.CLOTESTNET]: 'https://testnet-explorer.callisto.network',
   [ChainId.BTTMAINNET]: 'https://bttcscan.com',
-  [ChainId.BSC]: 'https://www.bscscan.com'
+  [ChainId.BSC]: 'https://www.bscscan.com',
+  [ChainId.ETCCLASSICMAINNET]: 'https://blockscout.com/etc/mainnet/'
 }
 
 export const RPC_URLS = {
   [ChainId.MAINNET]: 'https://rpc.callisto.network/',
   [ChainId.CLOTESTNET]: 'https://testnet-rpc.callisto.network/',
   [ChainId.BTTMAINNET]: 'https://rpc.bt.io/', // 'https://rpc.bittorrentchain.io/',
-  [ChainId.BSC]: 'https://bsc-dataseed.binance.org/'
+  [ChainId.BSC]: 'https://bsc-dataseed.binance.org/',
+  [ChainId.ETCCLASSICMAINNET]: 'https://www.ethercluster.com/etc/'
 }
 
 export const ExplorerText = {
@@ -61,7 +63,7 @@ export const NativeAddress = {
 export const SOY_PER_BLOCK = new BigNumber(5)
 export const BLOCKS_PER_YEAR = new BigNumber((60 / CALLISTO_BLOCK_TIME) * 60 * 24 * 365)
 export const SOY_PER_YEAR = SOY_PER_BLOCK.times(BLOCKS_PER_YEAR)
-export const BASE_URL = 'https://multichain-soy-finance.netlify.app'
+export const BASE_URL = 'http://localhost:3000' // 'https://multichain-soy-finance.netlify.app'
 export const BASE_ADD_LIQUIDITY_URL = `${BASE_URL}/add`
 export const BASE_LIQUIDITY_POOL_URL = `${BASE_URL}/pool`
 export const BASE_CALLISTO_SCAN_URL = BASE_CALLISTO_SCAN_URLS[ChainId.MAINNET]
@@ -76,7 +78,8 @@ export const AUCTION_WHITELISTED_BIDDERS_TO_FETCH = 500
 export const ONE_YEAR_TIMESTAMP = 365 * 24 * 60 * 60
 export const REWARD_TOKENS_PER_YEAR ={
   820:  new BigNumber(50000000 * 0.9),
-  199:  new BigNumber(50000000 * 0.1)
+  199:  new BigNumber(50000000 * 0.1),
+  61:  new BigNumber(50000000 * 0.1),
 }
 
 export const localStorageChainIdKey = "soyfinanceChainId"

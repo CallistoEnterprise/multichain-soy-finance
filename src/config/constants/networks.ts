@@ -9,7 +9,7 @@ const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.KOVAN]: 'https://kovan.infura.io/v3/d819f1add1a34a60adab4df578e0e741',
   [ChainId.BSC]: 'https://bsc-dataseed.binance.org/',
   [ChainId.BSCTESTNET]: '',
-  [ChainId.ETCCLASSICMAINNET]: 'https://www.ethercluster.com/etc',
+  [ChainId.ETCCLASSICMAINNET]: 'https://www.ethercluster.com/etc/',
   [ChainId.BTTMAINNET]: 'https://rpc.bt.io/', // 'https://rpc.bittorrentchain.io/'
 }
 
@@ -39,14 +39,16 @@ export const Networks = [
   //     chainId: "1",
   //     rpcs: ["https://mainnet.infura.io/v3/d819f1add1a34a60adab4df578e0e741"],
   //     explorer: "https://etherscan.io/"
-  // },{
-  //     name: "Ethereum Classic",
-  //     symbol: "ETC",
-  //     img: '/images/networks/etc.png',
-  //     chainId: "61",
-  //     rpcs: ["https://www.ethercluster.com/etc"],
-  //     explorer: "https://blockscout.com/etc/mainnet/"
-  // },https://rpc.bittorrentchain.io/
+  // },
+  {
+      name: "ETC Chain",
+      symbol: "ETC",
+      img: `${BASE_URL}/images/networks/etc.png`,
+      chainId: "61",
+      hexChainId: "0x3D",
+      rpcs: ["https://www.ethercluster.com/etc/"],
+      explorer: "https://blockscout.com/etc/mainnet/"
+  },
   {
       name: "BitTorrent",
       symbol: "BTT",

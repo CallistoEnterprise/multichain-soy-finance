@@ -67,7 +67,7 @@ export const useFarms = (): FarmsState => {
 
 export const useFarmFromPid = (pid): Farm => {
   const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
-  const farm = useSelector((state: State) => state.farms.data[chId].find((f) => f.pid === pid))
+  const farm = useSelector((state: State) => state.farms.data[chId]?.find((f) => f.pid === pid))
   return farm
 }
 

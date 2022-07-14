@@ -524,9 +524,121 @@ const bttFarms: FarmConfig[] = [
   },
 ]
 
+const etcFarms: FarmConfig[] = [
+  {
+    pid: 11,
+    lpSymbol: 'SOY-ETC LP',
+    lpAddresses: {
+      61: '0x397F68cA220713d12d4Dcfd5c59938949EC0E486',
+    },
+    localFarmAddresses: {
+      61: '0xaE133aABA0AA4cfa60cd30a29da0149038D01f38',
+    },
+    token: tokens.wetc,
+    quoteToken: tokens.soy,
+  },
+  {
+    pid: 14,
+    lpSymbol: 'BUSDT-ETC LP',
+    lpAddresses: {
+      61: '0xFb6414f689e93BaCd942919FBA7cD8aA7F5e5c64',
+    },
+    localFarmAddresses: {
+      61: '0x71Db9B83562b2242787D43871848Fe10AA5a7d46',
+    },
+    token: tokens.busdt,
+    quoteToken: tokens.wetc,
+  },
+  {
+    pid: 19,
+    lpSymbol: 'SOY-BUSDT LP',
+    lpAddresses: {
+      61: '0x2806a90e445D05012875357C132430fb1931e234',
+    },
+    localFarmAddresses: {
+      61: '0x97BfcF06464e77B56C22F3Db4a76899d19826DC7',
+    },
+    token: tokens.soy,
+    quoteToken: tokens.busdt,
+  },
+  {
+    pid: 9,
+    lpSymbol: 'SOY-CLO LP',
+    lpAddresses: {
+      61: '0x715CE66eE2256663D375077cda6fE623e76Bde42',
+    },
+    localFarmAddresses: {
+      61: '0x79D65F4F1E44FEa4E77687a72122Bb2fCFEaD6af',
+    },
+    token: tokens.ccclo,
+    quoteToken: tokens.soy,
+  },
+  {
+    pid: 12,
+    lpSymbol: 'SOY-BNB LP',
+    lpAddresses: {
+      61: '0xAa14e66384109A200Aad29CDB44aF3710633A491',
+    },
+    localFarmAddresses: {
+      61: '0x87ff8941A94c13Ac707d4ADc41a71Ed6458580F8',
+    },
+    token: tokens.ccbnb_erc223,
+    quoteToken: tokens.soy,
+  },
+  {
+    pid: 13,
+    lpSymbol: 'SOY-ETH LP',
+    lpAddresses: {
+      61: '0xDcE9230213B7128cbA06Ff56408352201dcFa274',
+    },
+    localFarmAddresses: {
+      61: '0x1019314024B8B0c5D2ee733A7Aee7Ed7D4A655fB',
+    },
+    token: tokens.cceth_erc223,
+    quoteToken: tokens.soy,
+  },
+  {
+    pid: 16,
+    lpSymbol: 'CLO-ETC LP',
+    lpAddresses: {
+      61: '0xB81100597264D57e949d91a72c3f6a7d0B3Daec2',
+    },
+    localFarmAddresses: {
+      61: '0xf89778306E83e13D00644044b10bBe3470a8EaC1',
+    },
+    token: tokens.ccetc,
+    quoteToken: tokens.ccclo,
+  },
+  {
+    pid: 17,
+    lpSymbol: 'CLO-BNB LP',
+    lpAddresses: {
+      61: '0xAD9788198a7eA6DA2e6DA0bf20EB465d727F7b4a',
+    },
+    localFarmAddresses: {
+      61: '0xd6aE8C78aa9cd32b9B50828cb2Bf36E2e28b7E91',
+    },
+    token: tokens.ccbnb_erc223,
+    quoteToken: tokens.ccclo,
+  },
+  {
+    pid: 18,
+    lpSymbol: 'CLO-ETH LP',
+    lpAddresses: {
+      61: '0x4b2f3C8Fd465cF711E80Dd2BF7918E3d91d95384',
+    },
+    localFarmAddresses: {
+      61: '0x3f7B6dAfD37941520A8056eB22D26876ad22a8e7',
+    },
+    token: tokens.cceth_erc223,
+    quoteToken: tokens.ccclo,
+  },
+]
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   820: farms,
   20729: farms,
-  199: bttFarms
+  199: bttFarms,
+  61: etcFarms
 }

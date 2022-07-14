@@ -7,7 +7,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { usePriceCakeBusd } from 'state/farms/hooks'
 import { useProfile } from 'state/profile/hooks'
 import { addSoyToMetamask } from 'utils/wallet'
-import config, { bttConfig } from './config'
+import config, { bttConfig, etcConfig } from './config'
 import UserMenu from './UserMenu'
 
 // const configs = {
@@ -33,7 +33,7 @@ const Menu = (props) => {
       langs={languageList}
       setLang={setLanguage}
       cakePriceUsd={soyPriceUsd.toNumber()}
-      links={chainId === 199 ? bttConfig(t) : config(t)}
+      links={chainId === 199 ? bttConfig(t) : chainId === 61 ? etcConfig(t) : config(t)}
       profile={{
         username: profile?.username,
         image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
