@@ -31,15 +31,26 @@ const noAccountFarmConfigBTT = farmsConfig[199].map((farm) => ({
     earnings: '0',
   },
 }))
+const noAccountFarmConfigETC = farmsConfig[61].map((farm) => ({
+  ...farm,
+  userData: {
+    allowance: '0',
+    tokenBalance: '0',
+    stakedBalance: '0',
+    earnings: '0',
+  },
+}))
 
 const initialState: FarmsState = { data: {
   820: noAccountFarmConfig,
-  199: noAccountFarmConfigBTT
+  199: noAccountFarmConfigBTT,
+  61: noAccountFarmConfigETC
 }, loadArchivedFarmsData: false, userDataLoaded: false }
 
 export const nonArchivedFarms = { 
   820: farmsConfig[820].filter(({ pid }) => !isArchivedPid(pid)),
   199: farmsConfig[199].filter(({ pid }) => !isArchivedPid(pid)),
+  61: farmsConfig[61].filter(({ pid }) => !isArchivedPid(pid)),
 }
 
 // Async thunks

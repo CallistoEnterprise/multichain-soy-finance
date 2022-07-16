@@ -167,11 +167,11 @@ export const etcConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       },
     ],
   },
-  // {
-  //   label: t('Farms'),
-  //   icon: 'FarmIcon',
-  //   href: '/farms',
-  // },
+  {
+    label: t('Farms'),
+    icon: 'FarmIcon',
+    href: '/farms',
+  },
   {
     label: t('Staking Pools'),
     sublabel: t('(Only Callisto)'),

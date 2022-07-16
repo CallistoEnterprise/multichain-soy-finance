@@ -10,7 +10,8 @@ import { checkedTransaction, finalizeTransaction } from './actions'
 
 const explorerText = {
   820: 'CallistoExp',
-  199: 'BttcScan'
+  199: 'BttScan',
+  61: 'EtcScan'
 }
 
 export function shouldCheck(

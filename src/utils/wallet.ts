@@ -145,6 +145,7 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
 const SOY = {
   820: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
   199: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
+  61: '0xcC67D978Ddf07971D9050d2b424f36f6C1a15893',
 }
 
 export const addSoyToMetamask = async (chainId: number) => {

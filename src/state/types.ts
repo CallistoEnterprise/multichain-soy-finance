@@ -81,6 +81,7 @@ export interface FarmsState {
   data: {
     820: Farm[],
     199: Farm[],
+    61: Farm[],
   }
   loadArchivedFarmsData: boolean
   userDataLoaded: boolean

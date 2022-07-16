@@ -532,7 +532,7 @@ const etcFarms: FarmConfig[] = [
       61: '0x397F68cA220713d12d4Dcfd5c59938949EC0E486',
     },
     localFarmAddresses: {
-      61: '0xaE133aABA0AA4cfa60cd30a29da0149038D01f38',
+      61: '0x60C7712a3a390dce7B45d9B21De43Ba0eEa43FD1',
     },
     token: tokens.wetc,
     quoteToken: tokens.soy,
@@ -544,7 +544,7 @@ const etcFarms: FarmConfig[] = [
       61: '0xFb6414f689e93BaCd942919FBA7cD8aA7F5e5c64',
     },
     localFarmAddresses: {
-      61: '0x71Db9B83562b2242787D43871848Fe10AA5a7d46',
+      61: '0xfD75e99f6EdbE847FF1119E73484ca32Ac8B3d77',
     },
     token: tokens.busdt,
     quoteToken: tokens.wetc,
@@ -556,7 +556,7 @@ const etcFarms: FarmConfig[] = [
       61: '0x2806a90e445D05012875357C132430fb1931e234',
     },
     localFarmAddresses: {
-      61: '0x97BfcF06464e77B56C22F3Db4a76899d19826DC7',
+      61: '0x1c97E8d41990d1DA7D96BD211d8BF4a3aE1D5C69',
     },
     token: tokens.soy,
     quoteToken: tokens.busdt,
@@ -568,7 +568,7 @@ const etcFarms: FarmConfig[] = [
       61: '0x715CE66eE2256663D375077cda6fE623e76Bde42',
     },
     localFarmAddresses: {
-      61: '0x79D65F4F1E44FEa4E77687a72122Bb2fCFEaD6af',
+      61: '0x82f8c39e53C3Fe695c28998529A1D226A32d6368',
     },
     token: tokens.ccclo,
     quoteToken: tokens.soy,
@@ -580,7 +580,7 @@ const etcFarms: FarmConfig[] = [
       61: '0xAa14e66384109A200Aad29CDB44aF3710633A491',
     },
     localFarmAddresses: {
-      61: '0x87ff8941A94c13Ac707d4ADc41a71Ed6458580F8',
+      61: '0x82f1419e6aB1e3A03B64A59Cfe1270E2Ff890344',
     },
     token: tokens.ccbnb_erc223,
     quoteToken: tokens.soy,
@@ -592,19 +592,19 @@ const etcFarms: FarmConfig[] = [
       61: '0xDcE9230213B7128cbA06Ff56408352201dcFa274',
     },
     localFarmAddresses: {
-      61: '0x1019314024B8B0c5D2ee733A7Aee7Ed7D4A655fB',
+      61: '0x40482830A0349dd8AD061936FDd1FF18F7900286',
     },
     token: tokens.cceth_erc223,
     quoteToken: tokens.soy,
   },
   {
-    pid: 16,
+    pid: 15,
     lpSymbol: 'CLO-ETC LP',
     lpAddresses: {
       61: '0xB81100597264D57e949d91a72c3f6a7d0B3Daec2',
     },
     localFarmAddresses: {
-      61: '0xf89778306E83e13D00644044b10bBe3470a8EaC1',
+      61: '0x88cEa92a8D2Ce64215e37dd540600B87Ccac4aD7',
     },
     token: tokens.ccetc,
     quoteToken: tokens.ccclo,
@@ -616,7 +616,7 @@ const etcFarms: FarmConfig[] = [
       61: '0xAD9788198a7eA6DA2e6DA0bf20EB465d727F7b4a',
     },
     localFarmAddresses: {
-      61: '0xd6aE8C78aa9cd32b9B50828cb2Bf36E2e28b7E91',
+      61: '0xde2fE5985F1293356BC98D73Ef84521022d7f872',
     },
     token: tokens.ccbnb_erc223,
     quoteToken: tokens.ccclo,
@@ -628,7 +628,7 @@ const etcFarms: FarmConfig[] = [
       61: '0x4b2f3C8Fd465cF711E80Dd2BF7918E3d91d95384',
     },
     localFarmAddresses: {
-      61: '0x3f7B6dAfD37941520A8056eB22D26876ad22a8e7',
+      61: '0x101e80A2838012dde964E8323031C4df7e21BDc6',
     },
     token: tokens.cceth_erc223,
     quoteToken: tokens.ccclo,
