@@ -526,7 +526,7 @@ const bttFarms: FarmConfig[] = [
 
 const etcFarms: FarmConfig[] = [
   {
-    pid: 11,
+    pid: 2,
     lpSymbol: 'SOY-ETC LP',
     lpAddresses: {
       61: '0x397F68cA220713d12d4Dcfd5c59938949EC0E486',
@@ -538,7 +538,7 @@ const etcFarms: FarmConfig[] = [
     quoteToken: tokens.soy,
   },
   {
-    pid: 14,
+    pid: 6,
     lpSymbol: 'BUSDT-ETC LP',
     lpAddresses: {
       61: '0xFb6414f689e93BaCd942919FBA7cD8aA7F5e5c64',
@@ -550,7 +550,7 @@ const etcFarms: FarmConfig[] = [
     quoteToken: tokens.wetc,
   },
   {
-    pid: 19,
+    pid: 5,
     lpSymbol: 'SOY-BUSDT LP',
     lpAddresses: {
       61: '0x2806a90e445D05012875357C132430fb1931e234',
@@ -562,7 +562,7 @@ const etcFarms: FarmConfig[] = [
     quoteToken: tokens.busdt,
   },
   {
-    pid: 9,
+    pid: 1,
     lpSymbol: 'SOY-CLO LP',
     lpAddresses: {
       61: '0x715CE66eE2256663D375077cda6fE623e76Bde42',
@@ -574,7 +574,7 @@ const etcFarms: FarmConfig[] = [
     quoteToken: tokens.soy,
   },
   {
-    pid: 12,
+    pid: 3,
     lpSymbol: 'SOY-BNB LP',
     lpAddresses: {
       61: '0xAa14e66384109A200Aad29CDB44aF3710633A491',
@@ -586,7 +586,7 @@ const etcFarms: FarmConfig[] = [
     quoteToken: tokens.soy,
   },
   {
-    pid: 13,
+    pid: 4,
     lpSymbol: 'SOY-ETH LP',
     lpAddresses: {
       61: '0xDcE9230213B7128cbA06Ff56408352201dcFa274',
@@ -598,7 +598,7 @@ const etcFarms: FarmConfig[] = [
     quoteToken: tokens.soy,
   },
   {
-    pid: 15,
+    pid: 7,
     lpSymbol: 'CLO-ETC LP',
     lpAddresses: {
       61: '0xB81100597264D57e949d91a72c3f6a7d0B3Daec2',
@@ -610,7 +610,7 @@ const etcFarms: FarmConfig[] = [
     quoteToken: tokens.ccclo,
   },
   {
-    pid: 17,
+    pid: 8,
     lpSymbol: 'CLO-BNB LP',
     lpAddresses: {
       61: '0xAD9788198a7eA6DA2e6DA0bf20EB465d727F7b4a',
@@ -622,7 +622,7 @@ const etcFarms: FarmConfig[] = [
     quoteToken: tokens.ccclo,
   },
   {
-    pid: 18,
+    pid: 9,
     lpSymbol: 'CLO-ETH LP',
     lpAddresses: {
       61: '0x4b2f3C8Fd465cF711E80Dd2BF7918E3d91d95384',

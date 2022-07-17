@@ -25,9 +25,6 @@ export const harvestFarm = async (lpContract, localFarmAddress, web3?: any) => {
   const gasLimit = await lpContract.estimateGas.transfer(localFarmAddress, _amount);
   const gasPrice = await web3.eth.getGasPrice()
   const tx = await lpContract.transfer(localFarmAddress, _amount, { gasLimit: gasLimit, gasPrice: gasPrice });
-
-  // const value = new BigNumber(0).times(DEFAULT_TOKEN_DECIMAL).toString()
-  // const tx = await lpContract.transfer(localFarmAddress, value, options)
   const receipt = await tx.wait()
   return receipt.status
 }

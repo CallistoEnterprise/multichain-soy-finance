@@ -96,17 +96,17 @@ const getFarmQuoteTokenPrice = (
 const farmsPids = {
   820: 4,
   199: 14,
-  61: 14
+  61: 6
 }
 const busdtFarms = {
   820: 5,
   199: 19,
-  61: 19
+  61: 5
 }
 const refFarms = {
   820: 2,
   199: 9,
-  61: 9
+  61: 1
 }
 const fetchFarmsPrices = async (farms) => {
   const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
