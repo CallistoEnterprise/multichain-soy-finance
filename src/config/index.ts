@@ -29,6 +29,13 @@ export const ExplorerText = {
   [ChainId.BSC]: 'BSCScan'
 }
 
+export const NetworkNames = {
+  [ChainId.MAINNET]: 'Callisto',
+  [ChainId.BTTMAINNET]: 'Bittorent',
+  [ChainId.BSC]: 'BSC',
+  [ChainId.ETCCLASSICMAINNET]: 'ETC'
+}
+
 export const NativeSymbols = {
   [ChainId.MAINNET]: 'clo',
   [ChainId.BTTMAINNET]: 'btt',
