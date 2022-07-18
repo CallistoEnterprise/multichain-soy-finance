@@ -8,7 +8,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCombinedInactiveList } from 'state/lists/hooks'
 import { ListLogo } from 'components/Logo'
 import { useTranslation } from 'contexts/Localization'
-import { ExplorerText } from 'config'
+import { ExplorerText, NetworkNames } from 'config'
 
 interface ImportProps {
   tokens: Token[]
@@ -32,7 +32,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
       <Message variant="warning">
         <Text>
           {t(
-            'Anyone can create a ERC20 token on Polygon Network with any name, including creating fake versions of existing tokens and tokens that claim to represent projects that do not have a token.',
+            `Anyone can create a ERC223 token on ${NetworkNames[chainId]} Network with any name, including creating fake versions of existing tokens and tokens that claim to represent projects that do not have a token.`,
           )}
           <br />
           <br />
