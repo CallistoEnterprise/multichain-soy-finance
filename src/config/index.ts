@@ -28,7 +28,15 @@ export const RPC_URLS = {
 export const ExplorerText = {
   [ChainId.MAINNET]: 'CallistoScan',
   [ChainId.BTTMAINNET]: 'BttcScan',
-  [ChainId.BSC]: 'BSCScan'
+  [ChainId.BSC]: 'BSCScan',
+  [ChainId.ETCCLASSICMAINNET]: 'ETCScan'
+}
+
+export const NetworkNames = {
+  [ChainId.MAINNET]: 'Callisto',
+  [ChainId.BTTMAINNET]: 'Bittorent',
+  [ChainId.BSC]: 'BSC',
+  [ChainId.ETCCLASSICMAINNET]: 'ETC'
 }
 
 export const NativeSymbols = {
