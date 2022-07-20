@@ -20,7 +20,7 @@ import {
 } from 'state/info/hooks'
 import TransactionTable from 'views/Info/components/InfoTables/TransactionsTable'
 import { tokenLists } from 'state/lists/hooks'
-import { getAddress } from 'utils/addressHelpers'
+import { NativeSymbols } from 'config'
 
 export const ChartCardsContainer = styled(Flex)`
   justify-content: space-between;
@@ -101,7 +101,7 @@ const Overview: React.FC = () => {
     return oneItem ? true : false
   }
 
-  const formattedTokens = formattedTokens1 ? formattedTokens1.filter((token) => isExist(token.address)) : []
+  const formattedTokens = formattedTokens1 ? formattedTokens1.filter((token) => isExist(token.address) || token.symbol === NativeSymbols[chainId].toUpperCase()) : []
 
   const allPoolData = useAllPoolData()
   const poolDatas = useMemo(() => {
