@@ -11,7 +11,7 @@ import DEFAULT_TOKEN_LIST_ETC from '../../config/constants/tokenLists/tokenlistI
 import { UNSUPPORTED_LIST_URLS } from '../../config/constants/lists'
 import UNSUPPORTED_TOKEN_LIST from '../../config/constants/tokenLists/unsupported.tokenlist.json'
 
-const tokenLists = {
+export const tokenLists = {
   [ChainId.MAINNET]: DEFAULT_TOKEN_LIST,
   [ChainId.BTTMAINNET]: DEFAULT_TOKEN_LIST_BTT,
   [ChainId.ETCCLASSICMAINNET]: DEFAULT_TOKEN_LIST_ETC
