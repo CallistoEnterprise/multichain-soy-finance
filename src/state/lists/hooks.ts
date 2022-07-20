@@ -10,7 +10,7 @@ import DEFAULT_TOKEN_LIST_BTT from '../../config/constants/tokenLists/tokenlistI
 import { UNSUPPORTED_LIST_URLS } from '../../config/constants/lists'
 import UNSUPPORTED_TOKEN_LIST from '../../config/constants/tokenLists/unsupported.tokenlist.json'
 
-const tokenLists = {
+export const tokenLists = {
   820: DEFAULT_TOKEN_LIST,
   199: DEFAULT_TOKEN_LIST_BTT,
 }

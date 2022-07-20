@@ -2,6 +2,7 @@ import React, { useMemo, useEffect } from 'react'
 // import { Text, Heading, Card } from '@soy-libs/uikit2'
 import { Heading } from '@soy-libs/uikit2'
 import styled from 'styled-components'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Page from 'components/Layout/Page'
 import TokenTable from 'views/Info/components/InfoTables/TokensTable'
 import { useAllTokenData } from 'state/info/hooks' // useTokenDatas
@@ -9,6 +10,7 @@ import { useAllTokenData } from 'state/info/hooks' // useTokenDatas
 import { useTranslation } from 'contexts/Localization'
 import TopTokenMovers from 'views/Info/components/TopTokenMovers'
 import { renameTokens } from 'views/Info/utils/tokenInfoRename'
+import { tokenLists } from 'state/lists/hooks'
 
 const ResponsiveGrid = styled.div`
   display: grid;
@@ -19,18 +21,25 @@ const ResponsiveGrid = styled.div`
 `
 const TokensOverview: React.FC = () => {
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
   const allTokens = useAllTokenData()
 
-  const formattedTokens = useMemo(() => {
+  const formattedTokens1 = useMemo(() => {
     return Object.values(allTokens)
       .map((token) => renameTokens(token.data))
       .filter((token) => token)
   }, [allTokens])
+  
+  const isExist = (address) => {
+    const oneItem = tokenLists[chainId]?.tokens.find((token) => token.address.toLowerCase() === address)
+    return oneItem ? true : false
+  }
 
+  const formattedTokens = formattedTokens1 ? formattedTokens1.filter((token) => isExist(token.address)) : []
   // const [savedTokens] = useWatchlistTokens()
   // const watchListTokens = useTokenDatas(savedTokens)
 

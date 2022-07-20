@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import styled from 'styled-components'
 import { Flex, Box, Text, Heading, Card, Skeleton } from '@soy-libs/uikit2'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { format, fromUnixTime } from 'date-fns'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/Layout/Page'
@@ -18,6 +19,8 @@ import {
   useProtocolTransactions,
 } from 'state/info/hooks'
 import TransactionTable from 'views/Info/components/InfoTables/TransactionsTable'
+import { tokenLists } from 'state/lists/hooks'
+import { getAddress } from 'utils/addressHelpers'
 
 export const ChartCardsContainer = styled(Flex)`
   justify-content: space-between;
@@ -37,6 +40,7 @@ export const ChartCardsContainer = styled(Flex)`
 
 const Overview: React.FC = () => {
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   const [liquidityHover, setLiquidityHover] = useState<number | undefined>()
   const [liquidityDateHover, setLiquidityDateHover] = useState<string | undefined>()
   const [volumeHover, setVolumeHover] = useState<number | undefined>()
@@ -86,11 +90,18 @@ const Overview: React.FC = () => {
 
   const allTokens = useAllTokenData()
 
-  const formattedTokens = useMemo(() => {
+  const formattedTokens1 = useMemo(() => {
     return Object.values(allTokens)
       .map((token) => renameTokens(token.data))
       .filter((token) => token)
   }, [allTokens])
+
+  const isExist = (address) => {
+    const oneItem = tokenLists[chainId]?.tokens.find((token) => token.address.toLowerCase() === address)
+    return oneItem ? true : false
+  }
+
+  const formattedTokens = formattedTokens1 ? formattedTokens1.filter((token) => isExist(token.address)) : []
 
   const allPoolData = useAllPoolData()
   const poolDatas = useMemo(() => {
