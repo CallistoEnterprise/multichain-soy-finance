@@ -99,10 +99,17 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
     }
   ])
 
+  // const [chainMultiplier]= await multicall3(masterchefABI, [
+  //   {
+  //     address: getMasterChefAddress(),
+  //     name: 'thisChainMultiplier'
+  //   }
+  // ])
+
+  // console.log("chainMultiplier :: ", chainMultiplier)
+
   const bigAlloc = new BigNumber(allocPoint[0].toString())
   const poolWeight = totalAllocPoint[0] ? bigAlloc.div(new BigNumber(1000)) : BIG_ZERO
-  // const multi = new BigNumber(manualMulti[farm.pid])
-  // const real = allocPoint.div(100).toString()
 
   return {
     tokenAmountMc: tokenAmountMc.toJSON(),

@@ -85,9 +85,9 @@ export const RECLAIM_AUCTIONS_TO_FETCH = 500
 export const AUCTION_WHITELISTED_BIDDERS_TO_FETCH = 500
 export const ONE_YEAR_TIMESTAMP = 365 * 24 * 60 * 60
 export const REWARD_TOKENS_PER_YEAR ={
-  820:  new BigNumber(50000000 * 0.8),
+  820:  new BigNumber(50000000 * 0.89),
   199:  new BigNumber(50000000 * 0.1),
-  61:  new BigNumber(50000000 * 0.1),
+  61:  new BigNumber(50000000 * 0.01),
 }
 
 export const localStorageChainIdKey = "soyfinanceChainId"

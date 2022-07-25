@@ -1,368 +1,282 @@
-[{
-  "type": "constructor",
-  "stateMutability": "nonpayable",
-  "inputs": [{
-    "type": "address",
-    "name": "_rewardsToken",
-    "internalType": "address"
-  }]
-}, {
-  "type": "event",
-  "name": "AddLocalFarm",
-  "inputs": [{
-    "type": "address",
-    "name": "_localFarm",
-    "internalType": "address",
-    "indexed": false
-  }, {
-    "type": "uint32",
-    "name": "_multiplier",
-    "internalType": "uint32",
-    "indexed": false
-  }],
-  "anonymous": false
-}, {
-  "type": "event",
-  "name": "ChangeMultiplier",
-  "inputs": [{
-    "type": "address",
-    "name": "_localFarm",
-    "internalType": "address",
-    "indexed": false
-  }, {
-    "type": "uint256",
-    "name": "_oldMultiplier",
-    "internalType": "uint256",
-    "indexed": false
-  }, {
-    "type": "uint256",
-    "name": "_newMultiplier",
-    "internalType": "uint256",
-    "indexed": false
-  }],
-  "anonymous": false
-}, {
-  "type": "event",
-  "name": "ChangeTokenPerYear",
-  "inputs": [{
-    "type": "uint256",
-    "name": "oldAmount",
-    "internalType": "uint256",
-    "indexed": false
-  }, {
-    "type": "uint256",
-    "name": "newAmount",
-    "internalType": "uint256",
-    "indexed": false
-  }],
-  "anonymous": false
-}, {
-  "type": "event",
-  "name": "OwnershipTransferred",
-  "inputs": [{
-    "type": "address",
-    "name": "previousOwner",
-    "internalType": "address",
-    "indexed": true
-  }, {
-    "type": "address",
-    "name": "newOwner",
-    "internalType": "address",
-    "indexed": true
-  }],
-  "anonymous": false
-}, {
-  "type": "event",
-  "name": "RemoveLocalFarm",
-  "inputs": [{
-    "type": "address",
-    "name": "_localFarm",
-    "internalType": "address",
-    "indexed": false
-  }],
-  "anonymous": false
-}, {
-  "type": "function",
-  "stateMutability": "nonpayable",
-  "outputs": [],
-  "name": "addLocalFarm",
-  "inputs": [{
-    "type": "address",
-    "name": "_localFarmAddress",
-    "internalType": "address"
-  }, {
-    "type": "uint32",
-    "name": "_multiplier",
-    "internalType": "uint32"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "nonpayable",
-  "outputs": [],
-  "name": "changeMultiplier",
-  "inputs": [{
-    "type": "address",
-    "name": "_localFarmAddress",
-    "internalType": "address"
-  }, {
-    "type": "uint32",
-    "name": "_multiplier",
-    "internalType": "uint32"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "nonpayable",
-  "outputs": [],
-  "name": "changeTokenPerYear",
-  "inputs": [{
-    "type": "uint256",
-    "name": "newAmount",
-    "internalType": "uint256"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "bool",
-    "name": "_exists",
-    "internalType": "bool"
-  }],
-  "name": "farmExists",
-  "inputs": [{
-    "type": "address",
-    "name": "_farmAddress",
-    "internalType": "address"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "uint256",
-    "name": "",
-    "internalType": "uint256"
-  }],
-  "name": "getAllocationX1000",
-  "inputs": [{
-    "type": "address",
-    "name": "_farm",
-    "internalType": "address"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "uint256",
-    "name": "",
-    "internalType": "uint256"
-  }],
-  "name": "getLocalFarmId",
-  "inputs": [{
-    "type": "address",
-    "name": "_localFarmAddress",
-    "internalType": "address"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "uint256",
-    "name": "",
-    "internalType": "uint256"
-  }],
-  "name": "getRewardPerSecond",
-  "inputs": []
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "uint256",
-    "name": "",
-    "internalType": "uint256"
-  }],
-  "name": "getlastPayment",
-  "inputs": [{
-    "type": "address",
-    "name": "_localFarmAddress",
-    "internalType": "address"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "bool",
-    "name": "",
-    "internalType": "bool"
-  }],
-  "name": "isOwner",
-  "inputs": []
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "uint256",
-    "name": "",
-    "internalType": "uint256"
-  }],
-  "name": "lastAddedFarmIndex",
-  "inputs": []
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "uint256",
-    "name": "",
-    "internalType": "uint256"
-  }],
-  "name": "localFarmId",
-  "inputs": [{
-    "type": "address",
-    "name": "",
-    "internalType": "address"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "address",
-    "name": "farmAddress",
-    "internalType": "address"
-  }, {
-    "type": "uint256",
-    "name": "multiplier",
-    "internalType": "uint256"
-  }, {
-    "type": "uint256",
-    "name": "lastPayment",
-    "internalType": "uint256"
-  }],
-  "name": "localFarms",
-  "inputs": [{
-    "type": "uint256",
-    "name": "",
-    "internalType": "uint256"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "nonpayable",
-  "outputs": [],
-  "name": "mintFarmingReward",
-  "inputs": [{
-    "type": "address",
-    "name": "_localFarmAddress",
-    "internalType": "address"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "uint256",
-    "name": "",
-    "internalType": "uint256"
-  }],
-  "name": "nextMint",
-  "inputs": [{
-    "type": "address",
-    "name": "",
-    "internalType": "address"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "uint256",
-    "name": "",
-    "internalType": "uint256"
-  }],
-  "name": "next_payment",
-  "inputs": []
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "address",
-    "name": "",
-    "internalType": "address"
-  }],
-  "name": "owner",
-  "inputs": []
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "uint256",
-    "name": "",
-    "internalType": "uint256"
-  }],
-  "name": "paymentDelay",
-  "inputs": []
-}, {
-  "type": "function",
-  "stateMutability": "nonpayable",
-  "outputs": [],
-  "name": "removeLocalFarmByAddress",
-  "inputs": [{
-    "type": "address",
-    "name": "_localFarmAddress",
-    "internalType": "address"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "nonpayable",
-  "outputs": [],
-  "name": "renounceOwnership",
-  "inputs": []
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "bool",
-    "name": "",
-    "internalType": "bool"
-  }],
-  "name": "rewardMintingAvailable",
-  "inputs": [{
-    "type": "address",
-    "name": "_farm",
-    "internalType": "address"
-  }]
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "address",
-    "name": "",
-    "internalType": "contract IMintableToken"
-  }],
-  "name": "rewardsToken",
-  "inputs": []
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "uint256",
-    "name": "",
-    "internalType": "uint256"
-  }],
-  "name": "tokensPerYear",
-  "inputs": []
-}, {
-  "type": "function",
-  "stateMutability": "view",
-  "outputs": [{
-    "type": "uint256",
-    "name": "",
-    "internalType": "uint256"
-  }],
-  "name": "totalMultipliers",
-  "inputs": []
-}, {
-  "type": "function",
-  "stateMutability": "nonpayable",
-  "outputs": [],
-  "name": "transferOwnership",
-  "inputs": [{
-    "type": "address",
-    "name": "newOwner",
-    "internalType": "address"
-  }]
-}]
+[
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_rewardsToken", "type": "address" },
+      { "internalType": "address", "name": "_localFarm_implementation", "type": "address" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "address", "name": "_localFarm", "type": "address" },
+      { "indexed": false, "internalType": "address", "name": "_lpToken", "type": "address" },
+      { "indexed": false, "internalType": "uint32", "name": "_multiplier", "type": "uint32" }
+    ],
+    "name": "AddLocalFarm",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "uint256", "name": "_thisChainMultiplier", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "_cloTotalMultipliers", "type": "uint256" }
+    ],
+    "name": "ChangeGlobalMultiplier",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "address", "name": "oldImplementation", "type": "address" },
+      { "indexed": false, "internalType": "address", "name": "newImplementation", "type": "address" }
+    ],
+    "name": "ChangeLocalFarm_implementation",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "address", "name": "_localFarm", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "_oldMultiplier", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "_newMultiplier", "type": "uint256" }
+    ],
+    "name": "ChangeMultiplier",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "uint256", "name": "oldAmount", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "newAmount", "type": "uint256" }
+    ],
+    "name": "ChangeTokenPerYear",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "address", "name": "_localFarm", "type": "address" }],
+    "name": "RemoveLocalFarm",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_lpToken", "type": "address" },
+      { "internalType": "uint32", "name": "_multiplier", "type": "uint32" }
+    ],
+    "name": "addLocalFarm",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_localFarmAddress", "type": "address" },
+      { "internalType": "uint32", "name": "_multiplier", "type": "uint32" }
+    ],
+    "name": "changeMultiplier",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "newAmount", "type": "uint256" }],
+    "name": "changeTokenPerYear",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "cloTotalMultipliers",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "_farmAddress", "type": "address" }],
+    "name": "farmExists",
+    "outputs": [{ "internalType": "bool", "name": "_exists", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "_farm", "type": "address" }],
+    "name": "getAllocationX1000",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "_localFarmAddress", "type": "address" }],
+    "name": "getLocalFarmId",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getRewardPerSecond",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "_localFarmAddress", "type": "address" }],
+    "name": "getlastPayment",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "isOwner",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "lastAddedFarmIndex",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "localFarmId",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "localFarm_implementation",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "localFarms",
+    "outputs": [
+      { "internalType": "address", "name": "farmAddress", "type": "address" },
+      { "internalType": "uint256", "name": "multiplier", "type": "uint256" },
+      { "internalType": "uint256", "name": "lastPayment", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "_localFarmAddress", "type": "address" }],
+    "name": "mintFarmingReward",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "nextMint",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "next_payment",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "paymentDelay",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "_localFarmAddress", "type": "address" }],
+    "name": "removeLocalFarmByAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  {
+    "inputs": [{ "internalType": "address", "name": "_farm", "type": "address" }],
+    "name": "rewardMintingAvailable",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "rewardsToken",
+    "outputs": [{ "internalType": "contract IMintableToken", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_thisChainMultiplier", "type": "uint256" },
+      { "internalType": "uint256", "name": "_cloTotalMultipliers", "type": "uint256" }
+    ],
+    "name": "setGlobalMultipliers",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "_localFarm_implementation", "type": "address" }],
+    "name": "setLocalFarm_implementation",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "thisChainMultiplier",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "tokensPerYear",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalMultipliers",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
