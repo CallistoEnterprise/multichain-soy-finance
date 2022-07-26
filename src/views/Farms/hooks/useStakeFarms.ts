@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React, { useWeb3ProviderByRpc } from 'hooks/useActiveWeb3React'
 import { stakeFarm } from 'utils/calls'
 // import { useMasterchef } from 'hooks/useContract'
 import farms from 'config/constants/farms'
@@ -8,7 +8,7 @@ import { getAddress } from 'utils/addressHelpers'
 import { localStorageChainIdKey } from 'config'
 
 const useStakeFarms = (pid: number) => {
-  const { account, library } = useWeb3React()
+  const { account, library } = useActiveWeb3React()
   const locChainId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
 
   // const masterChefContract = useMasterchef()
@@ -16,13 +16,14 @@ const useStakeFarms = (pid: number) => {
   const { lpAddresses, localFarmAddresses }= currentFarm
   const lpContract = getLpContractWithAccount(getAddress(lpAddresses), library, account)
   const farmAddress = getAddress(localFarmAddresses)
+  const web3 = useWeb3ProviderByRpc(locChainId)
 
   const handleStake = useCallback(
     async (amount: string) => {
-      const txHash = await stakeFarm(lpContract, farmAddress, amount)
+      const txHash = await stakeFarm(lpContract, farmAddress, amount, web3)
       console.info(txHash)
     },
-    [lpContract, farmAddress],
+    [lpContract, farmAddress, web3],
   )
 
   return { onStake: handleStake }
