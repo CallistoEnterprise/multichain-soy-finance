@@ -101,11 +101,7 @@ const Overview: React.FC = () => {
     return oneItem ? true : false
   }
 
-  const formattedTokens = formattedTokens1
-    ? formattedTokens1.filter(
-        (token) => isExist(token.address) || token.symbol === NativeSymbols[chainId].toUpperCase(),
-      )
-    : []
+  const formattedTokens = formattedTokens1 ? formattedTokens1.filter((token) => isExist(token.address) || token.symbol === NativeSymbols[chainId].toUpperCase()) : []
 
   const allPoolData = useAllPoolData()
   const poolDatas = useMemo(() => {

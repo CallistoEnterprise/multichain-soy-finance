@@ -34,17 +34,13 @@ const TokensOverview: React.FC = () => {
       .map((token) => renameTokens(token.data))
       .filter((token) => token)
   }, [allTokens])
-
+  
   const isExist = (address) => {
     const oneItem = tokenLists[chainId]?.tokens.find((token) => token.address.toLowerCase() === address)
     return oneItem ? true : false
   }
 
-  const formattedTokens = formattedTokens1
-    ? formattedTokens1.filter(
-        (token) => isExist(token.address) || token.symbol === NativeSymbols[chainId].toUpperCase(),
-      )
-    : []
+  const formattedTokens = formattedTokens1 ? formattedTokens1.filter((token) => isExist(token.address) || token.symbol === NativeSymbols[chainId].toUpperCase()) : []
   // const [savedTokens] = useWatchlistTokens()
   // const watchListTokens = useTokenDatas(savedTokens)
 
