@@ -141,7 +141,8 @@ const tokens = {
     address: {
       820: '0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F',
       20729: '0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F',
-      199: '0xCc944bF3e76d483e41CC6154d5196E2e5d348fB0'
+      199: '0xCc944bF3e76d483e41CC6154d5196E2e5d348fB0',
+      61: '0x35e9A89e43e45904684325970B2E2d258463e072'
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F/transactions',

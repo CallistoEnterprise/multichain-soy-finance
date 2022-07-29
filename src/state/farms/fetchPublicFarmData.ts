@@ -99,6 +99,7 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
     }
   ])
 
+
   // const [chainMultiplier]= await multicall3(masterchefABI, [
   //   {
   //     address: getMasterChefAddress(),
