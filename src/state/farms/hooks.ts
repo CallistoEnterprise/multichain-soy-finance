@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { localStorageChainIdKey } from 'config'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceAmount } from 'utils/formatBalance'
@@ -40,14 +39,17 @@ export const usePollFarmsData = (includeArchive = false) => {
 const coreFarms = {
   820: [2, 4],
   199: [10, 14, 19, 9],
+  61: [2, 6, 5, 1],
 }
 const coreEthFarms = {
   820: 2,
   199: 19,
+  61: 5,
 }
 const busdtFarms = {
   820: 4,
   199: 14,
+  61: 6,
 }
 
 export const usePollCoreFarmData = () => {
@@ -67,7 +69,7 @@ export const useFarms = (): FarmsState => {
 
 export const useFarmFromPid = (pid): Farm => {
   const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
-  const farm = useSelector((state: State) => state.farms.data[chId].find((f) => f.pid === pid))
+  const farm = useSelector((state: State) => state.farms.data[chId]?.find((f) => f.pid === pid))
   return farm
 }
 

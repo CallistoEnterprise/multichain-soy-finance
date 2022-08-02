@@ -107,7 +107,6 @@ const fetchAndUpdateLPsAPR = async () => {
   const lowerCaseAddresses = farmsConfig[chainId]
     .filter((farm) => farm.pid > 250)
     .map((farm) => farm?.lpAddresses[chainId]?.toLowerCase())
-  console.info(`Fetching farm data for ${lowerCaseAddresses.length} addresses`)
   // Split it into chunks of 30 addresses to avoid gateway timeout
   const addressesInGroups = chunk(lowerCaseAddresses, 30)
   const weekAgoTimestamp = getWeekAgoTimestamp()

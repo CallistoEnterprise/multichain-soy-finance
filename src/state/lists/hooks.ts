@@ -7,12 +7,14 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { AppState } from '../index'
 import DEFAULT_TOKEN_LIST from '../../config/constants/tokenLists/tokenlist.json'
 import DEFAULT_TOKEN_LIST_BTT from '../../config/constants/tokenLists/tokenlistInBTT.json'
+import DEFAULT_TOKEN_LIST_ETC from '../../config/constants/tokenLists/tokenlistInETC.json'
 import { UNSUPPORTED_LIST_URLS } from '../../config/constants/lists'
 import UNSUPPORTED_TOKEN_LIST from '../../config/constants/tokenLists/unsupported.tokenlist.json'
 
 export const tokenLists = {
-  820: DEFAULT_TOKEN_LIST,
-  199: DEFAULT_TOKEN_LIST_BTT,
+  [ChainId.MAINNET]: DEFAULT_TOKEN_LIST,
+  [ChainId.BTTMAINNET]: DEFAULT_TOKEN_LIST_BTT,
+  [ChainId.ETCCLASSICMAINNET]: DEFAULT_TOKEN_LIST_ETC
 }
 
 type TagDetails = Tags[keyof Tags]

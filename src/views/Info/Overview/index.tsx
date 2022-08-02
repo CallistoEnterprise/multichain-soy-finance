@@ -10,7 +10,7 @@ import TokenTable from 'views/Info/components/InfoTables/TokensTable'
 import PoolTable from 'views/Info/components/InfoTables/PoolsTable'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import BarChart from 'views/Info/components/InfoCharts/BarChart'
-import { renameTokens,renamePool,renameTransactions } from 'views/Info/utils/tokenInfoRename'
+import { renameTokens, renamePool, renameTransactions } from 'views/Info/utils/tokenInfoRename'
 import {
   useAllPoolData,
   useAllTokenData,
@@ -48,7 +48,7 @@ const Overview: React.FC = () => {
 
   const [protocolData] = useProtocolData()
   const [chartData] = useProtocolChartData()
-  const [transactions] = renameTransactions(useProtocolTransactions(),0)
+  const [transactions] = renameTransactions(useProtocolTransactions(), 0)
 
   const currentDate = format(new Date(), 'MMM d, yyyy')
 
@@ -131,9 +131,9 @@ const Overview: React.FC = () => {
                 ${formatAmount(liquidityHover)}
               </Text>
             ) : (
-              <Skeleton marginLeft="77%" width="128px" height="36px"/>
+              <Skeleton marginLeft="77%" width="128px" height="36px" />
             )}
-            
+
             <Box height="250px">
               <LineChart
                 data={formattedLiquidityData}

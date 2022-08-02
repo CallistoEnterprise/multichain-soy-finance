@@ -8,7 +8,7 @@ import { Button, Text, AddIcon, ArrowDownIcon, CardBody, Slider, Box, Flex, useM
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
 import { useTranslation } from 'contexts/Localization'
-import { NativeSymbols } from 'config'
+import { NativeSymbols, WrappedNativeSymbols } from 'config'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -537,7 +537,7 @@ export default function RemoveLiquidity({
                             currencyB === ETHERS[chainId] ? WETH[chainId].address : currencyIdB
                           }`}
                         >
-                          {t('Receive WCLO')}
+                          {t(`Receive ${WrappedNativeSymbols[chainId]}`)}
                         </StyledInternalLink>
                       ) : oneCurrencyIsWETH ? (
                         <StyledInternalLink

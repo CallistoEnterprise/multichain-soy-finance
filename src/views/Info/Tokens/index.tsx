@@ -52,7 +52,7 @@ const TokensOverview: React.FC = () => {
       {/* {savedTokens.length > 0 ? (
         <TokenTable tokenDatas={watchListTokens} />
       ) : ( */}
-        {/* <Card>
+      {/* <Card>
           <Text py="16px" px="24px">
             {t('Saved tokens will appear here')}
           </Text>

@@ -5,8 +5,8 @@ import {
   TokenImage as UIKitTokenImage,
   ImageProps,
 } from '@soy-libs/uikit2'
-import { BASE_URL, localStorageChainIdKey, NativeSymbols } from 'config'
-import tokens, { wrappedNativeTokens } from 'config/constants/tokens'
+import { BASE_URL, NativeSymbols } from 'config'
+import { wrappedNativeTokens } from 'config/constants/tokens'
 import { Token } from 'config/constants/types'
 import { getAddress } from 'utils/addressHelpers'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
