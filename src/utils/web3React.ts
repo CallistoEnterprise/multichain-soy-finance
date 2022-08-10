@@ -5,18 +5,19 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import type { AbstractConnector } from '@web3-react/abstract-connector'
 import { ConnectorNames } from '@soy-libs/uikit2'
-import { localStorageChainIdKey } from 'config'
+// import { localStorageChainIdKey } from 'config'
 import { ethers } from 'ethers'
-import getNodeUrl from './getRpcUrl'
+// import getNodeUrl from './getRpcUrl'
+import NETWORK_URLS from 'config/constants/networks';
 
 const POLLING_INTERVAL = 12000
-const rpcUrl = getNodeUrl()
-const chainId = window.localStorage.getItem(localStorageChainIdKey) ? Number(window.localStorage.getItem(localStorageChainIdKey)) : parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+// const rpcUrl = getNodeUrl()
+// const chainId = window.localStorage.getItem(localStorageChainIdKey) ? Number(window.localStorage.getItem(localStorageChainIdKey)) : parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
 const injected = new InjectedConnector({ supportedChainIds: [1, 4, 42, 56, 97, 61, 820, 199, 20729] })
 
 const walletconnect = new WalletConnectConnector({
-  rpc: { [chainId]: rpcUrl },
+  rpc: NETWORK_URLS,
   bridge: 'https://soyfinance.bridge.walletconnect.org/',
   qrcode: true,
   // pollingInterval: POLLING_INTERVAL,
