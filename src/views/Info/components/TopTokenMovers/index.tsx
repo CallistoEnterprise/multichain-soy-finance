@@ -2,6 +2,7 @@ import React, { useMemo, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { Text, Flex, Box, Card } from '@soy-libs/uikit2'
 import { Link } from 'react-router-dom'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useAllTokenData } from 'state/info/hooks'
 import { TokenData } from 'state/info/types'
 import { CurrencyLogo } from 'views/Info/components/CurrencyLogo'
@@ -9,6 +10,8 @@ import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import Percent from 'views/Info/components/Percent'
 import { useTranslation } from 'contexts/Localization'
 import { renameTokenDatas } from 'views/Info/utils/tokenInfoRename'
+import { tokenLists } from 'state/lists/hooks'
+import { NativeSymbols } from 'config'
 
 const CardWrapper = styled(Link)`
   display: inline-block;
@@ -63,6 +66,7 @@ const DataCard = ({ tokenData }: { tokenData: TokenData }) => {
 const TopTokenMovers: React.FC = () => {
   const allTokens = renameTokenDatas(useAllTokenData())
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
 
   const topPriceIncrease = useMemo(() => {
     return Object.values(allTokens)
@@ -75,6 +79,12 @@ const TopTokenMovers: React.FC = () => {
 
   const increaseRef = useRef<HTMLDivElement>(null)
   const moveLeftRef = useRef<boolean>(true)
+  const isExist = (address) => {
+    const oneItem = tokenLists[chainId]?.tokens.find((token) => token.address.toLowerCase() === address)
+    return oneItem ? true : false
+  }
+
+  const filteredData = topPriceIncrease ? topPriceIncrease.filter((token) => isExist(token.data.address) || token.data.symbol === NativeSymbols[chainId].toUpperCase()) : []
 
   useEffect(() => {
     const scrollInterval = setInterval(() => {
@@ -96,7 +106,7 @@ const TopTokenMovers: React.FC = () => {
     }
   }, [])
 
-  if (topPriceIncrease.length === 0 || !topPriceIncrease.some((entry) => entry.data)) {
+  if (filteredData.length === 0 || !filteredData.some((entry) => entry.data)) {
     return null
   }
 
@@ -106,7 +116,7 @@ const TopTokenMovers: React.FC = () => {
         {t('Top Movers')}
       </Text>
       <ScrollableRow ref={increaseRef}>
-        {topPriceIncrease.map((entry) =>
+        {filteredData.map((entry) =>
           entry.data ? <DataCard key={`top-card-token-${entry.data?.address}`} tokenData={entry.data} /> : null,
         )}
       </ScrollableRow>

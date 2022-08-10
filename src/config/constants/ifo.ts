@@ -1,6 +1,4 @@
-import tokens from './tokens'
-import farms from './farms'
-import { Ifo, Token } from './types'
+import { Ifo } from './types'
 
 const ifos: Ifo[] = [
 ]
