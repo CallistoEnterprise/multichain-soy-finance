@@ -67,11 +67,11 @@ const UserMenu = () => {
 
   useEffect(() => {
     const init = () => {
-      const filtered = Networks.filter((_) => Number(_.chainId) === chainId)
-      if (filtered.length) {
-        window.localStorage.setItem(localStorageChainIdKey, filtered[0].chainId)
-        setNetworkAvatar(filtered[0].img)
-        setNetworkText(filtered[0].name)
+      const filtered = Networks.find((_) => Number(_.chainId) === chainId)
+      if (filtered) {
+        window.localStorage.setItem(localStorageChainIdKey, filtered.chainId)
+        setNetworkAvatar(filtered.img)
+        setNetworkText(filtered.name)
       }
     }
     if (chainId) {
@@ -79,8 +79,8 @@ const UserMenu = () => {
     }
   }, [chainId])
 
-  const handleSwitchNetwork = (curNet) => {
-    switchNetwork(library, curNet)
+  const handleSwitchNetwork = async (curNet) => {
+    await switchNetwork(library, curNet)
   }
 
   if (!account) {
