@@ -1,4 +1,3 @@
-// import DEFAULT_TOKEN_LIST from 'config/constants/tokenLists/tokenlist.json'
 
 const toRename = {
     '0xf5ad6f6edec824c7fd54a66d241a227f6503ad3a':{name:"Callisto Network",symbol:"CLO"},
@@ -18,11 +17,6 @@ const toRename = {
     '0xcc45afedd2065edca770801055d1e376473a871b':{name:'Wrapped XMS',symbol:'ccXMS'}
 }
 
-// DEFAULT_TOKEN_LIST.tokens.forEach(function (item) {
-//     if (!(item.address.toLocaleLowerCase() in toRename)){
-//         toRename[item.address.toLocaleLowerCase()] = {'name':item.name, 'symbol': item.symbol}
-//     }
-//  });
     
 export function renameTokens(object){
     if(object !== undefined && Object.prototype.hasOwnProperty.call(object, 'address')){

@@ -7,13 +7,13 @@ export default {
     61: '0x346984a5a13241dAf2587571Ce7D86cEA77bfB7e'
   },
   dailyIdo: {
-    20729: '',
+    20729: '0xacF8e19A8F9E466c074ed20641df36116D24340e',
     820: '0xEbBDd505bA4E6CaD0C17ccd5cbd88CBA073Fe934',
     199: '',
     61: ''
   },
   weeklyIdo: {
-    20729: '',
+    20729: '0xacF8e19A8F9E466c074ed20641df36116D24340e',
     820: '0xAD2e597F27F5988ADB8876D1c3b1A5C64c6d7403',
     199: '',
     61: ''

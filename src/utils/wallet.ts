@@ -95,7 +95,7 @@ export const switchNetwork = async (library, curNet: any) => {
 export const setupNetwork2 = async () => {
   const provider = window.ethereum
   if (provider) {
-    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? 820)
+    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? 20729)
 
     try {
       await provider.request({

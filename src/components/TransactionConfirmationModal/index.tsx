@@ -34,6 +34,7 @@ const ConfirmedIcon = styled(ColumnCenter)`
 `
 
 const explorerText = {
+  20729: 'CLOTestnetExp',
   820: 'CallistoExp',
   199: 'BttScan',
   61: 'EtcScan'
