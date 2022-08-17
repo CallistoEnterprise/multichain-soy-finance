@@ -165,7 +165,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
             src={
               isBnbPool
                 ? `${BASE_URL}/images/coins/clo.png`
-                : `${BASE_URL}/images/coins/${chainId ?? 20729}/${getAddress(stakingToken.address)}.png`
+                : `${BASE_URL}/images/coins/${chainId ?? process.env.REACT_APP_CLO_CHAIN_ID}/${getAddress(stakingToken.address)}.png`
             }
             width={24}
             height={24}

@@ -1,6 +1,7 @@
-import { localStorageChainIdKey, RPC_URLS } from 'config'
 import { ethers } from 'ethers'
 import getRpcUrl, { getRpcForMulti } from 'utils/getRpcUrl'
+import { localStorageChainIdKey } from 'config'
+import RPC_URLS from 'config/constants/networks'
 
 const RPC_URL = getRpcUrl()
 

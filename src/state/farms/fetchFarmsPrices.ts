@@ -28,7 +28,11 @@ const getFarmBaseTokenPrice = (
     return hasTokenPriceVsQuote ? cloPriceBusd.times(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
-  if ((chainId === 199 || chainId === 61) && farm.quoteToken.symbol === 'ccCLO') {
+  if (
+    (chainId === Number(process.env.REACT_APP_BTT_CHAIN_ID) ||
+      chainId === Number(process.env.REACT_APP_ETC_CHAIN_ID)) &&
+    farm.quoteToken.symbol === 'ccCLO'
+  ) {
     return hasTokenPriceVsQuote ? ccCloPrice.times(farm.tokenPriceVsQuote) : BIG_ZERO
   }
   // We can only calculate profits without a quoteTokenFarm for BUSDT/CLO farms
@@ -74,7 +78,7 @@ const getFarmQuoteTokenPrice = (
     return bnbPriceBusd
   }
 
-  if ((chainId === 199 || chainId === 61) && farm.quoteToken.symbol === 'ccCLO') {
+  if ((chainId === Number(process.env.REACT_APP_BTT_CHAIN_ID) || chainId === Number(process.env.REACT_APP_ETC_CHAIN_ID)) && farm.quoteToken.symbol === 'ccCLO') {
     return ccCloPrice
   }
 
@@ -94,22 +98,25 @@ const getFarmQuoteTokenPrice = (
 }
 
 const farmsPids = {
+  20729: 4,
   820: 4,
   199: 14,
-  61: 6
+  61: 6,
 }
 const busdtFarms = {
   820: 5,
+  20729: 5,
   199: 19,
-  61: 5
+  61: 5,
 }
 const refFarms = {
   820: 2,
+  20729: 2,
   199: 9,
-  61: 1
+  61: 1,
 }
 const fetchFarmsPrices = async (farms) => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 20729
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
   const nativeBusdtFarm = farms.find((farm: Farm) => farm.pid === farmsPids[chainId])
   const soyBusdtFarm = farms.find((farm: Farm) => farm.pid === busdtFarms[chainId])
   const soyCloFarm = farms.find((farm: Farm) => farm.pid === refFarms[chainId])
@@ -121,14 +128,14 @@ const fetchFarmsPrices = async (farms) => {
   const farmsWithPrices = farms.map((farm) => {
     const quoteTokenFarm = getFarmFromTokenSymbol(farms, farm.quoteToken.symbol)
     const baseTokenPrice =
-      farm.pid === 15 && (chainId === 199 || chainId === 61)
+      farm.pid === 15 && (chainId === Number(process.env.REACT_APP_BTT_CHAIN_ID) || chainId === Number(process.env.REACT_APP_ETC_CHAIN_ID))
         ? nativePriceBusdt
         : getFarmBaseTokenPrice(farm, quoteTokenFarm, nativePriceBusdt, cloPrice, chainId)
     const quoteTokenPrice =
-      farm.pid === 15 && (chainId === 199 || chainId === 61)
+      farm.pid === 15 && (chainId === Number(process.env.REACT_APP_BTT_CHAIN_ID) || chainId === Number(process.env.REACT_APP_ETC_CHAIN_ID))
         ? cloPrice
         : getFarmQuoteTokenPrice(farm, quoteTokenFarm, nativePriceBusdt, cloPrice, chainId)
-    
+
     const token = { ...farm.token, usdcPrice: baseTokenPrice.toJSON() }
     const quoteToken = { ...farm.quoteToken, usdcPrice: quoteTokenPrice.toJSON() }
     return { ...farm, token, quoteToken }

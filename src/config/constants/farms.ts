@@ -390,7 +390,7 @@ const bttFarms: FarmConfig[] = [
    * These 3 farms (PID 2, 4) should always be at the top of the file.
    */
   
-   {
+  {
     pid: 10,
     lpSymbol: 'SOY-BTT LP',
     lpAddresses: {

@@ -1,5 +1,5 @@
-import { ChainId } from '@soy-libs/sdk-multichain'
 import BigNumber from 'bignumber.js'
+import { ChainId } from '@soy-libs/sdk-multichain'
 import { BIG_TEN } from 'utils/bigNumber'
 
 BigNumber.config({
@@ -13,50 +13,53 @@ export const BASE_CALLISTO_SCAN_URLS = {
   [ChainId.MAINNET]: 'https://explorer.callisto.network',
   [ChainId.CLOTESTNET]: 'https://testnet-explorer.callisto.network',
   [ChainId.BTTMAINNET]: 'https://bttcscan.com',
-  [ChainId.BSC]: 'https://www.bscscan.com',
+  [ChainId.BSC]: 'https://bscscan.com',
+  [ChainId.BSCTESTNET]: 'https://testnet.bscscan.com',
   [ChainId.ETCCLASSICMAINNET]: 'https://blockscout.com/etc/mainnet/'
-}
-
-export const RPC_URLS = {
-  [ChainId.MAINNET]: 'https://rpc.callisto.network/',
-  [ChainId.CLOTESTNET]: 'https://testnet-rpc.callisto.network/',
-  [ChainId.BTTMAINNET]: 'https://rpc.bt.io/', // 'https://rpc.bittorrentchain.io/',
-  [ChainId.BSC]: 'https://bsc-dataseed.binance.org/',
-  [ChainId.ETCCLASSICMAINNET]: 'https://www.ethercluster.com/etc/'
 }
 
 export const ExplorerText = {
   [ChainId.MAINNET]: 'CallistoScan',
+  [ChainId.CLOTESTNET]: 'CallistoScan',
   [ChainId.BTTMAINNET]: 'BttcScan',
   [ChainId.BSC]: 'BSCScan',
+  [ChainId.BSCTESTNET]: 'BSCScan',
   [ChainId.ETCCLASSICMAINNET]: 'ETCScan'
 }
 
 export const NetworkNames = {
   [ChainId.MAINNET]: 'Callisto',
+  [ChainId.CLOTESTNET]: 'CLO Testnet',
   [ChainId.BTTMAINNET]: 'Bittorent',
   [ChainId.BSC]: 'BSC',
+  [ChainId.BSCTESTNET]: 'BSC Testnet',
   [ChainId.ETCCLASSICMAINNET]: 'ETC'
 }
 
 export const NativeSymbols = {
   [ChainId.MAINNET]: 'clo',
+  [ChainId.CLOTESTNET]: 'clo',
   [ChainId.BTTMAINNET]: 'btt',
   [ChainId.BSC]: 'bnb',
+  [ChainId.BSCTESTNET]: 'bnb',
   [ChainId.ETCCLASSICMAINNET]: 'etc'
 }
 
 export const WrappedNativeSymbols = {
   [ChainId.MAINNET]: 'WCLO',
+  [ChainId.CLOTESTNET]: 'WCLO',
   [ChainId.BTTMAINNET]: 'WBTT',
   [ChainId.BSC]: 'WBNB',
+  [ChainId.BSCTESTNET]: 'WBNB',
   [ChainId.ETCCLASSICMAINNET]: 'WETC'
 }
 
 export const NativeAddress = {
   [ChainId.MAINNET]: '0x0000000000000000000000000000000000000001',
+  [ChainId.CLOTESTNET]: '0x0000000000000000000000000000000000000001',
   [ChainId.BTTMAINNET]: '0x0000000000000000000000000000000000001010',
   [ChainId.BSC]: '0x0000000000000000000000000000000000000007',
+  [ChainId.BSCTESTNET]: '0x0000000000000000000000000000000000000007',
   [ChainId.ETHEREUM]: '0x0000000000000000000000000000000000000006',
   [ChainId.ETCCLASSICMAINNET]: '0x0000000000000000000000000000000000000005'
 }

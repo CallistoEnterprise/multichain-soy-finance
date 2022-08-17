@@ -11,8 +11,6 @@ import { ethers } from 'ethers'
 import NETWORK_URLS from 'config/constants/networks';
 
 const POLLING_INTERVAL = 12000
-// const rpcUrl = getNodeUrl()
-// const chainId = window.localStorage.getItem(localStorageChainIdKey) ? Number(window.localStorage.getItem(localStorageChainIdKey)) : parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
 const injected = new InjectedConnector({ supportedChainIds: [1, 4, 42, 56, 97, 61, 820, 199, 20729] })
 

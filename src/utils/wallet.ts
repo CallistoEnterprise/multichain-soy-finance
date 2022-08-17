@@ -13,7 +13,7 @@ export const setupNetwork = async () => {
   if (provider) {
     const chainId = window.localStorage.getItem(localStorageChainIdKey)
       ? Number(window.localStorage.getItem(localStorageChainIdKey))
-      : parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+      : parseInt(process.env.REACT_APP_CLO_CHAIN_ID, 10)
 
     const curNet = Networks.filter((_) => Number(_.chainId) === chainId)
 
@@ -95,7 +95,7 @@ export const switchNetwork = async (library, curNet: any) => {
 export const setupNetwork2 = async () => {
   const provider = window.ethereum
   if (provider) {
-    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? 20729)
+    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
 
     try {
       await provider.request({
@@ -144,6 +144,7 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
 
 const SOY = {
   820: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
+  20729: '0x4c20231BCc5dB8D805DB9197C84c8BA8287CbA92',
   199: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
   61: '0xcC67D978Ddf07971D9050d2b424f36f6C1a15893',
 }
