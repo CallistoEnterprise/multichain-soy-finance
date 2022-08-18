@@ -17,7 +17,7 @@ export const CurrencyLogo: React.FC<{
   address?: string
   size?: string
 }> = ({ address, size = '24px', ...rest }) => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
 
   const src = useMemo(() => {
     const checksummedAddress = isAddress(address)

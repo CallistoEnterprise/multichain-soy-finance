@@ -9,7 +9,7 @@ const httpProvider = new Web3.providers.HttpProvider(RPC_URL, { timeout: 10000 }
 const web3NoAccount = new Web3(httpProvider)
 
 const getWeb3NoAccount = () => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID) 
   const rpcs = getRpcForMulti([NETWORK_URLS[chainId]])
   const httpProviderByChain = new Web3.providers.HttpProvider(rpcs, { timeout: 10000 } as HttpProviderOptions)
 

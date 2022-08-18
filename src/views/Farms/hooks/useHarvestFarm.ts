@@ -9,7 +9,7 @@ import { getLpContractWithAccount } from 'utils/contractHelpers'
 
 const useHarvestFarm = (farmPid: number) => {
   const { account, library } = useActiveWeb3React()
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID) 
   const currentFarm = farms[chainId].find((farm) => farm.pid === farmPid)
   const { lpAddresses, localFarmAddresses }= currentFarm
   const lpContract = getLpContractWithAccount(getAddress(lpAddresses), library, account)
