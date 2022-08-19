@@ -47,7 +47,7 @@ export const Networks = [
       img: `${BASE_URL}/images/networks/btt.png`,
       chainId: process.env.REACT_APP_BTT_CHAIN_ID,
       hexChainId: process.env.REACT_APP_BTT_HEX_CHAIN_ID,
-      rpcs: [process.env.REACT_BTT_ETH_NODE],
+      rpcs: [process.env.REACT_APP_BTT_NODE],
       explorer: process.env.REACT_APP_BTT_EXP 
   },
   {
