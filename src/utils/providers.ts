@@ -8,7 +8,7 @@ const RPC_URL = getRpcUrl()
 export const simpleRpcProvider = new ethers.providers.JsonRpcProvider(RPC_URL)
 
 export const getRpcProvider = () => {
-    const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+    const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
     return new ethers.providers.JsonRpcProvider(getRpcForMulti([RPC_URLS[chId]]),)
 }
 

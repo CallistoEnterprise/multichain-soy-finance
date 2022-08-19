@@ -16,7 +16,7 @@ const injected = new InjectedConnector({ supportedChainIds: [1, 4, 42, 56, 97, 6
 
 const walletconnect = new WalletConnectConnector({
   rpc: NETWORK_URLS,
-  bridge: 'https://soyfinance.bridge.walletconnect.org/',
+  bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   // pollingInterval: POLLING_INTERVAL,
 })
