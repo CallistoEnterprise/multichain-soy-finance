@@ -9,7 +9,7 @@ const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.KOVAN]: `https://kovan.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`,
   [ChainId.BSC]: 'https://bsc-dataseed.binance.org/',
   [ChainId.BSCTESTNET]: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
-  [ChainId.ETCCLASSICMAINNET]: 'https://www.ethercluster.com/etc/',
+  [ChainId.ETCCLASSICMAINNET]: 'https://etc.etcdesktop.com/',
   [ChainId.BTTMAINNET]: 'https://rpc.bt.io/', // 'https://rpc.bittorrentchain.io/'
 }
 

@@ -15,7 +15,7 @@ export const BASE_CALLISTO_SCAN_URLS = {
   [ChainId.BTTMAINNET]: 'https://bttcscan.com',
   [ChainId.BSC]: 'https://bscscan.com',
   [ChainId.BSCTESTNET]: 'https://testnet.bscscan.com',
-  [ChainId.ETCCLASSICMAINNET]: 'https://blockscout.com/etc/mainnet/'
+  [ChainId.ETCCLASSICMAINNET]: 'https://etc.etcdesktop.com/'
 }
 
 export const ExplorerText = {
