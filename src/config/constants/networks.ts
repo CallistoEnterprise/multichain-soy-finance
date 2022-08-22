@@ -9,7 +9,7 @@ const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.KOVAN]: 'https://kovan.infura.io/v3/d819f1add1a34a60adab4df578e0e741',
   [ChainId.BSC]: 'https://bsc-dataseed.binance.org/',
   [ChainId.BSCTESTNET]: '',
-  [ChainId.ETCCLASSICMAINNET]: 'https://www.ethercluster.com/etc/',
+  [ChainId.ETCCLASSICMAINNET]: 'https://etc.etcdesktop.com/',
   [ChainId.BTTMAINNET]: 'https://rpc.bt.io/', // 'https://rpc.bittorrentchain.io/'
 }
 
@@ -55,7 +55,7 @@ export const Networks = [
       img: `${BASE_URL}/images/networks/etc.png`,
       chainId: "61",
       hexChainId: "0x3D",
-      rpcs: ["https://www.ethercluster.com/etc/"],
+      rpcs: ["https://etc.etcdesktop.com/"],
       explorer: "https://blockscout.com/etc/mainnet/"
   },
 ]
