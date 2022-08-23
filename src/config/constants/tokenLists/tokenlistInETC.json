@@ -49,6 +49,14 @@
       "chainId": 61,
       "decimals": 18,
       "logoURI": "images/coins/61/0xcC653d74E087D35577049AB23e2141D619D95AEe.png"
+    },
+    {
+      "name": "Wrapped CLOE",
+      "symbol": "CLOE",
+      "address": "0x09c4a1ACAE1b591C63691B8E62F46E2F0eD9A0F9",
+      "chainId": 61,
+      "decimals": 18,
+      "logoURI": "images/coins/61/0x09c4a1ACAE1b591C63691B8E62F46E2F0eD9A0F9.png"
     }
   ]
 }
