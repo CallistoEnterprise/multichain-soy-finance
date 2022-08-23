@@ -185,6 +185,11 @@ export const etcConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     target: "_blank"
   },
   {
+    label: t('Info'),
+    icon: 'InfoIcon',
+    href: '/info'
+  },
+  {
     label: t('More'),
     icon: 'MoreIcon',
     items: [
