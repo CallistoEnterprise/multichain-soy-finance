@@ -22,7 +22,7 @@ export const RPC_URLS = {
   [ChainId.CLOTESTNET]: 'https://testnet-rpc.callisto.network/',
   [ChainId.BTTMAINNET]: 'https://rpc.bt.io/', // 'https://rpc.bittorrentchain.io/',
   [ChainId.BSC]: 'https://bsc-dataseed.binance.org/',
-  [ChainId.ETCCLASSICMAINNET]: 'https://www.ethercluster.com/etc/'
+  [ChainId.ETCCLASSICMAINNET]: 'https://etc.etcdesktop.com/'
 }
 
 export const ExplorerText = {
