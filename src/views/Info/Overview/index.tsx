@@ -10,6 +10,7 @@ import TokenTable from 'views/Info/components/InfoTables/TokensTable'
 import PoolTable from 'views/Info/components/InfoTables/PoolsTable'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import BarChart from 'views/Info/components/InfoCharts/BarChart'
+import { loadSubgraphVars }  from 'config/constants/endpoints';
 import { renameTokens, renamePool, renameTransactions } from 'views/Info/utils/tokenInfoRename'
 import {
   useAllPoolData,
@@ -52,6 +53,7 @@ const Overview: React.FC = () => {
 
   const currentDate = format(new Date(), 'MMM d, yyyy')
 
+  loadSubgraphVars(chainId)
   // Getting latest liquidity and volumeUSD to display on top of chart when not hovered
   useEffect(() => {
     if (volumeHover == null && protocolData) {
