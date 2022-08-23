@@ -1,6 +1,7 @@
 // import DEFAULT_TOKEN_LIST from 'config/constants/tokenLists/tokenlist.json'
 
 const toRename = {
+    // CLO chain contracts
     '0xf5ad6f6edec824c7fd54a66d241a227f6503ad3a':{name:"Callisto Network",symbol:"CLO"},
     '0x9fae2529863bd691b4a7171bdfcf33c7ebb10a65':{name:"SOY Finance token",symbol:"SOY"},
     '0xccc766f97629a4e14b3af8c91ec54f0b5664a69f':{name:'Wrapped ETC',symbol:"ccETC"},
@@ -15,7 +16,10 @@ const toRename = {
     '0xcc099e75152accda96d54fabaf6e333ca44ad86e':{name:'Wrapped TWT',symbol:'ccTWT'},
     '0xcc2d45f7fe1b8864a13f5d552345eb3f5a005fed':{name:'Wrapped Cake',symbol:'ccCake'},
     '0xcc50d400042177b9dab6bd31ede73ae8e1ed6f08':{name:'Wrapped TON',symbol:'ccTON'},
-    '0xcc45afedd2065edca770801055d1e376473a871b':{name:'Wrapped XMS',symbol:'ccXMS'}
+    '0xcc45afedd2065edca770801055d1e376473a871b':{name:'Wrapped XMS',symbol:'ccXMS'},
+    // ETC chain contracts
+    '0x35e9a89e43e45904684325970b2e2d258463e072':{name:'Ethereum Classic',symbol:'ETC'}
+    
 }
 
 // DEFAULT_TOKEN_LIST.tokens.forEach(function (item) {
