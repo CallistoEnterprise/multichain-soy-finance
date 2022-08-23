@@ -11,7 +11,7 @@ const POOLS_FOR_TOKEN = gql`
       first: 15
       orderBy: trackedReserveCLO
       orderDirection: desc
-      where: { totalTransactions_gt: 10, token0: $address, token1_not_in: $blacklist }
+      where: { totalTransactions_gt: 1, token0: $address, token1_not_in: $blacklist }
     ) {
       id
     }
@@ -19,7 +19,7 @@ const POOLS_FOR_TOKEN = gql`
       first: 15
       orderBy: trackedReserveCLO
       orderDirection: desc
-      where: { totalTransactions_gt: 10, token1: $address, token0_not_in: $blacklist }
+      where: { totalTransactions_gt: 1, token1: $address, token0_not_in: $blacklist }
     ) {
       id
     }
