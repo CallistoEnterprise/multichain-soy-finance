@@ -20,7 +20,7 @@ export let BLOCKS_CLIENT
  */
 export const loadSubgraphVars = async (chainId) => {
     if (chainId === ChainId.ETCCLASSICMAINNET){
-        INFO_CLIENT = 'https://03.callisto.network/subgraphsetc/name/soyswapetc'
+        INFO_CLIENT = 'https://03.callisto.network/subgraphsetc/name/soyswapetctmp'
         BLOCKS_CLIENT = 'https://03.callisto.network/subgraphsetc/name/blocksetctmp'
     } else if (chainId === ChainId.MAINNET) {
         INFO_CLIENT = 'https://03.callisto.network/subgraphs/name/soyswap'
