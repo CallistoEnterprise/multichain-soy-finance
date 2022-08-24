@@ -13,7 +13,7 @@ const preferredQuoteTokensForMulti = {
  * @returns A preferred farm, if found - or the first element of the farms array
  */
 export const filterFarmsByQuoteToken = (farms: Farm[]): Farm => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
   const preferredFarm = farms.find((farm) => {
     return preferredQuoteTokensForMulti[chainId].some((quoteToken) => {
       return farm.quoteToken.symbol === quoteToken

@@ -13,7 +13,7 @@ export const setupNetwork = async () => {
   if (provider) {
     const chainId = window.localStorage.getItem(localStorageChainIdKey)
       ? Number(window.localStorage.getItem(localStorageChainIdKey))
-      : parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+      : parseInt(process.env.REACT_APP_CLO_CHAIN_ID, 10)
 
     const curNet = Networks.filter((_) => Number(_.chainId) === chainId)
 
@@ -95,7 +95,7 @@ export const switchNetwork = async (library, curNet: any) => {
 export const setupNetwork2 = async () => {
   const provider = window.ethereum
   if (provider) {
-    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? 820)
+    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
 
     try {
       await provider.request({
@@ -125,7 +125,7 @@ export const setupNetwork2 = async () => {
  * @returns {boolean} true if the token has been added, false otherwise
  */
 export const registerToken = async (tokenAddress: string, tokenSymbol: string, tokenDecimals: number) => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
   const tokenAdded = await window.ethereum.request({
     method: 'wallet_watchAsset',
     params: {

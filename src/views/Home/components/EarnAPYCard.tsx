@@ -30,10 +30,10 @@ const EarnAPYCard = () => {
   const bnbPrice = usePriceBnbBusd()
 
   const maxAPY = useRef(Number.MIN_VALUE)
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
 
   const getHighestAPY = () => {
-    const activeFarms = farmsLP.data[chId].filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
+    const activeFarms = farmsLP.data[chainId].filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
 
     calculateAPY(activeFarms)
 
@@ -42,7 +42,7 @@ const EarnAPYCard = () => {
 
   const calculateAPY = useCallback(
     (farmsToDisplay) => {
-      const cakePriceVsBNB = new BigNumber(farmsLP.data[chId].find((farm) => farm.pid === SOY_POOL_PID)?.tokenPriceVsQuote || 0)
+      const cakePriceVsBNB = new BigNumber(farmsLP.data[chainId].find((farm) => farm.pid === SOY_POOL_PID)?.tokenPriceVsQuote || 0)
 
       farmsToDisplay.map((farm) => {
         if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {
@@ -75,7 +75,7 @@ const EarnAPYCard = () => {
         return apy
       })
     },
-    [bnbPrice, chId, farmsLP],
+    [bnbPrice, chainId, farmsLP],
   )
 
   return (

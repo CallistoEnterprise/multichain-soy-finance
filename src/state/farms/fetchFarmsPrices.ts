@@ -109,7 +109,7 @@ const refFarms = {
   61: 1
 }
 const fetchFarmsPrices = async (farms) => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
   const nativeBusdtFarm = farms.find((farm: Farm) => farm.pid === farmsPids[chainId])
   const soyBusdtFarm = farms.find((farm: Farm) => farm.pid === busdtFarms[chainId])
   const soyCloFarm = farms.find((farm: Farm) => farm.pid === refFarms[chainId])

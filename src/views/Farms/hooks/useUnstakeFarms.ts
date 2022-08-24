@@ -7,9 +7,9 @@ import { localStorageChainIdKey } from 'config'
 
 const useUnstakeFarms = (pid: number) => {
   const { account, library } = useActiveWeb3React()
-  const locChainId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
 
-  const currentFarm = farms[locChainId].find((farm) => farm.pid === pid)
+  const currentFarm = farms[chainId].find((farm) => farm.pid === pid)
   const { localFarmAddresses } = currentFarm
   const localFarmContract = getLocalFarmContractWithAccount(localFarmAddresses, library, account)
 

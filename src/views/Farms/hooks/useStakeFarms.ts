@@ -9,14 +9,14 @@ import { localStorageChainIdKey } from 'config'
 
 const useStakeFarms = (pid: number) => {
   const { account, library } = useActiveWeb3React()
-  const locChainId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
 
   // const masterChefContract = useMasterchef()
-  const currentFarm = farms[locChainId].find((farm) => farm.pid === pid)
+  const currentFarm = farms[chainId].find((farm) => farm.pid === pid)
   const { lpAddresses, localFarmAddresses }= currentFarm
   const lpContract = getLpContractWithAccount(getAddress(lpAddresses), library, account)
   const farmAddress = getAddress(localFarmAddresses)
-  const web3 = useWeb3ProviderByRpc(locChainId)
+  const web3 = useWeb3ProviderByRpc(chainId)
 
   const handleStake = useCallback(
     async (amount: string) => {

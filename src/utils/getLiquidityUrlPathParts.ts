@@ -4,7 +4,7 @@ import { localStorageChainIdKey, NativeSymbols } from 'config'
 import { getWmaticAddress } from './addressHelpers'
 
 const getLiquidityUrlPathParts = ({ quoteTokenAddress, tokenAddress }) => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CHAIN_ID)
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
   const wMATICAddressString = getWmaticAddress(chainId)
   const quoteTokenAddressString: string = quoteTokenAddress ? quoteTokenAddress[chainId] : null
   const tokenAddressString: string = tokenAddress ? tokenAddress[chainId] : null

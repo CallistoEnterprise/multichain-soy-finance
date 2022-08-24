@@ -48,7 +48,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const [percent, setPercent] = useState(0)
   const [periods, setPeriods] = useState(0)
 
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
   const getCalculatedStakingLimit = () => {
     if (isRemovingStake) {
       return userData.stakedBalance
@@ -165,7 +165,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
             src={
               isBnbPool
                 ? `${BASE_URL}/images/coins/clo.png`
-                : `${BASE_URL}/images/coins/${chainId ?? 820}/${getAddress(stakingToken.address)}.png`
+                : `${BASE_URL}/images/coins/${chainId ?? process.env.REACT_APP_CLO_CHAIN_ID}/${getAddress(stakingToken.address)}.png`
             }
             width={24}
             height={24}

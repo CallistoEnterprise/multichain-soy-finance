@@ -141,7 +141,7 @@ const Farms: React.FC = () => {
     setStakedOnly(!isActive)
   }, [isActive])
 
-  const chId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
   
   const activeFarms = farmsLP[chId].filter((farm) => farm.pid !== 0 && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP[chId].filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
