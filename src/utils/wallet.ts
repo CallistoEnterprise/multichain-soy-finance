@@ -13,7 +13,7 @@ export const setupNetwork = async () => {
   if (provider) {
     const chainId = window.localStorage.getItem(localStorageChainIdKey)
       ? Number(window.localStorage.getItem(localStorageChainIdKey))
-      : parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+      : parseInt(process.env.REACT_APP_CLO_CHAIN_ID, 10)
 
     const curNet = Networks.filter((_) => Number(_.chainId) === chainId)
 
