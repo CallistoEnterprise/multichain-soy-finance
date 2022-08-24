@@ -522,6 +522,18 @@ const bttFarms: FarmConfig[] = [
     token: tokens.cceth_erc223,
     quoteToken: tokens.ccclo,
   },
+  {
+    pid: 20,
+    lpSymbol: 'BTT-CLOE LP',
+    lpAddresses: {
+      199: '0x4107B98925140896dB8Da756a5d216f503580E1E',
+    },
+    localFarmAddresses: {
+      199: '0x183e0d3FD5b10d26a506dbF14254C912c3a70c5A',
+    },
+    token: tokens.cloe,
+    quoteToken: tokens.wbtt,
+  },
 ]
 
 const etcFarms: FarmConfig[] = [
@@ -632,6 +644,18 @@ const etcFarms: FarmConfig[] = [
     },
     token: tokens.cceth_erc223,
     quoteToken: tokens.ccclo,
+  },
+  {
+    pid: 10,
+    lpSymbol: 'ETC-CLOE LP',
+    lpAddresses: {
+      61: '0x87A3D667cA24B78F85A4EE3CCd8f285CC74A9C3f',
+    },
+    localFarmAddresses: {
+      61: '0x1adE101cCBE2aA6Db8D4c55DbdE6Ab594f99E4f9',
+    },
+    token: tokens.cloe,
+    quoteToken: tokens.wetc,
   },
 ]
 
