@@ -7,6 +7,13 @@ import { useBlocksFromTimestamps } from 'views/Info/hooks/useBlocksFromTimestamp
 import { getPercentChange, getChangeForPeriod, getAmountChange } from 'views/Info/utils/infoDataHelpers'
 import { TokenData } from 'state/info/types'
 import { useBnbPrices } from 'views/Info/hooks/useBnbPrices'
+import { coinPrice,derivedCOIN } from 'config/constants/info' 
+
+import { ChainId } from "@soy-libs/sdk-multichain"
+
+const chainId = parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
+
+if (chainId === ChainId.MAINNET){
 
 interface TokenFields {
   id: string
@@ -26,6 +33,30 @@ interface FormattedTokenFields
   tradeVolumeUSD: number
   totalTransactions: number
   totalLiquidity: number
+}
+
+} else if (chainId === ChainId.ETCCLASSICMAINNET) {
+
+  interface TokenFields {
+    id: string
+    symbol: string
+    name: string
+    derivedETC: string // Price in ETC per token
+    derivedUSD: string // Price in USD per token
+    tradeVolumeUSD: string
+    totalTransactions: string
+    totalLiquidity: string
+  }
+  
+  interface FormattedTokenFields
+    extends Omit<TokenFields, 'derivedETC' | 'derivedUSD' | 'tradeVolumeUSD' | 'totalTransactions' | 'totalLiquidity'> {
+    derivedETC: number
+    derivedUSD: number
+    tradeVolumeUSD: number
+    totalTransactions: number
+    totalLiquidity: number
+  }
+
 }
 
 interface TokenQueryResponse {
@@ -51,7 +82,7 @@ const TOKEN_AT_BLOCK = (block: number | undefined, tokens: string[]) => {
       id
       symbol
       name
-      derivedCLO
+      ${derivedCOIN}
       derivedUSD
       tradeVolumeUSD
       totalTransactions
@@ -91,14 +122,27 @@ const parseTokenData = (tokens?: TokenFields[]) => {
     return {}
   }
   return tokens.reduce((accum: { [address: string]: FormattedTokenFields }, tokenData) => {
-    const { derivedCLO, derivedUSD, tradeVolumeUSD, totalTransactions, totalLiquidity } = tokenData
-    accum[tokenData.id] = {
-      ...tokenData,
-      derivedCLO: parseFloat(derivedCLO),
-      derivedUSD: parseFloat(derivedUSD),
-      tradeVolumeUSD: parseFloat(tradeVolumeUSD),
-      totalTransactions: parseFloat(totalTransactions),
-      totalLiquidity: parseFloat(totalLiquidity),
+
+    if (chainId === ChainId.MAINNET) {
+      const { derivedCLO, derivedUSD, tradeVolumeUSD, totalTransactions, totalLiquidity } = tokenData
+      accum[tokenData.id] = {
+        ...tokenData,
+        derivedCLO: parseFloat(derivedCLO),
+        derivedUSD: parseFloat(derivedUSD),
+        tradeVolumeUSD: parseFloat(tradeVolumeUSD),
+        totalTransactions: parseFloat(totalTransactions),
+        totalLiquidity: parseFloat(totalLiquidity),
+      }
+    } else if (chainId === ChainId.ETCCLASSICMAINNET) {
+      const { derivedETC, derivedUSD, tradeVolumeUSD, totalTransactions, totalLiquidity } = tokenData
+      accum[tokenData.id] = {
+        ...tokenData,
+        derivedETC: parseFloat(derivedETC),
+        derivedUSD: parseFloat(derivedUSD),
+        tradeVolumeUSD: parseFloat(tradeVolumeUSD),
+        totalTransactions: parseFloat(totalTransactions),
+        totalLiquidity: parseFloat(totalLiquidity),
+      }
     }
     return accum
   }, {})
@@ -161,10 +205,15 @@ const useFetchedTokenDatas = (tokenAddresses: string[]): TokenDatas => {
           const liquidityUSDOneDayAgo = oneDay ? oneDay.totalLiquidity * oneDay.derivedUSD : 0
           const liquidityUSDChange = getPercentChange(liquidityUSD, liquidityUSDOneDayAgo)
           const liquidityToken = current ? current.totalLiquidity : 0
+          let priceUSD = current ? current.derivedCLO * cloPrices.current : 0
+          let priceUSDOneDay = oneDay ? oneDay.derivedCLO * cloPrices.oneDay : 0
+          let priceUSDWeek = week ? week.derivedCLO * cloPrices.week : 0  
           // Prices of tokens for now, 24h ago and 7d ago
-          const priceUSD = current ? current.derivedCLO * cloPrices.current : 0
-          const priceUSDOneDay = oneDay ? oneDay.derivedCLO * cloPrices.oneDay : 0
-          const priceUSDWeek = week ? week.derivedCLO * cloPrices.week : 0
+          if (chainId === ChainId.ETCCLASSICMAINNET){
+             priceUSD = current ? current.derivedETC * cloPrices.current : 0
+             priceUSDOneDay = oneDay ? oneDay.derivedETC * cloPrices.oneDay : 0
+             priceUSDWeek = week ? week.derivedETC * cloPrices.week : 0  
+          }
           const priceUSDChange = getPercentChange(priceUSD, priceUSDOneDay)
           const priceUSDChangeWeek = getPercentChange(priceUSD, priceUSDWeek)
           const txCount = getAmountChange(current?.totalTransactions, oneDay?.totalTransactions)

@@ -4,15 +4,20 @@ import { getBlocksFromTimestamps } from 'views/Info/hooks/useBlocksFromTimestamp
 import { multiQuery } from 'views/Info/utils/infoQueryHelpers'
 import { PriceChartEntry } from 'state/info/types'
 import { INFO_CLIENT } from 'config/constants/endpoints'
+import { coinPrice,derivedCOIN } from 'config/constants/info'
+
+import { ChainId } from "@soy-libs/sdk-multichain"
+
+const chainId = parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 
 const getPriceSubqueries = (tokenAddress: string, blocks: any) =>
   blocks.map(
     (block: any) => `
       t${block.timestamp}:token(id:"${tokenAddress}", block: { number: ${block.number} }) { 
-        derivedCLO
+        ${derivedCOIN}
       }
       b${block.timestamp}: bundle(id:"1", block: { number: ${block.number} }) { 
-        cloPrice
+        ${coinPrice}
       }
     `,
   )
@@ -70,7 +75,7 @@ const fetchTokenPriceData = async (
     // format token CLO price results
     const tokenPrices: {
       timestamp: string
-      derivedCLO: number
+      derivedCOIN: number
       priceUSD: number
     }[] = []
 
@@ -78,12 +83,22 @@ const fetchTokenPriceData = async (
     Object.keys(prices).forEach((priceKey) => {
       const timestamp = priceKey.split('t')[1]
       // if its CLO price e.g. `b123` split('t')[1] will be undefined and skip CLO price entry
+
       if (timestamp) {
-        tokenPrices.push({
-          timestamp,
-          derivedCLO: prices[priceKey]?.derivedCLO ? parseFloat(prices[priceKey].derivedCLO) : 0,
-          priceUSD: 0,
-        })
+        if (chainId === ChainId.MAINNET){
+          tokenPrices.push({
+            timestamp,
+            derivedCOIN: prices[priceKey]?.derivedCLO ? parseFloat(prices[priceKey].derivedCLO) : 0,
+            priceUSD: 0,
+          })
+        } else if (chainId === ChainId.ETCCLASSICMAINNET){
+          tokenPrices.push({
+            timestamp,
+            derivedCOIN: prices[priceKey]?.derivedETC ? parseFloat(prices[priceKey].derivedETC) : 0,
+            priceUSD: 0,
+          })
+        }
+
       }
     })
 
@@ -94,8 +109,12 @@ const fetchTokenPriceData = async (
       if (timestamp) {
         const tokenPriceIndex = tokenPrices.findIndex((tokenPrice) => tokenPrice.timestamp === timestamp)
         if (tokenPriceIndex >= 0) {
-          const { derivedCLO } = tokenPrices[tokenPriceIndex]
-          tokenPrices[tokenPriceIndex].priceUSD = parseFloat(prices[priceKey]?.cloPrice ?? 0) * derivedCLO
+          const { derivedCOIN } = tokenPrices[tokenPriceIndex]
+          if (chainId === ChainId.MAINNET){
+          tokenPrices[tokenPriceIndex].priceUSD = parseFloat(prices[priceKey]?.cloPrice ?? 0) * derivedCOIN
+          } else if (chainId === ChainId.ETCCLASSICMAINNET){
+            tokenPrices[tokenPriceIndex].priceUSD = parseFloat(prices[priceKey]?.etcPrice ?? 0) * derivedCOIN
+          }
         }
       }
     })

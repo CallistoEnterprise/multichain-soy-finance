@@ -8,13 +8,22 @@ export const LP_HOLDERS_FEE = 0.0017
 export const TREASURY_FEE = 0.0003
 export const BUYBACK_FEE = 0.0005
 export let SS_V2_START = 1634494539 // CLO chain October-17-2021 09:15:02 PM +2 UTC
-// SS_V2_START = 1655710961 ETC chain June-20-2022 10:42:41 AM +3 UTC    
+// SS_V2_START = 1655710961 ETC chain June-20-2022 10:42:41 AM +3 UTC
+export let trackedReserveCOIN = 'trackedReserveETC'
+export let coinPrice = 'cloPrice'
+export let derivedCOIN = 'derivedCLO'
 
 export const setSoyStart = async (chainId) => {
     if (chainId === ChainId.ETCCLASSICMAINNET){
         SS_V2_START = 1655710961
+        trackedReserveCOIN = 'trackedReserveETC'
+        coinPrice = 'etcPrice'
+        derivedCOIN = 'derivedETC'
     } else if (chainId === ChainId.MAINNET){
         SS_V2_START = 1634494539
+        trackedReserveCOIN = 'trackedReserveCLO'
+        coinPrice = 'cloPrice'
+        derivedCOIN = 'derivedCLO'
     }
 }
 
