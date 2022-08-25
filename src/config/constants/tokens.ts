@@ -134,6 +134,8 @@ const tokens = {
     address: {
       820: '0x1eAa43544dAa399b87EEcFcC6Fa579D5ea4A6187',
       20729: '0x1eAa43544dAa399b87EEcFcC6Fa579D5ea4A6187',
+      199: '0xCC20d1B86bf1b80d4b9F0C19B138E17034457271',
+      61: '0x09c4a1ACAE1b591C63691B8E62F46E2F0eD9A0F9',
     },
     decimals: 18,
     projectLink: 'https://callistoenterprise.com/',
