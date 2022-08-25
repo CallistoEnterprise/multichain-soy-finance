@@ -21,32 +21,32 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       },
     ],
   },
-  // {
-  //   label: t('Farms'),
-  //   icon: 'FarmIcon',
-  //   href: '/farms',
-  // },
-  // {
-  //   label: t('Staking Pools'),
-  //   icon: 'PoolIcon',
-  //   href: '/staking',
-  // },
-  // {
-  //   label: t('Launchpad'),
-  //   icon: 'LaunchpadIcon',
-  //   href: '/launchpad',
-  // },
+  {
+    label: t('Farms'),
+    icon: 'FarmIcon',
+    href: '/farms',
+  },
+  {
+    label: t('Staking Pools'),
+    icon: 'PoolIcon',
+    href: '/staking',
+  },
+  {
+    label: t('Launchpad'),
+    icon: 'LaunchpadIcon',
+    href: '/launchpad',
+  },
   {
     label: t('Bridge'),
     icon: 'BridgeIcon',
     href: 'https://bridge.soy.finance/',
     target: "_blank"
   },
-  // {
-  //   label: t('SOY Finance IDO'),
-  //   icon: 'IDOIcon',
-  //   href: '/ido',
-  // },
+  {
+    label: t('SOY Finance IDO'),
+    icon: 'IDOIcon',
+    href: '/ido',
+  },
   // {
   //   label: t('CHOAM'),
   //   href: 'https://choamtoken.com/',
@@ -54,11 +54,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   //   target: "_blank",
   //   status: menuStatus.SOLDOUT
   // },
-  // {
-  //   label: t('NFT'),
-  //   icon: 'NftIcon',
-  //   href: '/nft',
-  // },
+  {
+    label: t('NFT'),
+    icon: 'NftIcon',
+    href: '/nft',
+  },
   {
     label: t('Info'),
     icon: 'InfoIcon',

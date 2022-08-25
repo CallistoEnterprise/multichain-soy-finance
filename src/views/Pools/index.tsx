@@ -121,7 +121,7 @@ const Pools: React.FC = () => {
     const init = () => {
       history.push('/')
     }
-    if (chainId !== 820) {
+    if (chainId !== 20729) {
       init()
     }
   }, [chainId])

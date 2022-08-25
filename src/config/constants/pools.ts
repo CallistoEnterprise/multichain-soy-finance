@@ -16,19 +16,38 @@ const pools: PoolConfig[] = [
     sortOrder: 1,
     isFinished: false,
   },
-  // {
-  //   sousId: 1,
-  //   stakingToken: tokens.clo,
-  //   earningToken: tokens.soy,
-  //   contractAddress: {
-  //     820: '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
-  //     20729: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
-  //   },
-  //   poolCategory: PoolCategory.CLO,
-  //   harvest: true,
-  //   sortOrder: 999,
-  //   tokenPerBlock: '5',
-  // },
+  {
+    sousId: 2,
+    stakingToken: tokens.soy,
+    earningToken: tokens.srt,
+    contractAddress: {
+      820: '',
+      20729: '0x5017D4771605a4C6295f436D51135c2e20c0a83C',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    sortOrder: 2,
+    tokenPerBlock: '5',
+    isFinished: false,
+    lockPeriod: 2,
+    lockPeriodUnit: 'hours'
+  },
+  {
+    sousId: 3,
+    stakingToken: tokens.soy,
+    earningToken: tokens.srt,
+    contractAddress: {
+      820: '',
+      20729: '0x6E56f8e797dd2C06c7aE9982e982Bb763c75cB5C',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    sortOrder: 3,
+    tokenPerBlock: '5',
+    isFinished: false,
+    lockPeriod: 3,
+    lockPeriodUnit: 'hours'
+  },
 ]
 
 export default pools

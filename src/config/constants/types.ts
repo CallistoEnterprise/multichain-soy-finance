@@ -94,6 +94,8 @@ export interface PoolConfig {
   harvest?: boolean
   isFinished?: boolean
   enableEmergencyWithdraw?: boolean
+  lockPeriod?: number | string
+  lockPeriodUnit?: string
 }
 
 export type Images = {

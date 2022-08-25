@@ -348,6 +348,15 @@ const tokens = {
     },
     decimals: 18,
     projectLink: "https://wbtt.io/"
+  },
+  srt: {
+    symbol: "SRT",
+    address: {
+      829: '',
+      20729: '0xA38760109D760fe65427551242eAC320AD7bf672',
+    },
+    decimals: 18,
+    projectLink: "https://wbtt.io/"
   }
 }
 
