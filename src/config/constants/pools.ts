@@ -15,6 +15,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '5',
     sortOrder: 1,
     isFinished: false,
+    isNew: false
   },
   {
     sousId: 2,
@@ -30,7 +31,8 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '5',
     isFinished: false,
     lockPeriod: 2,
-    lockPeriodUnit: 'hours'
+    lockPeriodUnit: 'hours',
+    isNew: true
   },
   {
     sousId: 3,
@@ -46,7 +48,8 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '5',
     isFinished: false,
     lockPeriod: 3,
-    lockPeriodUnit: 'hours'
+    lockPeriodUnit: 'hours',
+    isNew: true
   },
 ]
 

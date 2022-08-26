@@ -96,6 +96,7 @@ export interface PoolConfig {
   enableEmergencyWithdraw?: boolean
   lockPeriod?: number | string
   lockPeriodUnit?: string
+  isNew?: boolean
 }
 
 export type Images = {
