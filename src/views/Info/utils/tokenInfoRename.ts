@@ -1,4 +1,4 @@
-// import DEFAULT_TOKEN_LIST from 'config/constants/tokenLists/tokenlist.json'
+import DEFAULT_TOKEN_LIST from 'config/constants/tokenLists/tokenlist.json'
 
 const toRename = {
     // CLO chain contracts
@@ -18,15 +18,15 @@ const toRename = {
     '0xcc50d400042177b9dab6bd31ede73ae8e1ed6f08':{name:'Wrapped TON',symbol:'ccTON'},
     '0xcc45afedd2065edca770801055d1e376473a871b':{name:'Wrapped XMS',symbol:'ccXMS'},
     // ETC chain contracts
-    '0x35e9a89e43e45904684325970b2e2d258463e072':{name:'Ethereum Classic',symbol:'ETC'}
-    
+    '0x35e9a89e43e45904684325970b2e2d258463e072':{name:'Ethereum Classic',symbol:'ETC'},
+    '0x09c4a1acae1b591c63691b8e62f46e2f0ed9a0f9':{name:'Callisto Enterprise',symbol:'ccCLOE'}
 }
 
-// DEFAULT_TOKEN_LIST.tokens.forEach(function (item) {
-//     if (!(item.address.toLocaleLowerCase() in toRename)){
-//         toRename[item.address.toLocaleLowerCase()] = {'name':item.name, 'symbol': item.symbol}
-//     }
-//  });
+DEFAULT_TOKEN_LIST.tokens.forEach(function (item) {
+     if (!(item.address.toLocaleLowerCase() in toRename)){
+         toRename[item.address.toLocaleLowerCase()] = {'name':item.name, 'symbol': item.symbol}
+     }
+});
     
 export function renameTokens(object){
     if(object !== undefined && Object.prototype.hasOwnProperty.call(object, 'address')){

@@ -9,7 +9,7 @@ export const TREASURY_FEE = 0.0003
 export const BUYBACK_FEE = 0.0005
 export let SS_V2_START = 1634494539 // CLO chain October-17-2021 09:15:02 PM +2 UTC
 // SS_V2_START = 1655710961 ETC chain June-20-2022 10:42:41 AM +3 UTC
-export let trackedReserveCOIN = 'trackedReserveETC'
+export let trackedReserveCOIN = 'trackedReserveCLO'
 export let coinPrice = 'cloPrice'
 export let derivedCOIN = 'derivedCLO'
 
