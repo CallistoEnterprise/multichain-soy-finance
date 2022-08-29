@@ -1,5 +1,6 @@
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
+import sousChefABINew from 'config/abi/sousChefNew.json'
 import erc20ABI from 'config/abi/erc20.json'
 import {multicall3} from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
@@ -33,7 +34,6 @@ export const fetchUserBalances = async (account) => {
     params: [account],
   }))
   const tokenBalancesRaw = await multicall3(erc20ABI, calls)
-  
   const tokenBalances = nonCloPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(tokenBalancesRaw[index]).toJSON() }),
     {},
@@ -51,12 +51,21 @@ export const fetchUserBalances = async (account) => {
 }
 
 export const fetchUserStakeBalances = async (account) => {
-  const calls = nonMasterPools.map((p) => ({
+  const callsOld = nonMasterPools.filter((_) => !_.isNew).map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'staker',
     params: [account],
   }))
-  const userInfo1 = await multicall3(sousChefABI, calls)
+  const callsNew = nonMasterPools.filter((_) => _.isNew).map((p) => p.isNew && ({
+    address: getAddress(p.contractAddress),
+    name: 'staker',
+    params: [account],
+  }))
+
+  const userInfoOld = await multicall3(sousChefABI, callsOld)
+  const userInfoNew = await multicall3(sousChefABINew, callsNew)
+
+  const userInfo1 = [...userInfoOld, ...userInfoNew]
 
   const stakedBalances = nonMasterPools.reduce(
     (acc, pool, index) => ({
@@ -70,9 +79,9 @@ export const fetchUserStakeBalances = async (account) => {
     (acc, pool, index) => ({
       ...acc,
       [pool.sousId]: {
-        time: new BigNumber(userInfo1[index].time.toString()).toJSON(),
-        multiplier: new BigNumber(userInfo1[index].multiplier.toString()).toJSON(),
-        endTime: new BigNumber(userInfo1[index].end_time.toString()).toJSON()
+        time: !pool.isNew ? new BigNumber(userInfo1[index].time.toString()).toJSON() : new BigNumber(0).toJSON(),
+        multiplier: !pool.isNew ? new BigNumber(userInfo1[index].multiplier.toString()).toJSON() : new BigNumber(0).toJSON(),
+        endTime: !pool.isNew ? new BigNumber(userInfo1[index].end_time.toString()).toJSON() : new BigNumber(userInfo1[index].endTime.toString()).toJSON()
       },
     }),
     {},
@@ -84,7 +93,7 @@ export const fetchUserStakeBalances = async (account) => {
 export const fetchUserPendingRewards = async (account) => {
   const calls = nonMasterPools.map((p) => ({
     address: getAddress(p.contractAddress),
-    name: 'stake_reward',
+    name: p.isNew ? 'pendingReward' : 'stake_reward',
     params: [account],
   }))
 

@@ -11,6 +11,7 @@ import useRefresh from 'hooks/useRefresh'
 // import useGetPriceData from 'hooks/useGetPriceData'
 import { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync, nonArchivedFarms } from '.'
 import { State, Farm, FarmsState } from '../types'
+import { getAddress } from 'utils/addressHelpers'
 
 export const usePollFarmsData = (includeArchive = false) => {
   const dispatch = useAppDispatch()
@@ -18,9 +19,10 @@ export const usePollFarmsData = (includeArchive = false) => {
   const { account } = useWeb3React()
 
   const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
-
+  
   useEffect(() => {
-    const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
+    const filteredConfig = farmsConfig[chainId].filter((_) => getAddress(_.lpAddresses) !== '')
+    const farmsToFetch = includeArchive ? filteredConfig : nonArchivedFarms
     const pids = farmsToFetch[chainId]?.map((farmToFetch) => farmToFetch.pid)
 
     dispatch(fetchFarmsPublicDataAsync(pids))

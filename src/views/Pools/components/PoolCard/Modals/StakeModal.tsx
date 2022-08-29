@@ -36,7 +36,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   isRemovingStake = false,
   onDismiss,
 }) => {
-  const { sousId, stakingToken, userData, stakingLimit, earningToken, contractAddress } = pool
+  const { sousId, stakingToken, userData, stakingLimit, earningToken, contractAddress, isNew, lockPeriod, lockPeriodUnit } = pool
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { onStake } = useStakePool(sousId, isBnbPool)
@@ -57,13 +57,14 @@ const StakeModal: React.FC<StakeModalProps> = ({
   }
 
   const usdValueStaked = stakeAmount && formatNumber(new BigNumber(stakeAmount).times(stakingTokenPrice).toNumber())
+  const curTime = useBlockLatestTimestamp()
 
   const endTime = userData ? new BigNumber(userData.stakedStatus.endTime).toNumber() : 0
   const multiplier = userData
     ? getFullDisplayBalance(new BigNumber(userData.stakedStatus.multiplier), earningToken.decimals, 2)
     : ''
-  const curTime = useBlockLatestTimestamp()
 
+  // console.log("endTime ::", endTime, curTime)
   useEffect(() => {
     if (stakingLimit.gt(0) && !isRemovingStake) {
       const fullDecimalStakeAmount = getDecimalAmount(new BigNumber(stakeAmount), stakingToken.decimals)
@@ -123,12 +124,12 @@ const StakeModal: React.FC<StakeModalProps> = ({
       }
     } else {
       try {
-        if (periods === 0) {
+        if (!isNew && periods === 0) {
           toastWarning(t('Warning'), t('Please select staking periods.'))
           return
         }
         // staking
-        await onStake(getAddress(contractAddress), stakeAmount, stakingToken.decimals, periods)
+        await onStake(getAddress(contractAddress), stakeAmount, stakingToken.decimals, periods, isNew)
         toastSuccess(
           `${t('Staked')}!`,
           t('Your %symbol% funds have been staked in the pool!', {
@@ -176,14 +177,14 @@ const StakeModal: React.FC<StakeModalProps> = ({
           </Text>
         </Flex>
       </Flex>
-      <Text bold>{!isRemovingStake ? `Staking Periods: ${periods} (months)` : `Staked Status`}</Text>
+      <Text bold>{!isRemovingStake ? `Staking Periods: ${isNew ? lockPeriod : periods} (${isNew ? lockPeriodUnit : 'months'})` : `Staked Status`}</Text>
       {isRemovingStake && (
         <div>
           <Text>{`Multiplier : ${multiplier}`}</Text>
           <Text>{`End Time : ${getFormattedDateFromTimeStamp(endTime)} ${getTimeFromTimeStamp(endTime)}`}</Text>
         </div>
       )}
-      {!isRemovingStake && (
+      {!isRemovingStake && !isNew && (
         <Flex alignItems="center" justifyContent="space-between" mt="8px" mb="10px">
           <PercentageButton onClick={() => handleChangePeriods(1)}>1</PercentageButton>
           <PercentageButton onClick={() => handleChangePeriods(2)}>2</PercentageButton>
@@ -244,7 +245,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
           (!stakeAmount && !isRemovingStake) ||
           (parseFloat(stakeAmount) === 0 && !isRemovingStake) ||
           hasReachedStakeLimit ||
-          (!periods && !isRemovingStake)
+          (!isNew ? !periods && !isRemovingStake : false)
         }
         mt="24px"
       >

@@ -25,7 +25,8 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   isStaked,
   isLoading = false,
 }) => {
-  const { stakingToken, stakingTokenPrice, stakingLimit, isFinished, userData } = pool
+  // console.log("stakingTokenBalance ::", stakingTokenBalance.toString())
+  const { stakingToken, stakingTokenPrice, stakingLimit, isFinished, userData, isNew } = pool
   const { t } = useTranslation()
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
   const stakedTokenDollarBalance = getBalanceNumber(
@@ -104,7 +105,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         {tooltipVisible && tooltip}
       </Flex>
     ) : (
-      <Button disabled={isFinished} onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
+      <Button disabled={isFinished || !isNew} onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
         {t('Stake')}
       </Button>
     )

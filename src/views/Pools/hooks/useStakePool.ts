@@ -13,10 +13,10 @@ const options = {
   gasLimit: DEFAULT_GAS_LIMIT,
 }
 
-const sousStake = async (stakingTkContract, to, amount, decimals = 18, periods=6) => {
+const sousStake = async (stakingTkContract, to, amount, decimals = 18, periods=6, isNew = true) => {
   const _data = web3.eth.abi.encodeParameter('uint256', periods)
   const bigAmount = new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString()
-  const tx = await stakingTkContract.transfer(to, bigAmount, _data)
+  const tx = isNew ? await stakingTkContract.transfer(to, bigAmount, options) : await stakingTkContract.transfer(to, bigAmount, _data)
   const receipt = await tx.wait()
   return receipt.status
 }
@@ -34,13 +34,13 @@ const useStakePool = (sousId: number, isUsingBnb = false) => {
   const stakingTkContract = useStakingTokenContract(sousId)
 
   const handleStake = useCallback(
-    async (to: string, amount: string, decimals: number, periods: number) => {
+    async (to: string, amount: string, decimals: number, periods: number, isNew?: boolean) => {
       if (sousId === 0) {
         await stakeFarm(masterChefContract, 0, amount)
       } else if (isUsingBnb) {
         await sousStakeBnb(stakingTkContract, amount)
       } else {
-        await sousStake(stakingTkContract, to, amount, decimals, periods)
+        await sousStake(stakingTkContract, to, amount, decimals, periods, isNew)
       }
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))

@@ -361,6 +361,7 @@ const tokens = {
 }
 
 export const wrappedNativeTokens = {
+  20729: tokens.wclo,
   820: tokens.wclo,
   199: tokens.wbtt,
   61: tokens.wetc
