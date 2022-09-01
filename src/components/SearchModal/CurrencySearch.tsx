@@ -58,7 +58,9 @@ function CurrencySearch({
 
   const showETH: boolean = useMemo(() => {
     const s = debouncedQuery.toLowerCase().trim()
-    return chainId === 820 ? s === '' || s === 'c' || s === 'cl' || s === 'clo' : s === '' || s === 'b' || s === 'bt' || s === 'btt'
+    return chainId === 820 || chainId === 20729
+      ? s === '' || s === 'c' || s === 'cl' || s === 'clo'
+      : s === '' || s === 'b' || s === 'bt' || s === 'btt'
   }, [debouncedQuery, chainId])
 
   const tokenComparator = useTokenComparator(invertSearchOrder)

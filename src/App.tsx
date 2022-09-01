@@ -88,7 +88,7 @@ const App: React.FC = () => {
     const init = async () => {
       setupNetwork2()
     }
-    if (account && chainId !== 820 && chainId !== 199 && chainId !== 61) {
+    if (account && chainId !== 820 && chainId !== 199 && chainId !== 61 && chainId !== 20729) {
       init()
     }
   }, [account, chainId])

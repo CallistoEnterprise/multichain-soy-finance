@@ -57,7 +57,9 @@ function CurrencySearchIdo({
 
   const showETH: boolean = useMemo(() => {
     const s = debouncedQuery.toLowerCase().trim()
-    return chainId === 820 ? s === '' || s === 'c' || s === 'cl' || s === 'clo' : s === '' || s === 'b' || s === 'bt' || s === 'btt'
+    return chainId === 820 || chainId === 20729
+      ? s === '' || s === 'c' || s === 'cl' || s === 'clo'
+      : s === '' || s === 'b' || s === 'bt' || s === 'btt'
   }, [debouncedQuery, chainId])
 
   const tokenComparator = useTokenComparator(invertSearchOrder)
@@ -118,12 +120,14 @@ function CurrencySearchIdo({
   // if no results on main list, show option to expand into inactive
   const inactiveTokens = useFoundOnInactiveList(debouncedQuery)
   const filteredInactiveTokens: Token[] = useSortedTokensByQuery(inactiveTokens, debouncedQuery)
-  const filteredSortedTokens1 = filteredSortedTokens.filter((item) => item.symbol === 'CLOE' ||
-                                                                      item.symbol === 'ccETC' ||
-                                                                      item.symbol === 'BUSDT' ||
-                                                                      (item.symbol === 'ccETH' && item.name.includes('ERC223')) ||
-                                                                      (item.symbol === 'ccBNB' && item.name.includes('ERC223'))
-                                                                    )
+  const filteredSortedTokens1 = filteredSortedTokens.filter(
+    (item) =>
+      item.symbol === 'CLOE' ||
+      item.symbol === 'ccETC' ||
+      item.symbol === 'BUSDT' ||
+      (item.symbol === 'ccETH' && item.name.includes('ERC223')) ||
+      (item.symbol === 'ccBNB' && item.name.includes('ERC223')),
+  )
   // console.log(filteredSortedTokens1)
 
   return (

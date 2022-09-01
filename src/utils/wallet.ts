@@ -2,6 +2,7 @@
 
 import { BASE_URL } from 'config'
 import { Networks } from 'config/constants/networks'
+import tokens from 'config/constants/tokens'
 import { localStorageChainIdKey } from '../config/index'
 
 /**
@@ -13,7 +14,7 @@ export const setupNetwork = async () => {
   if (provider) {
     const chainId = window.localStorage.getItem(localStorageChainIdKey)
       ? Number(window.localStorage.getItem(localStorageChainIdKey))
-      : parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+      : 820
 
     const curNet = Networks.filter((_) => Number(_.chainId) === chainId)
 
@@ -142,19 +143,13 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
   return tokenAdded
 }
 
-const SOY = {
-  820: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
-  199: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
-  61: '0xcC67D978Ddf07971D9050d2b424f36f6C1a15893',
-}
-
 export const addSoyToMetamask = async (chainId: number) => {
   await window.ethereum.request({
     method: 'wallet_watchAsset',
     params: {
       type: 'ERC20',
       options: {
-        address: SOY[chainId],
+        address: tokens.soy.address[chainId],
         symbol: 'SOY',
         decimals: 18,
         image: `https://app.soy.finance/images/coins/0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65.png`,
