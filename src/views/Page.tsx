@@ -4,6 +4,7 @@ import { Flex } from '@soy-libs/uikit2'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Footer from 'components/Menu/Footer'
 import SubNav from 'components/Menu/SubNav'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const StyledPage = styled.div`
   display: flex;
@@ -36,7 +37,7 @@ const Page: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...pro
       <SubNav />
       {children}
       <Flex flexGrow={1} />
-      {(chainId === 820 || chainId === 20729) && <Footer />}
+      {(chainId === ChainId.MAINNET || chainId === ChainId.CLOTESTNET) && <Footer />}
     </StyledPage>
   )
 }

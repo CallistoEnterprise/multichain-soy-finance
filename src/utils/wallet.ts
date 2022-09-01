@@ -1,5 +1,6 @@
 // Set of helper functions to facilitate wallet setup
 
+import { ChainId } from '@soy-libs/sdk-multichain'
 import { BASE_URL } from 'config'
 import { Networks } from 'config/constants/networks'
 import tokens from 'config/constants/tokens'
@@ -14,7 +15,7 @@ export const setupNetwork = async () => {
   if (provider) {
     const chainId = window.localStorage.getItem(localStorageChainIdKey)
       ? Number(window.localStorage.getItem(localStorageChainIdKey))
-      : 820
+      : ChainId.MAINNET
 
     const curNet = Networks.filter((_) => Number(_.chainId) === chainId)
 

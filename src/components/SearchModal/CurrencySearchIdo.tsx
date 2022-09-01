@@ -1,5 +1,5 @@
 import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from 'react'
-import { Currency, ETHERS, Token } from '@soy-libs/sdk-multichain'
+import { ChainId, Currency, ETHERS, Token } from '@soy-libs/sdk-multichain'
 import { Text, Input, Box } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { FixedSizeList } from 'react-window'
@@ -57,7 +57,7 @@ function CurrencySearchIdo({
 
   const showETH: boolean = useMemo(() => {
     const s = debouncedQuery.toLowerCase().trim()
-    return chainId === 820 || chainId === 20729
+    return chainId === ChainId.MAINNET || chainId === ChainId.CLOTESTNET
       ? s === '' || s === 'c' || s === 'cl' || s === 'clo'
       : s === '' || s === 'b' || s === 'bt' || s === 'btt'
   }, [debouncedQuery, chainId])
