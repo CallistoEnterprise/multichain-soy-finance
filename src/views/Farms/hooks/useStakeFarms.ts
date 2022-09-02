@@ -6,17 +6,18 @@ import farms from 'config/constants/farms'
 import { getLpContractWithAccount } from 'utils/contractHelpers'
 import { getAddress } from 'utils/addressHelpers'
 import { localStorageChainIdKey } from 'config'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const useStakeFarms = (pid: number) => {
   const { account, library } = useActiveWeb3React()
-  const locChainId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
 
   // const masterChefContract = useMasterchef()
-  const currentFarm = farms[locChainId].find((farm) => farm.pid === pid)
+  const currentFarm = farms[chainId].find((farm) => farm.pid === pid)
   const { lpAddresses, localFarmAddresses }= currentFarm
   const lpContract = getLpContractWithAccount(getAddress(lpAddresses), library, account)
   const farmAddress = getAddress(localFarmAddresses)
-  const web3 = useWeb3ProviderByRpc(locChainId)
+  const web3 = useWeb3ProviderByRpc(chainId)
 
   const handleStake = useCallback(
     async (amount: string) => {

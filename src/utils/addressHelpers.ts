@@ -4,7 +4,7 @@ import addresses from 'config/constants/contracts'
 import tokens, { wrappedNativeTokens } from 'config/constants/tokens'
 import { Address } from 'config/constants/types'
 
-export const getAddress = (address: Address, chainId = 820): string => {
+export const getAddress = (address: Address, chainId = ChainId.MAINNET): string => {
   const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? chainId) 
   return address[chId] ? address[chId] : address[ChainId.CLOTESTNET]
 }

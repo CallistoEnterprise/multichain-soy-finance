@@ -1,5 +1,6 @@
 // Set of helper functions to facilitate wallet setup
 
+import { ChainId } from '@soy-libs/sdk-multichain'
 import { BASE_URL } from 'config'
 import { Networks } from 'config/constants/networks'
 import tokens from 'config/constants/tokens'
@@ -14,7 +15,7 @@ export const setupNetwork = async () => {
   if (provider) {
     const chainId = window.localStorage.getItem(localStorageChainIdKey)
       ? Number(window.localStorage.getItem(localStorageChainIdKey))
-      : parseInt(process.env.REACT_APP_CLO_CHAIN_ID, 10)
+      : ChainId.MAINNET
 
     const curNet = Networks.filter((_) => Number(_.chainId) === chainId)
 
@@ -96,7 +97,7 @@ export const switchNetwork = async (library, curNet: any) => {
 export const setupNetwork2 = async () => {
   const provider = window.ethereum
   if (provider) {
-    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
+    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
 
     try {
       await provider.request({
@@ -126,7 +127,7 @@ export const setupNetwork2 = async () => {
  * @returns {boolean} true if the token has been added, false otherwise
  */
 export const registerToken = async (tokenAddress: string, tokenSymbol: string, tokenDecimals: number) => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
   const tokenAdded = await window.ethereum.request({
     method: 'wallet_watchAsset',
     params: {
@@ -135,7 +136,7 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
         address: tokenAddress,
         symbol: tokenSymbol,
         decimals: tokenDecimals,
-        image: `${BASE_URL}/images/coins/${chId}/${tokenAddress}.png`,
+        image: `${BASE_URL}/images/coins/${chainId}/${tokenAddress}.png`,
       },
     },
   })

@@ -17,6 +17,7 @@ import {
 import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
 import fetchVaultUser from './fetchVaultUser'
 import { getTokenPricesFromFarm } from './helpers'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const initialState: PoolsState = {
   data: [...poolsConfig],
@@ -45,7 +46,7 @@ const initialState: PoolsState = {
 
 // Thunks
 export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount: BigNumber) => async (dispatch, getState) => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
   const blockLimits = await fetchPoolsBlockLimits()
   const totalStakings = await fetchPoolsTotalStaking()
   const prices = getTokenPricesFromFarm(getState().farms.data[chainId])
@@ -62,7 +63,6 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount
     const earningTokenAddress = pool.earningToken.address ? getAddress(pool.earningToken.address).toLowerCase() : null
     const earningTokenPrice = earningTokenAddress ? prices[earningTokenAddress] : 0
 
-    // const RBC = pool.sousId === 0 ? rewardBlockCount : pool.stakingToken.symbol === 'CLO' ? rwBLCntOfMaticStaking : rwBLCntOfSousChef
     const RBC = rewardBlockCount
     const apr = !isPoolFinished
       ? getPoolApr(

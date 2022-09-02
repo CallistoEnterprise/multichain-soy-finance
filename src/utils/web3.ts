@@ -3,13 +3,14 @@ import { HttpProviderOptions } from 'web3-core-helpers'
 import { localStorageChainIdKey } from 'config'
 import getRpcUrl, { getRpcForMulti } from 'utils/getRpcUrl'
 import NETWORK_URLS from 'config/constants/networks'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const RPC_URL = getRpcUrl()
 const httpProvider = new Web3.providers.HttpProvider(RPC_URL, { timeout: 10000 } as HttpProviderOptions)
 const web3NoAccount = new Web3(httpProvider)
 
 const getWeb3NoAccount = () => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
   const rpcs = getRpcForMulti([NETWORK_URLS[chainId]])
   const httpProviderByChain = new Web3.providers.HttpProvider(rpcs, { timeout: 10000 } as HttpProviderOptions)
 

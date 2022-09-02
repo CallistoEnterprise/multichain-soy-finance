@@ -6,10 +6,11 @@ import { useCallback } from 'react'
 import { getAddress } from 'utils/addressHelpers'
 import { harvestFarm } from 'utils/calls'
 import { getLpContractWithAccount } from 'utils/contractHelpers'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const useHarvestFarm = (farmPid: number) => {
   const { account, library } = useActiveWeb3React()
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
   const currentFarm = farms[chainId].find((farm) => farm.pid === farmPid)
   const { lpAddresses, localFarmAddresses }= currentFarm
   const lpContract = getLpContractWithAccount(getAddress(lpAddresses), library, account)

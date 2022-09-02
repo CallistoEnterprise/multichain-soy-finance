@@ -3,6 +3,7 @@ import { AnyAction } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
 import { CampaignType, FarmConfig, LotteryStatus, LotteryTicket, Nft, PoolConfig, Team } from 'config/constants/types'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
 
@@ -79,9 +80,10 @@ export interface Profile {
 
 export interface FarmsState {
   data: {
-    820: Farm[],
-    199: Farm[],
-    61: Farm[],
+    [ChainId.MAINNET]: Farm[],
+    [ChainId.CLOTESTNET]: Farm[],
+    [ChainId.BTTMAINNET]: Farm[],
+    [ChainId.ETCCLASSICMAINNET]: Farm[],
   }
   loadArchivedFarmsData: boolean
   userDataLoaded: boolean

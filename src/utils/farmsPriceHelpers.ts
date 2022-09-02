@@ -1,10 +1,12 @@
+import { ChainId } from '@soy-libs/sdk-multichain'
 import { localStorageChainIdKey } from 'config'
 import { Farm } from 'state/types'
 
 const preferredQuoteTokensForMulti = {
-  820: ['BUSDT', 'WCLO'],
-  199: ['BUSDT', 'WBTT', 'ccCLO', 'SOY'],
-  61: ['BUSDT', 'WETC', 'ccCLO', 'SOY']
+  [ChainId.MAINNET]: ['BUSDT', 'WCLO'],
+  [ChainId.CLOTESTNET]: ['BUSDT', 'WCLO'],
+  [ChainId.BTTMAINNET]: ['BUSDT', 'WBTT', 'ccCLO', 'SOY'],
+  [ChainId.ETCCLASSICMAINNET]: ['BUSDT', 'WETC', 'ccCLO', 'SOY']
 }
 /**
  * Returns the first farm with a quote token that matches from an array of preferred quote tokens
@@ -13,7 +15,7 @@ const preferredQuoteTokensForMulti = {
  * @returns A preferred farm, if found - or the first element of the farms array
  */
 export const filterFarmsByQuoteToken = (farms: Farm[]): Farm => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? process.env.REACT_APP_CLO_CHAIN_ID)
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
   const preferredFarm = farms.find((farm) => {
     return preferredQuoteTokensForMulti[chainId].some((quoteToken) => {
       return farm.quoteToken.symbol === quoteToken

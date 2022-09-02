@@ -14,6 +14,7 @@ import { getAddress } from 'utils/addressHelpers'
 import PercentageButton from './PercentageButton'
 import useStakePool from '../../../hooks/useStakePool'
 import useUnstakePool from '../../../hooks/useUnstakePool'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 interface StakeModalProps {
   isBnbPool: boolean
@@ -48,7 +49,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const [percent, setPercent] = useState(0)
   const [periods, setPeriods] = useState(0)
 
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
   const getCalculatedStakingLimit = () => {
     if (isRemovingStake) {
       return userData.stakedBalance

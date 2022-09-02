@@ -361,10 +361,10 @@ const tokens = {
 }
 
 export const wrappedNativeTokens = {
-  20729: tokens.wclo,
-  820: tokens.wclo,
-  199: tokens.wbtt,
-  61: tokens.wetc
+  [ChainId.CLOTESTNET]: tokens.wclo,
+  [ChainId.MAINNET]: tokens.wclo,
+  [ChainId.BTTMAINNET]: tokens.wbtt,
+  [ChainId.ETCCLASSICMAINNET]: tokens.wetc
 }
 
 export default tokens

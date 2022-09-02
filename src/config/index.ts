@@ -20,7 +20,7 @@ export const BASE_CALLISTO_SCAN_URLS = {
 
 export const ExplorerText = {
   [ChainId.MAINNET]: 'CallistoScan',
-  [ChainId.CLOTESTNET]: 'CallistoScan',
+  [ChainId.CLOTESTNET]: 'CLOTestScan',
   [ChainId.BTTMAINNET]: 'BttcScan',
   [ChainId.BSC]: 'BSCScan',
   [ChainId.BSCTESTNET]: 'BSCScan',
@@ -89,10 +89,10 @@ export const AUCTION_WHITELISTED_BIDDERS_TO_FETCH = 500
 export const ONE_YEAR_TIMESTAMP = 365 * 24 * 60 * 60
 
 export const REWARD_TOKENS_PER_YEAR ={
-  20729:  new BigNumber(50000000 * 0.8),
-  820:  new BigNumber(50000000 * 0.8),
-  199:  new BigNumber(50000000 * 0.1),
-  61:  new BigNumber(50000000 * 0.1),
+  [ChainId.MAINNET]:  new BigNumber(50000000 * 0.8),
+  [ChainId.CLOTESTNET]:  new BigNumber(50000000 * 0.8),
+  [ChainId.BTTMAINNET]:  new BigNumber(50000000 * 0.1),
+  [ChainId.ETCCLASSICMAINNET]:  new BigNumber(50000000 * 0.1),
 }
 
 export const localStorageChainIdKey = "soyfinanceChainId"
