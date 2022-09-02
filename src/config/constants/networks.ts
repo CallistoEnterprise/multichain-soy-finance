@@ -58,7 +58,11 @@ export const Networks = [
     rpcs: ['https://etc.etcdesktop.com/'],
     explorer: 'https://blockscout.com/etc/mainnet/',
   },
-  {
+]
+
+//temp solution until we finish the chain configurations
+if(process.env.REACT_APP_ENABLE_TESTNET === 'true')
+  Networks.push( {
     name: 'Callisto Testnet',
     symbol: 'CLO',
     img: `${BASE_URL}/images/networks/clo.png`,
@@ -66,7 +70,6 @@ export const Networks = [
     hexChainId: '0x50F9',
     rpcs: ['https://testnet-rpc.callisto.network/'],
     explorer: 'https://testnet-explorer.callisto.network/',
-  },
-]
+  },)
 
 export default NETWORK_URLS
