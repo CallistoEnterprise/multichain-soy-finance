@@ -3,6 +3,7 @@ import { localStorageChainIdKey, WrappedNativeSymbols } from 'config'
 import { BIG_ONE, BIG_ZERO } from 'utils/bigNumber'
 import { filterFarmsByQuoteToken } from 'utils/farmsPriceHelpers'
 import { Farm } from 'state/types'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const getFarmFromTokenSymbol = (farms: Farm[], tokenSymbol: string): Farm => {
   const farmsWithTokenSymbol = farms.filter((farm) => farm.token.symbol === tokenSymbol)
@@ -94,19 +95,22 @@ const getFarmQuoteTokenPrice = (
 }
 
 const farmsPids = {
-  820: 4,
-  199: 14,
-  61: 6
+  [ChainId.MAINNET]: 4,
+  [ChainId.CLOTESTNET]: 4,
+  [ChainId.BTTMAINNET]: 14,
+  [ChainId.ETCCLASSICMAINNET]: 6
 }
 const busdtFarms = {
-  820: 5,
-  199: 19,
-  61: 5
+  [ChainId.MAINNET]: 5,
+  [ChainId.CLOTESTNET]: 5,
+  [ChainId.BTTMAINNET]: 19,
+  [ChainId.ETCCLASSICMAINNET]: 5
 }
 const refFarms = {
-  820: 2,
-  199: 9,
-  61: 1
+  [ChainId.MAINNET]: 2,
+  [ChainId.CLOTESTNET]: 2,
+  [ChainId.BTTMAINNET]: 9,
+  [ChainId.ETCCLASSICMAINNET]: 1
 }
 const fetchFarmsPrices = async (farms) => {
   const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820

@@ -15,13 +15,13 @@ const NETWORK_URLS: { [chainId in ChainId]: string } = {
 
 export const Networks = [
   {
-      name: "Callisto",
-      symbol: "CLO",
-      img: `${BASE_URL}/images/networks/clo.png`,
-      chainId: "820",
-      hexChainId: "0x334",
-      rpcs: ["https://rpc.callisto.network/"],
-      explorer: "https://explorer.callisto.network/"
+    name: 'Callisto',
+    symbol: 'CLO',
+    img: `${BASE_URL}/images/networks/clo.png`,
+    chainId: '820',
+    hexChainId: '0x334',
+    rpcs: ['https://rpc.callisto.network/'],
+    explorer: 'https://explorer.callisto.network/',
   },
   // {
   //     name: "BSC",
@@ -41,23 +41,35 @@ export const Networks = [
   //     explorer: "https://etherscan.io/"
   // },
   {
-      name: "BitTorrent",
-      symbol: "BTT",
-      img: `${BASE_URL}/images/networks/btt.png`,
-      chainId: "199",
-      hexChainId: "0xc7",
-      rpcs: ["https://rpc.bt.io/"],
-      explorer: "https://bttcscan.com/" 
+    name: 'BitTorrent',
+    symbol: 'BTT',
+    img: `${BASE_URL}/images/networks/btt.png`,
+    chainId: '199',
+    hexChainId: '0xc7',
+    rpcs: ['https://rpc.bt.io/'],
+    explorer: 'https://bttcscan.com/',
   },
   {
-      name: "ETC Chain",
-      symbol: "ETC",
-      img: `${BASE_URL}/images/networks/etc.png`,
-      chainId: "61",
-      hexChainId: "0x3D",
-      rpcs: ["https://etc.etcdesktop.com/"],
-      explorer: "https://blockscout.com/etc/mainnet/"
+    name: 'ETC Chain',
+    symbol: 'ETC',
+    img: `${BASE_URL}/images/networks/etc.png`,
+    chainId: '61',
+    hexChainId: '0x3D',
+    rpcs: ['https://etc.etcdesktop.com/'],
+    explorer: 'https://blockscout.com/etc/mainnet/',
   },
 ]
+
+//temp solution until we finish the chain configurations
+if(process.env.REACT_APP_ENABLE_TESTNET === 'true')
+  Networks.push( {
+    name: 'Callisto Testnet',
+    symbol: 'CLO',
+    img: `${BASE_URL}/images/networks/clo.png`,
+    chainId: '20729',
+    hexChainId: '0x50F9',
+    rpcs: ['https://testnet-rpc.callisto.network/'],
+    explorer: 'https://testnet-explorer.callisto.network/',
+  },)
 
 export default NETWORK_URLS
