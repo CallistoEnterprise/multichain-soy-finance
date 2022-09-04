@@ -40,6 +40,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     userData,
     stakingTokenPrice,
     isAutoVault,
+    isNew
   } = pool
   const { t } = useTranslation()
   const { account } = useWeb3React()
@@ -49,6 +50,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     stakingTokenContract,
     sousId,
     earningToken.symbol,
+    isNew
   )
 
   const { setLastUpdated } = useCheckVaultApprovalStatus()

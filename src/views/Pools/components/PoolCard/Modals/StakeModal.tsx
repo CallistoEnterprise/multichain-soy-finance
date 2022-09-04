@@ -41,7 +41,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { onStake } = useStakePool(sousId, isBnbPool)
-  const { onUnstake } = useUnstakePool(sousId, pool.enableEmergencyWithdraw)
+  const { onUnstake } = useUnstakePool(sousId, isNew)
   const { toastSuccess, toastError, toastWarning } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
   const [stakeAmount, setStakeAmount] = useState('')
@@ -65,7 +65,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
     ? getFullDisplayBalance(new BigNumber(userData.stakedStatus.multiplier), earningToken.decimals, 2)
     : ''
 
-  // console.log("endTime ::", endTime, curTime)
+  const isWithdrawRequest = curTime - endTime > 0
   useEffect(() => {
     if (stakingLimit.gt(0) && !isRemovingStake) {
       const fullDecimalStakeAmount = getDecimalAmount(new BigNumber(stakeAmount), stakingToken.decimals)
@@ -110,13 +110,22 @@ const StakeModal: React.FC<StakeModalProps> = ({
           setPendingTx(false)
           return
         }
-        await onUnstake()
-        toastSuccess(
-          `${t('Unstaked')}!`,
-          t('Your %symbol% earnings have also been harvested to your wallet!', {
-            symbol: earningToken.symbol,
-          }),
-        )
+        const res = await onUnstake(isWithdrawRequest)
+        if (res) {
+          isWithdrawRequest ?
+          toastSuccess(
+            `${t('Requested')}!`,
+            t('Your request was made successfully!'),
+          )
+          : toastSuccess(
+            `${t('Unstaked')}!`,
+            t('Your %symbol% earnings have also been harvested to your wallet!', {
+              symbol: earningToken.symbol,
+            }),
+          )
+        } else {
+          toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+        }
         setPendingTx(false)
         onDismiss()
       } catch (e) {
@@ -167,7 +176,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
             src={
               isBnbPool
                 ? `${BASE_URL}/images/coins/clo.png`
-                : `${BASE_URL}/images/coins/${chainId ?? process.env.REACT_APP_CLO_CHAIN_ID}/${getAddress(stakingToken.address)}.png`
+                : `${BASE_URL}/images/coins/${chainId ?? ChainId.MAINNET}/${getAddress(stakingToken.address)}.png`
             }
             width={24}
             height={24}

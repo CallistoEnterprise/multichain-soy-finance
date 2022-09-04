@@ -101,9 +101,9 @@ export const useMasterchef = () => {
   return useMemo(() => getMasterchefContract(library?.getSigner()), [library])
 }
 
-export const useSousChef = (id) => {
+export const useSousChef = (id, isNew) => {
   const { library } = useActiveWeb3React()
-  return useMemo(() => getSouschefContract(id, library?.getSigner()), [id, library])
+  return useMemo(() => getSouschefContract(id, isNew, library?.getSigner()), [id, isNew, library])
 }
 
 export const useStakingTokenContract = (id) => {

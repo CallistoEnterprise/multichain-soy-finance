@@ -18,7 +18,10 @@ const StyledCardHeader: React.FC<{
   isAutoVault?: boolean
   isFinished?: boolean
   isStaking?: boolean
-}> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false }) => {
+  lockPeriod?: number | string
+  lockPeriodUnit?: string
+  isNew?: boolean
+}> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false, lockPeriod, lockPeriodUnit, isNew }) => {
   const { t } = useTranslation()
   const isCakePool = earningToken.symbol === 'SOY' && stakingToken.symbol === 'SOY'
   const background = isStaking ? 'bubblegum' : 'cardHeader'
@@ -30,7 +33,7 @@ const StyledCardHeader: React.FC<{
     }
     if (isCakePool) {
       // manual cake
-      return t('Cold Staking')
+      return !isNew ? t('Cold Staking') : t('Staking')
     }
     // all other pools
     return t('Earn')
@@ -41,7 +44,7 @@ const StyledCardHeader: React.FC<{
       return t('Automatic restaking')
     }
     if (isCakePool) {
-      return t('Freeze SOY, Earn SOY')
+      return !isNew ? t('Freeze SOY, Earn SOY') : t(`Time lock ${lockPeriod} ${lockPeriodUnit}`)
     }
     return t('Stake %symbol%', { symbol: stakingToken.symbol })
   }

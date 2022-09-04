@@ -55,6 +55,7 @@ import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 import lotteryV2Abi from 'config/abi/lotteryV2.json'
 import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
+import sousChefNew from 'config/abi/sousChefNew.json'
 import sousChefV2 from 'config/abi/sousChefV2.json'
 import sousChefMatic from 'config/abi/sousChefMatic.json'
 import claimRefundAbi from 'config/abi/claimRefund.json'
@@ -131,9 +132,9 @@ export const getIfoV1Contract = (address: string, signer?: ethers.Signer | ether
 export const getIfoV2Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(ifoV2Abi, address, signer)
 }
-export const getSouschefContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
+export const getSouschefContract = (id: number, isNew?: boolean, signer?: ethers.Signer | ethers.providers.Provider) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
-  const abi = config.poolCategory === PoolCategory.CLO ? sousChefMatic : sousChef
+  const abi = isNew ? sousChefNew : sousChef
   return getContract(abi, getAddress(config.contractAddress), signer)
 }
 export const getSouschefV2Contract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {

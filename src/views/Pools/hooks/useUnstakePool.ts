@@ -15,29 +15,26 @@ const sousUnstake = async (sousChefContract) => {
   return receipt.status
 }
 
-const sousEmergencyUnstake = async (sousChefContract) => {
-  const tx = await sousChefContract.emergencyWithdraw()
+const unstakeFromNewPool = async (sousChefContract, isRequest) => {
+  const tx = isRequest ? await sousChefContract.withdrawRequest(options) : await sousChefContract.withdraw(options)
   const receipt = await tx.wait()
   return receipt.status
 }
 
-const useUnstakePool = (sousId, enableEmergencyWithdraw = false) => {
+const useUnstakePool = (sousId, isNew = true) => {
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
-  const sousChefContract = useSousChef(sousId)
+  const sousChefContract = useSousChef(sousId, isNew)
 
   const handleUnstake = useCallback(
-    async () => {
-      if (enableEmergencyWithdraw) {
-        await sousEmergencyUnstake(sousChefContract)
-      } else {
-        await sousUnstake(sousChefContract)
-      }
+    async (isRequest?: boolean) => {
+      const res = !isNew ? await sousUnstake(sousChefContract) : unstakeFromNewPool(sousChefContract, isRequest)
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
       dispatch(updateUserPendingReward(sousId, account))
+      return res
     },
-    [account, dispatch, enableEmergencyWithdraw, sousChefContract, sousId],
+    [account, dispatch, sousChefContract, sousId, isNew],
   )
 
   return { onUnstake: handleUnstake }

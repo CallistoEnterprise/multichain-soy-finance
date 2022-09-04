@@ -265,12 +265,5 @@
     "inputs": [{ "type": "uint256", "name": "maxRecords", "internalType": "uint256" }]
   },
   { "type": "function", "stateMutability": "nonpayable", "outputs": [], "name": "withdraw", "inputs": [] },
-  {
-    "type": "function",
-    "stateMutability": "nonpayable",
-    "outputs": [],
-    "name": "withdraw",
-    "inputs": [{ "type": "address", "name": "user", "internalType": "address" }]
-  },
   { "type": "function", "stateMutability": "nonpayable", "outputs": [], "name": "withdrawRequest", "inputs": [] }
 ]

@@ -3,6 +3,7 @@ import { localStorageChainIdKey } from 'config'
 import addresses from 'config/constants/contracts'
 import tokens, { wrappedNativeTokens } from 'config/constants/tokens'
 import { Address } from 'config/constants/types'
+import { poolsConfig } from 'config/constants'
 
 export const getAddress = (address: Address, chainId = ChainId.MAINNET): string => {
   const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? chainId) 
@@ -33,9 +34,12 @@ export const getWeeklyIdoAddress = () => {
 export const getCharityNftAddress = () => {
   return getAddress(addresses.charityNft)
 }
-
 export const getWcloAddress = () => {
   return getAddress(tokens.wclo.address)
+}
+export const getStakingPoolAddress = (poolId: number | string) => {
+  const pool = poolsConfig.find((pool) => pool.sousId === poolId)
+  return getAddress(pool.contractAddress)
 }
 
 
