@@ -6,6 +6,7 @@ import { useBlockLatestTimestamp } from 'utils'
 import { Pool } from 'state/types'
 import NotEnoughTokensModal from '../Modals/NotEnoughTokensModal'
 import StakeModal from '../Modals/StakeModal'
+import { getBalanceNumber } from 'utils/formatBalance'
 
 interface StakeActionsProps {
   pool: Pool
@@ -19,7 +20,7 @@ interface StakeActionsProps {
 const StakeAction: React.FC<StakeActionsProps> = ({
   pool,
   stakingTokenBalance,
-  // stakedBalance,
+  stakedBalance,
   isBnbPool,
   isStaked,
   isLoading = false,
@@ -27,14 +28,14 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   // console.log("stakingTokenBalance ::", stakingTokenBalance.toString())
   const { stakingToken, stakingTokenPrice, stakingLimit, isFinished, userData, isNew } = pool
   const { t } = useTranslation()
-  // const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
+  const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
   // const stakedTokenDollarBalance = getBalanceNumber(
   //   stakedBalance.multipliedBy(stakingTokenPrice),
   //   stakingToken.decimals,
   // )
   const curTime = useBlockLatestTimestamp()
   const endTime = userData ? new BigNumber(userData.stakedStatus.endTime).toNumber() : 0
-  const isWithdrawRequest = curTime - endTime > 0
+  const isWithdrawRequest = curTime - endTime > 0 && endTime === 0
 
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
 
@@ -95,7 +96,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
               </IconButton> */}
             </span>
           ) : (
-            <Button disabled={isFinished || !isNew} onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
+            <Button disabled={isFinished || !isNew || stakedTokenBalance > 0 } onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
               {t('Stake Now')}
             </Button>
             // <IconButton

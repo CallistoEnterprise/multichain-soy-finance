@@ -65,7 +65,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
     ? getFullDisplayBalance(new BigNumber(userData.stakedStatus.multiplier), earningToken.decimals, 2)
     : ''
 
-  const isWithdrawRequest = curTime - endTime > 0
+  const isWithdrawRequest = curTime - endTime > 0 && endTime === 0
   useEffect(() => {
     if (stakingLimit.gt(0) && !isRemovingStake) {
       const fullDecimalStakeAmount = getDecimalAmount(new BigNumber(stakeAmount), stakingToken.decimals)

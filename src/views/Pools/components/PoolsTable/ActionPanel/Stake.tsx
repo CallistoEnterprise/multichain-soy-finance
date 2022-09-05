@@ -27,9 +27,10 @@ const IconButtonWrapper = styled.div`
 interface StackedActionProps {
   pool: Pool
   userDataLoaded: boolean
+  isWithdrawRequest?: boolean
 }
 
-const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoaded }) => {
+const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoaded, isWithdrawRequest }) => {
   const {
     sousId,
     stakingToken,
@@ -40,7 +41,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     userData,
     stakingTokenPrice,
     isAutoVault,
-    isNew
+    isNew,
   } = pool
   const { t } = useTranslation()
   const { account } = useWeb3React()
@@ -50,7 +51,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     stakingTokenContract,
     sousId,
     earningToken.symbol,
-    isNew
+    isNew,
   )
 
   const { setLastUpdated } = useCheckVaultApprovalStatus()
@@ -211,26 +212,47 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
               prefix="~"
             />
           </Flex>
-          <IconButtonWrapper>
-            <IconButton variant="secondary" onClick={onUnstake} mr="6px">
-              <MinusIcon color="primary" width="14px" />
-            </IconButton>
-            {reachStakingLimit ? (
-              <span ref={targetRef}>
-                <IconButton variant="secondary" disabled>
-                  <AddIcon color="textDisabled" width="24px" height="24px" />
-                </IconButton>
-              </span>
-            ) : (
-              <IconButton
-                variant="secondary"
-                onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
-                disabled={isFinished}
-              >
-                <AddIcon color="primary" width="14px" />
+          {!isNew && (
+            <IconButtonWrapper>
+              <IconButton variant="secondary" onClick={onUnstake} mr="6px">
+                <MinusIcon color="primary" width="14px" />
               </IconButton>
-            )}
-          </IconButtonWrapper>
+              {reachStakingLimit ? (
+                <span ref={targetRef}>
+                  <IconButton variant="secondary" disabled>
+                    <AddIcon color="textDisabled" width="24px" height="24px" />
+                  </IconButton>
+                </span>
+              ) : (
+                <IconButton
+                  variant="secondary"
+                  onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
+                  disabled={isFinished}
+                >
+                  <AddIcon color="primary" width="14px" />
+                </IconButton>
+              )}
+            </IconButtonWrapper>
+          )}
+          {isNew && (
+            <IconButtonWrapper>
+              {stakedTokenBalance !== 0 ? (
+                <Button ml="5px" width="100%" disabled={requestedApproval} onClick={onUnstake} variant="secondary">
+                  {t(isWithdrawRequest ? 'Start Unlock' : 'Unstake')}
+                </Button>
+              ) : (
+                <Button
+                  width="100%"
+                  ml="5px"
+                  onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
+                  variant="secondary"
+                  disabled={isFinished}
+                >
+                  {t('Stake')}
+                </Button>
+              )}
+            </IconButtonWrapper>
+          )}
           {tooltipVisible && tooltip}
         </ActionContent>
       </ActionContainer>

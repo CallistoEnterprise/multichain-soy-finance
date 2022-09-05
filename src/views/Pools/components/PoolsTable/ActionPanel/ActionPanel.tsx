@@ -21,7 +21,8 @@ import BigNumber from 'bignumber.js'
 import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
-import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
+import { ManualPoolTag } from 'components/Tags'
+import { useBlockLatestTimestamp } from 'utils'
 import { getAddress, getPmoonVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -67,7 +68,7 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
 
   ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: row;
-    padding: 16px 32px;
+    padding: 16px 42px;
   }
 `
 
@@ -122,6 +123,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     contractAddress,
     isAutoVault,
     userData,
+    isNew
   } = pool
   const { t } = useTranslation()
   const poolContractAddress = getAddress(contractAddress)
@@ -180,14 +182,21 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     targetRef: harvestTargetRef,
     tooltip: harvestTooltip,
     tooltipVisible: harvestTooltipVisible,
-  } = useTooltip(t('Next harvest (claim reward without deposited amount) available every 27 days.'), {
+  } = useTooltip(t(
+    isNew ?
+    'Once unlocking starts, the time starts according to your pool. After the time expires, you can collect your tokens.'
+    : 'Next harvest (claim reward without deposited amount) available every 27 days.'), {
     placement: 'bottom-start',
   })
+
+  const curTime = useBlockLatestTimestamp()
 
   const endStaking = userDataLoaded ? userData.stakedStatus.endTime.toNumber() : 0
   const endTimeStr = endStaking === 0 ? '' : getTimeFromTimeStamp2(endStaking)
   const harvestDay = userData ? userData.stakedStatus.time.toNumber() : 0
   const havestDayStr = harvestDay === 0 ? null : getTimeFromTimeStamp2(harvestDay + periodSeconds)
+
+  const isWithdrawRequest = curTime - endStaking > 0 && endStaking === 0
 
   // const maxStakeRow = stakingLimit.gt(0) ? (
   //   <Flex mb="8px" justifyContent="space-between">
@@ -257,8 +266,8 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         </Flex> */}
 
         <Flex mb="2px" justifyContent="space-between" flexDirection="column">
-          <Text small color="primary">{t('Next Harvest In')}:</Text>
-          <Flex mb="0px" justifyContent="flex-start">
+        {!isNew && <Text small color="primary">{t('Next Harvest In')}:</Text>}
+          {!isNew && <Flex mb="0px" justifyContent="flex-start">
             {
               havestDayStr
               ? <Text small>{havestDayStr}</Text>
@@ -267,16 +276,21 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             <span ref={harvestTargetRef}>
               <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
             </span>
-          </Flex>
+          </Flex>}
           {harvestTooltipVisible && harvestTooltip}
         </Flex>
         <Flex mb="2px" justifyContent="space-between" flexDirection="column">
-          <Text small color="primary">{t('Cold Staking Ends In')}:</Text>
+          <Text small color="primary">{t(isNew ? 'Unlock in' : 'Cold Staking Ends In')}:</Text>
+          <Flex>
           {
-            endTimeStr
-            ? <Text small>{endTimeStr}</Text>
-            : <Skeleton width="200px" height="21px" />
-          }
+            isWithdrawRequest
+            ? <Skeleton width="200px" height="21px" />
+            : <Text small>{endTimeStr ? endTimeStr : '0day'}</Text>
+          } 
+            {isNew && <span ref={harvestTargetRef}> 
+              <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
+            </span>}
+          </Flex>
         </Flex>
 
         {(isXs || isSm) && aprRow}
@@ -305,11 +319,11 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             </Button>
           </Flex>
         )}
-        {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
+        {!isNew && <ManualPoolTag />}
         {tagTooltipVisible && tagTooltip}
-        <span ref={tagTargetRef}>
+        {!isNew && <span ref={tagTargetRef}>
           <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
-        </span>
+        </span>}
       </InfoSection>
       <ActionContainer>
         {showSubtitle && (
@@ -318,7 +332,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
           </Text>
         )}
         <Harvest {...pool} userDataLoaded={userDataLoaded} endTimeStr={endTimeStr}/>
-        <Stake pool={pool} userDataLoaded={userDataLoaded} />
+        <Stake pool={pool} userDataLoaded={userDataLoaded} isWithdrawRequest={isWithdrawRequest}/>
       </ActionContainer>
     </StyledActionPanel>
   )

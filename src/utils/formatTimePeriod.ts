@@ -66,6 +66,9 @@ export function getTimeFromTimeStamp2(seconds: number) {
   const date = new Date()
   const nowSeconds = Math.floor(date.getTime() / 1000)
   const diff = seconds - nowSeconds
+  if (diff < 0 && seconds > 0) {
+    return 'Unstakable'
+  }
   if (diff < 0) {
     return null
   }
