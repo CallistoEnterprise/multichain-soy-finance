@@ -96,7 +96,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
               </IconButton> */}
             </span>
           ) : (
-            <Button disabled={isFinished || !isNew || stakedTokenBalance > 0 } onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
+            <Button disabled={isFinished || !isNew || endTime > 0} onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
               {t('Stake Now')}
             </Button>
             // <IconButton

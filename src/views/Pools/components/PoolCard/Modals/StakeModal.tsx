@@ -37,7 +37,17 @@ const StakeModal: React.FC<StakeModalProps> = ({
   isRemovingStake = false,
   onDismiss,
 }) => {
-  const { sousId, stakingToken, userData, stakingLimit, earningToken, contractAddress, isNew, lockPeriod, lockPeriodUnit } = pool
+  const {
+    sousId,
+    stakingToken,
+    userData,
+    stakingLimit,
+    earningToken,
+    contractAddress,
+    isNew,
+    lockPeriod,
+    lockPeriodUnit,
+  } = pool
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { onStake } = useStakePool(sousId, isBnbPool)
@@ -112,19 +122,19 @@ const StakeModal: React.FC<StakeModalProps> = ({
         }
         const res = await onUnstake(isWithdrawRequest)
         if (res) {
-          isWithdrawRequest ?
-          toastSuccess(
-            `${t('Requested')}!`,
-            t('Your request was made successfully!'),
-          )
-          : toastSuccess(
-            `${t('Unstaked')}!`,
-            t('Your %symbol% earnings have also been harvested to your wallet!', {
-              symbol: earningToken.symbol,
-            }),
-          )
+          isWithdrawRequest
+            ? toastSuccess(`${t('Requested')}!`, t('Your request was made successfully!'))
+            : toastSuccess(
+                `${t('Unstaked')}!`,
+                t('Your %symbol% earnings have also been harvested to your wallet!', {
+                  symbol: earningToken.symbol,
+                }),
+              )
         } else {
-          toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+          toastError(
+            t('Error'),
+            t('Please try again. Confirm the transaction and make sure you are paying enough gas!'),
+          )
         }
         setPendingTx(false)
         onDismiss()
@@ -157,7 +167,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
   return (
     <Modal
-      title={isRemovingStake ? t('Unstake') : t('Stake in Pool')}
+      title={isRemovingStake ? t(endTime === 0 ? 'Request Withdraw' : 'Unstake') : t('Stake in Pool')}
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
     >
@@ -187,11 +197,19 @@ const StakeModal: React.FC<StakeModalProps> = ({
           </Text>
         </Flex>
       </Flex>
-      <Text bold>{!isRemovingStake ? `Staking Periods: ${isNew ? lockPeriod : periods} (${isNew ? lockPeriodUnit : 'months'})` : `Staked Status`}</Text>
+      <Text bold>
+        {!isRemovingStake
+          ? `Staking Periods: ${isNew ? lockPeriod : periods} (${isNew ? lockPeriodUnit : 'months'})`
+          : `Staked Status`}
+      </Text>
       {isRemovingStake && (
         <div>
-          <Text>{`Multiplier : ${multiplier}`}</Text>
-          <Text>{`End Time : ${getFormattedDateFromTimeStamp(endTime)} ${getTimeFromTimeStamp(endTime)}`}</Text>
+          {!isNew && <Text>{`Multiplier : ${multiplier}`}</Text>}
+          {endTime > 0 ? (
+            <Text>{`End Time : ${getFormattedDateFromTimeStamp(endTime)} ${getTimeFromTimeStamp(endTime)}`}</Text>
+          ) : (
+            <Text>End Time : --/--/--</Text>
+          )}
         </div>
       )}
       {!isRemovingStake && !isNew && (
