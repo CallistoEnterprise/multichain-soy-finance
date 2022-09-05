@@ -82,7 +82,7 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
         </Flex>
         {!isNew && (
           <Flex mb="0px" justifyContent="flex-start">
-            {havestDayStr ? <Text small>{havestDayStr}</Text> : <Skeleton width="200px" height="21px" />}
+            {havestDayStr && havestDayStr !== 'Unstakable' ? <Text small>{havestDayStr}</Text> : <Skeleton width="200px" height="21px" />}
             <span ref={harvestTargetRef}>
               <HelpIcon color="textSubtle" width="20px" ml="6px" />
             </span>
