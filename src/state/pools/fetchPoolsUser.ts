@@ -91,7 +91,7 @@ export const fetchUserStakeBalances = async (account) => {
 }
 
 export const fetchUserPendingRewards = async (account) => {
-  const calls = nonMasterPools.map((p) => ({
+  const calls = poolsConfig.map((p) => ({
     address: getAddress(p.contractAddress),
     name: p.isNew ? 'pendingReward' : 'stake_reward',
     params: [account],
@@ -99,7 +99,7 @@ export const fetchUserPendingRewards = async (account) => {
 
   const res = await multicall3(sousChefABI, calls)
 
-  const pendingRewards = nonMasterPools.reduce(
+  const pendingRewards = poolsConfig.reduce(
     (acc, pool, index) => ({
       ...acc,
       [pool.sousId]: new BigNumber(res[index].toString()).toJSON(),

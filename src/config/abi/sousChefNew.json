@@ -24,6 +24,15 @@
   },
   {
     "type": "event",
+    "name": "SetAffiliatePercentage",
+    "inputs": [
+      { "type": "uint256", "name": "_affiliatePercent", "internalType": "uint256", "indexed": false },
+      { "type": "uint256", "name": "_noAffiliatePercent", "internalType": "uint256", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
     "name": "StartStaking",
     "inputs": [
       { "type": "address", "name": "staker", "internalType": "address", "indexed": false },
@@ -63,7 +72,7 @@
     "type": "function",
     "stateMutability": "view",
     "outputs": [{ "type": "address", "name": "", "internalType": "address" }],
-    "name": "SOY",
+    "name": "SOY_TOKEN",
     "inputs": []
   },
   {
@@ -71,6 +80,13 @@
     "stateMutability": "view",
     "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
     "name": "accumulatedRewardPerShare",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "affiliatePercent",
     "inputs": []
   },
   {
@@ -165,6 +181,13 @@
   },
   {
     "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "noAffiliatePercent",
+    "inputs": []
+  },
+  {
+    "type": "function",
     "stateMutability": "nonpayable",
     "outputs": [],
     "name": "notifyRewardAmount",
@@ -180,7 +203,7 @@
   {
     "type": "function",
     "stateMutability": "view",
-    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "outputs": [{ "type": "uint256", "name": "userReward", "internalType": "uint256" }],
     "name": "pendingReward",
     "inputs": [{ "type": "address", "name": "user", "internalType": "address" }]
   },
@@ -190,6 +213,16 @@
     "outputs": [],
     "name": "rescueTokens",
     "inputs": [{ "type": "address", "name": "_token", "internalType": "address" }]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "setAffiliatePercentage",
+    "inputs": [
+      { "type": "uint256", "name": "_affiliatePercent", "internalType": "uint256" },
+      { "type": "uint256", "name": "_noAffiliatePercent", "internalType": "uint256" }
+    ]
   },
   {
     "type": "function",
@@ -213,7 +246,9 @@
       { "type": "uint256", "name": "rewardPerSharePaid", "internalType": "uint256" },
       { "type": "uint64", "name": "endTime", "internalType": "uint64" },
       { "type": "uint64", "name": "index", "internalType": "uint64" },
-      { "type": "uint64", "name": "bonus", "internalType": "uint64" }
+      { "type": "uint64", "name": "bonus", "internalType": "uint64" },
+      { "type": "uint64", "name": "affiliatePercent", "internalType": "uint64" },
+      { "type": "address", "name": "affiliate", "internalType": "address" }
     ],
     "name": "staker",
     "inputs": [{ "type": "address", "name": "", "internalType": "address" }]
