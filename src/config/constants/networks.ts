@@ -13,8 +13,11 @@ const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.BTTMAINNET]: 'https://rpc.bt.io/', // 'https://rpc.bittorrentchain.io/'
 }
 
-export const Networks = [
-  {
+export const Networks = []
+
+//temp solution until we finish the chain configurations
+if(process.env.REACT_APP_TESTNET_ONLY !== 'true'){
+  Networks.push({
     name: 'Callisto',
     symbol: 'CLO',
     img: `${BASE_URL}/images/networks/clo.png`,
@@ -57,11 +60,9 @@ export const Networks = [
     hexChainId: '0x3D',
     rpcs: ['https://etc.etcdesktop.com/'],
     explorer: 'https://blockscout.com/etc/mainnet/',
-  },
-]
-
-//temp solution until we finish the chain configurations
-if(process.env.REACT_APP_ENABLE_TESTNET === 'true')
+  })
+}
+if(process.env.REACT_APP_ENABLE_TESTNET === 'true' || process.env.REACT_APP_TESTNET_ONLY === 'true')
   Networks.push( {
     name: 'Callisto Testnet',
     symbol: 'CLO',
