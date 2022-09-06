@@ -53,6 +53,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     earningToken.symbol,
     isNew,
   )
+  const endTime = userData ? new BigNumber(userData.stakedStatus.endTime).toNumber() : 0
 
   const { setLastUpdated } = useCheckVaultApprovalStatus()
   const { handleApprove: handleVaultApprove, requestedApproval: requestedVaultApproval } =
@@ -235,23 +236,29 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
             </IconButtonWrapper>
           )}
           {isNew && (
-            <IconButtonWrapper>
-              {stakedTokenBalance !== 0 ? (
-                <Button ml="5px" width="100%" disabled={requestedApproval} onClick={onUnstake} variant="secondary">
-                  {t(isWithdrawRequest ? 'Start Unlock' : 'Unstake')}
-                </Button>
-              ) : (
-                <Button
-                  width="100%"
-                  ml="5px"
-                  onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
-                  variant="secondary"
-                  disabled={isFinished}
-                >
-                  {t('Stake')}
-                </Button>
-              )}
-            </IconButtonWrapper>
+            <Flex flexDirection="column">
+              <Button
+                width="100%"
+                ml="5px"
+                size="small"
+                onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
+                variant="secondary"
+                disabled={isFinished || endTime > 0}
+              >
+                {t(stakedTokenBalance === 0 ? 'Stake' : 'Add')}
+              </Button>
+              <Button
+                ml="5px"
+                mt="5px"
+                width="100%"
+                size="small"
+                disabled={requestedApproval}
+                onClick={onUnstake}
+                variant="secondary"
+              >
+                {t(isWithdrawRequest ? 'Unlock' : 'Unstake')}
+              </Button>
+            </Flex>
           )}
           {tooltipVisible && tooltip}
         </ActionContent>

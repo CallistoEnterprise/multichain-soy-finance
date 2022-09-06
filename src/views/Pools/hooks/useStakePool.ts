@@ -13,9 +13,9 @@ const options = {
   gasLimit: DEFAULT_GAS_LIMIT,
 }
 
-const sousStake = async (stakingTkContract, to, amount, decimals = 18, periods=6, isNew = true) => {
+const sousStake = async (stakingTkContract, to, amount, decimals = 18, periods=6, isNew = true, account) => {
   const _data = web3.eth.abi.encodeParameter('uint256', periods)
-  // const _accountData = web3.eth.abi.encodeParameter('string', account)
+  const _accountData = web3.eth.abi.encodeParameter('address', account)
   const bigAmount = new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString()
   const tx = isNew ? await stakingTkContract.transfer(to, bigAmount, options) : await stakingTkContract.transfer(to, bigAmount, _data)
   const receipt = await tx.wait()
@@ -41,7 +41,7 @@ const useStakePool = (sousId: number, isUsingBnb = false) => {
       } else if (isUsingBnb) {
         await sousStakeBnb(stakingTkContract, amount)
       } else {
-        await sousStake(stakingTkContract, to, amount, decimals, periods, isNew)
+        await sousStake(stakingTkContract, to, amount, decimals, periods, isNew, account)
       }
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
