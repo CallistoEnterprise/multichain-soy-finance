@@ -104,7 +104,7 @@ const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.
 
 export const getStakingTokenContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
-  return getContract(id === 1 ? erc223Abi : erc223AbiStandard, getAddress(config.stakingToken.address), signer)
+  return getContract(id === 1 ? erc223Abi : erc223Abi, getAddress(config.stakingToken.address), signer)
 }
 
 export const getBep20Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {

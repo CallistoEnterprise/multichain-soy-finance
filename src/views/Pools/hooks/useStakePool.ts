@@ -17,7 +17,7 @@ const sousStake = async (stakingTkContract, to, amount, decimals = 18, periods=6
   const _data = web3.eth.abi.encodeParameter('uint256', periods)
   const _accountData = web3.eth.abi.encodeParameter('address', account)
   const bigAmount = new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString()
-  const tx = isNew ? await stakingTkContract.transfer(to, bigAmount, options) : await stakingTkContract.transfer(to, bigAmount, _data)
+  const tx = isNew ? await stakingTkContract.transfer(to, bigAmount, _accountData) : await stakingTkContract.transfer(to, bigAmount, _data)
   const receipt = await tx.wait()
   return receipt.status
 }
