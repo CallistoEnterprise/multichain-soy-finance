@@ -6,6 +6,7 @@ import { Flex, Text, Box } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { PoolCategory } from 'config/constants/types'
 import { Pool } from 'state/types'
+import { useBlockLatestTimestamp } from 'utils'
 import { getTimeFromTimeStamp2 } from 'utils/formatTimePeriod'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ApprovalAction from './ApprovalAction'
@@ -34,12 +35,14 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
   const needsApproval = false // !allowance.gt(0) && !isBnbPool
   const isStaked = stakedBalance.gt(0)
   const isLoading = !userData
+  
+  const curTime = useBlockLatestTimestamp()
 
   const endStaking = userData ? userData.stakedStatus.endTime.toNumber() : 0
   const harvestDay = userData ? userData.stakedStatus.time.toNumber() : 0
   // const nextTimeStr = nextHarvest === 0 ? '' : getTimeFromTimeStamp2(nextHarvest)
-  const endTimeStr = endStaking === 0 ? null : getTimeFromTimeStamp2(endStaking)
-  const havestDayStr = harvestDay === 0 ? null : getTimeFromTimeStamp2(harvestDay + periodSeconds)
+  const endTimeStr = endStaking === 0 ? null : getTimeFromTimeStamp2(endStaking, curTime)
+  const havestDayStr = harvestDay === 0 ? null : getTimeFromTimeStamp2(harvestDay + periodSeconds, curTime)
 
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
   const stakedTokenDollarBalance = getBalanceNumber(

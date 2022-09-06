@@ -192,9 +192,9 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const curTime = useBlockLatestTimestamp()
 
   const endStaking = userDataLoaded ? userData.stakedStatus.endTime.toNumber() : 0
-  const endTimeStr = endStaking === 0 ? '' : getTimeFromTimeStamp2(endStaking)
+  const endTimeStr = endStaking === 0 ? '' : getTimeFromTimeStamp2(endStaking, curTime)
   const harvestDay = userData ? userData.stakedStatus.time.toNumber() : 0
-  const havestDayStr = harvestDay === 0 ? null : getTimeFromTimeStamp2(harvestDay + periodSeconds)
+  const havestDayStr = harvestDay === 0 ? null : getTimeFromTimeStamp2(harvestDay + periodSeconds, curTime)
 
   const isWithdrawRequest = curTime - endStaking > 0 && endStaking === 0
 

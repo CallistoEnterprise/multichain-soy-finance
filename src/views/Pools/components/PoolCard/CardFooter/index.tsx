@@ -5,7 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import { Flex, CardFooter, ExpandableLabel, Text, HelpIcon, useTooltip, Skeleton } from '@soy-libs/uikit2'
 import { Pool } from 'state/types'
 import { getTimeFromTimeStamp2 } from 'utils/formatTimePeriod'
-// import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
+import { useBlockLatestTimestamp } from 'utils'
 import ExpandedFooter from './ExpandedFooter'
 
 const periodSeconds = 27 * 24 * 3600
@@ -42,12 +42,14 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
   // const { targetRef, tooltip, tooltipVisible } = useTooltip(isAutoVault ? autoTooltipText : manualTooltipText, {
   //   placement: 'bottom',
   // })
+  const curTime = useBlockLatestTimestamp()
+
   const endStaking = account && userData ? userData.stakedStatus.endTime.toNumber() : 0
   const harvestDay = userData ? userData.stakedStatus.time.toNumber() : 0
 
   // const nextTimeStr = nextHarvest === 0 ? '' : getTimeFromTimeStamp2(nextHarvest)
-  const endTimeStr = endStaking === 0 ? '' : getTimeFromTimeStamp2(endStaking)
-  const havestDayStr = harvestDay === 0 ? null : getTimeFromTimeStamp2(harvestDay + periodSeconds)
+  const endTimeStr = endStaking === 0 ? '' : getTimeFromTimeStamp2(endStaking, curTime)
+  const havestDayStr = harvestDay === 0 ? null : getTimeFromTimeStamp2(harvestDay + periodSeconds, curTime)
 
   const {
     targetRef: harvestTargetRef,
