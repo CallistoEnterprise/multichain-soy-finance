@@ -14,16 +14,15 @@ interface AprRowProps {
 
 const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
   const { t } = useTranslation()
-  const { stakingToken, earningToken, isFinished, apr, earningTokenPrice, isAutoVault } = pool
+  const { stakingToken, earningToken, isFinished, apr, earningTokenPrice, isAutoVault, isNew } = pool
 
   const tooltipContent = isAutoVault
     ? t('APY includes compounding, APR doesn’t. This pool’s SOY is compounded automatically, so we show APY.')
-    : t('Max apr is based on 6 months.')
+    : t(isNew ? 'Max apr is based on staking periods.' : 'Max apr is based on 6 months.')
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-start' })
 
   const { apr: earningsPercentageToDisplay, roundingDecimals, compoundFrequency } = getAprData(pool, performanceFee)
-  
   const apyModalLink = stakingToken.address ? `/swap?outputCurrency=${getAddress(stakingToken.address)}` : '/swap'
 
   const [onPresentApyModal] = useModal(
@@ -55,9 +54,9 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
             unit="%"
             bold
           />
-          <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
+          {!isNew && <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
             <CalculateIcon color="textSubtle" width="18px" />
-          </IconButton>
+          </IconButton>}
         </Flex>
       )}
     </Flex>

@@ -30,7 +30,7 @@ const harvestPoolOld = async (sousChefContract) => {
 const useHarvestPool = (sousId, isNew = true) => {
   const { account, chainId } = useActiveWeb3React()
   const dispatch = useAppDispatch()
-  const stakingTkContract = useStakingTokenContract(sousId)
+  const stakingTkContract = useStakingTokenContract(sousId, true)
   const web3 = useWeb3ProviderByRpc(chainId)
   const sousChefContract = useSousChef(sousId, isNew)
 

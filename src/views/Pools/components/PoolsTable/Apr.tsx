@@ -14,7 +14,7 @@ interface AprProps extends FlexProps {
 }
 
 const Apr: React.FC<AprProps> = ({ pool, showIcon, performanceFee = 0, ...props }) => {
-  const { stakingToken, earningToken, isFinished, earningTokenPrice, apr } = pool
+  const { stakingToken, earningToken, isFinished, earningTokenPrice, apr, isNew } = pool
   const { t } = useTranslation()
 
   const { apr: earningsPercentageToDisplay, roundingDecimals, compoundFrequency } = getAprData(pool, performanceFee)
@@ -51,7 +51,7 @@ const Apr: React.FC<AprProps> = ({ pool, showIcon, performanceFee = 0, ...props 
             decimals={2}
             unit="%"
           />
-          {!isFinished && showIcon && (
+          {!isFinished && showIcon && !isNew && (
             <Button onClick={openRoiModal} variant="text" width="20px" height="20px" padding="0px" marginLeft="4px">
               <CalculateIcon color="textSubtle" width="20px" />
             </Button>
