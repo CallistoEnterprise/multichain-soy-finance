@@ -95,7 +95,11 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   )
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
-    t('You’ve already staked the maximum amount you can stake in this pool!'),
+    t(
+      isWithdrawRequest
+        ? 'Once you confirm "unlocking", you cannot add tokens to this pool while unlocking.'
+        : 'You’ve already staked the maximum amount you can stake in this pool!',
+    ),
     { placement: 'bottom' },
   )
 
@@ -104,30 +108,10 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const renderStakeAction = () => {
     return isStaked ? (
       <Flex justifyContent="justify-center" alignItems="center">
-        {/* <Flex flexDirection="column">
-          <>
-            <Balance bold fontSize="20px" decimals={3} value={stakedTokenBalance} />
-            {stakingTokenPrice !== 0 && (
-              <Text fontSize="12px" color="textSubtle">
-                <Balance
-                  fontSize="12px"
-                  color="textSubtle"
-                  decimals={2}
-                  value={stakedTokenDollarBalance}
-                  prefix="~"
-                  unit=" USD"
-                />
-              </Text>
-            )}
-          </>
-        </Flex> */}
         <Flex flexDirection="column" width="100%">
           {reachStakingLimit ? (
             <span ref={targetRef}>
               <Button disabled>{t('Stake Now')}</Button>
-              {/* <IconButton variant="secondary" disabled>
-                <AddIcon color="textDisabled" width="24px" height="24px" />
-              </IconButton> */}
             </span>
           ) : (
             <Button
@@ -136,25 +120,29 @@ const StakeAction: React.FC<StakeActionsProps> = ({
             >
               {t(stakedTokenBalance > 0 ? 'Add SOY' : 'Stake Now')}
             </Button>
-            // <IconButton
-            //   variant="secondary"
-            //   onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
-            //   disabled={isFinished}
-            // >
-            //   <AddIcon color="primary" width="24px" height="24px" />
-            // </IconButton>
           )}
-          <Button
-            onClick={isWithdrawRequest ? handleRequestUnstake : onPresentUnstake}
-            mt="10px"
-            isLoading={pendingTx}
-            endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
-          >
-            {t(isWithdrawRequest ? 'Start Unlocking' : 'Unstake')}
-          </Button>
-          {/* <IconButton variant="secondary" onClick={onPresentUnstake}>
-            <MinusIcon color="primary" width="24px" />
-          </IconButton> */}
+          {isWithdrawRequest ? (
+            <span ref={targetRef}>
+              <Button
+                onClick={isWithdrawRequest ? handleRequestUnstake : onPresentUnstake}
+                mt="10px"
+                width="100%"
+                isLoading={pendingTx}
+                endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
+              >
+                {t('Start Unlocking')}
+              </Button>
+            </span>
+          ) : (
+            <Button
+              onClick={isWithdrawRequest ? handleRequestUnstake : onPresentUnstake}
+              mt="10px"
+              isLoading={pendingTx}
+              endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
+            >
+              {t('Unstake')}
+            </Button>
+          )}
         </Flex>
         {tooltipVisible && tooltip}
       </Flex>
