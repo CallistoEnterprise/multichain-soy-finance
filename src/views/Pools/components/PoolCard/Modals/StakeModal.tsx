@@ -207,9 +207,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
         <div>
           {!isNew && <Text>{`Multiplier : ${multiplier}`}</Text>}
           {endTime > 0 ? (
-            <Text>{`End Time : ${getFormattedDateFromTimeStamp(endTime)} ${getTimeFromTimeStamp(endTime)}`}</Text>
+            <Text>{`Unlock Time : ${getFormattedDateFromTimeStamp(endTime)} ${getTimeFromTimeStamp(endTime)}`}</Text>
           ) : (
-            <Text>End Time : --/--/--</Text>
+            <Text>Unlock Time : --/--/--</Text>
           )}
         </div>
       )}

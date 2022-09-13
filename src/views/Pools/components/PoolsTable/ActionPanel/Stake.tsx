@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text } from '@soy-libs/uikit2'
+import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text, AutoRenewIcon } from '@soy-libs/uikit2'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useWeb3React } from '@web3-react/core'
 import { useCakeVault } from 'state/pools/hooks'
@@ -12,7 +12,10 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { PoolCategory } from 'config/constants/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getAddress } from 'utils/addressHelpers'
+import { useBlockLatestTimestamp } from 'utils'
 import { useERC20 } from 'hooks/useContract'
+import useToast from 'hooks/useToast'
+import useUnstakePool from 'views/Pools/hooks/useUnstakePool'
 import { convertSharesToCake } from 'views/Pools/helpers'
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
@@ -45,6 +48,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   } = pool
   const { t } = useTranslation()
   const { account } = useWeb3React()
+  const [pendingTx, setPendingTx] = useState(false)
+  const { toastSuccess, toastError, toastWarning } = useToast()
+  const { onUnstake } = useUnstakePool(sousId, isNew)
 
   const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '')
   const { handleApprove: handlePoolApprove, requestedApproval: requestedPoolApproval } = useApprovePool(
@@ -86,6 +92,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   const stakedAutoDollarValue = getBalanceNumber(cakeAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)
 
   const needsApproval = false // isAutoVault ? !isVaultApproved : !allowance.gt(0) && !isBnbPool
+  const curTime = useBlockLatestTimestamp()
 
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
 
@@ -110,6 +117,36 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     />,
   )
 
+  const handleRequestUnstake = async () => {
+    setPendingTx(true)
+
+    // unstaking
+    try {
+      if (endTime > curTime) {
+        toastWarning(t(`Unstaking is not available!`))
+        setPendingTx(false)
+        return
+      }
+      const res = await onUnstake(isWithdrawRequest)
+      if (res) {
+        isWithdrawRequest
+          ? toastSuccess(`${t('Requested')}!`, t('Your request was made successfully!'))
+          : toastSuccess(
+              `${t('Unstaked')}!`,
+              t('Your %symbol% earnings have also been harvested to your wallet!', {
+                symbol: earningToken.symbol,
+              }),
+            )
+      } else {
+        toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+      }
+      setPendingTx(false)
+    } catch (e) {
+      toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+      setPendingTx(false)
+    }
+  }
+
   const [onPresentVaultUnstake] = useModal(<VaultStakeModal stakingMax={cakeAsBigNumber} pool={pool} isRemovingStake />)
 
   const onStake = () => {
@@ -120,7 +157,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     }
   }
 
-  const onUnstake = () => {
+  const handleUnstake = () => {
     if (isAutoVault) {
       onPresentVaultUnstake()
     } else {
@@ -129,7 +166,11 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   }
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
-    t("You've already staked the maximum amount you can stake in this pool!"),
+    t(
+      isWithdrawRequest
+        ? 'Once you confirm "unlocking", you cannot add tokens to this pool while unlocking.'
+        : 'You’ve already staked the maximum amount you can stake in this pool!',
+    ),
     { placement: 'bottom' },
   )
 
@@ -215,7 +256,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
           </Flex>
           {!isNew && (
             <IconButtonWrapper>
-              <IconButton variant="secondary" onClick={onUnstake} mr="6px">
+              <IconButton variant="secondary" onClick={handleUnstake} mr="6px">
                 <MinusIcon color="primary" width="14px" />
               </IconButton>
               {reachStakingLimit ? (
@@ -247,17 +288,35 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
               >
                 {t(stakedTokenBalance === 0 ? 'Stake' : 'Add')}
               </Button>
-              <Button
-                ml="5px"
-                mt="5px"
-                width="100%"
-                size="small"
-                disabled={requestedApproval}
-                onClick={onUnstake}
-                variant="secondary"
-              >
-                {t(isWithdrawRequest ? 'Unlock' : 'Unstake')}
-              </Button>
+              {isWithdrawRequest ? (
+                <span ref={targetRef}>
+                  <Button
+                    ml="5px"
+                    mt="5px"
+                    width="100%"
+                    size="small"
+                    disabled={requestedApproval}
+                    onClick={handleRequestUnstake}
+                    variant="secondary"
+                    isLoading={pendingTx}
+                    endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
+                  >
+                    {t('Unlock')}
+                  </Button>
+                </span>
+              ) : (
+                <Button
+                  ml="5px"
+                  mt="5px"
+                  width="100%"
+                  size="small"
+                  disabled={requestedApproval}
+                  onClick={handleUnstake}
+                  variant="secondary"
+                >
+                  {t('Unstake')}
+                </Button>
+              )}
             </Flex>
           )}
           {tooltipVisible && tooltip}
