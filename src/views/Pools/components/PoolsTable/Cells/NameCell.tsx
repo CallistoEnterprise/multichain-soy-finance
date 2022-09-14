@@ -27,7 +27,7 @@ const StyledCell = styled(BaseCell)`
 const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const { t } = useTranslation()
   const { isXs, isSm } = useMatchBreakpoints()
-  const { sousId, stakingToken, earningToken, userData, isFinished, isAutoVault } = pool
+  const { sousId, stakingToken, earningToken, userData, isFinished, isAutoVault, isNew, lockPeriod, lockPeriodUnit } = pool
   const {
     userData: { userShares },
   } = useCakeVault()
@@ -42,8 +42,8 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
 
   const showStakedTag = isAutoVault ? hasVaultShares : isStaked
 
-  let title = `${t('Earn')} ${earningTokenSymbol}`
-  let subtitle = `${t('Freeze')} ${stakingTokenSymbol}`
+  let title = !isNew ? `${t('Earn')} ${earningTokenSymbol}` : `${stakingToken.symbol} Staking`
+  let subtitle = isNew ? `Time lock ${lockPeriod} ${lockPeriodUnit}` : `${t('Freeze')} ${stakingTokenSymbol}`
   const showSubtitle = sousId !== 0 || (sousId === 0 && !isXs && !isSm)
 
   if (isAutoVault) {
@@ -62,7 +62,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
         <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} mr="8px" width={40} height={40} />
       )}
       <CellContent>
-        {showStakedTag && (
+        {showStakedTag && !isNew && (
           <Text fontSize="12px" bold color={isFinished ? 'failure' : 'secondary'} textTransform="uppercase">
             {t('Staked')}
           </Text>

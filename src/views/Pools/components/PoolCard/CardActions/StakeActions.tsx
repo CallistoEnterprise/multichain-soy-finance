@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Flex, Button, useModal, Skeleton, useTooltip, AutoRenewIcon } from '@soy-libs/uikit2'
+import { Flex, Button, useModal, Skeleton, useTooltip, AutoRenewIcon, HelpIcon } from '@soy-libs/uikit2'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { useBlockLatestTimestamp } from 'utils'
@@ -122,7 +122,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
             </Button>
           )}
           {isWithdrawRequest ? (
-            <span ref={targetRef}>
+            <Flex width="100%" alignItems="center">
               <Button
                 onClick={isWithdrawRequest ? handleRequestUnstake : onPresentUnstake}
                 mt="10px"
@@ -132,7 +132,10 @@ const StakeAction: React.FC<StakeActionsProps> = ({
               >
                 {t('Start Unlocking')}
               </Button>
-            </span>
+              <span ref={targetRef}>
+                <HelpIcon color="textSubtle" width="20px" ml="6px" mt="10px" />
+              </span>
+            </Flex>
           ) : (
             <Button
               onClick={isWithdrawRequest ? handleRequestUnstake : onPresentUnstake}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text, AutoRenewIcon } from '@soy-libs/uikit2'
+import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text, AutoRenewIcon, HelpIcon } from '@soy-libs/uikit2'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useWeb3React } from '@web3-react/core'
 import { useCakeVault } from 'state/pools/hooks'
@@ -289,7 +289,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
                 {t(stakedTokenBalance === 0 ? 'Stake' : 'Add')}
               </Button>
               {isWithdrawRequest ? (
-                <span ref={targetRef}>
+                <Flex width="100%" alignItems="center">
                   <Button
                     ml="5px"
                     mt="5px"
@@ -303,7 +303,10 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
                   >
                     {t('Unlock')}
                   </Button>
-                </span>
+                  <span ref={targetRef}>
+                    <HelpIcon color="textSubtle" width="20px" ml="6px" mt="10px" />
+                  </span>
+                </Flex>
               ) : (
                 <Button
                   ml="5px"
