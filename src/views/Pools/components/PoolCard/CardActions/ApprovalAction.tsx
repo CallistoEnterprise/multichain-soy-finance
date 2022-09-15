@@ -25,7 +25,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false
         <Button
           isLoading={requestedApproval}
           endIcon={requestedApproval ? <AutoRenewIcon spin color="currentColor" /> : null}
-          disabled={requestedApproval}
+          disabled={requestedApproval || !isNew}
           onClick={handleApprove}
           width="100%"
         >

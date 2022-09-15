@@ -123,7 +123,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     contractAddress,
     isAutoVault,
     userData,
-    isNew
+    isNew,
   } = pool
   const { t } = useTranslation()
   const poolContractAddress = getAddress(contractAddress)
@@ -182,12 +182,16 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     targetRef: harvestTargetRef,
     tooltip: harvestTooltip,
     tooltipVisible: harvestTooltipVisible,
-  } = useTooltip(t(
-    isNew ?
-    'Once unlocking starts, the time starts according to your pool. After the time expires, you can collect your tokens.'
-    : 'Next harvest (claim reward without deposited amount) available every 27 days.'), {
-    placement: 'bottom-start',
-  })
+  } = useTooltip(
+    t(
+      isNew
+        ? 'Once unlocking starts, the time starts according to your pool. After the time expires, you can collect your tokens.'
+        : 'Next harvest (claim reward without deposited amount) available every 27 days.',
+    ),
+    {
+      placement: 'bottom-start',
+    },
+  )
 
   const curTime = useBlockLatestTimestamp()
 
@@ -266,40 +270,48 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         </Flex> */}
 
         <Flex mb="2px" justifyContent="space-between" flexDirection="column">
-        {!isNew && <Text small color="primary">{t('Next Harvest In')}:</Text>}
-          {!isNew && <Flex mb="0px" justifyContent="flex-start">
-            {
-              havestDayStr
-              ? <Text small>{havestDayStr}</Text>
-              : <Skeleton width="200px" height="21px" />
-            }
-            <span ref={harvestTargetRef}>
-              <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
-            </span>
-          </Flex>}
+          {!isNew && (
+            <Text small color="primary">
+              {t('Next Harvest In')}:
+            </Text>
+          )}
+          {!isNew && (
+            <Flex mb="0px" justifyContent="flex-start">
+              {havestDayStr ? <Text small>{havestDayStr}</Text> : <Skeleton width="200px" height="21px" />}
+              <span ref={harvestTargetRef}>
+                <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
+              </span>
+            </Flex>
+          )}
           {harvestTooltipVisible && harvestTooltip}
         </Flex>
         <Flex mb="2px" justifyContent="space-between" flexDirection="column">
-          <Text small color="primary">{t(isNew ? 'Unlock in' : 'Cold Staking Ends In')}:</Text>
+          <Text small color="primary">
+            {t(isNew ? 'Unlock in' : 'Cold Staking Ends In')}:
+          </Text>
           <Flex>
-          {
-            isWithdrawRequest
-            ? <Skeleton width="200px" height="21px" />
-            : <Text small>{endTimeStr ? endTimeStr : '0day'}</Text>
-          } 
-            {isNew && <span ref={harvestTargetRef}> 
-              <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
-            </span>}
+            {isWithdrawRequest ? (
+              <Skeleton width="200px" height="21px" />
+            ) : (
+              <Text small>{endTimeStr ? endTimeStr : '0day'}</Text>
+            )}
+            {isNew && (
+              <span ref={harvestTargetRef}>
+                <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
+              </span>
+            )}
           </Flex>
         </Flex>
 
         {(isXs || isSm) && aprRow}
         {(isXs || isSm || isMd) && totalStakedRow}
-        
+
         {poolContractAddress && (
           <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
             <LinkExternal
-              href={`${BASE_CALLISTO_SCAN_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}/transactions`}
+              href={`${BASE_CALLISTO_SCAN_URL}/address/${
+                isAutoVault ? cakeVaultContractAddress : poolContractAddress
+              }/transactions`}
               bold={false}
             >
               {t('View Contract')}
@@ -321,9 +333,11 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         )}
         {!isNew && <ManualPoolTag />}
         {tagTooltipVisible && tagTooltip}
-        {!isNew && <span ref={tagTargetRef}>
-          <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
-        </span>}
+        {!isNew && (
+          <span ref={tagTargetRef}>
+            <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
+          </span>
+        )}
       </InfoSection>
       <ActionContainer>
         {showSubtitle && (
@@ -331,8 +345,8 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             {isAutoVault ? t('Automatic restaking') : `${t('Earn')} SOY ${t('Stake').toLocaleLowerCase()} SOY`}
           </Text>
         )}
-        <Harvest {...pool} userDataLoaded={userDataLoaded} endTimeStr={endTimeStr}/>
-        <Stake pool={pool} userDataLoaded={userDataLoaded} isWithdrawRequest={isWithdrawRequest}/>
+        <Harvest {...pool} userDataLoaded={userDataLoaded} endTimeStr={endTimeStr} />
+        <Stake pool={pool} userDataLoaded={userDataLoaded} isWithdrawRequest={isWithdrawRequest} />
       </ActionContainer>
     </StyledActionPanel>
   )

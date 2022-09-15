@@ -21,6 +21,7 @@ interface HarvestActionProps extends Pool {
 }
 
 const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
+  isNew,
   sousId,
   poolCategory,
   earningToken,
@@ -162,7 +163,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
             </Flex>
           </Flex>
         ) : (
-          <Button disabled={!hasEarnings} onClick={onPresentCollect}>
+          <Button disabled={!hasEarnings || !isNew} onClick={onPresentCollect}>
             {isCompoundPool ? t('Collect') : t('Harvest')}
           </Button>
         )}

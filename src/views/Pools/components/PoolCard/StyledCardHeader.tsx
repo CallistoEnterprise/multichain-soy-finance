@@ -33,7 +33,7 @@ const StyledCardHeader: React.FC<{
     }
     if (isCakePool) {
       // manual cake
-      return !isNew ? t('Cold Staking') : t('Staking')
+      return !isNew ? t('Cold Staking(V1)') : t('Staking')
     }
     // all other pools
     return t('Earn')

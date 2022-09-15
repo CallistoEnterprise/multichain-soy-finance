@@ -65,7 +65,7 @@ export const fetchUserStakeBalances = async (account) => {
   const userInfoOld = await multicall3(sousChefABI, callsOld)
   const userInfoNew = await multicall3(sousChefABINew, callsNew)
 
-  const userInfo1 = [...userInfoOld, ...userInfoNew]
+  const userInfo1 = [ ...userInfoNew, ...userInfoOld]
 
   const stakedBalances = nonMasterPools.reduce(
     (acc, pool, index) => ({
