@@ -27,6 +27,7 @@ export const RPC_URLS = {
 
 export const ExplorerText = {
   [ChainId.MAINNET]: 'CallistoScan',
+  [ChainId.CLOTESTNET]: 'CLOTestScan',
   [ChainId.BTTMAINNET]: 'BttcScan',
   [ChainId.BSC]: 'BSCScan',
   [ChainId.ETCCLASSICMAINNET]: 'ETCScan'
@@ -34,6 +35,7 @@ export const ExplorerText = {
 
 export const NetworkNames = {
   [ChainId.MAINNET]: 'Callisto',
+  [ChainId.CLOTESTNET]: 'CLO Testnet',
   [ChainId.BTTMAINNET]: 'Bittorent',
   [ChainId.BSC]: 'BSC',
   [ChainId.ETCCLASSICMAINNET]: 'ETC'
@@ -41,6 +43,7 @@ export const NetworkNames = {
 
 export const NativeSymbols = {
   [ChainId.MAINNET]: 'clo',
+  [ChainId.CLOTESTNET]: 'clo',
   [ChainId.BTTMAINNET]: 'btt',
   [ChainId.BSC]: 'bnb',
   [ChainId.ETCCLASSICMAINNET]: 'etc'
@@ -48,6 +51,7 @@ export const NativeSymbols = {
 
 export const WrappedNativeSymbols = {
   [ChainId.MAINNET]: 'WCLO',
+  [ChainId.CLOTESTNET]: 'WCLO',
   [ChainId.BTTMAINNET]: 'WBTT',
   [ChainId.BSC]: 'WBNB',
   [ChainId.ETCCLASSICMAINNET]: 'WETC'
@@ -55,6 +59,7 @@ export const WrappedNativeSymbols = {
 
 export const NativeAddress = {
   [ChainId.MAINNET]: '0x0000000000000000000000000000000000000001',
+  [ChainId.CLOTESTNET]: '0x0000000000000000000000000000000000000001',
   [ChainId.BTTMAINNET]: '0x0000000000000000000000000000000000001010',
   [ChainId.BSC]: '0x0000000000000000000000000000000000000007',
   [ChainId.ETHEREUM]: '0x0000000000000000000000000000000000000006',
@@ -86,9 +91,10 @@ export const AUCTION_WHITELISTED_BIDDERS_TO_FETCH = 500
 export const ONE_YEAR_TIMESTAMP = 365 * 24 * 60 * 60
 
 export const REWARD_TOKENS_PER_YEAR ={
-  820:  new BigNumber(50000000 * 0.8),
-  199:  new BigNumber(50000000 * 0.1),
-  61:  new BigNumber(50000000 * 0.1),
+  [ChainId.MAINNET]:  new BigNumber(50000000 * 0.8),
+  [ChainId.CLOTESTNET]:  new BigNumber(50000000 * 0.8),
+  [ChainId.BTTMAINNET]:  new BigNumber(50000000 * 0.1),
+  [ChainId.ETCCLASSICMAINNET]:  new BigNumber(50000000 * 0.1),
 }
 
 export const localStorageChainIdKey = "soyfinanceChainId"

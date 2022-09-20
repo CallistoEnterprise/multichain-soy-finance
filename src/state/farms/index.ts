@@ -12,8 +12,9 @@ import {
   fetchFarmUserStakedBalances,
 } from './fetchFarmUser'
 import { FarmsState, Farm } from '../types'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
-const noAccountFarmConfig = farmsConfig[820].map((farm) => ({
+const noAccountFarmConfig = farmsConfig[ChainId.MAINNET].map((farm) => ({
   ...farm,
   userData: {
     allowance: '0',
@@ -22,7 +23,7 @@ const noAccountFarmConfig = farmsConfig[820].map((farm) => ({
     earnings: '0',
   },
 }))
-const noAccountFarmConfigBTT = farmsConfig[199].map((farm) => ({
+const noAccountFarmConfigForCLOTest = farmsConfig[ChainId.CLOTESTNET].map((farm) => ({
   ...farm,
   userData: {
     allowance: '0',
@@ -31,7 +32,16 @@ const noAccountFarmConfigBTT = farmsConfig[199].map((farm) => ({
     earnings: '0',
   },
 }))
-const noAccountFarmConfigETC = farmsConfig[61].map((farm) => ({
+const noAccountFarmConfigBTT = farmsConfig[ChainId.BTTMAINNET].map((farm) => ({
+  ...farm,
+  userData: {
+    allowance: '0',
+    tokenBalance: '0',
+    stakedBalance: '0',
+    earnings: '0',
+  },
+}))
+const noAccountFarmConfigETC = farmsConfig[ChainId.ETCCLASSICMAINNET].map((farm) => ({
   ...farm,
   userData: {
     allowance: '0',
@@ -42,15 +52,17 @@ const noAccountFarmConfigETC = farmsConfig[61].map((farm) => ({
 }))
 
 const initialState: FarmsState = { data: {
-  820: noAccountFarmConfig,
-  199: noAccountFarmConfigBTT,
-  61: noAccountFarmConfigETC
+  [ChainId.MAINNET]: noAccountFarmConfig,
+  [ChainId.CLOTESTNET]: noAccountFarmConfigForCLOTest,
+  [ChainId.BTTMAINNET]: noAccountFarmConfigBTT,
+  [ChainId.ETCCLASSICMAINNET]: noAccountFarmConfigETC
 }, loadArchivedFarmsData: false, userDataLoaded: false }
 
-export const nonArchivedFarms = { 
-  820: farmsConfig[820].filter(({ pid }) => !isArchivedPid(pid)),
-  199: farmsConfig[199].filter(({ pid }) => !isArchivedPid(pid)),
-  61: farmsConfig[61].filter(({ pid }) => !isArchivedPid(pid)),
+export const nonArchivedFarms = {
+  [ChainId.MAINNET]: farmsConfig[ChainId.MAINNET].filter(({ pid }) => !isArchivedPid(pid)),
+  [ChainId.CLOTESTNET]: farmsConfig[ChainId.CLOTESTNET].filter(({ pid }) => !isArchivedPid(pid)),
+  [ChainId.BTTMAINNET]: farmsConfig[ChainId.BTTMAINNET].filter(({ pid }) => !isArchivedPid(pid)),
+  [ChainId.ETCCLASSICMAINNET]: farmsConfig[ChainId.ETCCLASSICMAINNET].filter(({ pid }) => !isArchivedPid(pid)),
 }
 
 // Async thunks
