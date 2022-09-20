@@ -62,7 +62,6 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount
     const earningTokenAddress = pool.earningToken.address ? getAddress(pool.earningToken.address).toLowerCase() : null
     const earningTokenPrice = earningTokenAddress ? prices[earningTokenAddress] : 0
 
-    // const RBC = pool.sousId === 0 ? rewardBlockCount : pool.stakingToken.symbol === 'CLO' ? rwBLCntOfMaticStaking : rwBLCntOfSousChef
     const RBC = rewardBlockCount
     const apr = !isPoolFinished
       ? getPoolApr(

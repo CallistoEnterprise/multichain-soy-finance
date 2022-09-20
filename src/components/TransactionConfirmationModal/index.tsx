@@ -21,6 +21,7 @@ import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { RowFixed } from '../Layout/Row'
 import { AutoColumn, ColumnCenter } from '../Layout/Column'
 import { getCallistoExpLink } from '../../utils'
+import { ExplorerText } from 'config'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -32,13 +33,6 @@ const Section = styled(AutoColumn)`
 const ConfirmedIcon = styled(ColumnCenter)`
   padding: 10px 30px 30px 0;
 `
-
-const explorerText = {
-  20729: 'CLOTestnetExp',
-  820: 'CallistoExp',
-  199: 'BttScan',
-  61: 'EtcScan'
-}
 
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
   const { t } = useTranslation()
@@ -89,7 +83,7 @@ function TransactionSubmittedContent({
           <Text fontSize="20px">{t('Transaction Submitted')}</Text>
           {chainId && hash && (
             <Link external small href={getCallistoExpLink(hash, 'transaction', chainId)}>
-              {t(`View on ${explorerText[chainId]}`)}
+              {t(`View on ${ExplorerText[chainId]}`)}
             </Link>
           )}
           {currencyToAdd && library?.provider?.isMetaMask && (

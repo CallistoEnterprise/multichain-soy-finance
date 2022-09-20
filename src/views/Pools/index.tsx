@@ -27,6 +27,7 @@ import PoolTabButtons from './components/PoolTabButtons'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData } from './helpers'
+import { ChainId } from '@soy-libs/sdk-multichain'
 // import useRewardBlockCountOfSous, { useRewardBlockCountForMaticStaking } from './hooks/useRewardBlockCount'
 
 const CardLayout = styled(FlexLayout)`
@@ -121,7 +122,7 @@ const Pools: React.FC = () => {
     const init = () => {
       history.push('/')
     }
-    if (chainId !== Number(process.env.REACT_APP_CLO_CHAIN_ID)) {
+    if (chainId !== ChainId.MAINNET && chainId !== ChainId.CLOTESTNET) {
       init()
     }
   }, [chainId])

@@ -13,15 +13,18 @@ const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.BTTMAINNET]: 'https://rpc.bt.io/', // 'https://rpc.bittorrentchain.io/'
 }
 
-export const Networks = [
-  {
-      name: "Callisto Testnet",
-      symbol: "CLO",
-      img: `${BASE_URL}/images/networks/clo.png`,
-      chainId: process.env.REACT_APP_CLO_CHAIN_ID,
-      hexChainId: process.env.REACT_APP_CLO_HEX_CHAIN_ID,
-      rpcs: [process.env.REACT_APP_CLO_NODE],
-      explorer: process.env.REACT_APP_CLO_EXP
+export const Networks = []
+
+//temp solution until we finish the chain configurations
+if(process.env.REACT_APP_TESTNET_ONLY !== 'true'){
+  Networks.push({
+    name: 'Callisto',
+    symbol: 'CLO',
+    img: `${BASE_URL}/images/networks/clo.png`,
+    chainId: '820',
+    hexChainId: '0x334',
+    rpcs: ['https://rpc.callisto.network/'],
+    explorer: 'https://explorer.callisto.network/',
   },
   // {
   //     name: "BSC",
@@ -42,23 +45,33 @@ export const Networks = [
   //     explorer: process.env.REACT_APP_ETH_EXP
   // },
   {
-      name: "BitTorrent",
-      symbol: "BTT",
-      img: `${BASE_URL}/images/networks/btt.png`,
-      chainId: process.env.REACT_APP_BTT_CHAIN_ID,
-      hexChainId: process.env.REACT_APP_BTT_HEX_CHAIN_ID,
-      rpcs: [process.env.REACT_APP_BTT_NODE],
-      explorer: process.env.REACT_APP_BTT_EXP 
+    name: 'BitTorrent',
+    symbol: 'BTT',
+    img: `${BASE_URL}/images/networks/btt.png`,
+    chainId: '199',
+    hexChainId: '0xc7',
+    rpcs: ['https://rpc.bt.io/'],
+    explorer: 'https://bttcscan.com/',
   },
   {
-      name: "ETC Chain",
-      symbol: "ETC",
-      img: `${BASE_URL}/images/networks/etc.png`,
-      chainId: process.env.REACT_APP_ETC_CHAIN_ID,
-      hexChainId: process.env.REACT_APP_ETC_HEX_CHAIN_ID,
-      rpcs: [process.env.REACT_APP_ETC_NODE],
-      explorer: process.env.REACT_APP_ETC_EXP
-  },
-]
+    name: 'ETC Chain',
+    symbol: 'ETC',
+    img: `${BASE_URL}/images/networks/etc.png`,
+    chainId: '61',
+    hexChainId: '0x3D',
+    rpcs: ['https://etc.etcdesktop.com/'],
+    explorer: 'https://blockscout.com/etc/mainnet/',
+  })
+}
+if(process.env.REACT_APP_ENABLE_TESTNET === 'true' || process.env.REACT_APP_TESTNET_ONLY === 'true')
+  Networks.push( {
+    name: 'Callisto Testnet',
+    symbol: 'CLO',
+    img: `${BASE_URL}/images/networks/clo.png`,
+    chainId: '20729',
+    hexChainId: '0x50F9',
+    rpcs: ['https://testnet-rpc.callisto.network/'],
+    explorer: 'https://testnet-explorer.callisto.network/',
+  },)
 
 export default NETWORK_URLS

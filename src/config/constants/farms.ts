@@ -1,3 +1,4 @@
+import { ChainId } from '@soy-libs/sdk-multichain'
 import tokens from './tokens'
 import { FarmConfig } from './types'
 
@@ -709,8 +710,8 @@ const etcFarms: FarmConfig[] = [
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  820: farms,
-  20729: testNetFarms,
-  199: bttFarms,
-  61: etcFarms
+  [ChainId.MAINNET]: farms,
+  [ChainId.CLOTESTNET]: testNetFarms,
+  [ChainId.BTTMAINNET]: bttFarms,
+  [ChainId.ETCCLASSICMAINNET]: etcFarms
 }
