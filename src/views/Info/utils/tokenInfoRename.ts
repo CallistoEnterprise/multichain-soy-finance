@@ -1,5 +1,3 @@
-// import DEFAULT_TOKEN_LIST from 'config/constants/tokenLists/tokenlist.json'
-
 const toRename = {
     '0xf5ad6f6edec824c7fd54a66d241a227f6503ad3a':{name:"Callisto Network",symbol:"CLO"},
     '0x9fae2529863bd691b4a7171bdfcf33c7ebb10a65':{name:"SOY Finance token",symbol:"SOY"},
