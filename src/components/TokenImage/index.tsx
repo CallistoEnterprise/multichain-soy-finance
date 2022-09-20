@@ -5,7 +5,8 @@ import {
   TokenImage as UIKitTokenImage,
   ImageProps,
 } from '@soy-libs/uikit2'
-import { BASE_URL, NativeSymbols } from 'config'
+import { BASE_URL } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { wrappedNativeTokens } from 'config/constants/tokens'
 import { Token } from 'config/constants/types'
 import { getAddress } from 'utils/addressHelpers'
@@ -17,12 +18,17 @@ interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc
 }
 
 const getImageUrlFromToken = (token: Token, chainId?: number) => {
-  const address = getAddress(token.symbol === NativeSymbols[chainId]?.toUpperCase() ? wrappedNativeTokens[chainId].address : token.address, chainId)
+  const address = getAddress(
+    token.symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol
+      ? wrappedNativeTokens[chainId].address
+      : token.address,
+    chainId,
+  )
   return `${BASE_URL}/images/coins/${chainId}/${address}.png`
 }
 
 export const TokenPairImage: React.FC<TokenPairImageProps> = ({ primaryToken, secondaryToken, ...props }) => {
-  const {chainId} = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
 
   return (
     <UIKitTokenPairImage

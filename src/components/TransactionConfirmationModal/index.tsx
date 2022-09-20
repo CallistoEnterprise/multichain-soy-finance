@@ -21,7 +21,7 @@ import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { RowFixed } from '../Layout/Row'
 import { AutoColumn, ColumnCenter } from '../Layout/Column'
 import { getCallistoExpLink } from '../../utils'
-import { ExplorerText } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -83,7 +83,7 @@ function TransactionSubmittedContent({
           <Text fontSize="20px">{t('Transaction Submitted')}</Text>
           {chainId && hash && (
             <Link external small href={getCallistoExpLink(hash, 'transaction', chainId)}>
-              {t(`View on ${ExplorerText[chainId]}`)}
+              {t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}}`)}
             </Link>
           )}
           {currencyToAdd && library?.provider?.isMetaMask && (

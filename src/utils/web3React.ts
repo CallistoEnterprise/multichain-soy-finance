@@ -5,19 +5,21 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import type { AbstractConnector } from '@web3-react/abstract-connector'
 import { ConnectorNames } from '@soy-libs/uikit2'
-// import { localStorageChainIdKey } from 'config'
 import { ethers } from 'ethers'
-// import getNodeUrl from './getRpcUrl'
-import NETWORK_URLS from 'config/constants/networks';
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const POLLING_INTERVAL = 12000
-// const rpcUrl = getNodeUrl()
-// const chainId = window.localStorage.getItem(localStorageChainIdKey) ? Number(window.localStorage.getItem(localStorageChainIdKey)) : parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
 const injected = new InjectedConnector({ supportedChainIds: [1, 4, 42, 56, 97, 61, 820, 199, 20729] })
 
 const walletconnect = new WalletConnectConnector({
-  rpc: NETWORK_URLS,
+  rpc: {
+    [ChainId.MAINNET]: CHAINS_CONSTANTS[ChainId.MAINNET].rpcs[0],
+    [ChainId.BTTMAINNET]: CHAINS_CONSTANTS[ChainId.BTTMAINNET].rpcs[0],
+    [ChainId.ETCCLASSICMAINNET]: CHAINS_CONSTANTS[ChainId.ETCCLASSICMAINNET].rpcs[0],
+    [ChainId.CLOTESTNET]: CHAINS_CONSTANTS[ChainId.CLOTESTNET].rpcs[0],
+  },
   bridge: 'https://soyfinance.bridge.walletconnect.org/',
   qrcode: true,
   // pollingInterval: POLLING_INTERVAL,

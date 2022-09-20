@@ -1,9 +1,10 @@
 import BigNumber from 'bignumber.js'
-import { localStorageChainIdKey, WrappedNativeSymbols } from 'config'
+import { ChainId } from '@soy-libs/sdk-multichain'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
+import { localStorageChainIdKey } from 'config'
 import { BIG_ONE, BIG_ZERO } from 'utils/bigNumber'
 import { filterFarmsByQuoteToken } from 'utils/farmsPriceHelpers'
 import { Farm } from 'state/types'
-import { ChainId } from '@soy-libs/sdk-multichain'
 
 const getFarmFromTokenSymbol = (farms: Farm[], tokenSymbol: string): Farm => {
   const farmsWithTokenSymbol = farms.filter((farm) => farm.token.symbol === tokenSymbol)
@@ -25,7 +26,7 @@ const getFarmBaseTokenPrice = (
     return hasTokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
-  if (farm.quoteToken.symbol === WrappedNativeSymbols[chainId]) {
+  if (farm.quoteToken.symbol === CHAINS_CONSTANTS[chainId].general.wrappedNativeSymbol) {
     return hasTokenPriceVsQuote ? cloPriceBusd.times(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
@@ -42,7 +43,7 @@ const getFarmBaseTokenPrice = (
   // If the farm's quote token isn't BUSDT or wCLO, we then use the quote token, of the original farm's quote token
   // i.e. for farm PNT - pBTC we use the pBTC farm's quote token - CLO, (pBTC - CLO)
   // from the CLO - pBTC price, we can calculate the PNT - BUSDT price
-  if (quoteTokenFarm.quoteToken.symbol === WrappedNativeSymbols[chainId]) {
+  if (quoteTokenFarm.quoteToken.symbol === CHAINS_CONSTANTS[chainId].general.wrappedNativeSymbol) {
     const quoteTokenInBusd = cloPriceBusd.times(quoteTokenFarm.tokenPriceVsQuote)
     return hasTokenPriceVsQuote && quoteTokenInBusd
       ? new BigNumber(farm.tokenPriceVsQuote).times(quoteTokenInBusd)
@@ -71,7 +72,7 @@ const getFarmQuoteTokenPrice = (
     return BIG_ONE
   }
 
-  if (farm.quoteToken.symbol === WrappedNativeSymbols[chainId]) {
+  if (farm.quoteToken.symbol === CHAINS_CONSTANTS[chainId].general.wrappedNativeSymbol) {
     return bnbPriceBusd
   }
 
@@ -83,7 +84,7 @@ const getFarmQuoteTokenPrice = (
     return BIG_ZERO
   }
 
-  if (quoteTokenFarm.quoteToken.symbol === WrappedNativeSymbols[chainId]) {
+  if (quoteTokenFarm.quoteToken.symbol === CHAINS_CONSTANTS[chainId].general.wrappedNativeSymbol) {
     return quoteTokenFarm.tokenPriceVsQuote ? bnbPriceBusd.times(quoteTokenFarm.tokenPriceVsQuote) : BIG_ZERO
   }
 
