@@ -14,23 +14,6 @@ if(process.env.REACT_APP_TESTNET_ONLY !== 'true'){
     rpcs: CHAINS_CONSTANTS[ChainId.MAINNET].rpcs,
     explorer: CHAINS_CONSTANTS[ChainId.MAINNET].explorer.url,
   },
-  // {
-  //     name: "BSC",
-  //     symbol: "BNB",
-  //     img: '/images/networks/bnb.png',
-  //     chainId: "56",
-  //     hexChainId: "0x38",
-  //     rpcs: ["https://bsc-dataseed.binance.org/", "https://bsc-dataseed1.defibit.io/", "https://bsc-dataseed1.ninicoin.io/"],
-  //     explorer: "https://bscscan.com/"
-  // },
-  // {
-  //     name: "Ethereum Network",
-  //     symbol: "ETH",
-  //     img: '/images/networks/eth.png',
-  //     chainId: "1",
-  //     rpcs: ["https://mainnet.infura.io/v3/d819f1add1a34a60adab4df578e0e741"],
-  //     explorer: "https://etherscan.io/"
-  // },
   {
     name: CHAINS_CONSTANTS[ChainId.BTTMAINNET].general.chainName,
     symbol: CHAINS_CONSTANTS[ChainId.BTTMAINNET].general.nativeSymbol,

@@ -7,6 +7,7 @@ import { localStorageChainIdKey } from 'config'
 import { Networks } from 'config/constants/networks'
 import { getRpcForMulti } from 'utils/getRpcUrl'
 import Web3 from 'web3'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 export const getProviderByChainId = (chainId) => {
   const filtered = Networks.filter((_) => Number(_.chainId) === chainId)
@@ -19,10 +20,8 @@ export const getProviderByChainId = (chainId) => {
 }
 export const useGetSimpleRpcProvider = (chainId) => {
   const [provider, setSimpleProvider] = useState(null)
-
   useEffect(() => {
     const get = async () => {
-      // console.log("chainId ::", chainId);
       const pvd = getProviderByChainId(chainId)
       setSimpleProvider(pvd)
     }
@@ -53,7 +52,7 @@ const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> => {
 
   const locChainId = window.localStorage.getItem(localStorageChainIdKey)
     ? Number(window.localStorage.getItem(localStorageChainIdKey))
-    : Number(process.env.REACT_APP_CHAIN_ID)
+    : ChainId.MAINNET
   useEffect(() => {
     if (library !== refEth.current && simpleRpcProviderInMulti) {
       setprovider(library || simpleRpcProviderInMulti)

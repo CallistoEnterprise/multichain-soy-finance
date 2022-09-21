@@ -16,19 +16,6 @@ const pools: PoolConfig[] = [
     sortOrder: 1,
     isFinished: false,
   },
-  // {
-  //   sousId: 1,
-  //   stakingToken: tokens.clo,
-  //   earningToken: tokens.soy,
-  //   contractAddress: {
-  //     820: '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
-  //     20729: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
-  //   },
-  //   poolCategory: PoolCategory.CLO,
-  //   harvest: true,
-  //   sortOrder: 999,
-  //   tokenPerBlock: '5',
-  // },
 ]
 
 export default pools
