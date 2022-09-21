@@ -18,7 +18,7 @@ export const usePollFarmsData = (includeArchive = false) => {
   const { slowRefresh } = useRefresh()
   const { account } = useWeb3React()
 
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
 
   useEffect(() => {
     const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
@@ -59,7 +59,7 @@ const busdtFarms = {
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
 
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync(coreFarms[chainId]))
@@ -72,13 +72,13 @@ export const useFarms = (): FarmsState => {
 }
 
 export const useFarmFromPid = (pid): Farm => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
   const farm = useSelector((state: State) => state.farms.data[chId]?.find((f) => f.pid === pid))
   return farm
 }
 
 export const useFarmFromLpSymbol = (lpSymbol: string): Farm => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
   const farm = useSelector((state: State) => state.farms.data[chId]).find((f) => f?.lpSymbol === lpSymbol)
   return farm
 }
@@ -121,13 +121,13 @@ export const useLpTokenPrice = (symbol: string) => {
 // /!\ Deprecated , use the USDC hook in /hooks
 
 export const usePriceBnbBusd = (): BigNumber => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
   const cloBusdtFarm = useFarmFromPid(busdtFarms[chainId])
   return new BigNumber(cloBusdtFarm.quoteToken.usdcPrice)
 }
 
 export const usePriceCakeBusd = (): BigNumber => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
   const soyCloFarm = useFarmFromPid(coreEthFarms[chainId])
   const soyPriceBusdtAsString = soyCloFarm?.token.usdcPrice
   const soyPriceBusdt = useMemo(() => {

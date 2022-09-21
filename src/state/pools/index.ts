@@ -17,6 +17,7 @@ import {
 import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
 import fetchVaultUser from './fetchVaultUser'
 import { getTokenPricesFromFarm } from './helpers'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const initialState: PoolsState = {
   data: [...poolsConfig],
@@ -45,7 +46,7 @@ const initialState: PoolsState = {
 
 // Thunks
 export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount: BigNumber) => async (dispatch, getState) => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
   const blockLimits = await fetchPoolsBlockLimits()
   const totalStakings = await fetchPoolsTotalStaking()
   const prices = getTokenPricesFromFarm(getState().farms.data[chainId])

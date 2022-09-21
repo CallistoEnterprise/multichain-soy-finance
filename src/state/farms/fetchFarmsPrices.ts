@@ -114,7 +114,7 @@ const refFarms = {
   [ChainId.ETCCLASSICMAINNET]: 1
 }
 const fetchFarmsPrices = async (farms) => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
   const nativeBusdtFarm = farms.find((farm: Farm) => farm.pid === farmsPids[chainId])
   const soyBusdtFarm = farms.find((farm: Farm) => farm.pid === busdtFarms[chainId])
   const soyCloFarm = farms.find((farm: Farm) => farm.pid === refFarms[chainId])

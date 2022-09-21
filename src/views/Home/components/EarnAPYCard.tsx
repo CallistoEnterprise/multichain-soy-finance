@@ -7,6 +7,7 @@ import BigNumber from 'bignumber.js'
 import { QuoteToken } from 'config/constants/types'
 import { useFarms, usePriceBnbBusd } from 'state/farms/hooks'
 import { BLOCKS_PER_YEAR, SOY_PER_BLOCK, localStorageChainIdKey } from 'config'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const SOY_POOL_PID = 1
 
@@ -30,7 +31,7 @@ const EarnAPYCard = () => {
   const bnbPrice = usePriceBnbBusd()
 
   const maxAPY = useRef(Number.MIN_VALUE)
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
 
   const getHighestAPY = () => {
     const activeFarms = farmsLP.data[chId].filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')

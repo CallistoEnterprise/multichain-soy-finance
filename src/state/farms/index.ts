@@ -128,7 +128,7 @@ export const farmsSlice = createSlice({
   extraReducers: (builder) => {
     // Update farms with live data
     builder.addCase(fetchFarmsPublicDataAsync.fulfilled, (state, action) => {
-      const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+      const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
       state.data[chId] = state.data[chId].map((farm) => {
         const liveFarmData = action.payload.find((farmData) => farmData.pid === farm.pid)
         return { ...farm, ...liveFarmData }
@@ -137,7 +137,7 @@ export const farmsSlice = createSlice({
 
     // Update farms with user data
     builder.addCase(fetchFarmUserDataAsync.fulfilled, (state, action) => {
-      const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+      const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
       action.payload.forEach((userDataEl) => {
         const { pid } = userDataEl
         const index = state.data[chId].findIndex((farm) => farm.pid === pid)
