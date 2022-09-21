@@ -25,7 +25,6 @@ export interface ChainConstants {
     url: string
   }
   tokenLists?: any
-  farms?: FarmConfig[]
   rewardTokensPerYear?: BigNumber
-  wrappedNativeTokens?: Token
+  wrappedNativeAddress?: Token
 }

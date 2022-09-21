@@ -3,8 +3,7 @@ import BigNumber from 'bignumber.js'
 import { BASE_URL } from 'config'
 import type { ChainConstants } from './types'
 import DEFAULT_TOKEN_LIST from '../tokenLists/tokenlistInETC.json'
-import { farmsConfig } from 'config/constants'
-import { wrappedNativeTokens } from '../tokens'
+import tokens from '../tokens'
 
 const ETC_CONSTANTS: ChainConstants = {
   general: {
@@ -22,9 +21,8 @@ const ETC_CONSTANTS: ChainConstants = {
     url: 'https://blockscout.com/etc/mainnet/',
   },
   tokenLists: DEFAULT_TOKEN_LIST,
-  farms: farmsConfig[ChainId.ETCCLASSICMAINNET],
   rewardTokensPerYear: new BigNumber(50000000 * 0.1),
-  wrappedNativeTokens: wrappedNativeTokens[ChainId.ETCCLASSICMAINNET],
+  wrappedNativeAddress: tokens.wetc,
 }
 
 export default ETC_CONSTANTS

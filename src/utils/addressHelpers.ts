@@ -1,7 +1,8 @@
 import { ChainId } from '@soy-libs/sdk-multichain'
 import { localStorageChainIdKey } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import addresses from 'config/constants/contracts'
-import tokens, { wrappedNativeTokens } from 'config/constants/tokens'
+import tokens from 'config/constants/tokens'
 import { Address } from 'config/constants/types'
 
 export const getAddress = (address: Address, chainId = 820): string => {
@@ -22,7 +23,7 @@ export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
 export const getWmaticAddress = (chainId: number) => {
-  return getAddress(wrappedNativeTokens[chainId].address)
+  return getAddress(CHAINS_CONSTANTS[chainId].wrappedNativeAddress.address)
 }
 export const getDailyIdoAddress = () => {
   return getAddress(addresses.dailyIdo)

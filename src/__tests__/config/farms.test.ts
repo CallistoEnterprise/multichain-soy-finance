@@ -1,9 +1,10 @@
 import { BigNumber } from 'ethers'
+import { ChainId } from '@soy-libs/sdk-multichain'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { Farm } from 'state/types'
 import { getBep20Contract, getLpContract } from 'utils/contractHelpers'
 
-const { farms } = CHAINS_CONSTANTS[820]
+const { farms } = CHAINS_CONSTANTS[ChainId.MAINNET]
 // Test only against the last 10 farms, for performance concern
 const farmsToTest: [number, Farm][] = farms
   .filter((farm) => farm.pid !== 0)

@@ -7,7 +7,6 @@ import {
 } from '@soy-libs/uikit2'
 import { BASE_URL } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
-import { wrappedNativeTokens } from 'config/constants/tokens'
 import { Token } from 'config/constants/types'
 import { getAddress } from 'utils/addressHelpers'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -20,7 +19,7 @@ interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc
 const getImageUrlFromToken = (token: Token, chainId?: number) => {
   const address = getAddress(
     token.symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol
-      ? wrappedNativeTokens[chainId].address
+      ? CHAINS_CONSTANTS[chainId].wrappedNativeAddress.address
       : token.address,
     chainId,
   )

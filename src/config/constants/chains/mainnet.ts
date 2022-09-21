@@ -3,8 +3,7 @@ import BigNumber from 'bignumber.js'
 import { BASE_URL } from 'config'
 import type { ChainConstants } from './types'
 import DEFAULT_TOKEN_LIST from '../tokenLists/tokenlist.json'
-import { farmsConfig } from 'config/constants'
-import { wrappedNativeTokens } from '../tokens'
+import tokens from '../tokens'
 
 const MAINNET_CONSTANTS: ChainConstants = {
   general: {
@@ -22,9 +21,8 @@ const MAINNET_CONSTANTS: ChainConstants = {
     url: 'https://explorer.callisto.network',
   },
   tokenLists: DEFAULT_TOKEN_LIST,
-  farms: farmsConfig[ChainId.MAINNET],
   rewardTokensPerYear: new BigNumber(50000000 * 0.8),
-  wrappedNativeTokens: wrappedNativeTokens[ChainId.MAINNET],
+  wrappedNativeAddress: tokens.wclo,
 }
 
 export default MAINNET_CONSTANTS
