@@ -1,13 +1,5 @@
-import { FarmConfig, Token } from '../types'
+import { FarmConfig } from '../types'
 import BigNumber from 'bignumber.js'
-
-export enum SupportedChain {
-  Mainnet = 820,
-  Testnet = 20729,
-  BTT = 199,
-  BSC = 56,
-  ETC = 61,
-}
 
 export interface ChainConstants {
   general: {

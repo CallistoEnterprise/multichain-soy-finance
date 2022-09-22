@@ -98,7 +98,7 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 
 // account is optional
 export function getRouterContract(chainId: number, library: Web3Provider, account?: string): Contract {
-  return getContract(ROUTER_ADDRESS[chainId ?? 820], SoyRouterABI, library, account)
+  return getContract(ROUTER_ADDRESS[chainId ?? ChainId.MAINNET], SoyRouterABI, library, account)
 }
 
 export function escapeRegExp(string: string): string {
