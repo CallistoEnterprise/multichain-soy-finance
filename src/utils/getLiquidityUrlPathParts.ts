@@ -3,11 +3,11 @@
 import { ChainId } from '@soy-libs/sdk-multichain'
 import { localStorageChainIdKey } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
-import { getWmaticAddress } from './addressHelpers'
+import { getWrappedTokenAddress } from './addressHelpers'
 
 const getLiquidityUrlPathParts = ({ quoteTokenAddress, tokenAddress }) => {
   const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
-  const wMATICAddressString = getWmaticAddress(chainId)
+  const wMATICAddressString = getWrappedTokenAddress(chainId)
   const quoteTokenAddressString: string = quoteTokenAddress ? quoteTokenAddress[chainId] : null
   const tokenAddressString: string = tokenAddress ? tokenAddress[chainId] : null
   const firstPart =

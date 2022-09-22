@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import { BASE_URL } from 'config'
 import type { ChainConstants } from './types'
 import DEFAULT_TOKEN_LIST from '../tokenLists/tokenlist.json'
-import tokens from '../tokens'
+import farms from '../farms/farmsInCLO'
 
 const MAINNET_CONSTANTS: ChainConstants = {
   general: {
@@ -14,6 +14,7 @@ const MAINNET_CONSTANTS: ChainConstants = {
     nativeSymbol: 'CLO',
     wrappedNativeSymbol: 'WCLO',
     nativeAddress: '0x0000000000000000000000000000000000000001',
+    wrappedNativeAddress: '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
   },
   rpcs: ['https://rpc.callisto.network/'],
   explorer: {
@@ -21,8 +22,8 @@ const MAINNET_CONSTANTS: ChainConstants = {
     url: 'https://explorer.callisto.network',
   },
   tokenLists: DEFAULT_TOKEN_LIST,
+  farms: farms,
   rewardTokensPerYear: new BigNumber(50000000 * 0.8),
-  wrappedNativeAddress: tokens.wclo,
 }
 
 export default MAINNET_CONSTANTS

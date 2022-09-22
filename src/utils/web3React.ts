@@ -7,25 +7,26 @@ import type { AbstractConnector } from '@web3-react/abstract-connector'
 import { ConnectorNames } from '@soy-libs/uikit2'
 import { ethers } from 'ethers'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
-import { ChainId } from '@soy-libs/sdk-multichain'
 
 const POLLING_INTERVAL = 12000
 
-const injected = new InjectedConnector({ supportedChainIds: [1, 4, 42, 56, 97, 61, 820, 199, 20729] })
+const supportedChainIds = []
+const RPC_URLS = {}
 
-const walletconnect = new WalletConnectConnector({
-  rpc: {
-    [ChainId.MAINNET]: CHAINS_CONSTANTS[ChainId.MAINNET].rpcs[0],
-    [ChainId.BTTMAINNET]: CHAINS_CONSTANTS[ChainId.BTTMAINNET].rpcs[0],
-    [ChainId.ETCCLASSICMAINNET]: CHAINS_CONSTANTS[ChainId.ETCCLASSICMAINNET].rpcs[0],
-    [ChainId.CLOTESTNET]: CHAINS_CONSTANTS[ChainId.CLOTESTNET].rpcs[0],
-  },
-  bridge: 'https://soyfinance.bridge.walletconnect.org/',
-  qrcode: true,
-  // pollingInterval: POLLING_INTERVAL,
+Object.keys(CHAINS_CONSTANTS).forEach(key => {
+  supportedChainIds.push(Number(key))
+  RPC_URLS[key] = CHAINS_CONSTANTS[key].rpcs[0]
 })
 
-const bscConnector = new BscConnector({ supportedChainIds: [1, 4, 42, 56, 97, 61, 820, 199, 20729] })
+const injected = new InjectedConnector({ supportedChainIds })
+
+const walletconnect = new WalletConnectConnector({
+  rpc: RPC_URLS,
+  bridge: 'https://soyfinance.bridge.walletconnect.org/',
+  qrcode: true,
+})
+
+const bscConnector = new BscConnector({ supportedChainIds })
 
 export const uauth = new UAuthConnector({
   clientID: process.env.REACT_APP_UNSTOPPABLE_CLIENT_ID,
@@ -35,8 +36,6 @@ export const uauth = new UAuthConnector({
   scope: 'openid wallet',
 
   connectors: { injected, walletconnect },
-
-  
 })
 
 export const unstoppableAuth = new UAuth({

@@ -18,6 +18,7 @@ export interface ChainConstants {
     nativeSymbol: string
     wrappedNativeSymbol: string
     nativeAddress: string
+    wrappedNativeAddress?: string
   }
   rpcs: string[]
   explorer: {
@@ -25,6 +26,6 @@ export interface ChainConstants {
     url: string
   }
   tokenLists?: any
+  farms?: FarmConfig[]
   rewardTokensPerYear?: BigNumber
-  wrappedNativeAddress?: Token
 }

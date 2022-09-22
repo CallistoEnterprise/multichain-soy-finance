@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import { BASE_URL } from 'config'
 import type { ChainConstants } from './types'
 import DEFAULT_TOKEN_LIST from '../tokenLists/tokenlist_test.json'
-import tokens from '../tokens'
+import farms from '../farms/farmsInCLOTestnet'
 
 const TESTNET_CONSTANTS: ChainConstants = {
   general: {
@@ -14,6 +14,7 @@ const TESTNET_CONSTANTS: ChainConstants = {
     nativeSymbol: 'CLO',
     wrappedNativeSymbol: 'WCLO',
     nativeAddress: '0x0000000000000000000000000000000000000001',
+    wrappedNativeAddress: '0xbd2D3BCe975FD72E44A73cC8e834aD1B8441BdDa',
   },
   rpcs: ['https://testnet-rpc.callisto.network/'],
   explorer: {
@@ -21,8 +22,8 @@ const TESTNET_CONSTANTS: ChainConstants = {
     url: 'https://testnet-explorer.callisto.network',
   },
   tokenLists: DEFAULT_TOKEN_LIST,
+  farms: farms,
   rewardTokensPerYear: new BigNumber(50000000 * 0.8),
-  wrappedNativeAddress: tokens.wclo,
 }
 
 export default TESTNET_CONSTANTS

@@ -17,12 +17,10 @@ interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc
 }
 
 const getImageUrlFromToken = (token: Token, chainId?: number) => {
-  const address = getAddress(
-    token.symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol
-      ? CHAINS_CONSTANTS[chainId].wrappedNativeAddress.address
-      : token.address,
-    chainId,
-  )
+  const address = token.symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol
+    ? CHAINS_CONSTANTS[chainId].general.wrappedNativeAddress
+    : getAddress(token.address, chainId)
+    
   return `${BASE_URL}/images/coins/${chainId}/${address}.png`
 }
 

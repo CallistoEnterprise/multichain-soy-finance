@@ -4,9 +4,9 @@ import { useWeb3React } from '@web3-react/core'
 import {multicall3} from 'utils/multicall'
 import { getMasterChefAddress } from 'utils/addressHelpers'
 import masterChefABI from 'config/abi/masterchef.json'
-import { farmsConfig } from 'config/constants'
 import { FarmConfig } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 export interface FarmWithBalance extends FarmConfig {
   balance: BigNumber
@@ -19,14 +19,14 @@ const useFarmsWithBalance = () => {
 
   useEffect(() => {
     const fetchBalances = async () => {
-      const calls = farmsConfig[chainId].map((farm) => ({
+      const calls = CHAINS_CONSTANTS[chainId].farms.map((farm) => ({
         address: getMasterChefAddress(),
         name: 'pendingReward',
         params: [farm.pid, account],
       }))
 
       const rawResults = await multicall3(masterChefABI, calls)
-      const results = farmsConfig[chainId].map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
+      const results = CHAINS_CONSTANTS[chainId].farms.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
 
       setFarmsWithBalances(results)
     }

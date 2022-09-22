@@ -6,12 +6,12 @@ import BigNumber from 'bignumber.js'
 import { localStorageChainIdKey } from 'config'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceAmount } from 'utils/formatBalance'
-import { farmsConfig } from 'config/constants'
 import useRefresh from 'hooks/useRefresh'
 // import useGetPriceData from 'hooks/useGetPriceData'
 import { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync, nonArchivedFarms } from '.'
 import { State, Farm, FarmsState } from '../types'
 import { ChainId } from '@soy-libs/sdk-multichain'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 export const usePollFarmsData = (includeArchive = false) => {
   const dispatch = useAppDispatch()
@@ -21,8 +21,8 @@ export const usePollFarmsData = (includeArchive = false) => {
   const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
 
   useEffect(() => {
-    const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
-    const pids = farmsToFetch[chainId]?.map((farmToFetch) => farmToFetch.pid)
+    const farmsToFetch = includeArchive ? CHAINS_CONSTANTS[chainId].farms : nonArchivedFarms[chainId]
+    const pids = farmsToFetch?.map((farmToFetch) => farmToFetch.pid)
 
     dispatch(fetchFarmsPublicDataAsync(pids))
 

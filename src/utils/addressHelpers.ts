@@ -22,8 +22,8 @@ export const getLocalFarmAddress = (farmAddresses) => {
 export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
-export const getWmaticAddress = (chainId: number) => {
-  return getAddress(CHAINS_CONSTANTS[chainId].wrappedNativeAddress.address)
+export const getWrappedTokenAddress = (chainId: number) => {
+  return CHAINS_CONSTANTS[chainId].general.wrappedNativeAddress
 }
 export const getDailyIdoAddress = () => {
   return getAddress(addresses.dailyIdo)
