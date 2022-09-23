@@ -86,6 +86,7 @@ const App: React.FC = () => {
   usePollCoreFarmData()
 
   useEffect(() => {
+    window.localStorage.removeItem('soyfinanceChainId')
     const init = async () => {
       setupNetwork2()
     }
