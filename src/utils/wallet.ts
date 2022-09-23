@@ -1,10 +1,8 @@
 // Set of helper functions to facilitate wallet setup
 
-import { ChainId } from '@soy-libs/sdk-multichain'
-import { BASE_URL } from 'config'
+import { BASE_URL, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { Networks } from 'config/constants/networks'
 import tokens from 'config/constants/tokens'
-import { localStorageChainIdKey } from '../config/index'
 
 /**
  * Prompt the user to add Polygon as a network on Metamask, or switch to Polygon if the wallet is on a different network
@@ -15,7 +13,7 @@ export const setupNetwork = async () => {
   if (provider) {
     const chainId = window.localStorage.getItem(localStorageChainIdKey)
       ? Number(window.localStorage.getItem(localStorageChainIdKey))
-      : ChainId.MAINNET
+      : DEFAULT_CHAIN_ID
 
     const curNet = Networks.filter((_) => Number(_.chainId) === chainId)
 
@@ -97,7 +95,7 @@ export const switchNetwork = async (library, curNet: any) => {
 export const setupNetwork2 = async () => {
   const provider = window.ethereum
   if (provider) {
-    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
+    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
 
     try {
       await provider.request({
@@ -127,7 +125,7 @@ export const setupNetwork2 = async () => {
  * @returns {boolean} true if the token has been added, false otherwise
  */
 export const registerToken = async (tokenAddress: string, tokenSymbol: string, tokenDecimals: number) => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const tokenAdded = await window.ethereum.request({
     method: 'wallet_watchAsset',
     params: {

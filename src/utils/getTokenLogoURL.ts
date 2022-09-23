@@ -1,8 +1,8 @@
 import { ChainId } from '@soy-libs/sdk-multichain'
-import { BASE_URL, localStorageChainIdKey } from 'config'
+import { BASE_URL, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 
 const getTokenLogoURL = (address: string) => {
-  const chId = Number(window.window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
+  const chId = Number(window.window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   return `${BASE_URL}/images/coins/${chId}/${address}.png`
 }
 

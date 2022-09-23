@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js'
+import { ChainId } from '@soy-libs/sdk-multichain'
 import { BIG_TEN } from 'utils/bigNumber'
 
 export const CALLISTO_BLOCK_TIME = 2.2
@@ -13,4 +14,7 @@ export const AUCTION_BIDDERS_TO_FETCH = 500
 export const RECLAIM_AUCTIONS_TO_FETCH = 500
 export const AUCTION_WHITELISTED_BIDDERS_TO_FETCH = 500
 export const ONE_YEAR_TIMESTAMP = 365 * 24 * 60 * 60
-export const localStorageChainIdKey = "soyfinanceChainId"
+export const localStorageChainIdKey = 'soyfinanceChainId'
+export const DEFAULT_CHAIN_ID = process.env.REACT_APP_DEFAULT_CHAIN_ID
+  ? Number(process.env.REACT_APP_DEFAULT_CHAIN_ID)
+  : ChainId.MAINNET
