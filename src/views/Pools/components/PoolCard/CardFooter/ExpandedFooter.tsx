@@ -3,28 +3,14 @@ import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
-import {
-  Flex,
-  MetamaskIcon,
-  Text,
-  // TooltipText,
-  LinkExternal,
-  // TimerIcon,
-  Skeleton,
-  useTooltip,
-  Button,
-  // Link,
-  HelpIcon,
-} from '@soy-libs/uikit2'
-import { BASE_CALLISTO_SCAN_URL } from 'config'
-// import { useBlock } from 'state/block/hooks'
+import { Flex, MetamaskIcon, Text, LinkExternal, Skeleton, useTooltip, Button, HelpIcon } from '@soy-libs/uikit2'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCakeVault } from 'state/pools/hooks'
 import { Pool } from 'state/types'
 import { getAddress, getPmoonVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
-// import { getCallistoExpLink } from 'utils'
 import Balance from 'components/Balance'
-// import { getPoolBlockInfo } from 'views/Pools/helpers'
 
 interface ExpandedFooterProps {
   pool: Pool
@@ -41,10 +27,9 @@ const ExpandedWrapper = styled(Flex)`
 
 const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account, endTimeStr }) => {
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   // const { currentBlock } = useBlock()
-  const {
-    totalCakeInVault,
-  } = useCakeVault()
+  const { totalCakeInVault } = useCakeVault()
 
   const {
     stakingToken,
@@ -98,14 +83,11 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account, endTimeS
 
   return (
     <ExpandedWrapper flexDirection="column">
-      
       <Flex mb="2px" justifyContent="space-between" flexDirection="column">
-        <Text small color="primary">{t('Cold Staking Ends In')}:</Text>
-        {
-          endTimeStr
-          ? <Text small>{endTimeStr}</Text>
-          : <Skeleton width="200px" height="21px" />
-        }
+        <Text small color="primary">
+          {t('Cold Staking Ends In')}:
+        </Text>
+        {endTimeStr ? <Text small>{endTimeStr}</Text> : <Skeleton width="200px" height="21px" />}
       </Flex>
       <Flex mb="2px" justifyContent="space-between" alignItems="center">
         <Text small>{t('Total staked')}:</Text>
@@ -189,7 +171,9 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account, endTimeS
         {poolContractAddress && (
           <Flex mb="2px" justifyContent="flex-end">
             <LinkExternal
-              href={`${BASE_CALLISTO_SCAN_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}/transactions`}
+              href={`${CHAINS_CONSTANTS[chainId].explorer.url}/address/${
+                isAutoVault ? cakeVaultContractAddress : poolContractAddress
+              }/transactions`}
               bold={false}
               small
             >

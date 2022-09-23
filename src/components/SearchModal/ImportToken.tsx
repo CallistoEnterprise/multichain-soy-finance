@@ -8,7 +8,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCombinedInactiveList } from 'state/lists/hooks'
 import { ListLogo } from 'components/Logo'
 import { useTranslation } from 'contexts/Localization'
-import { ExplorerText, NetworkNames } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 interface ImportProps {
   tokens: Token[]
@@ -32,7 +32,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
       <Message variant="warning">
         <Text>
           {t(
-            `Anyone can create a ERC223 token on ${NetworkNames[chainId]} Network with any name, including creating fake versions of existing tokens and tokens that claim to represent projects that do not have a token.`,
+            `Anyone can create a ERC223 token on ${CHAINS_CONSTANTS[chainId].general.chainName} Network with any name, including creating fake versions of existing tokens and tokens that claim to represent projects that do not have a token.`,
           )}
           <br />
           <br />
@@ -69,7 +69,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
               <Flex justifyContent="space-between" width="100%">
                 <Text mr="4px">{address}</Text>
                 <Link href={getCallistoExpLink(token.address, 'address', chainId)} external>
-                  ({t(`View on ${ExplorerText[chainId]}`)})
+                  ({t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}`)})
                 </Link>
               </Flex>
             )}

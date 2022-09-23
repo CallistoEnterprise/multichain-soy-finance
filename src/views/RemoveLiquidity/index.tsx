@@ -3,12 +3,12 @@ import styled from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHERS, Percent, WETH } from '@soy-libs/sdk-multichain'
+import { ChainId, Currency, currencyEquals, ETHERS, Percent, WETH } from '@soy-libs/sdk-multichain'
 import { Button, Text, AddIcon, ArrowDownIcon, CardBody, Slider, Box, Flex, useModal } from '@soy-libs/uikit2'
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
 import { useTranslation } from 'contexts/Localization'
-import { NativeSymbols, WrappedNativeSymbols } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -96,7 +96,7 @@ export default function RemoveLiquidity({
 
   // allowance handling
   const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(null)
-  const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], ROUTER_ADDRESS[chainId ?? 820])
+  const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], ROUTER_ADDRESS[chainId ?? ChainId.MAINNET])
 
   async function onAttemptToApprove() {
     if (!pairContract || !pair || !library || !deadline) throw new Error('missing dependencies')
@@ -127,7 +127,7 @@ export default function RemoveLiquidity({
     ]
     const message = {
       owner: account,
-      spender: ROUTER_ADDRESS[chainId ?? 820],
+      spender: ROUTER_ADDRESS[chainId ?? ChainId.MAINNET],
       value: liquidityAmount.raw.toString(),
       nonce: nonce.toHexString(),
       deadline: deadline.toNumber(),
@@ -537,12 +537,12 @@ export default function RemoveLiquidity({
                             currencyB === ETHERS[chainId] ? WETH[chainId].address : currencyIdB
                           }`}
                         >
-                          {t(`Receive ${WrappedNativeSymbols[chainId]}`)}
+                          {t(`Receive ${CHAINS_CONSTANTS[chainId].general.wrappedNativeSymbol}`)}
                         </StyledInternalLink>
                       ) : oneCurrencyIsWETH ? (
                         <StyledInternalLink
-                          to={`/remove/${currencyA && currencyEquals(currencyA, WETH[chainId]) ? NativeSymbols[chainId]?.toUpperCase() : currencyIdA}/${
-                            currencyB && currencyEquals(currencyB, WETH[chainId]) ? NativeSymbols[chainId]?.toUpperCase() : currencyIdB
+                          to={`/remove/${currencyA && currencyEquals(currencyA, WETH[chainId]) ? CHAINS_CONSTANTS[chainId].general.nativeSymbol : currencyIdA}/${
+                            currencyB && currencyEquals(currencyB, WETH[chainId]) ? CHAINS_CONSTANTS[chainId].general.nativeSymbol : currencyIdB
                           }`}
                         >
                           {t('Receive CLO')}

@@ -4,8 +4,8 @@ import { Flex, Heading, Text, Link, useTooltip } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { ContextApi } from 'contexts/Localization/types'
 import { getCallistoExpLink } from 'utils'
-import { ExplorerText } from 'config'
 import { useWeb3React } from '@web3-react/core'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 export interface TimerProps {
   prefix?: string
@@ -72,7 +72,7 @@ const TooltipContent = ({ blockNumber, t }: { blockNumber: number; t: ContextApi
         {t('Block %num%', { num: blockNumber })}
       </Text>
       <Link external href={getCallistoExpLink(blockNumber, 'block', chainId)}>
-        {t(`View on ${ExplorerText[chainId]}`)}
+        {t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}}`)}
       </Link>
     </>
   )

@@ -1,15 +1,16 @@
 import { useCallback } from 'react'
+import { ChainId } from '@soy-libs/sdk-multichain'
 import { unstakeFarm } from 'utils/calls'
-import farms from 'config/constants/farms'
 import { getLocalFarmContractWithAccount } from 'utils/contractHelpers'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { localStorageChainIdKey } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const useUnstakeFarms = (pid: number) => {
   const { account, library } = useActiveWeb3React()
-  const locChainId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const locChainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
 
-  const currentFarm = farms[locChainId].find((farm) => farm.pid === pid)
+  const currentFarm = CHAINS_CONSTANTS[locChainId].farms.find((farm) => farm.pid === pid)
   const { localFarmAddresses } = currentFarm
   const localFarmContract = getLocalFarmContractWithAccount(localFarmAddresses, library, account)
 

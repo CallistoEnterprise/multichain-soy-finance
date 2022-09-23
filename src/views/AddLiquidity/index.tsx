@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHERS, TokenAmount, WETH } from '@soy-libs/sdk-multichain'
+import { ChainId, Currency, currencyEquals, ETHERS, TokenAmount, WETH } from '@soy-libs/sdk-multichain'
 import { Button, Text, Flex, AddIcon, CardBody, Message, useModal } from '@soy-libs/uikit2'
 import { RouteComponentProps } from 'react-router-dom'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import { useTranslation } from 'contexts/Localization'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { NativeSymbols } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -116,11 +116,11 @@ export default function AddLiquidity({
   // check whether the user has approved the router on the tokens
   const [approvalA, approveACallback] = useApproveCallback(
     parsedAmounts[Field.CURRENCY_A],
-    ROUTER_ADDRESS[chainId ?? 820],
+    ROUTER_ADDRESS[chainId ?? ChainId.MAINNET],
   )
   const [approvalB, approveBCallback] = useApproveCallback(
     parsedAmounts[Field.CURRENCY_B],
-    ROUTER_ADDRESS[chainId ?? 820],
+    ROUTER_ADDRESS[chainId ?? ChainId.MAINNET],
   )
 
   const addTransaction = useTransactionAdder()
@@ -278,7 +278,7 @@ export default function AddLiquidity({
           history.push(`/add/${newCurrencyIdB}`)
         }
       } else {
-        history.push(`/add/${currencyIdA || NativeSymbols[chainId]?.toUpperCase()}/${newCurrencyIdB}`)
+        history.push(`/add/${currencyIdA || CHAINS_CONSTANTS[chainId].general.nativeSymbol}/${newCurrencyIdB}`)
       }
     },
     [currencyIdA, history, currencyIdB, chainId],

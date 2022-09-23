@@ -1,3 +1,4 @@
+import { ChainId } from '@soy-libs/sdk-multichain'
 import { BASE_URL, localStorageChainIdKey } from 'config'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
@@ -17,7 +18,7 @@ export const CurrencyLogo: React.FC<{
   address?: string
   size?: string
 }> = ({ address, size = '24px', ...rest }) => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
 
   const src = useMemo(() => {
     const checksummedAddress = isAddress(address)
