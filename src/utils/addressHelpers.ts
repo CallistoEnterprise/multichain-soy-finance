@@ -1,13 +1,13 @@
-import { ChainId } from '@soy-libs/sdk-multichain'
-import { localStorageChainIdKey } from 'config'
+import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import addresses from 'config/constants/contracts'
-import tokens, { wrappedNativeTokens } from 'config/constants/tokens'
+import tokens from 'config/constants/tokens'
 import { Address } from 'config/constants/types'
 import { poolsConfig } from 'config/constants'
 
-export const getAddress = (address: Address, chainId = ChainId.MAINNET): string => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? chainId) 
-  return address[chId] ? address[chId] : address[ChainId.CLOTESTNET]
+export const getAddress = (address: Address, chainId = DEFAULT_CHAIN_ID): string => {
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? chainId
+  return address[chId] ? address[chId] : address[DEFAULT_CHAIN_ID]
 }
 
 export const getSoyAddress = () => {
@@ -22,8 +22,8 @@ export const getLocalFarmAddress = (farmAddresses) => {
 export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
-export const getWmaticAddress = (chainId: number) => {
-  return getAddress(wrappedNativeTokens[chainId].address)
+export const getWrappedTokenAddress = (chainId: number) => {
+  return CHAINS_CONSTANTS[chainId].general.wrappedNativeAddress
 }
 export const getDailyIdoAddress = () => {
   return getAddress(addresses.dailyIdo)

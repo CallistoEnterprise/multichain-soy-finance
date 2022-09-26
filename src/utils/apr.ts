@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js'
-import { REWARD_TOKENS_PER_YEAR } from 'config'
 import lpAprs from 'config/constants/lpAprs.json'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const POOL_REWARDS = {
   1: new BigNumber(23152 * 365),
@@ -43,10 +44,10 @@ export const getFarmApr = (
   soyPriceUsd: BigNumber,
   poolLiquidityUsd: BigNumber,
   farmAddress: string,
-  chainId = 820
+  chainId = ChainId.MAINNET
 ): { cakeRewardsApr: number; lpRewardsApr: number } => {
 
-  const yearlySoyRewardAllocation = REWARD_TOKENS_PER_YEAR[chainId].times(poolWeight)
+  const yearlySoyRewardAllocation = CHAINS_CONSTANTS[chainId].rewardTokensPerYear.times(poolWeight)
   const soyRewardsApr = yearlySoyRewardAllocation.times(soyPriceUsd).div(poolLiquidityUsd).times(100)
   let soyRewardsAprAsNumber = null
   if (!soyRewardsApr.isNaN() && soyRewardsApr.isFinite()) {

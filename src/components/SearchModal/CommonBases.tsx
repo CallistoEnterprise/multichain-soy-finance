@@ -3,7 +3,7 @@ import { ChainId, Currency, currencyEquals, ETHERS, Token } from '@soy-libs/sdk-
 import { Text } from '@soy-libs/uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { NativeSymbols } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { SUGGESTED_BASES } from '../../config/constants'
 import { AutoColumn } from '../Layout/Column'
 import QuestionHelper from '../QuestionHelper'
@@ -53,7 +53,7 @@ export default function CommonBases({
           disable={selectedCurrency === ETHERS[chainId]}
         >
           <CurrencyLogo currency={ETHERS[chainId]} style={{ marginRight: 8 }} />
-          <Text>{NativeSymbols[chainId]?.toUpperCase()}</Text>
+          <Text>{CHAINS_CONSTANTS[chainId].general.nativeSymbol}</Text>
         </BaseWrapper>
         {(chainId ? SUGGESTED_BASES[chainId] : []).map((token: Token) => {
           const selected = selectedCurrency instanceof Token && selectedCurrency.address === token.address

@@ -98,6 +98,9 @@ export function getContract2(address: string, ABI: any, library: Web3Provider, a
 }
 
 const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
+  if (address === undefined) {
+    return null
+  }
   const signerOrProvider = signer ?? getRpcProvider()
   return new ethers.Contract(address, abi, signerOrProvider)
 }

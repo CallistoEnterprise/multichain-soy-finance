@@ -1,5 +1,5 @@
 import { ChainId } from '@soy-libs/sdk-multichain'
-import { localStorageChainIdKey } from 'config'
+import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { Farm } from 'state/types'
 
 const preferredQuoteTokensForMulti = {
@@ -15,7 +15,7 @@ const preferredQuoteTokensForMulti = {
  * @returns A preferred farm, if found - or the first element of the farms array
  */
 export const filterFarmsByQuoteToken = (farms: Farm[]): Farm => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const preferredFarm = farms.find((farm) => {
     return preferredQuoteTokensForMulti[chainId].some((quoteToken) => {
       return farm.quoteToken.symbol === quoteToken

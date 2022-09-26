@@ -2,7 +2,7 @@ import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState
 import { ChainId, Currency, ETHERS, Token } from '@soy-libs/sdk-multichain'
 import { Text, Input, Box } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
-import { NativeSymbols } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { FixedSizeList } from 'react-window'
 import { useAudioModeManager } from 'state/user/hooks'
 import useDebounce from 'hooks/useDebounce'
@@ -103,7 +103,7 @@ function CurrencySearch({
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         const s = debouncedQuery.toLowerCase().trim()
-        if (s === NativeSymbols[chainId]) {
+        if (s === CHAINS_CONSTANTS[chainId].general.nativeSymbol.toLowerCase()) {
           handleCurrencySelect(ETHERS[chainId])
         } else if (filteredSortedTokens.length > 0) {
           if (

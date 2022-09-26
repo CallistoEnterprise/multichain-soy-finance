@@ -24,7 +24,7 @@ import { fetchClaimableStatuses } from 'state/predictions'
 import { useTranslation } from 'contexts/Localization'
 import useToast from 'hooks/useToast'
 import { usePredictionsContract } from 'hooks/useContract'
-import { ExplorerText } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 interface CollectRoundWinningsModalProps extends InjectedModalProps {
   payout: string
@@ -85,7 +85,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({
           </Text>
           {receipt.transactionHash && (
             <LinkExternal href={getCallistoExpLink(receipt.transactionHash, 'transaction')}>
-              {t(`View on ${ExplorerText[chainId]}`)}
+              {t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}}`)}
             </LinkExternal>
           )}
         </Box>,

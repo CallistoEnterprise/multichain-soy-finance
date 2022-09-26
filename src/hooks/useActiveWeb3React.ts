@@ -3,7 +3,7 @@ import { useEffect, useState, useRef, useMemo } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
-import { localStorageChainIdKey } from 'config'
+import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { Networks } from 'config/constants/networks'
 import { getRpcForMulti } from 'utils/getRpcUrl'
 import Web3 from 'web3'
@@ -20,10 +20,8 @@ export const getProviderByChainId = (chainId) => {
 }
 export const useGetSimpleRpcProvider = (chainId) => {
   const [provider, setSimpleProvider] = useState(null)
-
   useEffect(() => {
     const get = async () => {
-      // console.log("chainId ::", chainId);
       const pvd = getProviderByChainId(chainId)
       setSimpleProvider(pvd)
     }
@@ -52,9 +50,7 @@ const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> => {
   const simpleRpcProviderInMulti = useGetSimpleRpcProvider(chainId)
   const [provider, setprovider] = useState(library || simpleRpcProviderInMulti)
 
-  const locChainId = window.localStorage.getItem(localStorageChainIdKey)
-    ? Number(window.localStorage.getItem(localStorageChainIdKey))
-    : ChainId.MAINNET
+  const locChainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   useEffect(() => {
     if (library !== refEth.current && simpleRpcProviderInMulti) {
       setprovider(library || simpleRpcProviderInMulti)

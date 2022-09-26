@@ -132,6 +132,6 @@ export const ONE_HUNDRED_PERCENT = new Percent('1')
 export const BLOCKED_ADDRESSES: string[] = [
 ]
 
-export { default as farmsConfig } from './farms'
+// export { default as farmsConfig } from './farms'
 export { default as poolsConfig } from './pools'
 export { default as ifosConfig } from './ifo'

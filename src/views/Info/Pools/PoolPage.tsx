@@ -31,7 +31,7 @@ import TransactionTable from 'views/Info/components/InfoTables/TransactionsTable
 import { useWatchlistPools } from 'state/user/hooks'
 import { useTranslation } from 'contexts/Localization'
 import ChartCard from 'views/Info/components/InfoCharts/ChartCard'
-import { ExplorerText } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const ContentLayout = styled.div`
   display: grid;
@@ -111,7 +111,7 @@ const PoolPage: React.FC<RouteComponentProps<{ address: string }>> = ({
             </Breadcrumbs>
             <Flex justifyContent={[null, null, 'flex-end']} mt={['8px', '8px', 0]}>
               <LinkExternal mr="8px" href={getCallistoExpLink(address, 'address', chainId)}>
-                {t(`View on ${ExplorerText[chainId]}`)}
+                {t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}}`)}
               </LinkExternal>
               <SaveIcon fill={watchlistPools.includes(address)} onClick={() => addPoolToWatchlist(address)} />
             </Flex>

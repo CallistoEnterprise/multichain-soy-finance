@@ -360,11 +360,4 @@ const tokens = {
   }
 }
 
-export const wrappedNativeTokens = {
-  [ChainId.CLOTESTNET]: tokens.wclo,
-  [ChainId.MAINNET]: tokens.wclo,
-  [ChainId.BTTMAINNET]: tokens.wbtt,
-  [ChainId.ETCCLASSICMAINNET]: tokens.wetc
-}
-
 export default tokens

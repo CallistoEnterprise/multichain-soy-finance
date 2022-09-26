@@ -11,7 +11,7 @@ import { useTranslation } from 'contexts/Localization'
 import TopTokenMovers from 'views/Info/components/TopTokenMovers'
 import { renameTokens } from 'views/Info/utils/tokenInfoRename'
 import { tokenLists } from 'state/lists/hooks'
-import { NativeSymbols } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const ResponsiveGrid = styled.div`
   display: grid;
@@ -40,7 +40,7 @@ const TokensOverview: React.FC = () => {
     return oneItem ? true : false
   }
 
-  const formattedTokens = formattedTokens1 ? formattedTokens1.filter((token) => isExist(token.address) || token.symbol === NativeSymbols[chainId].toUpperCase()) : []
+  const formattedTokens = formattedTokens1 ? formattedTokens1.filter((token) => isExist(token.address) || token.symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol) : []
   // const [savedTokens] = useWatchlistTokens()
   // const watchListTokens = useTokenDatas(savedTokens)
 

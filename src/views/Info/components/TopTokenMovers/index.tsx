@@ -11,7 +11,7 @@ import Percent from 'views/Info/components/Percent'
 import { useTranslation } from 'contexts/Localization'
 import { renameTokenDatas } from 'views/Info/utils/tokenInfoRename'
 import { tokenLists } from 'state/lists/hooks'
-import { NativeSymbols } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const CardWrapper = styled(Link)`
   display: inline-block;
@@ -84,7 +84,11 @@ const TopTokenMovers: React.FC = () => {
     return oneItem ? true : false
   }
 
-  const filteredData = topPriceIncrease ? topPriceIncrease.filter((token) => isExist(token.data.address) || token.data.symbol === NativeSymbols[chainId].toUpperCase()) : []
+  const filteredData = topPriceIncrease
+    ? topPriceIncrease.filter(
+        (token) => isExist(token.data.address) || token.data.symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol,
+      )
+    : []
 
   useEffect(() => {
     const scrollInterval = setInterval(() => {

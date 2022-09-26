@@ -1,3 +1,0 @@
-
-[context.branch-deploy]
-    environment = { REACT_APP_ENABLE_TESTNET = "true" }

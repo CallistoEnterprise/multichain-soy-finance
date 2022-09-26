@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
-import { localStorageChainIdKey } from 'config'
+import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import poolsConfig from 'config/constants/pools'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { PoolsState, Pool, CakeVault, VaultFees, VaultUser, AppThunk } from 'state/types'
@@ -46,7 +46,7 @@ const initialState: PoolsState = {
 
 // Thunks
 export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount: BigNumber) => async (dispatch, getState) => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const blockLimits = await fetchPoolsBlockLimits()
   const totalStakings = await fetchPoolsTotalStaking()
   const prices = getTokenPricesFromFarm(getState().farms.data[chainId])
