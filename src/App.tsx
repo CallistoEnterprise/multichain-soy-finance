@@ -29,6 +29,7 @@ import {
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
 import { ChainId } from '@soy-libs/sdk-multichain'
+import { SUPPORTED_CHAINS } from 'config'
 
 const Wrapper = styled.div`
   display: flex;
@@ -86,17 +87,10 @@ const App: React.FC = () => {
   usePollCoreFarmData()
 
   useEffect(() => {
-    window.localStorage.removeItem('soyfinanceChainId')
     const init = async () => {
       setupNetwork2()
     }
-    if (
-      account &&
-      chainId !== ChainId.MAINNET &&
-      chainId !== ChainId.BTTMAINNET &&
-      chainId !== ChainId.ETCCLASSICMAINNET &&
-      chainId !== ChainId.CLOTESTNET
-    ) {
+    if (account && !SUPPORTED_CHAINS.includes(chainId)) {
       init()
     }
   }, [account, chainId])
