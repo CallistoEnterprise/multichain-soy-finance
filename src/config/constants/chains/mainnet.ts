@@ -21,6 +21,16 @@ const MAINNET_CONSTANTS: ChainConstants = {
     name: 'CallistoScan',
     url: 'https://explorer.callisto.network',
   },
+  subgraph:{
+    infoClient:'https://03.callisto.network/subgraphs/name/soyswap',
+    blocksClient:'https://03.callisto.network/subgraphs/name/blocks',
+    startTimestamp: 1634494539, // October-17-2021 09:15:02 PM +2 UTC
+    vars: {
+      trackedReserveCOIN:'trackedReserveCLO',
+      coinPrice:'cloPrice',
+      derivedCOIN:'derivedCLO'
+    }
+  },
   tokenLists: DEFAULT_TOKEN_LIST,
   farms: farms,
   rewardTokensPerYear: new BigNumber(50000000 * 0.8),
