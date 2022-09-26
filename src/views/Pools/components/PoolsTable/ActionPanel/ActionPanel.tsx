@@ -13,8 +13,8 @@ import {
   // TimerIcon,
   useTooltip,
 } from '@soy-libs/uikit2'
-import { BASE_CALLISTO_SCAN_URL } from 'config'
-// import { getCallistoExpLink } from 'utils'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 // import { useBlock } from 'state/block/hooks'
 import { useCakeVault } from 'state/pools/hooks'
 import BigNumber from 'bignumber.js'
@@ -124,6 +124,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     userData,
   } = pool
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   const poolContractAddress = getAddress(contractAddress)
   const cakeVaultContractAddress = getPmoonVaultAddress()
   // const { currentBlock } = useBlock()
@@ -285,7 +286,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {poolContractAddress && (
           <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
             <LinkExternal
-              href={`${BASE_CALLISTO_SCAN_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}/transactions`}
+              href={`${CHAINS_CONSTANTS[chainId].explorer.url}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}/transactions`}
               bold={false}
             >
               {t('View Contract')}

@@ -33,11 +33,13 @@ export const SOY: { [chainId: number]: Token } = {
 
 export const WCLO: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a', 18, 'WCLO', 'Wrapped CLO'),
+  [ChainId.CLOTESTNET]: new Token(ChainId.CLOTESTNET, '0xbd2D3BCe975FD72E44A73cC8e834aD1B8441BdDa', 18, 'WCLO', 'Wrapped CLO'),
   [ChainId.BTTMAINNET]: new Token(ChainId.BTTMAINNET, '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53', 18, 'ccCLO', 'Wrapped Callisto Coin'),
   [ChainId.ETCCLASSICMAINNET]: new Token(ChainId.ETCCLASSICMAINNET, '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53', 18, 'ccCLO', 'Wrapped Callisto Coin'),
 }
 export const BUSDT = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4', 18, 'BUSDT', 'Tether USD'),
+  [ChainId.CLOTESTNET]: new Token(ChainId.CLOTESTNET, '0xD83C3D10B30E7C939301DD5f72E0bfb91d3FE0CB', 18, 'BUSDT', 'Tether USD'),
   [ChainId.ETCCLASSICMAINNET]: new Token(ChainId.ETCCLASSICMAINNET, '0xCC48CD0B4a6f50b8f8bf0f9b80eD7881fA547968', 18, 'BUSDT', 'Tether USD'),
   [ChainId.BTTMAINNET]: new Token(ChainId.BTTMAINNET, '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF', 18, 'BUSDT', 'Tether USD')
 }
@@ -65,7 +67,7 @@ const tokens = {
     symbol: 'SOY',
     address: {
       820: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
-      20729: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
+      20729: '0x4c20231BCc5dB8D805DB9197C84c8BA8287CbA92',
       199: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
       61: '0xcC67D978Ddf07971D9050d2b424f36f6C1a15893'
     },
@@ -76,7 +78,7 @@ const tokens = {
     symbol: 'WCLO',
     address: {
       820: '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
-      20729: '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
+      20729: '0xbd2D3BCe975FD72E44A73cC8e834aD1B8441BdDa',
       199: '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53',
       61: ''
     },
@@ -347,12 +349,6 @@ const tokens = {
     decimals: 18,
     projectLink: "https://wbtt.io/"
   }
-}
-
-export const wrappedNativeTokens = {
-  820: tokens.wclo,
-  199: tokens.wbtt,
-  61: tokens.wetc
 }
 
 export default tokens

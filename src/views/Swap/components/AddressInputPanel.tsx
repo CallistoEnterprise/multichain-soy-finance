@@ -2,12 +2,12 @@ import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { Text, Link } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
-import { ExplorerText } from 'config'
 import useENS from '../../../hooks/ENS/useENS'
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 import { AutoColumn } from '../../../components/Layout/Column'
 import { RowBetween } from '../../../components/Layout/Row'
 import { getCallistoExpLink } from '../../../utils'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const InputPanel = styled.div`
   display: flex;
@@ -105,7 +105,7 @@ export default function AddressInputPanel({
               <Text>{t('Recipient')}</Text>
               {address && chainId && (
                 <Link external small href={getCallistoExpLink(name ?? address, 'address', chainId)}>
-                  ({t(`View on ${ExplorerText[chainId]}`)})
+                  ({t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}}`)})
                 </Link>
               )}
             </RowBetween>

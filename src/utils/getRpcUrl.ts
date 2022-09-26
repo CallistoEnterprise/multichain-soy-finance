@@ -1,10 +1,9 @@
 import sample from 'lodash/sample'
-
-// Array of available nodes to connect to
-export const nodes = [process.env.REACT_APP_NODE_1]
+import { ChainId } from '@soy-libs/sdk-multichain'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const getNodeUrl = () => {
-  return sample(nodes)
+  return sample(CHAINS_CONSTANTS[ChainId.MAINNET].rpcs)
 }
 
 export const getRpcForMulti = (rpcs) => {

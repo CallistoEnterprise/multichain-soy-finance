@@ -7,8 +7,8 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'
 import { getCallistoExpLink } from 'utils'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import { ExplorerText, NativeSymbols } from 'config'
 import CopyAddress from './CopyAddress'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 interface WalletInfoProps {
   hasLowBnbBalance: boolean
@@ -36,13 +36,13 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
       {hasLowBnbBalance && (
         <Message variant="warning" mb="24px">
           <Box>
-            <Text fontWeight="bold">{t(`${NativeSymbols[chainId].toUpperCase()} Balance Low`)}</Text>
-            <Text as="p">{t(`You need ${NativeSymbols[chainId].toUpperCase()} for transaction fees.`)}</Text>
+            <Text fontWeight="bold">{t(`${CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase()} Balance Low`)}</Text>
+            <Text as="p">{t(`You need ${CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase()} for transaction fees.`)}</Text>
           </Box>
         </Message>
       )}
       <Flex alignItems="center" justifyContent="space-between">
-        <Text color="textSubtle">{t(`${NativeSymbols[chainId].toUpperCase()} Balance`)}</Text>
+        <Text color="textSubtle">{t(`${CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase()} Balance`)}</Text>
         <Text>{getFullDisplayBalance(balance, 18, 6)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="24px">
@@ -50,7 +50,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
         <Text>{getFullDisplayBalance(cakeBalance, 18, 3)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="end" mb="24px">
-        <LinkExternal href={getCallistoExpLink(account, 'address', chainId)}>{t(`View on ${ExplorerText[chainId]}`)}</LinkExternal>
+        <LinkExternal href={getCallistoExpLink(account, 'address', chainId)}>{t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}`)}</LinkExternal>
       </Flex>
       <Button variant="secondary" width="100%" onClick={handleLogout}>
         {t('Disconnect Wallet')}

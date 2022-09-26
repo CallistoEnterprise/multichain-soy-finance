@@ -4,7 +4,7 @@ import { PageMeta } from './types'
 export const DEFAULT_META: PageMeta = {
   title: 'soyfinance',
   description:
-    'The most popular AMM on Polygon by user count! Earn SOY through yield farming, then stake it in PSyrup Pools to earn more tokens!',
+    '',
   image: 'images/hero.png',
 }
 
@@ -13,14 +13,6 @@ export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {
     case '/':
       return {
         title: `${t('Home')} | ${t('soyfinance')}`,
-      }
-    case '/competition':
-      return {
-        title: `${t('Trading Battle')} | ${t('soyfinance')}`,
-      }
-    case '/prediction':
-      return {
-        title: `${t('Prediction')} | ${t('soyfinance')}`,
       }
     case '/farms':
       return {
@@ -34,29 +26,9 @@ export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {
       return {
         title: `${t('Info')} | ${t('soyfinance')}`,
       }
-    case '/lottery':
-      return {
-        title: `${t('Lottery')} | ${t('soyfinance')}`,
-      }
     case '/collectibles':
       return {
         title: `${t('Collectibles')} | ${t('soyfinance')}`,
-      }
-    case '/ifo':
-      return {
-        title: `${t('Initial Farm Offering')} | ${t('soyfinance')}`,
-      }
-    case '/teams':
-      return {
-        title: `${t('Leaderboard')} | ${t('soyfinance')}`,
-      }
-    case '/profile/tasks':
-      return {
-        title: `${t('Task Center')} | ${t('soyfinance')}`,
-      }
-    case '/profile':
-      return {
-        title: `${t('Your Profile')} | ${t('soyfinance')}`,
       }
     default:
       return null

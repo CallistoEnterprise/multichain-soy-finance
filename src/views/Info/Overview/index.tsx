@@ -21,7 +21,7 @@ import {
 } from 'state/info/hooks'
 import TransactionTable from 'views/Info/components/InfoTables/TransactionsTable'
 import { tokenLists } from 'state/lists/hooks'
-import { NativeSymbols } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 export const ChartCardsContainer = styled(Flex)`
   justify-content: space-between;
@@ -103,7 +103,11 @@ const Overview: React.FC = () => {
     return oneItem ? true : false
   }
 
-  const formattedTokens = formattedTokens1 ? formattedTokens1.filter((token) => isExist(token.address) || token.symbol === NativeSymbols[chainId].toUpperCase()) : []
+  const formattedTokens = formattedTokens1
+    ? formattedTokens1.filter(
+        (token) => isExist(token.address) || token.symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol,
+      )
+    : []
 
   const allPoolData = useAllPoolData()
   const poolDatas = useMemo(() => {

@@ -44,13 +44,6 @@ const UserMenu = () => {
 
   const isUnstoppable = connectorId === ConnectorNames.Unstoppable
 
-  // useEffect(() => {
-  //   const chId = window.localStorage.getItem(localStorageChainIdKey)
-  //   if (!chId) {
-  //     window.localStorage.setItem(localStorageChainIdKey, '820')
-  //  }
-  // }, [])
-
   useEffect(() => {
     const get = async () => {
       unstoppableAuth

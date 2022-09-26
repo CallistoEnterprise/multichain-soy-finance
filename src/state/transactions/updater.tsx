@@ -7,12 +7,7 @@ import useToast from 'hooks/useToast'
 import { useBlockNumber } from '../application/hooks'
 import { AppDispatch, AppState } from '../index'
 import { checkedTransaction, finalizeTransaction } from './actions'
-
-const explorerText = {
-  820: 'CallistoExp',
-  199: 'BttScan',
-  61: 'EtcScan'
-}
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 export function shouldCheck(
   lastBlockNumber: number,
@@ -81,7 +76,7 @@ export default function Updater(): null {
                   <Text>{transactions[hash]?.summary ?? `Hash: ${hash.slice(0, 8)}...${hash.slice(58, 65)}`}</Text>
                   {chainId && (
                     <Link external href={getCallistoExpLink(hash, 'transaction', chainId)}>
-                      {`View on ${explorerText[chainId]}`}
+                      {`View on ${CHAINS_CONSTANTS[chainId].explorer.name}}`}
                     </Link>
                   )}
                 </Flex>,

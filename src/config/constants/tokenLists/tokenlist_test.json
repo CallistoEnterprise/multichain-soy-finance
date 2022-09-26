@@ -12,6 +12,14 @@
   "keywords": ["soyswap", "default"],
   "tokens": [
     {
+      "name": "Soy-ERC223",
+      "symbol": "SOY",
+      "address": "0x4c20231BCc5dB8D805DB9197C84c8BA8287CbA92",
+      "chainId": 20729,
+      "decimals": 18,
+      "logoURI": "images/coins/0x4c20231BCc5dB8D805DB9197C84c8BA8287CbA92.png"
+    },
+    {
       "name": "Callisto Enterprise",
       "symbol": "CLOE",
       "address": "0xF247c669E08837129965fF3cBcaC9E3695A9684B",

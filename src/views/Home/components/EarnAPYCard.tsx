@@ -1,12 +1,12 @@
 import React, { useCallback, useRef } from 'react'
+import BigNumber from 'bignumber.js'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton } from '@soy-libs/uikit2'
-import { NavLink } from 'react-router-dom'
-import { useTranslation } from 'contexts/Localization'
-import BigNumber from 'bignumber.js'
+import { BLOCKS_PER_YEAR, SOY_PER_BLOCK, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { QuoteToken } from 'config/constants/types'
+import { useTranslation } from 'contexts/Localization'
 import { useFarms, usePriceBnbBusd } from 'state/farms/hooks'
-import { BLOCKS_PER_YEAR, SOY_PER_BLOCK, localStorageChainIdKey } from 'config'
 
 const SOY_POOL_PID = 1
 
@@ -30,7 +30,7 @@ const EarnAPYCard = () => {
   const bnbPrice = usePriceBnbBusd()
 
   const maxAPY = useRef(Number.MIN_VALUE)
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
 
   const getHighestAPY = () => {
     const activeFarms = farmsLP.data[chId].filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')

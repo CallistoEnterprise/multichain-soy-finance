@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { CurrencyAmount } from '@soy-libs/sdk-multichain'
 import { Button, Box, Card } from '@soy-libs/uikit2'
 import BigNumber from 'bignumber.js'
-import { NativeAddress, NativeSymbols } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { useTranslation } from 'contexts/Localization'
 import { BidderHeader } from 'components/App/AppHeader'
 import { getAddress } from 'utils/addressHelpers'
@@ -172,8 +172,8 @@ export default function IDODaily() {
 
   const handleSubmit = async () => {
     if (
-      (parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance + 0.005) && (currencies[Field.INPUT].symbol === NativeSymbols[chainId]?.toUpperCase())) ||
-      (parseFloat(formattedAmounts[Field.INPUT]) >= parseFloat(balance) && (currencies[Field.INPUT].symbol !== NativeSymbols[chainId].toLowerCase()))
+      (parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance + 0.005) && (currencies[Field.INPUT].symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase())) ||
+      (parseFloat(formattedAmounts[Field.INPUT]) >= parseFloat(balance) && (currencies[Field.INPUT].symbol !== CHAINS_CONSTANTS[chainId].general.nativeSymbol.toLowerCase()))
     ) {
       toastWarning("Warning!", "Insufficient balance.")
       return;
@@ -182,8 +182,8 @@ export default function IDODaily() {
     try {
       setTxPending(true)
       let tokenAddr = '';
-      if (currencies[Field.INPUT].symbol === NativeSymbols[chainId].toLowerCase()) {
-        tokenAddr = NativeAddress[chainId]
+      if (currencies[Field.INPUT].symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol.toLowerCase()) {
+        tokenAddr = CHAINS_CONSTANTS[chainId].general.nativeAddress
       } else {
         tokenAddr = getAddress(otherToken.address)
       }
