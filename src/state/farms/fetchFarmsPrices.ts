@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import { ChainId } from '@soy-libs/sdk-multichain'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
-import { localStorageChainIdKey } from 'config'
+import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { BIG_ONE, BIG_ZERO } from 'utils/bigNumber'
 import { filterFarmsByQuoteToken } from 'utils/farmsPriceHelpers'
 import { Farm } from 'state/types'
@@ -114,7 +114,7 @@ const refFarms = {
   [ChainId.ETCCLASSICMAINNET]: 1
 }
 const fetchFarmsPrices = async (farms) => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? ChainId.MAINNET
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const nativeBusdtFarm = farms.find((farm: Farm) => farm.pid === farmsPids[chainId])
   const soyBusdtFarm = farms.find((farm: Farm) => farm.pid === busdtFarms[chainId])
   const soyCloFarm = farms.find((farm: Farm) => farm.pid === refFarms[chainId])

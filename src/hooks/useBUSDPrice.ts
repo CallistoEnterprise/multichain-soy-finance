@@ -1,5 +1,6 @@
 import { ChainId, Currency, currencyEquals, JSBI, Price, WETH } from '@soy-libs/sdk-multichain'
 import { useMemo } from 'react'
+import { DEFAULT_CHAIN_ID } from 'config';
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { BUSDT, SOY } from '../config/constants/tokens'
 import { PairState, usePairs } from './usePairs'
@@ -70,7 +71,7 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
 
 export const useCakeBusdPrice = (): Price | undefined => {
   const { chainId } = useActiveWeb3React()
-  const currentChaindId = chainId ?? ChainId.MAINNET
+  const currentChaindId = chainId ?? DEFAULT_CHAIN_ID
   const cakeBusdPrice = useBUSDPrice(SOY[currentChaindId])
   return cakeBusdPrice
 }

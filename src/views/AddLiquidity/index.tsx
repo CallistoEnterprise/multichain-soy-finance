@@ -1,9 +1,10 @@
 import React, { useCallback, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { ChainId, Currency, currencyEquals, ETHERS, TokenAmount, WETH } from '@soy-libs/sdk-multichain'
+import { Currency, currencyEquals, ETHERS, TokenAmount, WETH } from '@soy-libs/sdk-multichain'
 import { Button, Text, Flex, AddIcon, CardBody, Message, useModal } from '@soy-libs/uikit2'
 import { RouteComponentProps } from 'react-router-dom'
+import { DEFAULT_CHAIN_ID } from 'config';
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import { useTranslation } from 'contexts/Localization'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
@@ -116,11 +117,11 @@ export default function AddLiquidity({
   // check whether the user has approved the router on the tokens
   const [approvalA, approveACallback] = useApproveCallback(
     parsedAmounts[Field.CURRENCY_A],
-    ROUTER_ADDRESS[chainId ?? ChainId.MAINNET],
+    ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN_ID],
   )
   const [approvalB, approveBCallback] = useApproveCallback(
     parsedAmounts[Field.CURRENCY_B],
-    ROUTER_ADDRESS[chainId ?? ChainId.MAINNET],
+    ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN_ID],
   )
 
   const addTransaction = useTransactionAdder()

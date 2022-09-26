@@ -1,13 +1,12 @@
-import { ChainId } from '@soy-libs/sdk-multichain'
-import { localStorageChainIdKey } from 'config'
+import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import addresses from 'config/constants/contracts'
 import tokens from 'config/constants/tokens'
 import { Address } from 'config/constants/types'
 
-export const getAddress = (address: Address, chainId = ChainId.MAINNET): string => {
+export const getAddress = (address: Address, chainId = DEFAULT_CHAIN_ID): string => {
   const chId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? chainId
-  return address[chId] ? address[chId] : address[ChainId.MAINNET]
+  return address[chId] ? address[chId] : address[DEFAULT_CHAIN_ID]
 }
 
 export const getSoyAddress = () => {

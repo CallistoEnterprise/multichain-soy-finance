@@ -5,7 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
 import BigNumber from 'bignumber.js'
-import { BASE_URL, localStorageChainIdKey } from 'config'
+import { BASE_URL, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import { getFormattedDateFromTimeStamp, getTimeFromTimeStamp } from 'utils/formatTimePeriod'
 import { useBlockLatestTimestamp } from 'utils'
@@ -49,7 +49,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const [percent, setPercent] = useState(0)
   const [periods, setPeriods] = useState(0)
 
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const getCalculatedStakingLimit = () => {
     if (isRemovingStake) {
       return userData.stakedBalance
@@ -166,7 +166,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
             src={
               isBnbPool
                 ? `${BASE_URL}/images/coins/clo.png`
-                : `${BASE_URL}/images/coins/${chainId ?? ChainId.MAINNET}/${getAddress(stakingToken.address)}.png`
+                : `${BASE_URL}/images/coins/${chainId ?? DEFAULT_CHAIN_ID}/${getAddress(stakingToken.address)}.png`
             }
             width={24}
             height={24}

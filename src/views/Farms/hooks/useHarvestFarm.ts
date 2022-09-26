@@ -1,6 +1,5 @@
-import { ChainId } from '@soy-libs/sdk-multichain'
 import useActiveWeb3React, { useWeb3ProviderByRpc } from 'hooks/useActiveWeb3React'
-import { localStorageChainIdKey } from 'config'
+import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { useCallback } from 'react'
 import { getAddress } from 'utils/addressHelpers'
 import { harvestFarm } from 'utils/calls'
@@ -9,7 +8,7 @@ import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const useHarvestFarm = (farmPid: number) => {
   const { account, library } = useActiveWeb3React()
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? ChainId.MAINNET)
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const currentFarm = CHAINS_CONSTANTS[chainId].farms.find((farm) => farm.pid === farmPid)
   const { lpAddresses, localFarmAddresses }= currentFarm
   const lpContract = getLpContractWithAccount(getAddress(lpAddresses), library, account)
