@@ -21,4 +21,4 @@ export const ITEMS_PER_INFO_TABLE_PAGE = 10
 
 // These tokens are either incorrectly priced or have some other issues that spoil the query data
 // None of them present any interest as they have almost 0 daily trade volume
-export const TOKEN_BLACKLIST = ["0xffbce94c24a6c67daf7315948eb8b9fa48c5cdee"]
+export const TOKEN_BLACKLIST = ["0xffbce94c24a6c67daf7315948eb8b9fa48c5cdee","0xcc78d0a86b0c0a3b32debd773ec815130f9527cf"]
