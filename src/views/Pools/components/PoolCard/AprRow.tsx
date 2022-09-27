@@ -6,6 +6,7 @@ import ApyCalculatorModal from 'components/ApyCalculatorModal/poolAPY'
 import { Pool } from 'state/types'
 import { getAprData } from 'views/Pools/helpers'
 import { getAddress } from 'utils/addressHelpers'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 interface AprRowProps {
   pool: Pool
@@ -13,6 +14,7 @@ interface AprRowProps {
 }
 
 const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
+  const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const { stakingToken, earningToken, isFinished, apr, earningTokenPrice, isAutoVault, isNew } = pool
 
@@ -42,13 +44,13 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
     <Flex alignItems="center" justifyContent="space-between">
       {tooltipVisible && tooltip}
       <TooltipText ref={targetRef}>{isAutoVault ? `${t('APY')}:` : `${t('MAX APR')}:`}</TooltipText>
-      {isFinished || !apr ? (
+      {isFinished[chainId] || !apr ? (
         <Skeleton width="82px" height="32px" />
       ) : (
         <Flex alignItems="center">
           <Balance
             fontSize="16px"
-            isDisabled={isFinished}
+            isDisabled={isFinished[chainId]}
             value={earningsPercentageToDisplay}
             decimals={2}
             unit="%"

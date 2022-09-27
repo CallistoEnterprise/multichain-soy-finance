@@ -55,7 +55,7 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount
     const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
     const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
     const isPoolEndBlockExceeded = false // currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.endBlock) : false
-    const isPoolFinished = pool.isFinished || isPoolEndBlockExceeded
+    const isPoolFinished = pool.isFinished[chainId] || isPoolEndBlockExceeded
 
     const stakingTokenAddress = pool.stakingToken.address ? getAddress(pool.stakingToken.address).toLowerCase() : null
     const stakingTokenPrice = chainId === ChainId.CLOTESTNET ?  0.022412208310717878 : stakingTokenAddress ? prices[stakingTokenAddress] : 0
@@ -81,7 +81,7 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount
       stakingTokenPrice,
       earningTokenPrice,
       apr,
-      isFinished: isPoolFinished,
+      isFinished: pool.isFinished,
     }
   })
 

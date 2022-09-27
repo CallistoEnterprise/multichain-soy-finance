@@ -11,7 +11,6 @@ import BigNumber from 'bignumber.js'
 // CLO pools use the native CLO token (wrapping ? unwrapping is done at the contract level)
 const nonCloPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'CLO')
 const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'CLO')
-const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonCloPools.map((p) => ({
@@ -51,12 +50,12 @@ export const fetchUserBalances = async (account) => {
 }
 
 export const fetchUserStakeBalances = async (account) => {
-  const callsOld = nonMasterPools.filter((_) => !_.isNew).map((p) => ({
+  const callsOld = poolsConfig.filter((_) => !_.isNew).map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'staker',
     params: [account],
   }))
-  const callsNew = nonMasterPools.filter((_) => _.isNew).map((p) => p.isNew && ({
+  const callsNew = poolsConfig.filter((_) => _.isNew).map((p) => p.isNew && ({
     address: getAddress(p.contractAddress),
     name: 'staker',
     params: [account],
@@ -67,7 +66,7 @@ export const fetchUserStakeBalances = async (account) => {
 
   const userInfo1 = [ ...userInfoNew, ...userInfoOld]
 
-  const stakedBalances = nonMasterPools.reduce(
+  const stakedBalances = poolsConfig.reduce(
     (acc, pool, index) => ({
       ...acc,
       [pool.sousId]: new BigNumber(userInfo1[index].amount.toString()).toJSON(),
@@ -75,7 +74,7 @@ export const fetchUserStakeBalances = async (account) => {
     {},
   )
   
-  const userInfo = nonMasterPools.reduce(
+  const userInfo = poolsConfig.reduce(
     (acc, pool, index) => ({
       ...acc,
       [pool.sousId]: {

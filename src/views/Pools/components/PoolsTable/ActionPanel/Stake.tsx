@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text, AutoRenewIcon, HelpIcon } from '@soy-libs/uikit2'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import { useWeb3React } from '@web3-react/core'
 import { useCakeVault } from 'state/pools/hooks'
 import { Pool } from 'state/types'
 import Balance from 'components/Balance'
@@ -22,6 +21,7 @@ import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import StakeModal from '../../PoolCard/Modals/StakeModal'
 import VaultStakeModal from '../../CakeVaultCard/VaultStakeModal'
 import { useCheckVaultApprovalStatus, useApprovePool, useVaultApprove } from '../../../hooks/useApprove'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const IconButtonWrapper = styled.div`
   display: flex;
@@ -47,7 +47,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     isNew,
   } = pool
   const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const [pendingTx, setPendingTx] = useState(false)
   const { toastSuccess, toastError, toastWarning } = useToast()
   const { onUnstake } = useUnstakePool(sousId, isNew)
@@ -284,7 +284,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
                 size="small"
                 onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
                 variant="secondary"
-                disabled={isFinished || endTime > 0}
+                disabled={isFinished[chainId] || endTime > 0}
               >
                 {t(stakedTokenBalance === 0 ? 'Stake' : 'Add')}
               </Button>
@@ -343,7 +343,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
           width="100%"
           onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
           variant="secondary"
-          disabled={isFinished}
+          disabled={isFinished[chainId]}
         >
           {t('Stake')}
         </Button>

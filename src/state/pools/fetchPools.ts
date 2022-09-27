@@ -6,9 +6,10 @@ import erc223ABI from 'config/abi/erc223.json'
 import {multicall3} from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
+import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 
 export const fetchPoolsBlockLimits = async () => {
-  const poolsWithEnd = poolsConfig.filter((p) => p.sousId === 1)
+  const poolsWithEnd = poolsConfig.filter((p) => !p.isNew)
   const callsStartBlock = poolsWithEnd.map((poolConfig) => {
     return {
       address: getAddress(poolConfig.contractAddress),
@@ -111,8 +112,9 @@ export const fetchPoolStakingLimit = async (sousId?: number): Promise<BigNumber>
 export const fetchPoolsStakingLimits = async (
   poolsWithStakingLimit: number[],
 ): Promise<{ [key: string]: BigNumber }> => {
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const validPools = poolsConfig
-    .filter((p) => p.stakingToken.symbol !== 'CLO' && !p.isFinished)
+    .filter((p) => p.stakingToken.symbol !== 'CLO' && !p.isFinished[chainId])
     .filter((p) => !poolsWithStakingLimit.includes(p.sousId))
 
   // Get the staking limit for each valid pool

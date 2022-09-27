@@ -10,8 +10,10 @@ import { StyledCard, StyledCardInner } from './StyledCard'
 import CardFooter from './CardFooter'
 import StyledCardHeader from './StyledCardHeader'
 import CardActions from './CardActions'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) => {
+  const { chainId } = useActiveWeb3React()
   const { sousId, stakingToken, earningToken, isFinished, userData, lockPeriod, lockPeriodUnit, isNew } = pool
   const { t } = useTranslation()
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
@@ -19,17 +21,17 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
 
   return (
     <StyledCard
-      isFinished={isFinished && sousId !== 0}
-      ribbon={isFinished && <CardRibbon variantColor="textDisabled" text={t('Finished')} />}
+      isFinished={isFinished[chainId] && sousId !== 0}
+      ribbon={isFinished[chainId] && <CardRibbon variantColor="textDisabled" text={t('Finished')} />}
     >
       <StyledCardInner>
         <StyledCardHeader
           isStaking={accountHasStakedBalance}
           earningToken={earningToken}
           stakingToken={stakingToken}
-          isFinished={isFinished && sousId !== 0}
-          lockPeriod={lockPeriod}
-          lockPeriodUnit={lockPeriodUnit}
+          isFinished={isFinished[chainId] && sousId !== 0}
+          lockPeriod={isNew ? lockPeriod[chainId] : null}
+          lockPeriodUnit={isNew ? lockPeriodUnit[chainId] : null}
           isNew={isNew}
         />
         <CardBody>

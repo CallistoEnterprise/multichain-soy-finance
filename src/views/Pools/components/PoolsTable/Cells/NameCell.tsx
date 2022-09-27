@@ -9,6 +9,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { TokenPairImage } from 'components/TokenImage'
 import CakeVaultTokenPairImage from '../../CakeVaultCard/CakeVaultTokenPairImage'
 import BaseCell, { CellContent } from './BaseCell'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 interface NameCellProps {
   pool: Pool
@@ -25,6 +26,7 @@ const StyledCell = styled(BaseCell)`
 `
 
 const NameCell: React.FC<NameCellProps> = ({ pool }) => {
+  const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const { isXs, isSm } = useMatchBreakpoints()
   const { sousId, stakingToken, earningToken, userData, isFinished, isAutoVault, isNew, lockPeriod, lockPeriodUnit } = pool
@@ -43,7 +45,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const showStakedTag = isAutoVault ? hasVaultShares : isStaked
 
   let title = !isNew ? `${t('Earn')} ${earningTokenSymbol}(V1)` : `${stakingToken.symbol} Staking`
-  let subtitle = isNew ? `Time lock ${lockPeriod} ${lockPeriodUnit}` : `${t('Freeze')} ${stakingTokenSymbol}`
+  let subtitle = isNew ? `Time lock ${lockPeriod[chainId]} ${lockPeriodUnit[chainId]}` : `${t('Freeze')} ${stakingTokenSymbol}`
   const showSubtitle = sousId !== 0 || (sousId === 0 && !isXs && !isSm)
 
   if (isAutoVault) {

@@ -6,6 +6,7 @@ import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { getAprData } from 'views/Pools/helpers'
 import { getAddress } from 'utils/addressHelpers'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 interface AprProps extends FlexProps {
   pool: Pool
@@ -14,6 +15,7 @@ interface AprProps extends FlexProps {
 }
 
 const Apr: React.FC<AprProps> = ({ pool, showIcon, performanceFee = 0, ...props }) => {
+  const { chainId } = useActiveWeb3React()
   const { stakingToken, earningToken, isFinished, earningTokenPrice, apr, isNew } = pool
   const { t } = useTranslation()
 
@@ -41,17 +43,17 @@ const Apr: React.FC<AprProps> = ({ pool, showIcon, performanceFee = 0, ...props 
 
   return (
     <Flex alignItems="center" justifyContent="space-between" {...props}>
-      {earningsPercentageToDisplay || isFinished ? (
+      {earningsPercentageToDisplay || isFinished[chainId] ? (
         <>
           <Balance
             onClick={openRoiModal}
             // fontSize="16px"
-            isDisabled={isFinished}
-            value={isFinished ? 0 : earningsPercentageToDisplay}
+            isDisabled={isFinished[chainId]}
+            value={isFinished[chainId] ? 0 : earningsPercentageToDisplay}
             decimals={2}
             unit="%"
           />
-          {!isFinished && showIcon && !isNew && (
+          {!isFinished[chainId] && showIcon && !isNew && (
             <Button onClick={openRoiModal} variant="text" width="20px" height="20px" padding="0px" marginLeft="4px">
               <CalculateIcon color="textSubtle" width="20px" />
             </Button>

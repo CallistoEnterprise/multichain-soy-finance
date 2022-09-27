@@ -8,6 +8,20 @@ export interface Address {
   61?: string
 }
 
+export interface Periods {
+  20729?: string | number
+  820?: string | number
+}
+
+export interface PeriodUnit {
+  20729?: string
+  820?: string
+}
+
+interface Finished {
+  20729?: boolean
+  820?: boolean
+}
 export interface Token {
   symbol: string
   address?: Address
@@ -92,10 +106,10 @@ export interface PoolConfig {
   tokenPerBlock: string
   sortOrder?: number
   harvest?: boolean
-  isFinished?: boolean
+  isFinished?: Finished
   enableEmergencyWithdraw?: boolean
-  lockPeriod?: number | string
-  lockPeriodUnit?: string
+  lockPeriod?: Periods
+  lockPeriodUnit?: PeriodUnit
   isNew?: boolean
 }
 

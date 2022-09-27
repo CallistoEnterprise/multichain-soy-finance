@@ -9,6 +9,7 @@ import StakeModal from '../Modals/StakeModal'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
 import useUnstakePool from 'views/Pools/hooks/useUnstakePool'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 interface StakeActionsProps {
   pool: Pool
@@ -27,6 +28,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   isStaked,
   isLoading = false,
 }) => {
+  const { chainId } = useActiveWeb3React()
   // console.log("stakingTokenBalance ::", stakingTokenBalance.toString())
   const { stakingToken, earningToken, sousId, stakingTokenPrice, stakingLimit, isFinished, userData, isNew } = pool
   const { t } = useTranslation()
@@ -115,7 +117,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
             </span>
           ) : (
             <Button
-              disabled={isFinished || !isNew || endTime > 0}
+              disabled={isFinished[chainId] || !isNew || endTime > 0}
               onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
             >
               {t(stakedTokenBalance > 0 ? 'Add SOY' : 'Stake Now')}
@@ -151,7 +153,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
       </Flex>
     ) : (
       <Button
-        disabled={isFinished || !isNew}
+        disabled={isFinished[chainId] || !isNew}
         onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
       >
         {t('Stake')}
