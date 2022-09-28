@@ -10,6 +10,7 @@ const MAINNET_CONSTANTS: ChainConstants = {
     chainId: ChainId.MAINNET,
     hexChainId: '0x334',
     chainName: 'Callisto',
+    officialName: 'Callisto Mainnet',
     image: `${BASE_URL}/images/networks/clo.png`,
     nativeSymbol: 'CLO',
     wrappedNativeSymbol: 'WCLO',

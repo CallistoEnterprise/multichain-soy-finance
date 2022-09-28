@@ -16,22 +16,22 @@ export const setupNetwork = async () => {
       ? Number(window.localStorage.getItem(localStorageChainIdKey))
       : DEFAULT_CHAIN_ID
 
-    const curNet: ChainConstants = CHAINS_CONSTANTS[chainId]
+    const chain: ChainConstants = CHAINS_CONSTANTS[chainId]
 
     try {
       await provider.request({
         method: 'wallet_addEthereumChain',
         params: [
           {
-            chainId: curNet.general.hexChainId,
-            chainName: curNet.general.chainName,
+            chainId: chain.general.hexChainId,
+            chainName: chain.general.officialName,
             nativeCurrency: {
-              name: curNet.general.chainName,
-              symbol: curNet.general.nativeSymbol,
+              name: chain.general.chainName,
+              symbol: chain.general.nativeSymbol,
               decimals: 18,
             },
-            rpcUrls: curNet.rpcs,
-            blockExplorerUrls: [`${curNet.explorer.url}`],
+            rpcUrls: chain.rpcs,
+            blockExplorerUrls: [`${chain.explorer.url}`],
           },
         ],
       })
@@ -51,13 +51,14 @@ export const switchNetwork = async (library, curNet: any) => {
 
   if (provider) {
     // const chainId = Number(curNet.chainId);
+    const chain: ChainConstants = CHAINS_CONSTANTS[curNet.chainId]
 
     try {
       await provider.request({
         method: 'wallet_switchEthereumChain',
         params: [
           {
-            chainId: curNet.hexChainId,
+            chainId: chain.general.hexChainId,
           },
         ],
       })
@@ -69,15 +70,15 @@ export const switchNetwork = async (library, curNet: any) => {
             method: 'wallet_addEthereumChain',
             params: [
               {
-                chainId: curNet.hexChainId,
-                chainName: `${curNet.name}`,
-                rpcUrls: curNet.rpcs,
+                chainId: chain.general.hexChainId,
+                chainName: chain.general.officialName,
                 nativeCurrency: {
-                  name: `${curNet.name}`,
-                  symbol: `${curNet.symbol}`,
+                  name: chain.general.chainName,
+                  symbol: chain.general.nativeSymbol,
                   decimals: 18,
                 },
-                blockExplorerUrls: [`${curNet.explorer}`],
+                rpcUrls: chain.rpcs,
+                blockExplorerUrls: [`${chain.explorer.url}`],
               },
             ],
           })
