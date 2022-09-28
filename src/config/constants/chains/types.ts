@@ -6,6 +6,7 @@ export interface ChainConstants {
     chainId: number
     hexChainId: string
     chainName: string
+    officialName: string
     image?: string
     nativeSymbol: string
     wrappedNativeSymbol: string
