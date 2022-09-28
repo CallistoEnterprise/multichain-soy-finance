@@ -26,7 +26,7 @@ export const setupNetwork = async () => {
             chainId: chain.general.hexChainId,
             chainName: chain.general.officialName,
             nativeCurrency: {
-              name: chain.general.chainName,
+              name: chain.general.officialName,
               symbol: chain.general.nativeSymbol,
               decimals: 18,
             },
@@ -73,7 +73,7 @@ export const switchNetwork = async (library, curNet: any) => {
                 chainId: chain.general.hexChainId,
                 chainName: chain.general.officialName,
                 nativeCurrency: {
-                  name: chain.general.chainName,
+                  name: chain.general.officialName,
                   symbol: chain.general.nativeSymbol,
                   decimals: 18,
                 },
