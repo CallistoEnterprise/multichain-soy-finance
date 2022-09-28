@@ -3,7 +3,6 @@
 import { BASE_URL, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { ChainConstants } from 'config/constants/chains/types'
-import { Networks } from 'config/constants/networks'
 import tokens from 'config/constants/tokens'
 
 /**
