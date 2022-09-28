@@ -98,7 +98,7 @@ const App: React.FC = () => {
     }
   }, [account, chainId])
 
-  // window.ethereum?.removeAllListeners(['networkChanged'])
+  window.ethereum?.removeAllListeners(['networkChanged'])
 
   return (
     <Router history={history}>
