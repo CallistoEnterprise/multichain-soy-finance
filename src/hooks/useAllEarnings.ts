@@ -3,8 +3,8 @@ import { useWeb3React } from '@web3-react/core'
 import { multicall3 } from 'utils/multicall'
 import { getMasterChefAddress } from 'utils/addressHelpers'
 import masterChefABI from 'config/abi/masterchef.json'
-import { farmsConfig } from 'config/constants'
 import useRefresh from './useRefresh'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const useAllEarnings = () => {
 
@@ -14,7 +14,7 @@ const useAllEarnings = () => {
 
   useEffect(() => {
     const fetchAllBalances = async () => {
-      const calls = farmsConfig[chainId].map((farm) => ({
+      const calls = CHAINS_CONSTANTS[chainId].farms.map((farm) => ({
         address: getMasterChefAddress(),
         name: 'pendingReward',
         params: [farm.pid, account],

@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
-import { localStorageChainIdKey } from 'config'
+import { ChainId } from '@soy-libs/sdk-multichain'
+import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceAmount } from 'utils/formatBalance'
-import { farmsConfig } from 'config/constants'
 import useRefresh from 'hooks/useRefresh'
-// import useGetPriceData from 'hooks/useGetPriceData'
 import { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync, nonArchivedFarms } from '.'
 import { State, Farm, FarmsState } from '../types'
 
@@ -17,11 +17,11 @@ export const usePollFarmsData = (includeArchive = false) => {
   const { slowRefresh } = useRefresh()
   const { account } = useWeb3React()
 
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
 
   useEffect(() => {
-    const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
-    const pids = farmsToFetch[chainId]?.map((farmToFetch) => farmToFetch.pid)
+    const farmsToFetch = includeArchive ? CHAINS_CONSTANTS[chainId].farms : nonArchivedFarms[chainId]
+    const pids = farmsToFetch?.map((farmToFetch) => farmToFetch.pid)
 
     dispatch(fetchFarmsPublicDataAsync(pids))
 
@@ -37,25 +37,28 @@ export const usePollFarmsData = (includeArchive = false) => {
  * 4 = BUSDT-CLO LP
  */
 const coreFarms = {
-  820: [2, 4],
-  199: [10, 14, 19, 9],
-  61: [2, 6, 5, 1],
+  [ChainId.MAINNET]: [2, 4],
+  [ChainId.CLOTESTNET]: [2, 4],
+  [ChainId.BTTMAINNET]: [10, 14, 19, 9],
+  [ChainId.ETCCLASSICMAINNET]: [2, 6, 5, 1],
 }
 const coreEthFarms = {
-  820: 2,
-  199: 19,
-  61: 5,
+  [ChainId.MAINNET]: 2,
+  [ChainId.CLOTESTNET]: 2,
+  [ChainId.BTTMAINNET]: 19,
+  [ChainId.ETCCLASSICMAINNET]: 5,
 }
 const busdtFarms = {
-  820: 4,
-  199: 14,
-  61: 6,
+  [ChainId.MAINNET]: 4,
+  [ChainId.CLOTESTNET]: 4,
+  [ChainId.BTTMAINNET]: 14,
+  [ChainId.ETCCLASSICMAINNET]: 6,
 }
 
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
 
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync(coreFarms[chainId]))
@@ -68,13 +71,13 @@ export const useFarms = (): FarmsState => {
 }
 
 export const useFarmFromPid = (pid): Farm => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const farm = useSelector((state: State) => state.farms.data[chId]?.find((f) => f.pid === pid))
   return farm
 }
 
 export const useFarmFromLpSymbol = (lpSymbol: string): Farm => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const farm = useSelector((state: State) => state.farms.data[chId]).find((f) => f?.lpSymbol === lpSymbol)
   return farm
 }
@@ -117,13 +120,13 @@ export const useLpTokenPrice = (symbol: string) => {
 // /!\ Deprecated , use the USDC hook in /hooks
 
 export const usePriceBnbBusd = (): BigNumber => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const cloBusdtFarm = useFarmFromPid(busdtFarms[chainId])
   return new BigNumber(cloBusdtFarm.quoteToken.usdcPrice)
 }
 
 export const usePriceCakeBusd = (): BigNumber => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? 820
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const soyCloFarm = useFarmFromPid(coreEthFarms[chainId])
   const soyPriceBusdtAsString = soyCloFarm?.token.usdcPrice
   const soyPriceBusdt = useMemo(() => {

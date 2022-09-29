@@ -16,9 +16,10 @@ import useToast from 'hooks/useToast'
 import { fetchCakeVaultUserData } from 'state/pools'
 import { Pool } from 'state/types'
 import { getAddress } from 'utils/addressHelpers'
-import { BASE_URL, NativeSymbols } from 'config'
+import { BASE_URL } from 'config'
 import { convertCakeToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 interface VaultStakeModalProps {
   pool: Pool
@@ -159,8 +160,8 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         <Flex alignItems="center" minWidth="70px">
           <Image
             src={
-              pool.stakingToken.symbol === NativeSymbols[chainId]?.toUpperCase()
-                ? `${BASE_URL}/images/coins/${NativeSymbols[chainId]}.png`
+              pool.stakingToken.symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol
+                ? `${BASE_URL}/images/coins/${CHAINS_CONSTANTS[chainId].general.nativeSymbol.toLowerCase()}.png`
                 : `${BASE_URL}/images/coins/${chainId}/${getAddress(stakingToken.address)}.png`
             }
             width={24}

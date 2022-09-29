@@ -1,5 +1,5 @@
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
-import { Currency, CurrencyAmount, currencyEquals, ETHERS, Token } from '@soy-libs/sdk-multichain'
+import { ChainId, Currency, CurrencyAmount, currencyEquals, ETHERS, Token } from '@soy-libs/sdk-multichain'
 import { Text } from '@soy-libs/uikit2'
 import styled from 'styled-components'
 import { FixedSizeList } from 'react-window'
@@ -21,11 +21,11 @@ import ImportRow from './ImportRow'
 function currencyKey(currency: Currency): string {
   return currency instanceof Token 
     ? currency.address
-    : currency === ETHERS[820]
-    || currency === ETHERS[199]
-    || currency === ETHERS[61]
-    || currency === ETHERS[56]
-    || currency === ETHERS[1]
+    : currency === ETHERS[ChainId.MAINNET]
+    || currency === ETHERS[ChainId.BTTMAINNET]
+    || currency === ETHERS[ChainId.ETCCLASSICMAINNET]
+    || currency === ETHERS[ChainId.BSC]
+    || currency === ETHERS[ChainId.ETHEREUM]
     ? 'ETHER'
     : ''
 }

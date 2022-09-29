@@ -6,9 +6,10 @@ import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHERS } from '@soy-libs/sdk-multichain'
+import { DEFAULT_CHAIN_ID } from 'config';
 import SoyRouterABI from '../config/abi/soyRouter.json'
 import { ROUTER_ADDRESS } from '../config/constants'
-import { BASE_CALLISTO_SCAN_URLS } from '../config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { TokenAddressMap } from '../state/lists/hooks'
 
 const ethereumInfura = 'https://mainnet.infura.io/v3/f2dcf6879de04faca05b3a01ccc2abd2'
@@ -31,19 +32,19 @@ export function getCallistoExpLink(
 ): string {
   switch (type) {
     case 'transaction': {
-      return `${BASE_CALLISTO_SCAN_URLS[chainId]}/tx/${data}/token-transfers`
+      return `${CHAINS_CONSTANTS[chainId].explorer.url}/tx/${data}/token-transfers`
     }
     case 'token': {
-      return `${BASE_CALLISTO_SCAN_URLS[chainId]}/address/${data}/transactions`
+      return `${CHAINS_CONSTANTS[chainId].explorer.url}/address/${data}/transactions`
     }
     case 'block': {
-      return `${BASE_CALLISTO_SCAN_URLS[chainId]}/${data}`
+      return `${CHAINS_CONSTANTS[chainId].explorer.url}/${data}`
     }
     case 'countdown': {
-      return `${BASE_CALLISTO_SCAN_URLS[chainId]}/${data}`
+      return `${CHAINS_CONSTANTS[chainId].explorer.url}/${data}`
     }
     default: {
-      return `${BASE_CALLISTO_SCAN_URLS[chainId]}/address/${data}/transactions`
+      return `${CHAINS_CONSTANTS[chainId].explorer.url}/address/${data}/transactions`
     }
   }
 }
@@ -98,7 +99,7 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 
 // account is optional
 export function getRouterContract(chainId: number, library: Web3Provider, account?: string): Contract {
-  return getContract(ROUTER_ADDRESS[chainId ?? 820], SoyRouterABI, library, account)
+  return getContract(ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN_ID], SoyRouterABI, library, account)
 }
 
 export function escapeRegExp(string: string): string {

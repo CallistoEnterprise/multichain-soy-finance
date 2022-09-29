@@ -1,9 +1,9 @@
 import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from 'react'
-import { Currency, ETHERS, Token } from '@soy-libs/sdk-multichain'
+import { ChainId, Currency, ETHERS, Token } from '@soy-libs/sdk-multichain'
 import { Text, Input, Box } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { FixedSizeList } from 'react-window'
-import { NativeSymbols } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { useAudioModeManager } from 'state/user/hooks'
 import useDebounce from 'hooks/useDebounce'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -57,7 +57,9 @@ function CurrencySearchIdo({
 
   const showETH: boolean = useMemo(() => {
     const s = debouncedQuery.toLowerCase().trim()
-    return chainId === 820 ? s === '' || s === 'c' || s === 'cl' || s === 'clo' : s === '' || s === 'b' || s === 'bt' || s === 'btt'
+    return chainId === ChainId.MAINNET || chainId === ChainId.CLOTESTNET
+      ? s === '' || s === 'c' || s === 'cl' || s === 'clo'
+      : s === '' || s === 'b' || s === 'bt' || s === 'btt'
   }, [debouncedQuery, chainId])
 
   const tokenComparator = useTokenComparator(invertSearchOrder)
@@ -100,7 +102,7 @@ function CurrencySearchIdo({
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         const s = debouncedQuery.toLowerCase().trim()
-        if (s === NativeSymbols[chainId]) {
+        if (s === CHAINS_CONSTANTS[chainId].general.nativeSymbol.toLowerCase()) {
           handleCurrencySelect(ETHERS[chainId])
         } else if (filteredSortedTokens.length > 0) {
           if (
@@ -118,12 +120,14 @@ function CurrencySearchIdo({
   // if no results on main list, show option to expand into inactive
   const inactiveTokens = useFoundOnInactiveList(debouncedQuery)
   const filteredInactiveTokens: Token[] = useSortedTokensByQuery(inactiveTokens, debouncedQuery)
-  const filteredSortedTokens1 = filteredSortedTokens.filter((item) => item.symbol === 'CLOE' ||
-                                                                      item.symbol === 'ccETC' ||
-                                                                      item.symbol === 'BUSDT' ||
-                                                                      (item.symbol === 'ccETH' && item.name.includes('ERC223')) ||
-                                                                      (item.symbol === 'ccBNB' && item.name.includes('ERC223'))
-                                                                    )
+  const filteredSortedTokens1 = filteredSortedTokens.filter(
+    (item) =>
+      item.symbol === 'CLOE' ||
+      item.symbol === 'ccETC' ||
+      item.symbol === 'BUSDT' ||
+      (item.symbol === 'ccETH' && item.name.includes('ERC223')) ||
+      (item.symbol === 'ccBNB' && item.name.includes('ERC223')),
+  )
   // console.log(filteredSortedTokens1)
 
   return (

@@ -11,7 +11,7 @@ import useParsedQueryString from 'hooks/useParsedQueryString'
 import { useTranslation } from 'contexts/Localization'
 import { isAddress } from 'utils'
 import { computeSlippageAdjustedAmounts } from 'utils/prices'
-import { NativeSymbols } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { AppDispatch, AppState } from '../index'
 import { useCurrencyBalances } from '../wallet/hooks'
 import { Field, replaceSwapState, selectCurrency, setRecipient, switchCurrencies, typeInput } from './actions'
@@ -39,7 +39,7 @@ export function useSwapActionHandlers(): {
             currency instanceof Token
               ? currency.address
               : currency === ETHERS[chainId]
-              ? NativeSymbols[chainId]?.toUpperCase()
+              ? CHAINS_CONSTANTS[chainId].general.nativeSymbol
               : '',
         }),
       )
@@ -209,10 +209,10 @@ function parseCurrencyFromURLParameter(urlParam: any, chainId?: number): string 
   if (typeof urlParam === 'string') {
     const valid = isAddress(urlParam)
     if (valid) return valid
-    if (urlParam?.toUpperCase() === NativeSymbols[chainId]?.toUpperCase()) return NativeSymbols[chainId]?.toUpperCase()
-    if (valid === false) return NativeSymbols[chainId]?.toUpperCase()
+    if (urlParam?.toUpperCase() === CHAINS_CONSTANTS[chainId].general.nativeSymbol) return CHAINS_CONSTANTS[chainId].general.nativeSymbol
+    if (valid === false) return CHAINS_CONSTANTS[chainId].general.nativeSymbol
   }
-  return NativeSymbols[chainId]?.toUpperCase() ?? ''
+  return CHAINS_CONSTANTS[chainId].general.nativeSymbol ?? ''
 }
 
 function parseTokenAmountURLParameter(urlParam: any): string {

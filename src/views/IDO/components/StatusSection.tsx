@@ -6,7 +6,7 @@ import { AutoColumn } from 'components/Layout/Column'
 import { AutoRow } from 'components/Layout/Row'
 import { CurrencyLogo } from 'components/Logo'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { NativeSymbols } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const StatusSection = ({ currentAmount }) => {
   const { chainId } = useActiveWeb3React()
@@ -16,7 +16,7 @@ const StatusSection = ({ currentAmount }) => {
       <AutoColumn>
         <AutoRow justify="space-between">
           <AutoColumn justify="space-between">
-            <Text fontSize="14px">{`${NativeSymbols[chainId]?.toUpperCase()} coins collected during this round`}</Text>
+            <Text fontSize="14px">{`${CHAINS_CONSTANTS[chainId].general.nativeSymbol} coins collected during this round`}</Text>
             <Text fontSize="24px" color="primary" mt="5px">{`$${currentAmount.toFixed(2)}`}</Text>
           </AutoColumn>
           <CurrencyLogo currency={ETHERS[chainId]} size="60px" style={{ marginRight: '8px' }} />

@@ -1,3 +1,8 @@
+import React, { useEffect, useState } from 'react'
+import { ChainId } from "@soy-libs/sdk-multichain"
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { CHAINS_CONSTANTS } from './chains'
+import { chain } from 'lodash'
 export const GRAPH_API_PROFILE = process.env.REACT_APP_GRAPH_API_PROFILE
 export const GRAPH_API_PREDICTION = process.env.REACT_APP_GRAPH_API_PREDICTION
 export const GRAPH_API_LOTTERY = process.env.REACT_APP_GRAPH_API_LOTTERY
@@ -8,16 +13,8 @@ export const API_NFT = process.env.REACT_APP_API_NFT
 export const SNAPSHOT_API = `${SNAPSHOT_BASE_URL}/graphql`
 export const SNAPSHOT_HUB_API = `${SNAPSHOT_BASE_URL}/api/message`
 
-/**
- * V1 will be deprecated but is still used to claim old rounds
- */
-/** export const GRAPH_API_PREDICTION_V1 = 'https://api.thegraph.com/subgraphs/name/pancakeswap/prediction'
- * //export const INFO_CLIENT = 'https://api.soy.finance/subgraphs/name/soyfinance'
- * //export const BLOCKS_CLIENT = 'https://api.soy.finance/subgraphs/name/blocks'
- */
+const chainId = 820//parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 
-
-export const INFO_CLIENT = 'https://03.callisto.network/subgraphs/name/soyswap'
-export const BLOCKS_CLIENT = 'https://03.callisto.network/subgraphs/name/blocks'
-
+export const INFO_CLIENT = CHAINS_CONSTANTS[chainId].subgraph.infoClient
+export const BLOCKS_CLIENT = CHAINS_CONSTANTS[chainId].subgraph.blocksClient
 export const GRAPH_API_NFTMARKET = process.env.REACT_APP_GRAPH_API_NFT_MARKET

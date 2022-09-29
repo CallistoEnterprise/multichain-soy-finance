@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import farmsConfig from 'config/constants/farms'
-import { localStorageChainIdKey } from 'config'
+import { ChainId } from '@soy-libs/sdk-multichain'
+import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import isArchivedPid from 'utils/farmHelpers'
 // import priceHelperLpsConfig from 'config/constants/priceHelperLps'
 import fetchFarms from './fetchFarms'
@@ -13,7 +14,7 @@ import {
 } from './fetchFarmUser'
 import { FarmsState, Farm } from '../types'
 
-const noAccountFarmConfig = farmsConfig[820].map((farm) => ({
+const noAccountFarmConfig = CHAINS_CONSTANTS[ChainId.MAINNET].farms.map((farm) => ({
   ...farm,
   userData: {
     allowance: '0',
@@ -22,7 +23,7 @@ const noAccountFarmConfig = farmsConfig[820].map((farm) => ({
     earnings: '0',
   },
 }))
-const noAccountFarmConfigBTT = farmsConfig[199].map((farm) => ({
+const noAccountFarmConfigForCLOTest = CHAINS_CONSTANTS[ChainId.CLOTESTNET].farms.map((farm) => ({
   ...farm,
   userData: {
     allowance: '0',
@@ -31,7 +32,16 @@ const noAccountFarmConfigBTT = farmsConfig[199].map((farm) => ({
     earnings: '0',
   },
 }))
-const noAccountFarmConfigETC = farmsConfig[61].map((farm) => ({
+const noAccountFarmConfigBTT = CHAINS_CONSTANTS[ChainId.BTTMAINNET].farms.map((farm) => ({
+  ...farm,
+  userData: {
+    allowance: '0',
+    tokenBalance: '0',
+    stakedBalance: '0',
+    earnings: '0',
+  },
+}))
+const noAccountFarmConfigETC = CHAINS_CONSTANTS[ChainId.ETCCLASSICMAINNET].farms.map((farm) => ({
   ...farm,
   userData: {
     allowance: '0',
@@ -42,23 +52,25 @@ const noAccountFarmConfigETC = farmsConfig[61].map((farm) => ({
 }))
 
 const initialState: FarmsState = { data: {
-  820: noAccountFarmConfig,
-  199: noAccountFarmConfigBTT,
-  61: noAccountFarmConfigETC
+  [ChainId.MAINNET]: noAccountFarmConfig,
+  [ChainId.CLOTESTNET]: noAccountFarmConfigForCLOTest,
+  [ChainId.BTTMAINNET]: noAccountFarmConfigBTT,
+  [ChainId.ETCCLASSICMAINNET]: noAccountFarmConfigETC
 }, loadArchivedFarmsData: false, userDataLoaded: false }
 
-export const nonArchivedFarms = { 
-  820: farmsConfig[820].filter(({ pid }) => !isArchivedPid(pid)),
-  199: farmsConfig[199].filter(({ pid }) => !isArchivedPid(pid)),
-  61: farmsConfig[61].filter(({ pid }) => !isArchivedPid(pid)),
+export const nonArchivedFarms = {
+  [ChainId.MAINNET]: CHAINS_CONSTANTS[ChainId.MAINNET].farms.filter(({ pid }) => !isArchivedPid(pid)),
+  [ChainId.CLOTESTNET]: CHAINS_CONSTANTS[ChainId.CLOTESTNET].farms.filter(({ pid }) => !isArchivedPid(pid)),
+  [ChainId.BTTMAINNET]: CHAINS_CONSTANTS[ChainId.BTTMAINNET].farms.filter(({ pid }) => !isArchivedPid(pid)),
+  [ChainId.ETCCLASSICMAINNET]: CHAINS_CONSTANTS[ChainId.ETCCLASSICMAINNET].farms.filter(({ pid }) => !isArchivedPid(pid)),
 }
 
 // Async thunks
 export const fetchFarmsPublicDataAsync = createAsyncThunk<Farm[], number[]>(
   'farms/fetchFarmsPublicDataAsync',
   async (pids) => {
-    const chId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
-    const farmsToFetch = farmsConfig[chId].filter((farmConfig) => pids.includes(farmConfig.pid))
+    const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+    const farmsToFetch = CHAINS_CONSTANTS[chId].farms.filter((farmConfig) => pids.includes(farmConfig.pid))
 
     // Add price helper farms
     // const farmsWithPriceHelpers = farmsToFetch.concat(priceHelperLpsConfig)
@@ -85,8 +97,8 @@ interface FarmUserDataResponse {
 export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], { account: string; pids: number[] }>(
   'farms/fetchFarmUserDataAsync',
   async ({ account, pids }) => {
-    const chId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
-    const farmsToFetch = farmsConfig[chId].filter((farmConfig) => pids.includes(farmConfig.pid))
+    const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+    const farmsToFetch = CHAINS_CONSTANTS[chId].farms.filter((farmConfig) => pids.includes(farmConfig.pid))
     const userFarmAllowances = await fetchFarmUserAllowances(account, farmsToFetch)
     const userFarmTokenBalances = await fetchFarmUserTokenBalances(account, farmsToFetch)
     const userStakedBalances = await fetchFarmUserStakedBalances(account, farmsToFetch)
@@ -116,7 +128,7 @@ export const farmsSlice = createSlice({
   extraReducers: (builder) => {
     // Update farms with live data
     builder.addCase(fetchFarmsPublicDataAsync.fulfilled, (state, action) => {
-      const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+      const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
       state.data[chId] = state.data[chId].map((farm) => {
         const liveFarmData = action.payload.find((farmData) => farmData.pid === farm.pid)
         return { ...farm, ...liveFarmData }
@@ -125,7 +137,7 @@ export const farmsSlice = createSlice({
 
     // Update farms with user data
     builder.addCase(fetchFarmUserDataAsync.fulfilled, (state, action) => {
-      const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+      const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
       action.payload.forEach((userDataEl) => {
         const { pid } = userDataEl
         const index = state.data[chId].findIndex((farm) => farm.pid === pid)

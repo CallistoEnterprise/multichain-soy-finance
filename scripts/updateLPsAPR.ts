@@ -1,11 +1,11 @@
 import fs from 'fs'
 import { request, gql } from 'graphql-request'
 import BigNumber from 'bignumber.js'
-import { ChainId } from '@soy-libs/sdk-multichain'
 import chunk from 'lodash/chunk'
 import { sub, getUnixTime } from 'date-fns'
 import { localStorageChainIdKey } from '../src/config'
-import farmsConfig from '../src/config/constants/farms'
+import { CHAINS_CONSTANTS } from '../src/config/constants/chains/index';
+import { DEFAULT_CHAIN_ID } from '../src/config/index';
 
 const BLOCK_SUBGRAPH_ENDPOINT = 'https://api.thegraph.com/subgraphs/name/polysafemoon/blocks'
 const STREAMING_FAST_ENDPOINT = 'https://bsc.streamingfast.io/subgraphs/name/polysafemoon/exchange-v2'
@@ -102,9 +102,9 @@ const getAprsForFarmGroup = async (addresses: (string | undefined | unknown)[], 
 }
 
 const fetchAndUpdateLPsAPR = async () => {
-  const chainId = parseInt(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   // pids before 250 are inactive farms from v1 and failed v2 migration
-  const lowerCaseAddresses = farmsConfig[chainId]
+  const lowerCaseAddresses = CHAINS_CONSTANTS[chainId].farms
     .filter((farm) => farm.pid > 250)
     .map((farm) => farm?.lpAddresses[chainId]?.toLowerCase())
   // Split it into chunks of 30 addresses to avoid gateway timeout

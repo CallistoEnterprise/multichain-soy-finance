@@ -1,11 +1,11 @@
 import React, { useEffect, lazy } from 'react'
 import { Router, Redirect, Route, Switch } from 'react-router-dom'
-import styled from "styled-components";
+import styled from 'styled-components'
 import { ResetCSS } from '@soy-libs/uikit2'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useEagerConnect from 'hooks/useEagerConnect'
-import { setupNetwork2 } from 'utils/wallet';
+import { setupNetwork2 } from 'utils/wallet'
 import { usePollBlockNumber } from 'state/block/hooks'
 import { usePollCoreFarmData } from 'state/farms/hooks'
 import { DatePickerPortal } from 'components/DatePicker'
@@ -28,13 +28,15 @@ import {
 } from './views/AddLiquidity/redirects'
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
+import { ChainId } from '@soy-libs/sdk-multichain'
+import { SUPPORTED_CHAINS } from 'config'
 
 const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
   overflow-x: hidden;
-`;
+`
 
 const BodyWrapper = styled.div`
   display: flex;
@@ -88,12 +90,15 @@ const App: React.FC = () => {
     const init = async () => {
       setupNetwork2()
     }
-    if (account && chainId !== 820 && chainId !== 199 && chainId !== 61) {
+    if (
+      account &&
+      !SUPPORTED_CHAINS.includes(chainId)
+    ) {
       init()
     }
   }, [account, chainId])
 
-  window.ethereum?.removeAllListeners(["networkChanged"])
+  window.ethereum?.removeAllListeners(['networkChanged'])
 
   return (
     <Router history={history}>

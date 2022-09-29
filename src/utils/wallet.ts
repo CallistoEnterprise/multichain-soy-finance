@@ -1,8 +1,9 @@
 // Set of helper functions to facilitate wallet setup
 
-import { BASE_URL } from 'config'
-import { Networks } from 'config/constants/networks'
-import { localStorageChainIdKey } from '../config/index'
+import { BASE_URL, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
+import { ChainConstants } from 'config/constants/chains/types'
+import tokens from 'config/constants/tokens'
 
 /**
  * Prompt the user to add Polygon as a network on Metamask, or switch to Polygon if the wallet is on a different network
@@ -13,24 +14,24 @@ export const setupNetwork = async () => {
   if (provider) {
     const chainId = window.localStorage.getItem(localStorageChainIdKey)
       ? Number(window.localStorage.getItem(localStorageChainIdKey))
-      : parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+      : DEFAULT_CHAIN_ID
 
-    const curNet = Networks.filter((_) => Number(_.chainId) === chainId)
+    const chain: ChainConstants = CHAINS_CONSTANTS[chainId]
 
     try {
       await provider.request({
         method: 'wallet_addEthereumChain',
         params: [
           {
-            chainId: `0x${chainId.toString(16)}`,
-            chainName: 'Callisto Mainnet',
+            chainId: chain.general.hexChainId,
+            chainName: chain.general.officialName,
             nativeCurrency: {
-              name: curNet[0].name,
-              symbol: curNet[0].symbol,
+              name: chain.general.officialName,
+              symbol: chain.general.nativeSymbol,
               decimals: 18,
             },
-            rpcUrls: curNet[0].rpcs,
-            blockExplorerUrls: [`${curNet[0].explorer}`],
+            rpcUrls: chain.rpcs,
+            blockExplorerUrls: [`${chain.explorer.url}`],
           },
         ],
       })
@@ -50,13 +51,14 @@ export const switchNetwork = async (library, curNet: any) => {
 
   if (provider) {
     // const chainId = Number(curNet.chainId);
+    const chain: ChainConstants = CHAINS_CONSTANTS[curNet.chainId]
 
     try {
       await provider.request({
         method: 'wallet_switchEthereumChain',
         params: [
           {
-            chainId: curNet.hexChainId,
+            chainId: chain.general.hexChainId,
           },
         ],
       })
@@ -68,15 +70,15 @@ export const switchNetwork = async (library, curNet: any) => {
             method: 'wallet_addEthereumChain',
             params: [
               {
-                chainId: curNet.hexChainId,
-                chainName: `${curNet.name}`,
-                rpcUrls: curNet.rpcs,
+                chainId: chain.general.hexChainId,
+                chainName: chain.general.officialName,
                 nativeCurrency: {
-                  name: `${curNet.name}`,
-                  symbol: `${curNet.symbol}`,
+                  name: chain.general.officialName,
+                  symbol: chain.general.nativeSymbol,
                   decimals: 18,
                 },
-                blockExplorerUrls: [`${curNet.explorer}`],
+                rpcUrls: chain.rpcs,
+                blockExplorerUrls: [`${chain.explorer.url}`],
               },
             ],
           })
@@ -95,7 +97,7 @@ export const switchNetwork = async (library, curNet: any) => {
 export const setupNetwork2 = async () => {
   const provider = window.ethereum
   if (provider) {
-    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? 820)
+    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
 
     try {
       await provider.request({
@@ -125,7 +127,7 @@ export const setupNetwork2 = async () => {
  * @returns {boolean} true if the token has been added, false otherwise
  */
 export const registerToken = async (tokenAddress: string, tokenSymbol: string, tokenDecimals: number) => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? '820')
+  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const tokenAdded = await window.ethereum.request({
     method: 'wallet_watchAsset',
     params: {
@@ -142,19 +144,13 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
   return tokenAdded
 }
 
-const SOY = {
-  820: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
-  199: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
-  61: '0xcC67D978Ddf07971D9050d2b424f36f6C1a15893',
-}
-
 export const addSoyToMetamask = async (chainId: number) => {
   await window.ethereum.request({
     method: 'wallet_watchAsset',
     params: {
       type: 'ERC20',
       options: {
-        address: SOY[chainId],
+        address: tokens.soy.address[chainId],
         symbol: 'SOY',
         decimals: 18,
         image: `https://app.soy.finance/images/coins/0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65.png`,

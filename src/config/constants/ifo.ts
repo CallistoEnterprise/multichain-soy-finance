@@ -1,6 +1,5 @@
 import { Ifo } from './types'
 
-const ifos: Ifo[] = [
-]
+const ifos: Ifo[] = []
 
 export default ifos
