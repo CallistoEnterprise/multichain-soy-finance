@@ -22,6 +22,16 @@ const ETC_CONSTANTS: ChainConstants = {
     name: 'ETCScan',
     url: 'https://blockscout.com/etc/mainnet/',
   },
+  subgraph:{
+    infoClient:'https://03.callisto.network/subgraphsetc/name/soyswapetc',
+    blocksClient:'https://03.callisto.network/subgraphsetc/name/blocksetc',
+    startTimestamp: 1655710961, // June-20-2022 10:42:41 AM +3 UTC
+    vars: {
+      trackedReserveCOIN:'trackedReserveETC',
+      coinPrice:'etcPrice',
+      derivedCOIN:'derivedETC'
+    }
+  },
   tokenLists: DEFAULT_TOKEN_LIST,
   farms: farms,
   rewardTokensPerYear: new BigNumber(50000000 * 0.1),

@@ -18,6 +18,16 @@ export interface ChainConstants {
     name: string
     url: string
   }
+  subgraph?: {
+    infoClient:string
+    blocksClient:string
+    startTimestamp: number
+    vars?: {
+      trackedReserveCOIN: string
+      coinPrice: string
+      derivedCOIN: string
+    }
+  }
   tokenLists?: any
   farms?: FarmConfig[]
   rewardTokensPerYear?: BigNumber
