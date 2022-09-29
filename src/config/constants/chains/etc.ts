@@ -10,6 +10,7 @@ const ETC_CONSTANTS: ChainConstants = {
     chainId: ChainId.ETCCLASSICMAINNET,
     hexChainId: '0x3D',
     chainName: 'ETC Chain',
+    officialName: 'Ethereum Classic Mainnet',
     image: `${BASE_URL}/images/networks/etc.png`,
     nativeSymbol: 'ETC',
     wrappedNativeSymbol: 'WETC',

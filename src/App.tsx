@@ -29,6 +29,7 @@ import {
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
 import { ChainId } from '@soy-libs/sdk-multichain'
+import { SUPPORTED_CHAINS } from 'config'
 
 const Wrapper = styled.div`
   display: flex;
@@ -91,10 +92,7 @@ const App: React.FC = () => {
     }
     if (
       account &&
-      chainId !== ChainId.MAINNET &&
-      chainId !== ChainId.BTTMAINNET &&
-      chainId !== ChainId.ETCCLASSICMAINNET &&
-      chainId !== ChainId.CLOTESTNET
+      !SUPPORTED_CHAINS.includes(chainId)
     ) {
       init()
     }

@@ -10,6 +10,7 @@ const TESTNET_CONSTANTS: ChainConstants = {
     chainId: ChainId.CLOTESTNET,
     hexChainId: '0x50F9',
     chainName: 'CLO Testnet',
+    officialName: 'Callisto Testnet',
     image: `${BASE_URL}/images/networks/clo.png`,
     nativeSymbol: 'CLO',
     wrappedNativeSymbol: 'WCLO',
