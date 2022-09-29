@@ -11,7 +11,7 @@ import { coinPrice,derivedCOIN } from 'config/constants/info'
 
 import { ChainId } from "@soy-libs/sdk-multichain"
 
-const chainId = parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
+const chainId = parseInt('820' ?? '820') //parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 
 interface CloTokenFields {
   id: string

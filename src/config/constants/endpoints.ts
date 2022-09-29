@@ -13,7 +13,7 @@ export const API_NFT = process.env.REACT_APP_API_NFT
 export const SNAPSHOT_API = `${SNAPSHOT_BASE_URL}/graphql`
 export const SNAPSHOT_HUB_API = `${SNAPSHOT_BASE_URL}/api/message`
 
-const chainId = parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
+const chainId = 820//parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 
 export const INFO_CLIENT = CHAINS_CONSTANTS[chainId].subgraph.infoClient
 export const BLOCKS_CLIENT = CHAINS_CONSTANTS[chainId].subgraph.blocksClient

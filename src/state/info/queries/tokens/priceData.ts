@@ -8,7 +8,7 @@ import { coinPrice,derivedCOIN } from 'config/constants/info'
 
 import { ChainId } from "@soy-libs/sdk-multichain"
 
-const chainId = parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
+const chainId = 820 //parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 
 const getPriceSubqueries = (tokenAddress: string, blocks: any) =>
   blocks.map(

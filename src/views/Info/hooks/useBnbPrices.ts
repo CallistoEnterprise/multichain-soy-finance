@@ -5,7 +5,7 @@ import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
 import { ChainId } from "@soy-libs/sdk-multichain"
 
-const chainId = parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
+const chainId = 820 // parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 
 export interface BnbPrices {
   current: number

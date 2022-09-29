@@ -184,11 +184,11 @@ export const etcConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: 'https://bridge.soy.finance/',
     target: "_blank"
   },
-  {
+  /*{
     label: t('Info'),
     icon: 'InfoIcon',
     href: '/info'
-  },
+  }, */
   {
     label: t('More'),
     icon: 'MoreIcon',
