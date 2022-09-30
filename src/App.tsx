@@ -29,8 +29,6 @@ import {
 } from './views/AddLiquidity/redirects'
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
-import { ChainId } from '@soy-libs/sdk-multichain'
-import { SUPPORTED_CHAINS } from 'config'
 
 const Wrapper = styled.div`
   display: flex;

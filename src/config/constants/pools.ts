@@ -7,7 +7,7 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.soy,
     earningToken: tokens.soy,
     contractAddress: {
-      820: '0x86b2233cECc2f1C2c55dD4A8543219d02570a940',
+      820: '0xbE46415ce8bA0B1BA4cb3924953F200153E0bf24',
       20729: '0xdCaa282Ca58A901a0a7542D150Bdc50911D864a7',
     },
     poolCategory: PoolCategory.CORE,
@@ -33,7 +33,7 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.soy,
     earningToken: tokens.soy,
     contractAddress: {
-      820: '0xd976bCd2096FecDC3Bfdc39965211750Ba7395c5',
+      820: '0x03ee0bD7f616989c7DAd2BC4725c44129f5808e2',
       20729: '0x6011860C4caC5d251Aed44A132bbC67B4CcaBf6E',
     },
     poolCategory: PoolCategory.CORE,
@@ -59,7 +59,7 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.soy,
     earningToken: tokens.soy,
     contractAddress: {
-      820: '0xd350E59A2CCf0DdE06bCFB9d0F0AB9CC0e7F0310',
+      820: '0x745bF6270A50f66f49a8c816068E45a5C5774053',
       20729: '0x6011860C4caC5d251Aed44A132bbC67B4CcaBf6E',
     },
     poolCategory: PoolCategory.CORE,
@@ -85,7 +85,7 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.soy,
     earningToken: tokens.soy,
     contractAddress: {
-      820: '0x8f532E81B3b6F3f044F93b7004935d89a468d00D',
+      820: '0x281C70eC147cD6fB5054cfD231A00BcbD17f157F',
       20729: '0x6011860C4caC5d251Aed44A132bbC67B4CcaBf6E',
     },
     poolCategory: PoolCategory.CORE,
@@ -111,7 +111,7 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.soy,
     earningToken: tokens.soy,
     contractAddress: {
-      820: '0x62D8994b791C53FcE2795A8eE7C55d79290D6863',
+      820: '0x9aC9Cc6990c5516d121Fe42341855788924706c0',
       20729: '0x6011860C4caC5d251Aed44A132bbC67B4CcaBf6E',
     },
     poolCategory: PoolCategory.CORE,
