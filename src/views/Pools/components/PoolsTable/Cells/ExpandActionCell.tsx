@@ -7,6 +7,7 @@ import BaseCell from './BaseCell'
 interface ExpandActionCellProps {
   expanded: boolean
   isFullLayout: boolean
+  isNew?: boolean
 }
 
 const StyledCell = styled(BaseCell)`
@@ -28,16 +29,16 @@ const ArrowIcon = styled(ChevronDownIcon)<{ toggled: boolean }>`
   height: 24px;
 `
 
-const TotalStakedCell: React.FC<ExpandActionCellProps> = ({ expanded, isFullLayout }) => {
+const TotalStakedCell: React.FC<ExpandActionCellProps> = ({ expanded, isFullLayout, isNew }) => {
   const { t } = useTranslation()
   return (
     <StyledCell role="cell">
       {isFullLayout && (
-        <Text color="primary" bold>
+        <Text color={!isNew ? 'textDisabled' : "primary"} bold>
           {expanded ? t('Hide') : t('Details')}
         </Text>
       )}
-      <ArrowIcon color="primary" toggled={expanded} />
+      <ArrowIcon color={!isNew ? 'textDisabled' : "primary"} toggled={expanded} />
     </StyledCell>
   )
 }

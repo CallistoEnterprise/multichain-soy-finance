@@ -33,7 +33,7 @@ const HelpIconWrapper = styled.div`
 const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoaded }) => {
   const { t } = useTranslation()
   const { isXs, isSm } = useMatchBreakpoints()
-  const { sousId, earningToken, poolCategory, userData, earningTokenPrice, isAutoVault } = pool
+  const { sousId, earningToken, poolCategory, userData, earningTokenPrice, isAutoVault, isNew } = pool
   const isManualCakePool = sousId === 0
 
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
@@ -97,7 +97,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
+        <Text fontSize="12px" color={!isNew ? "textDisabled" : "textSubtle"} textAlign="left">
           {labelText}
         </Text>
         {!userDataLoaded && account ? (
@@ -121,7 +121,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
                       <Balance
                         display="inline"
                         fontSize="12px"
-                        color="textSubtle"
+                        color={!isNew ? 'textDisabled' : "textSubtle"}
                         decimals={2}
                         prefix="~"
                         value={earningTokenDollarBalance}
@@ -130,14 +130,14 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
                     )}
                   </>
                 ) : (
-                  <Text mt="4px" fontSize="12px" color="textDisabled">
+                  <Text mt="4px" fontSize="12px" color={!isNew ? 'textDisabled' : "textDisabled"}>
                     0 USD
                   </Text>
                 )}
               </Box>
               {isAutoVault && hasEarnings && !isXs && !isSm && (
                 <HelpIconWrapper ref={targetRef}>
-                  <HelpIcon color="textSubtle" />
+                  <HelpIcon color={!isNew ? 'textDisabled' : "textSubtle"} />
                 </HelpIconWrapper>
               )}
             </Flex>

@@ -25,6 +25,16 @@ const StyledCell = styled(BaseCell)`
   }
 `
 
+const soyTemp = {
+  symbol: 'SOY',
+  address: {
+    820: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+    20729: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+  },
+  decimals: 18,
+  projectLink: 'https://app.soy.finance/',
+}
+
 const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
@@ -61,7 +71,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
       {isAutoVault ? (
         <CakeVaultTokenPairImage mr="8px" width={40} height={40} />
       ) : (
-        <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} mr="8px" width={40} height={40} />
+        <TokenPairImage primaryToken={!isNew ? soyTemp : earningToken} secondaryToken={!isNew ? soyTemp : stakingToken} mr="8px" width={40} height={40} />
       )}
       <CellContent>
         {showStakedTag && !isNew && (
@@ -73,7 +83,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
           {title}
         </Text>
         {showSubtitle && (
-          <Text fontSize="12px" color="textSubtle">
+          <Text fontSize="12px" color={!isNew ? "textDisabled" : "textSubtle"}>
             {subtitle}
           </Text>
         )}

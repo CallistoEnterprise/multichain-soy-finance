@@ -18,7 +18,8 @@ interface PoolRowProps {
   userDataLoaded: boolean
 }
 
-const StyledRow = styled.div`
+const StyledRow = styled.div<{ isNew?: boolean }>`
+  background: ${({ isNew }) => isNew ? 'transparent': 'grey'} !important;
   background-color: transparent;
   display: flex;
   cursor: pointer;
@@ -40,13 +41,13 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
 
   return (
     <>
-      <StyledRow role="row" onClick={toggleExpanded}>
+      <StyledRow role="row" onClick={toggleExpanded} isNew={pool.isNew}>
         <NameCell pool={pool} />
         <EarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
         <AprCell pool={pool} performanceFee={performanceFeeAsDecimal} />
         {(isLg || isXl) && <TotalStakedCell pool={pool} />}
         {/* {isXl && <EndsInCell pool={pool} />} */}
-        <ExpandActionCell expanded={expanded} isFullLayout={isMd || isLg || isXl} />
+        <ExpandActionCell expanded={expanded} isFullLayout={isMd || isLg || isXl} isNew={pool.isNew} />
       </StyledRow>
       {shouldRenderActionPanel && (
         <ActionPanel

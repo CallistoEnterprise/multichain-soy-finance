@@ -272,7 +272,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
 
         <Flex mb="2px" justifyContent="space-between" flexDirection="column">
           {!isNew && (
-            <Text small color="primary">
+            <Text small color={!isNew ? 'textDisabled' : "primary"}>
               {t('Next Harvest In')}:
             </Text>
           )}
@@ -280,14 +280,14 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             <Flex mb="0px" justifyContent="flex-start">
               {havestDayStr ? <Text small>{havestDayStr}</Text> : <Skeleton width="200px" height="21px" />}
               <span ref={harvestTargetRef}>
-                <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
+                <HelpIcon color={!isNew ? 'textDisabled' : "textSubtle"} width="20px" ml="6px" mt="4px" />
               </span>
             </Flex>
           )}
           {harvestTooltipVisible && harvestTooltip}
         </Flex>
         <Flex mb="2px" justifyContent="space-between" flexDirection="column">
-          <Text small color="primary">
+          <Text small color={!isNew ? 'textDisabled' : "primary"}>
             {t(isNew ? 'Unlock in' : 'Cold Staking Ends In')}:
           </Text>
           <Flex>
@@ -312,6 +312,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             <LinkExternal
               href={`${CHAINS_CONSTANTS[chainId].explorer.url}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}/transactions`}
               bold={false}
+              color={!isNew ? 'textDisabled' : 'primary'}
             >
               {t('View Contract')}
             </LinkExternal>
@@ -325,22 +326,22 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
               height="auto"
               onClick={() => registerToken(tokenAddress, earningToken.symbol, earningToken.decimals)}
             >
-              <Text color="primary">{t('Add to Metamask')}</Text>
+              <Text color={!isNew ? 'textDisabled' : "primary"}>{t('Add to Metamask')}</Text>
               <MetamaskIcon ml="4px" />
             </Button>
           </Flex>
         )}
-        {!isNew && <ManualPoolTag />}
+        {/* {!isNew && <ManualPoolTag />} */}
         {tagTooltipVisible && tagTooltip}
-        {!isNew && (
+        {/* {!isNew && (
           <span ref={tagTargetRef}>
-            <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
+            <HelpIcon ml="4px" width="20px" height="20px" color={!isNew ? 'textDisabled' : "textSubtle"} />
           </span>
-        )}
+        )} */}
       </InfoSection>
       <ActionContainer>
         {showSubtitle && (
-          <Text mt="4px" mb="16px" color="textSubtle">
+          <Text mt="4px" mb="16px" color={!isNew ? 'textDisabled' : "textSubtle"}>
             {isAutoVault ? t('Automatic restaking') : `${t('Earn')} SOY ${t('Stake').toLocaleLowerCase()} SOY`}
           </Text>
         )}
