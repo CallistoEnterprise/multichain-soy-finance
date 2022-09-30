@@ -24,7 +24,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
       isFinished={isFinished[chainId] && sousId !== 0}
       ribbon={isFinished[chainId] && <CardRibbon variantColor="textDisabled" text={t('Finished')} />}
     >
-      <StyledCardInner>
+      <StyledCardInner isNew={isNew}>
         <StyledCardHeader
           isStaking={accountHasStakedBalance}
           earningToken={earningToken}
@@ -49,7 +49,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
             )}
           </Flex>
         </CardBody>
-        <CardFooter pool={pool} account={account} />
+        {isNew && <CardFooter pool={pool} account={account} />}
       </StyledCardInner>
     </StyledCard>
   )

@@ -70,7 +70,7 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
     <CardFooter>
       <Flex mb="2px" justifyContent="center" flexDirection="column">
         <Flex justifyContent="space-between">
-          <Text small color="primary">
+          <Text small color={!isNew ? 'textDisabled' : "primary"}>
             {t(isNew ? 'Unlock in:' : 'Next Harvest In')}:
           </Text>
           {isNew && 
@@ -86,7 +86,7 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
           <Flex mb="0px" justifyContent="flex-start">
             {havestDayStr && havestDayStr !== 'Unstakable' ? <Text small>{havestDayStr}</Text> : <Skeleton width="200px" height="21px" />}
             <span ref={harvestTargetRef}>
-              <HelpIcon color="textSubtle" width="20px" ml="6px" />
+              <HelpIcon color={!isNew ? 'textDisabled' : "textSubtle"} width="20px" ml="6px" />
             </span>
           </Flex>
         )}

@@ -12,6 +12,16 @@ const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }
   border-radius: ${({ theme }) => `${theme.radii.card} ${theme.radii.card} 0 0`};
 `
 
+const soyTemp = {
+  symbol: 'SOY',
+  address: {
+    820: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+    20729: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+  },
+  decimals: 18,
+  projectLink: 'https://app.soy.finance/',
+}
+
 const StyledCardHeader: React.FC<{
   earningToken: Token
   stakingToken: Token
@@ -53,15 +63,15 @@ const StyledCardHeader: React.FC<{
     <Wrapper isFinished={isFinished} background={background}>
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
-          <Heading color={isFinished ? 'textDisabled' : 'body'} scale="lg">
+          <Heading color={!isNew || isFinished ? 'textDisabled' : 'body'} scale="lg">
             {`${earningToken.symbol} ${getHeadingPrefix()}`}
           </Heading>
-          <Text color={isFinished ? 'textDisabled' : 'textSubtle'}>{getSubHeading()}</Text>
+          <Text color={!isNew || isFinished ? 'textDisabled' : 'textSubtle'}>{getSubHeading()}</Text>
         </Flex>
         {isAutoVault ? (
           <CakeVaultTokenPairImage width={64} height={64} />
         ) : (
-          <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} width={64} height={64} />
+          <TokenPairImage primaryToken={!isNew ? soyTemp : earningToken} secondaryToken={!isNew ? soyTemp : stakingToken} width={64} height={64} />
         )}
       </Flex>
     </Wrapper>

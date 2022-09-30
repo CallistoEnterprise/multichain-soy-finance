@@ -55,10 +55,10 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
       <Flex flexDirection="column">
         <Flex justifyContent="space-between" alignItems="center">
           <Box display="inline">
-            <InlineText color={isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
+            <InlineText color={!isNew ? 'textDisabled' : isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
               {isStaked ? stakingToken.symbol : t('Stake')}{' '}
             </InlineText>
-            <InlineText color={isStaked ? 'textSubtle' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
+            <InlineText color={!isNew ? 'textDisabled' : isStaked ? 'textSubtle' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
               {isStaked ? t('Staked') : `${stakingToken.symbol}`}
             </InlineText>
           </Box>
@@ -69,7 +69,7 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
                 <Text fontSize="12px" color="textSubtle">
                   <Balance
                     fontSize="12px"
-                    color="textSubtle"
+                    color={!isNew ? 'textDisabled' : "textSubtle"}
                     decimals={2}
                     value={stakedTokenDollarBalance}
                     prefix="~"
@@ -83,10 +83,10 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
         {harvest && (
           <>
             <Box display="inline" style={{marginTop: 10}}>
-              <InlineText color="secondary" textTransform="uppercase" bold fontSize="12px">
+              <InlineText color={!isNew ? 'textDisabled' : "secondary"} textTransform="uppercase" bold fontSize="12px">
                 {`${earningToken.symbol} `}
               </InlineText>
-              <InlineText color="textSubtle" textTransform="uppercase" bold fontSize="12px">
+              <InlineText color={!isNew ? 'textDisabled' : "textSubtle"} textTransform="uppercase" bold fontSize="12px">
                 {t('Earned')}
               </InlineText>
             </Box>
