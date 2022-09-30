@@ -201,6 +201,14 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "images/coins/0xcC6e7E97A46B6F0eD3bC81518Fc816da78F7cb65.png"
+    },
+    {
+      "name": "VIPSVERSE Token",
+      "symbol": "VVT",
+      "address": "0x9f9b6DD3DEDB4D2e6C679bCb8782f546400e9A53",
+      "chainId": 820,
+      "decimals": 18,
+      "logoURI": "images/coins/820/0x9f9b6DD3DEDB4D2e6C679bCb8782f546400e9A53.png"
     }
   ]
 }
