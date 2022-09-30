@@ -3,6 +3,9 @@ import { getDeltaTimestamps } from 'views/Info/utils/infoQueryHelpers'
 import { useState, useEffect } from 'react'
 import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
+import { ChainId } from "@soy-libs/sdk-multichain"
+
+const chainId = 820 // parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 
 export interface BnbPrices {
   current: number
@@ -11,7 +14,7 @@ export interface BnbPrices {
   week: number
 }
 
-const BNB_PRICES = gql`
+const CLO_PRICES = gql`
   query prices($block24: Int!, $block48: Int!, $blockWeek: Int!) {
     current: bundle(id: "1") {
       cloPrice
@@ -24,6 +27,23 @@ const BNB_PRICES = gql`
     }
     oneWeek: bundle(id: "1", block: { number: $blockWeek }) {
       cloPrice
+    }
+  }
+`
+
+const ETC_PRICES = gql`
+  query prices($block24: Int!, $block48: Int!, $blockWeek: Int!) {
+    current: bundle(id: "1") {
+      etcPrice
+    }
+    oneDay: bundle(id: "1", block: { number: $block24 }) {
+      etcPrice
+    }
+    twoDay: bundle(id: "1", block: { number: $block48 }) {
+      etcPrice
+    }
+    oneWeek: bundle(id: "1", block: { number: $blockWeek }) {
+      etcPrice
     }
   }
 `
@@ -43,13 +63,28 @@ interface PricesResponse {
   }
 }
 
-const fetchBnbPrices = async (
+interface EtcPricesResponse {
+  current: {
+    etcPrice: string
+  }
+  oneDay: {
+    etcPrice: string
+  }
+  twoDay: {
+    etcPrice: string
+  }
+  oneWeek: {
+    etcPrice: string
+  }
+}
+
+const fetchCloPrices = async (
   block24: number,
   block48: number,
   blockWeek: number,
 ): Promise<{ cloPrices: BnbPrices | undefined; error: boolean }> => {
   try {
-    const data = await request<PricesResponse>(INFO_CLIENT, BNB_PRICES, {
+    const data = await request<PricesResponse>(INFO_CLIENT, CLO_PRICES, {
       block24,
       block48,
       blockWeek,
@@ -72,6 +107,36 @@ const fetchBnbPrices = async (
   }
 }
 
+
+const fetchEtcPrices = async (
+  block24: number,
+  block48: number,
+  blockWeek: number,
+): Promise<{ cloPrices: BnbPrices | undefined; error: boolean }> => {
+  try {
+    const data = await request<EtcPricesResponse>(INFO_CLIENT, ETC_PRICES, {
+      block24,
+      block48,
+      blockWeek,
+    })
+    return {
+      error: false,
+      cloPrices: {
+        current: parseFloat(data.current?.etcPrice ?? '0'),
+        oneDay: parseFloat(data.oneDay?.etcPrice ?? '0'),
+        twoDay: parseFloat(data.twoDay?.etcPrice ?? '0'),
+        week: parseFloat(data.oneWeek?.etcPrice ?? '0'),
+      },
+    }
+  } catch (error) {
+    console.error('Failed to fetch ETC prices', error)
+    return {
+      error: true,
+      cloPrices: undefined,
+    }
+  }
+}
+
 /**
  * Returns BNB prices at current, 24h, 48h, and 7d intervals
  */
@@ -85,7 +150,15 @@ export const useBnbPrices = (): BnbPrices | undefined => {
   useEffect(() => {
     const fetch = async () => {
       const [block24, block48, blockWeek] = blocks
-      const { cloPrices, error: fetchError } = await fetchBnbPrices(block24.number, block48.number, blockWeek.number)
+      let fetchPrices
+      if (chainId === ChainId.MAINNET){
+        fetchPrices = fetchCloPrices
+      } else if (chainId === ChainId.ETCCLASSICMAINNET){
+        fetchPrices = fetchEtcPrices
+      }
+
+      const { cloPrices, error: fetchError } = await fetchPrices(block24.number, block48.number, blockWeek.number)
+      
       if (fetchError) {
         setError(true)
       } else {

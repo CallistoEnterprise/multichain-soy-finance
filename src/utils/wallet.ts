@@ -1,7 +1,8 @@
 // Set of helper functions to facilitate wallet setup
 
 import { BASE_URL, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
-import { Networks } from 'config/constants/networks'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
+import { ChainConstants } from 'config/constants/chains/types'
 import tokens from 'config/constants/tokens'
 
 /**
@@ -15,22 +16,22 @@ export const setupNetwork = async () => {
       ? Number(window.localStorage.getItem(localStorageChainIdKey))
       : DEFAULT_CHAIN_ID
 
-    const curNet = Networks.filter((_) => Number(_.chainId) === chainId)
+    const chain: ChainConstants = CHAINS_CONSTANTS[chainId]
 
     try {
       await provider.request({
         method: 'wallet_addEthereumChain',
         params: [
           {
-            chainId: `0x${chainId.toString(16)}`,
-            chainName: 'Callisto Mainnet',
+            chainId: chain.general.hexChainId,
+            chainName: chain.general.officialName,
             nativeCurrency: {
-              name: curNet[0].name,
-              symbol: curNet[0].symbol,
+              name: chain.general.officialName,
+              symbol: chain.general.nativeSymbol,
               decimals: 18,
             },
-            rpcUrls: curNet[0].rpcs,
-            blockExplorerUrls: [`${curNet[0].explorer}`],
+            rpcUrls: chain.rpcs,
+            blockExplorerUrls: [`${chain.explorer.url}`],
           },
         ],
       })
@@ -50,13 +51,14 @@ export const switchNetwork = async (library, curNet: any) => {
 
   if (provider) {
     // const chainId = Number(curNet.chainId);
+    const chain: ChainConstants = CHAINS_CONSTANTS[curNet.chainId]
 
     try {
       await provider.request({
         method: 'wallet_switchEthereumChain',
         params: [
           {
-            chainId: curNet.hexChainId,
+            chainId: chain.general.hexChainId,
           },
         ],
       })
@@ -68,15 +70,15 @@ export const switchNetwork = async (library, curNet: any) => {
             method: 'wallet_addEthereumChain',
             params: [
               {
-                chainId: curNet.hexChainId,
-                chainName: `${curNet.name}`,
-                rpcUrls: curNet.rpcs,
+                chainId: chain.general.hexChainId,
+                chainName: chain.general.officialName,
                 nativeCurrency: {
-                  name: `${curNet.name}`,
-                  symbol: `${curNet.symbol}`,
+                  name: chain.general.officialName,
+                  symbol: chain.general.nativeSymbol,
                   decimals: 18,
                 },
-                blockExplorerUrls: [`${curNet.explorer}`],
+                rpcUrls: chain.rpcs,
+                blockExplorerUrls: [`${chain.explorer.url}`],
               },
             ],
           })

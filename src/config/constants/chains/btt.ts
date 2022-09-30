@@ -10,6 +10,7 @@ const BTT_CONSTANTS: ChainConstants = {
     chainId: ChainId.BTTMAINNET,
     hexChainId: '0xc7',
     chainName: 'BitTorrent',
+    officialName: 'BitTorrent Chain Mainnet',
     image: `${BASE_URL}/images/networks/btt.png`,
     nativeSymbol: 'BTT',
     wrappedNativeSymbol: 'WBTT',

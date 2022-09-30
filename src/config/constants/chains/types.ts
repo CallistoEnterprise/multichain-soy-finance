@@ -6,6 +6,7 @@ export interface ChainConstants {
     chainId: number
     hexChainId: string
     chainName: string
+    officialName: string
     image?: string
     nativeSymbol: string
     wrappedNativeSymbol: string
@@ -16,6 +17,16 @@ export interface ChainConstants {
   explorer: {
     name: string
     url: string
+  }
+  subgraph?: {
+    infoClient:string
+    blocksClient:string
+    startTimestamp: number
+    vars?: {
+      trackedReserveCOIN: string
+      coinPrice: string
+      derivedCOIN: string
+    }
   }
   tokenLists?: any
   farms?: FarmConfig[]

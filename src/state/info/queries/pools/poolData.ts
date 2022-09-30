@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
+import { trackedReserveCOIN } from 'config/constants/info'
 import { getDeltaTimestamps } from 'views/Info/utils/infoQueryHelpers'
 import { useBlocksFromTimestamps } from 'views/Info/hooks/useBlocksFromTimestamps'
 import { PoolData } from 'state/info/types'
@@ -56,7 +57,7 @@ const POOL_AT_BLOCK = (block: number | null, pools: string[]) => {
   return `pairs(
     where: { id_in: ${addressesString} }
     ${blockString}
-    orderBy: trackedReserveCLO
+    orderBy: ${trackedReserveCOIN}
     orderDirection: desc
   ) {
     id

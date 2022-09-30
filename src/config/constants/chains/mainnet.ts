@@ -10,6 +10,7 @@ const MAINNET_CONSTANTS: ChainConstants = {
     chainId: ChainId.MAINNET,
     hexChainId: '0x334',
     chainName: 'Callisto',
+    officialName: 'Callisto Mainnet',
     image: `${BASE_URL}/images/networks/clo.png`,
     nativeSymbol: 'CLO',
     wrappedNativeSymbol: 'WCLO',
@@ -20,6 +21,16 @@ const MAINNET_CONSTANTS: ChainConstants = {
   explorer: {
     name: 'CallistoScan',
     url: 'https://explorer.callisto.network',
+  },
+  subgraph:{
+    infoClient:'https://03.callisto.network/subgraphs/name/soyswap',
+    blocksClient:'https://03.callisto.network/subgraphs/name/blocks',
+    startTimestamp: 1634494539, // October-17-2021 09:15:02 PM +2 UTC
+    vars: {
+      trackedReserveCOIN:'trackedReserveCLO',
+      coinPrice:'cloPrice',
+      derivedCOIN:'derivedCLO'
+    }
   },
   tokenLists: DEFAULT_TOKEN_LIST,
   farms: farms,

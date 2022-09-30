@@ -1,6 +1,6 @@
 import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
-import { TOKEN_BLACKLIST } from 'config/constants/info'
+import { TOKEN_BLACKLIST,trackedReserveCOIN } from 'config/constants/info'
 
 /**
  * Data for showing Pools table on the Token page
@@ -9,17 +9,17 @@ const POOLS_FOR_TOKEN = gql`
   query poolsForToken($address: Bytes!, $blacklist: [String!]) {
     asToken0: pairs(
       first: 15
-      orderBy: trackedReserveCLO
+      orderBy: ${trackedReserveCOIN}
       orderDirection: desc
-      where: { totalTransactions_gt: 10, token0: $address, token1_not_in: $blacklist }
+      where: { totalTransactions_gt: 1, token0: $address, token1_not_in: $blacklist }
     ) {
       id
     }
     asToken1: pairs(
       first: 15
-      orderBy: trackedReserveCLO
+      orderBy: ${trackedReserveCOIN}
       orderDirection: desc
-      where: { totalTransactions_gt: 10, token1: $address, token0_not_in: $blacklist }
+      where: { totalTransactions_gt: 1, token1: $address, token0_not_in: $blacklist }
     ) {
       id
     }
