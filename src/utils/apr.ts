@@ -5,23 +5,23 @@ import { DEFAULT_CHAIN_ID } from '../config/index';
 
 const POOL_REWARDS = {
   1: {
-    820: new BigNumber(7 * 50000000 * 0.8 / (183 * 365)),
+    820: new BigNumber(7 * 136000 / (185)),
     20729: new BigNumber(1234)
   },
   2: {
-    820: new BigNumber(30 * 50000000 * 0.8 / (183 * 365)),
+    820: new BigNumber(30 * 136000 / (185)),
     20729: new BigNumber(2468)
   },
   3: {
-    820: new BigNumber(91 * 50000000 * 0.8 / (183 * 365)),
+    820: new BigNumber(91 * 136000 / (185)),
     20729: new BigNumber(2468)
   },
   4: {
-    820: new BigNumber(182 * 50000000 * 0.8 / (183 * 365)),
+    820: new BigNumber(182 * 136000 / (185)),
     20729: new BigNumber(2468)
   },
   5: {
-    820: new BigNumber(365 * 50000000 * 0.8 / (183 * 365)),
+    820: new BigNumber(365 * 136000 / (185)),
     20729: new BigNumber(2468)
   },
   6: {
