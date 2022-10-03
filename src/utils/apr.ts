@@ -1,12 +1,33 @@
 import BigNumber from 'bignumber.js'
 import lpAprs from 'config/constants/lpAprs.json'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
-import { ChainId } from '@soy-libs/sdk-multichain'
+import { DEFAULT_CHAIN_ID } from '../config/index';
 
 const POOL_REWARDS = {
-  1: new BigNumber(23152 * 365),
-  2: new BigNumber(1234),
-  3: new BigNumber(2468)
+  1: {
+    820: new BigNumber(7 * 50000000 * 0.8 / (183 * 365)),
+    20729: new BigNumber(1234)
+  },
+  2: {
+    820: new BigNumber(30 * 50000000 * 0.8 / (183 * 365)),
+    20729: new BigNumber(2468)
+  },
+  3: {
+    820: new BigNumber(91 * 50000000 * 0.8 / (183 * 365)),
+    20729: new BigNumber(2468)
+  },
+  4: {
+    820: new BigNumber(182 * 50000000 * 0.8 / (183 * 365)),
+    20729: new BigNumber(2468)
+  },
+  5: {
+    820: new BigNumber(365 * 50000000 * 0.8 / (183 * 365)),
+    20729: new BigNumber(2468)
+  },
+  6: {
+    820: new BigNumber(23152 * 365),
+    20729: new BigNumber(23152 * 365)
+  },
 }
 /**
  * Get the APR value in %
@@ -22,10 +43,11 @@ export const getPoolApr = (
   rewardTokenPrice: number,
   totalStaked: number,
   tokenPerBlock: number,
-  rewardBlockCount: BigNumber
+  rewardBlockCount: BigNumber,
+  chainId = DEFAULT_CHAIN_ID
 ): number => {
   // const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(tokenPerBlock).times(rewardBlockCount)
-  const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(POOL_REWARDS[poolId])
+  const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(POOL_REWARDS[poolId][chainId])
   const totalStakingTokenInPool = new BigNumber(stakingTokenPrice).times(totalStaked)
 
   const apr = totalRewardPricePerYear.div(totalStakingTokenInPool).times(100)
@@ -44,9 +66,8 @@ export const getFarmApr = (
   soyPriceUsd: BigNumber,
   poolLiquidityUsd: BigNumber,
   farmAddress: string,
-  chainId = ChainId.MAINNET
+  chainId = DEFAULT_CHAIN_ID
 ): { cakeRewardsApr: number; lpRewardsApr: number } => {
-
   const yearlySoyRewardAllocation = CHAINS_CONSTANTS[chainId].rewardTokensPerYear.times(poolWeight)
   const soyRewardsApr = yearlySoyRewardAllocation.times(soyPriceUsd).div(poolLiquidityUsd).times(100)
   let soyRewardsAprAsNumber = null

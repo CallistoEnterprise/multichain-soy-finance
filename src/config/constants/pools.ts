@@ -8,7 +8,7 @@ const pools: PoolConfig[] = [
     earningToken: tokens.soy,
     contractAddress: {
       820: '0xbE46415ce8bA0B1BA4cb3924953F200153E0bf24',
-      20729: '0xdCaa282Ca58A901a0a7542D150Bdc50911D864a7',
+      20729: '0xe36cfdefD7BA6e855B9dad251deFb731833A5832',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
@@ -34,7 +34,7 @@ const pools: PoolConfig[] = [
     earningToken: tokens.soy,
     contractAddress: {
       820: '0x03ee0bD7f616989c7DAd2BC4725c44129f5808e2',
-      20729: '0x6011860C4caC5d251Aed44A132bbC67B4CcaBf6E',
+      20729: '0xFE29fC8bA4AAE5d10A567F4105894278DB5212d4',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,

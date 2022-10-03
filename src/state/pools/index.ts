@@ -72,6 +72,7 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount
           getBalanceNumber(new BigNumber(totalStaking.totalStaked), pool.stakingToken.decimals),
           parseFloat(pool.tokenPerBlock),
           RBC,
+          chainId
         )
       : 0
 
