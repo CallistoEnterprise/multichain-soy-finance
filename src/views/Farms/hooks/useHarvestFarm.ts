@@ -1,5 +1,4 @@
 import useActiveWeb3React, { useWeb3ProviderByRpc } from 'hooks/useActiveWeb3React'
-import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { useCallback } from 'react'
 import { getAddress } from 'utils/addressHelpers'
 import { harvestFarm } from 'utils/calls'

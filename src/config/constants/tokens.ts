@@ -132,8 +132,8 @@ const tokens = {
   cloe:{
     symbol: 'CLOE',
     address: {
-      [ChainId.MAINNET]: '0x1eAa43544dAa399b87EEcFcC6Fa579D5ea4A[ChainId.ETCCLASSICMAINNET]87',
-      [ChainId.CLOTESTNET]: '0x1eAa43544dAa399b87EEcFcC6Fa579D5ea4A[ChainId.ETCCLASSICMAINNET]87',
+      [ChainId.MAINNET]: '0x1eAa43544dAa399b87EEcFcC6Fa579D5ea4A6187',
+      [ChainId.CLOTESTNET]: '0x1eAa43544dAa399b87EEcFcC6Fa579D5ea4A6187',
       [ChainId.BTTMAINNET]: '0xCC20d1B86bf1b80d4b9F0C19B138E17034457271',
       [ChainId.ETCCLASSICMAINNET]: '0x09c4a1ACAE1b591C63691B8E62F46E2F0eD9A0F9',
     },
@@ -145,7 +145,7 @@ const tokens = {
     address: {
       [ChainId.MAINNET]: '0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F',
       [ChainId.CLOTESTNET]: '0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F',
-      [ChainId.BTTMAINNET]: '0xCc944bF3e76d483e41CC[ChainId.ETCCLASSICMAINNET]54d5196E2e5d348fB0',
+      [ChainId.BTTMAINNET]: '0xCc944bF3e76d483e41CC6154d5196E2e5d348fB0',
       [ChainId.ETCCLASSICMAINNET]: '0x35e9A89e43e45904684325970B2E2d258463e072'
     },
     decimals: 18,
@@ -157,7 +157,7 @@ const tokens = {
       [ChainId.MAINNET]: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
       [ChainId.CLOTESTNET]: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
       [ChainId.BTTMAINNET]: '0x185a4091027E2dB459a2433F85f894dC3013aeB5',
-      [ChainId.ETCCLASSICMAINNET]: '0xcC653d74E087D35577049AB23e2141D[ChainId.ETCCLASSICMAINNET]9D95AEe'
+      [ChainId.ETCCLASSICMAINNET]: '0xcC653d74E087D35577049AB23e2141D619D95AEe'
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF/transactions',
@@ -176,13 +176,13 @@ const tokens = {
   "ccbnb_erc223":{
     symbol: 'BNB',
     address: {
-      [ChainId.MAINNET]: '0xcCDe29903E621Ca12DF33BB0aD9D1ADD72[ChainId.ETCCLASSICMAINNET]Ace9',
+      [ChainId.MAINNET]: '0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9',
       [ChainId.BTTMAINNET]: '0x185a4091027E2dB459a2433F85f894dC3013aeB5',
       [ChainId.CLOTESTNET]: '0x185a4091027E2dB459a2433F85f894dC3013aeB5',
-      [ChainId.ETCCLASSICMAINNET]: '0xcC653d74E087D35577049AB23e2141D[ChainId.ETCCLASSICMAINNET]9D95AEe'
+      [ChainId.ETCCLASSICMAINNET]: '0xcC653d74E087D35577049AB23e2141D619D95AEe'
     },
     decimals: 18,
-    projectLink: 'https://explorer.callisto.network/address/0xcCDe29903E621Ca12DF33BB0aD9D1ADD72[ChainId.ETCCLASSICMAINNET]Ace9/transactions',
+    projectLink: 'https://explorer.callisto.network/address/0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9/transactions',
   },
   "cceth_erc223":{
     symbol: 'ETH',
@@ -243,20 +243,20 @@ const tokens = {
   shib: {
     symbol: "SHIB",
     address: {
-      [ChainId.MAINNET]: "0xccA4F2ED7Fc0934[ChainId.ETCCLASSICMAINNET]c13f7F5d79870625329549A",
+      [ChainId.MAINNET]: "0xccA4F2ED7Fc093461c13f7F5d79870625329549A",
       [ChainId.CLOTESTNET]: ''
     },
     decimals: 18,
-    projectLink: "https://explorer.callisto.network/address/0xccA4F2ED7Fc0934[ChainId.ETCCLASSICMAINNET]c13f7F5d79870625329549A/transactions"
+    projectLink: "https://explorer.callisto.network/address/0xccA4F2ED7Fc093461c13f7F5d79870625329549A/transactions"
   },
   raca: {
     symbol: "RACA",
     address: {
-      [ChainId.MAINNET]: "0xCC8B04c0f7d0797B3BD6b7BE8E00[ChainId.ETCCLASSICMAINNET]ac0c3c0A9b",
+      [ChainId.MAINNET]: "0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b",
       [ChainId.CLOTESTNET]: '',
     },
     decimals: 18,
-    projectLink: "https://explorer.callisto.network/address/0xCC8B04c0f7d0797B3BD6b7BE8E00[ChainId.ETCCLASSICMAINNET]ac0c3c0A9b/transactions"
+    projectLink: "https://explorer.callisto.network/address/0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b/transactions"
   },
   lina: {
     symbol: "LINA",
