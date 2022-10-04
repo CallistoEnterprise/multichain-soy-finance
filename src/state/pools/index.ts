@@ -4,10 +4,10 @@ import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import poolsConfig from 'config/constants/pools'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { PoolsState, Pool, CakeVault, VaultFees, VaultUser, AppThunk } from 'state/types'
-import { getPoolApr } from 'utils/apr'
+import { getPoolApr, getPoolAprForNew } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getAddress } from 'utils/addressHelpers'
-import { fetchPoolsBlockLimits, fetchPoolsStakingLimits, fetchPoolsTotalStaking } from './fetchPools'
+import { fetchPoolsBlockLimits, fetchPoolsStakingLimits, fetchPoolsTotalStaking, fetchPoolsRewardPerSecond } from './fetchPools'
 import {
   fetchPoolsAllowance,
   fetchUserBalances,
@@ -49,11 +49,13 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount
   const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const blockLimits = await fetchPoolsBlockLimits()
   const totalStakings = await fetchPoolsTotalStaking()
+  const allocationAndRewards = await fetchPoolsRewardPerSecond()
   const prices = getTokenPricesFromFarm(getState().farms.data[chainId])
 
   const liveData = poolsConfig.map((pool) => {
     const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
     const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
+    const allocationAndReward = allocationAndRewards.find((entry) => entry.sousId === pool.sousId)
     const isPoolEndBlockExceeded = false // currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.endBlock) : false
     const isPoolFinished = pool.isFinished[chainId] || isPoolEndBlockExceeded
 
@@ -65,7 +67,15 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount
 
     const RBC = rewardBlockCount
     const apr = !isPoolFinished
-      ? getPoolApr(
+      ? pool.isNew
+      ? getPoolAprForNew(
+        stakingTokenPrice,
+        earningTokenPrice,
+        getBalanceNumber(new BigNumber(totalStaking.totalStaked), pool.stakingToken.decimals),
+        allocationAndReward.rewardPerSecond,
+        allocationAndReward.multiplier1000,
+      )
+      : getPoolApr(
           pool.sousId,
           stakingTokenPrice,
           earningTokenPrice,

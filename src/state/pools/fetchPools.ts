@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js'
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
+import sousChefNewABI from 'config/abi/sousChefNew.json'
 import erc223ABI from 'config/abi/erc223.json'
 // import wcloABI from 'config/abi/weth.json'
 import {multicall3} from 'utils/multicall'
@@ -128,4 +129,31 @@ export const fetchPoolsStakingLimits = async (
       [validPools[index].sousId]: stakingLimit,
     }
   }, {})
+}
+
+export const fetchPoolsRewardPerSecond = async () => {
+  const newPools = poolsConfig.filter((p) => p.isNew)
+  const calls = newPools.map((poolConfig) => {
+    return {
+      address: getAddress(poolConfig.contractAddress),
+      name: 'getRewardPerSecond',
+    }
+  })
+  const calls2 = newPools.map((poolConfig) => {
+    return {
+      address: getAddress(poolConfig.contractAddress),
+      name: 'getAllocationX1000',
+    }
+  })
+
+  const res = await multicall3(sousChefNewABI, calls)
+  const res2 = await multicall3(sousChefNewABI, calls2)
+
+  return newPools.map((soyPoolConfig, index) => {
+    return {
+      sousId: soyPoolConfig.sousId,
+      rewardPerSecond: new BigNumber(res[index]).div(new BigNumber(10 ** 18)),
+      multiplier1000: new BigNumber(res2[index]),
+    }
+  })
 }

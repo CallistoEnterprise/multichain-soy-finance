@@ -1,29 +1,9 @@
 import BigNumber from 'bignumber.js'
 import lpAprs from 'config/constants/lpAprs.json'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
-import { DEFAULT_CHAIN_ID } from '../config/index';
+import { DEFAULT_CHAIN_ID, ONE_YEAR_TIMESTAMP } from 'config';
 
 const POOL_REWARDS = {
-  1: {
-    820: new BigNumber(7 * 136000 / (185)),
-    20729: new BigNumber(1234)
-  },
-  2: {
-    820: new BigNumber(30 * 136000 / (185)),
-    20729: new BigNumber(2468)
-  },
-  3: {
-    820: new BigNumber(91 * 136000 / (185)),
-    20729: new BigNumber(2468)
-  },
-  4: {
-    820: new BigNumber(182 * 136000 / (185)),
-    20729: new BigNumber(2468)
-  },
-  5: {
-    820: new BigNumber(365 * 136000 / (185)),
-    20729: new BigNumber(2468)
-  },
   6: {
     820: new BigNumber(23152 * 365),
     20729: new BigNumber(23152 * 365)
@@ -48,6 +28,30 @@ export const getPoolApr = (
 ): number => {
   // const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(tokenPerBlock).times(rewardBlockCount)
   const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(POOL_REWARDS[poolId][chainId])
+  const totalStakingTokenInPool = new BigNumber(stakingTokenPrice).times(totalStaked)
+
+  const apr = totalRewardPricePerYear.div(totalStakingTokenInPool).times(100)
+  return apr.isNaN() || !apr.isFinite() ? null : apr.toNumber()
+}
+
+/**
+ * Get the APR value in %
+ * @param stakingTokenPrice Token price in the same quote currency
+ * @param rewardTokenPrice Token price in the same quote currency
+ * @param totalStaked Total amount of stakingToken in the pool
+ * @param rewardPerSecond Amount of new SOY allocated to the pool for each second
+ * @returns Null if the APR is NaN or infinite.
+ */
+ export const getPoolAprForNew = (
+  stakingTokenPrice: number,
+  rewardTokenPrice: number,
+  totalStaked: number,
+  rewardPerSecond: BigNumber,
+  multiplier1000: BigNumber,
+): number => {
+  // const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(tokenPerBlock).times(rewardBlockCount)
+  const poolRewards = new BigNumber(ONE_YEAR_TIMESTAMP).times(multiplier1000).times(rewardPerSecond)
+  const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(poolRewards)
   const totalStakingTokenInPool = new BigNumber(stakingTokenPrice).times(totalStaked)
 
   const apr = totalRewardPricePerYear.div(totalStakingTokenInPool).times(100)
