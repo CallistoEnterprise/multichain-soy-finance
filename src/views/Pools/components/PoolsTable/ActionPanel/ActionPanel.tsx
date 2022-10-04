@@ -166,7 +166,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     placement: 'bottom',
   })
 
-  const manualTooltipText = t('You must harvest your earnings from this pool after staking periods ends manually.')
+  const manualTooltipText = t('You must harvest your earnings from this pool after unlocking periods ends manually.')
   const autoTooltipText = t(
     'Any funds you stake in this pool will be automagically harvested and restaked (compounded) for you.',
   )

@@ -200,7 +200,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
       </Flex>
       <Text bold>
         {!isRemovingStake
-          ? `Staking Periods: ${isNew ? lockPeriod[chainId] : periods} (${isNew ? lockPeriodUnit[chainId] : 'months'})`
+          ? `Unlocking Periods: ${isNew ? lockPeriod[chainId] : periods} (${isNew ? lockPeriodUnit[chainId] : 'months'})`
           : `Staked Status`}
       </Text>
       {isRemovingStake && (
