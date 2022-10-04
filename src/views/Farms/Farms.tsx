@@ -141,11 +141,9 @@ const Farms: React.FC = () => {
     setStakedOnly(!isActive)
   }, [isActive])
 
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
-  
-  const activeFarms = farmsLP[chId].filter((farm) => farm.pid !== 0 && !isArchivedPid(farm.pid))
-  const inactiveFarms = farmsLP[chId].filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
-  const archivedFarms = farmsLP[chId].filter((farm) => isArchivedPid(farm.pid))
+  const activeFarms = farmsLP[chainId].filter((farm) => farm.pid !== 0 && !isArchivedPid(farm.pid))
+  const inactiveFarms = farmsLP[chainId].filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  const archivedFarms = farmsLP[chainId].filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
     (farm) => farm?.userData && new BigNumber(farm?.userData.stakedBalance).isGreaterThan(0),

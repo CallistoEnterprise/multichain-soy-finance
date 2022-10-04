@@ -5,7 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
 import BigNumber from 'bignumber.js'
-import { BASE_URL, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
+import { BASE_URL, DEFAULT_CHAIN_ID } from 'config'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import { getFormattedDateFromTimeStamp, getTimeFromTimeStamp } from 'utils/formatTimePeriod'
 import { useBlockLatestTimestamp } from 'utils'
@@ -14,7 +14,7 @@ import { getAddress } from 'utils/addressHelpers'
 import PercentageButton from './PercentageButton'
 import useStakePool from '../../../hooks/useStakePool'
 import useUnstakePool from '../../../hooks/useUnstakePool'
-import { ChainId } from '@soy-libs/sdk-multichain'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 interface StakeModalProps {
   isBnbPool: boolean
@@ -49,6 +49,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
     lockPeriodUnit,
   } = pool
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   const { theme } = useTheme()
   const { onStake } = useStakePool(sousId, isBnbPool)
   const { onUnstake } = useUnstakePool(sousId, isNew)
@@ -59,7 +60,6 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const [percent, setPercent] = useState(0)
   const [periods, setPeriods] = useState(0)
 
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const getCalculatedStakingLimit = () => {
     if (isRemovingStake) {
       return userData.stakedBalance

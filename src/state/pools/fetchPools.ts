@@ -112,8 +112,8 @@ export const fetchPoolStakingLimit = async (sousId?: number): Promise<BigNumber>
 
 export const fetchPoolsStakingLimits = async (
   poolsWithStakingLimit: number[],
+  chainId: number,
 ): Promise<{ [key: string]: BigNumber }> => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
   const validPools = poolsConfig
     .filter((p) => p.stakingToken.symbol !== 'CLO' && !p.isFinished[chainId])
     .filter((p) => !poolsWithStakingLimit.includes(p.sousId))

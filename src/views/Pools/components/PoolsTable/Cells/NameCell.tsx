@@ -10,6 +10,7 @@ import { TokenPairImage } from 'components/TokenImage'
 import CakeVaultTokenPairImage from '../../CakeVaultCard/CakeVaultTokenPairImage'
 import BaseCell, { CellContent } from './BaseCell'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 interface NameCellProps {
   pool: Pool
@@ -28,8 +29,8 @@ const StyledCell = styled(BaseCell)`
 const soyTemp = {
   symbol: 'SOY',
   address: {
-    820: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
-    20729: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+    [ChainId.MAINNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+    [ChainId.CLOTESTNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
   },
   decimals: 18,
   projectLink: 'https://app.soy.finance/',

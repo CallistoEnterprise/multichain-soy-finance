@@ -5,6 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import { Token } from 'config/constants/types'
 import { TokenPairImage } from 'components/TokenImage'
 import CakeVaultTokenPairImage from '../CakeVaultCard/CakeVaultTokenPairImage'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
   background: ${({ isFinished, background, theme }) =>
@@ -15,8 +16,8 @@ const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }
 const soyTemp = {
   symbol: 'SOY',
   address: {
-    820: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
-    20729: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+    [ChainId.MAINNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+    [ChainId.CLOTESTNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
   },
   decimals: 18,
   projectLink: 'https://app.soy.finance/',

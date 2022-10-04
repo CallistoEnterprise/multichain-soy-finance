@@ -6,20 +6,15 @@ import { DEFAULT_LIST_OF_LISTS } from 'config/constants/lists'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { AppState } from '../index'
 import DEFAULT_TOKEN_LIST from '../../config/constants/tokenLists/tokenlist.json'
-import DEFAULT_TOKEN_LIST_CLO_TEST from '../../config/constants/tokenLists/tokenlist_test.json'
-import DEFAULT_TOKEN_LIST_BTT from '../../config/constants/tokenLists/tokenlistInBTT.json'
-import DEFAULT_TOKEN_LIST_ETC from '../../config/constants/tokenLists/tokenlistInETC.json'
-import DEFAULT_TOKEN_LIST_TESTNET from '../../config/constants/tokenLists/tokenlist_test.json'
 import { UNSUPPORTED_LIST_URLS } from '../../config/constants/lists'
 import UNSUPPORTED_TOKEN_LIST from '../../config/constants/tokenLists/unsupported.tokenlist.json'
+import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
-export const tokenLists = {
-  [ChainId.CLOTESTNET]: DEFAULT_TOKEN_LIST_TESTNET,
-  [ChainId.MAINNET]: DEFAULT_TOKEN_LIST,
-  [ChainId.CLOTESTNET]: DEFAULT_TOKEN_LIST_CLO_TEST,
-  [ChainId.BTTMAINNET]: DEFAULT_TOKEN_LIST_BTT,
-  [ChainId.ETCCLASSICMAINNET]: DEFAULT_TOKEN_LIST_ETC
-}
+export const tokenLists = {}
+
+Object.keys(CHAINS_CONSTANTS).forEach((key) => {
+  tokenLists[key] = CHAINS_CONSTANTS[key].tokenLists
+})
 
 type TagDetails = Tags[keyof Tags]
 export interface TagInfo extends TagDetails {

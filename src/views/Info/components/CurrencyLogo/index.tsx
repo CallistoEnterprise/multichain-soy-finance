@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
-import { BASE_URL, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
+import { BASE_URL } from 'config'
 import { isAddress } from 'utils'
 import LogoLoader from './LogoLoader'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const StyledLogo = styled(LogoLoader)<{ size: string }>`
   width: ${({ size }) => size};
@@ -17,7 +18,7 @@ export const CurrencyLogo: React.FC<{
   address?: string
   size?: string
 }> = ({ address, size = '24px', ...rest }) => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+  const { chainId } = useActiveWeb3React()
 
   const src = useMemo(() => {
     const checksummedAddress = isAddress(address)

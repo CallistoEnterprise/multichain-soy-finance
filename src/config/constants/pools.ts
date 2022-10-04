@@ -1,3 +1,4 @@
+import { ChainId } from '@soy-libs/sdk-multichain'
 import tokens from './tokens'
 import { PoolConfig, PoolCategory } from './types'
 
@@ -7,24 +8,24 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.soy,
     earningToken: tokens.soy,
     contractAddress: {
-      820: '0xfF9289C2656CA1d194DeA1895aAf3278B744Fa70',
-      20729: '0xe36cfdefD7BA6e855B9dad251deFb731833A5832',
+      [ChainId.MAINNET]: '0xfF9289C2656CA1d194DeA1895aAf3278B744Fa70',
+      [ChainId.CLOTESTNET]: '0xe36cfdefD7BA6e855B9dad251deFb731833A5832',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
     sortOrder: 2,
     tokenPerBlock: '5',
     isFinished: {
-      820: false,
-      20729: false
+      [ChainId.MAINNET]: false,
+      [ChainId.CLOTESTNET]: false
     },
     lockPeriod: {
-      820: 7,
-      20729: 1
+      [ChainId.MAINNET]: 7,
+      [ChainId.CLOTESTNET]: 1
     },
     lockPeriodUnit: {
-      820: 'days',
-      20729: 'hour'
+      [ChainId.MAINNET]: 'days',
+      [ChainId.CLOTESTNET]: 'hour'
     },
     isNew: true
   },
@@ -33,24 +34,24 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.soy,
     earningToken: tokens.soy,
     contractAddress: {
-      820: '0x86F7e2ef599690b64f0063b3F978ea6Ae2814f63',
-      20729: '0xFE29fC8bA4AAE5d10A567F4105894278DB5212d4',
+      [ChainId.MAINNET]: '0x86F7e2ef599690b64f0063b3F978ea6Ae2814f63',
+      [ChainId.CLOTESTNET]: '0xFE29fC8bA4AAE5d10A567F4105894278DB5212d4',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
     sortOrder: 3,
     tokenPerBlock: '5',
     isFinished: {
-      820: false,
-      20729: false
+      [ChainId.MAINNET]: false,
+      [ChainId.CLOTESTNET]: false
     },
     lockPeriod: {
-      820: 30,
-      20729: 2
+      [ChainId.MAINNET]: 30,
+      [ChainId.CLOTESTNET]: 2
     },
     lockPeriodUnit: {
-      820: 'days',
-      20729: 'hours'
+      [ChainId.MAINNET]: 'days',
+      [ChainId.CLOTESTNET]: 'hours'
     },
     isNew: true
   },
@@ -59,24 +60,24 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.soy,
     earningToken: tokens.soy,
     contractAddress: {
-      820: '0x7d6C70b6561C31935e6B0dd77731FC63D5aC37F2',
-      20729: '0x6011860C4caC5d251Aed44A132bbC67B4CcaBf6E',
+      [ChainId.MAINNET]: '0x7d6C70b6561C31935e6B0dd77731FC63D5aC37F2',
+      [ChainId.CLOTESTNET]: '0x6011860C4caC5d251Aed44A132bbC67B4CcaBf6E',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
     sortOrder: 3,
     tokenPerBlock: '5',
     isFinished: {
-      820: false,
-      20729: true
+      [ChainId.MAINNET]: false,
+      [ChainId.CLOTESTNET]: true
     },
     lockPeriod: {
-      820: 91,
-      20729: 2
+      [ChainId.MAINNET]: 91,
+      [ChainId.CLOTESTNET]: 2
     },
     lockPeriodUnit: {
-      820: 'days',
-      20729: 'hours'
+      [ChainId.MAINNET]: 'days',
+      [ChainId.CLOTESTNET]: 'hours'
     },
     isNew: true
   },
@@ -85,24 +86,24 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.soy,
     earningToken: tokens.soy,
     contractAddress: {
-      820: '0x19DcB402162b6937a8ACEac87Ed6c05219c9bEf7',
-      20729: '0x6011860C4caC5d251Aed44A132bbC67B4CcaBf6E',
+      [ChainId.MAINNET]: '0x19DcB402162b6937a8ACEac87Ed6c05219c9bEf7',
+      [ChainId.CLOTESTNET]: '0x6011860C4caC5d251Aed44A132bbC67B4CcaBf6E',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
     sortOrder: 3,
     tokenPerBlock: '5',
     isFinished: {
-      820: false,
-      20729: true
+      [ChainId.MAINNET]: false,
+      [ChainId.CLOTESTNET]: true
     },
     lockPeriod: {
-      820: 182,
-      20729: 2
+      [ChainId.MAINNET]: 182,
+      [ChainId.CLOTESTNET]: 2
     },
     lockPeriodUnit: {
-      820: 'days',
-      20729: 'hours'
+      [ChainId.MAINNET]: 'days',
+      [ChainId.CLOTESTNET]: 'hours'
     },
     isNew: true
   },
@@ -111,24 +112,24 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.soy,
     earningToken: tokens.soy,
     contractAddress: {
-      820: '0x31bFf88C6124E1622f81b3Ba7ED219e5d78abd98',
-      20729: '0x6011860C4caC5d251Aed44A132bbC67B4CcaBf6E',
+      [ChainId.MAINNET]: '0x31bFf88C6124E1622f81b3Ba7ED219e5d78abd98',
+      [ChainId.CLOTESTNET]: '0x6011860C4caC5d251Aed44A132bbC67B4CcaBf6E',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
     sortOrder: 3,
     tokenPerBlock: '5',
     isFinished: {
-      820: false,
-      20729: true
+      [ChainId.MAINNET]: false,
+      [ChainId.CLOTESTNET]: true
     },
     lockPeriod: {
-      820: 365,
-      20729: 2
+      [ChainId.MAINNET]: 365,
+      [ChainId.CLOTESTNET]: 2
     },
     lockPeriodUnit: {
-      820: 'days',
-      20729: 'hours'
+      [ChainId.MAINNET]: 'days',
+      [ChainId.CLOTESTNET]: 'hours'
     },
     isNew: true
   },
@@ -137,16 +138,16 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.soy,
     earningToken: tokens.soy,
     contractAddress: {
-      820: '0xeB4511C90F9387De8F8945ABD8C803d5cB275509',
-      20729: '0x4E35A7060a499595a2337bc6A5ba6Ce8914e5F0A',
+      [ChainId.MAINNET]: '0xeB4511C90F9387De8F8945ABD8C803d5cB275509',
+      [ChainId.CLOTESTNET]: '0x4E35A7060a499595a2337bc6A5ba6Ce8914e5F0A',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
     tokenPerBlock: '5',
     sortOrder: 1,
     isFinished: {
-      820: false,
-      20729: false
+      [ChainId.MAINNET]: false,
+      [ChainId.CLOTESTNET]: false
     },
     isNew: false
   },

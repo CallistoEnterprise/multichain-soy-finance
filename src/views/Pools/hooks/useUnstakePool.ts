@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
-import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
 import { DEFAULT_GAS_LIMIT } from 'config'
 import { updateUserStakedBalance, updateUserBalance, updateUserPendingReward } from 'state/actions'
 import { useSousChef } from 'hooks/useContract'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const options = {
   gasLimit: DEFAULT_GAS_LIMIT,
@@ -23,7 +23,7 @@ const unstakeFromNewPool = async (sousChefContract, isRequest) => {
 
 const useUnstakePool = (sousId, isNew = true) => {
   const dispatch = useAppDispatch()
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
   const sousChefContract = useSousChef(sousId, isNew)
 
   const handleUnstake = useCallback(

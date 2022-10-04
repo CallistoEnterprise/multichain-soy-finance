@@ -16,11 +16,12 @@ import useToast from 'hooks/useToast'
 import { profileClear } from 'state/profile'
 import { useAppDispatch } from 'state'
 import { useTranslation } from 'contexts/Localization'
+import useActiveWeb3React from './useActiveWeb3React'
 
 const useAuth = () => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const { activate, deactivate } = useWeb3React()
+  const { activate, deactivate, chainId} = useActiveWeb3React()
   const { toastError } = useToast()
 
   const login = useCallback(
@@ -28,7 +29,7 @@ const useAuth = () => {
       const connector = connectorsByName[connectorID]
 
       if (connector === connectorsByName.Unstoppable) {
-        const hasSetup1 = await setupNetwork()
+        const hasSetup1 = await setupNetwork(chainId)
         if (!hasSetup1) {
           return
         }
@@ -37,7 +38,7 @@ const useAuth = () => {
       if (connector) {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
-            const hasSetup = await setupNetwork()
+            const hasSetup = await setupNetwork(chainId)
             if (hasSetup) {
               activate(connector)
             }
@@ -63,7 +64,7 @@ const useAuth = () => {
         toastError(t('Unable to find connector'), t('The connector config is wrong'))
       }
     },
-    [t, activate, toastError],
+    [t, activate, toastError, chainId],
   )
 
   const logout = useCallback(() => {

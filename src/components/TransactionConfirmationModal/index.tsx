@@ -91,7 +91,7 @@ function TransactionSubmittedContent({
               variant="tertiary"
               mt="12px"
               width="fit-content"
-              onClick={() => registerToken(token.address, token.symbol, token.decimals)}
+              onClick={() => registerToken(token.address, token.symbol, token.decimals, chainId)}
             >
               <RowFixed>
                 {t('Add %asset% to Metamask', { asset: currencyToAdd.symbol })}

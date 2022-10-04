@@ -87,7 +87,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const init = async () => {
-      setupNetwork2()
+      setupNetwork2(chainId)
     }
     if (
       account &&

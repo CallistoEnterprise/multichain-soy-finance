@@ -30,11 +30,7 @@ const getFarmBaseTokenPrice = (
     return hasTokenPriceVsQuote ? cloPriceBusd.times(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
-  if (
-    (chainId === Number(process.env.REACT_APP_BTT_CHAIN_ID) ||
-      chainId === Number(process.env.REACT_APP_ETC_CHAIN_ID)) &&
-    farm.quoteToken.symbol === 'ccCLO'
-  ) {
+  if ((chainId === ChainId.BTTMAINNET || chainId === ChainId.ETCCLASSICMAINNET) && farm.quoteToken.symbol === 'ccCLO') {
     return hasTokenPriceVsQuote ? ccCloPrice.times(farm.tokenPriceVsQuote) : BIG_ZERO
   }
   // We can only calculate profits without a quoteTokenFarm for BUSDT/CLO farms
@@ -80,7 +76,7 @@ const getFarmQuoteTokenPrice = (
     return bnbPriceBusd
   }
 
-  if ((chainId === Number(process.env.REACT_APP_BTT_CHAIN_ID) || chainId === Number(process.env.REACT_APP_ETC_CHAIN_ID)) && farm.quoteToken.symbol === 'ccCLO') {
+  if ((chainId === ChainId.BTTMAINNET || chainId === ChainId.ETCCLASSICMAINNET) && farm.quoteToken.symbol === 'ccCLO') {
     return ccCloPrice
   }
 
@@ -103,19 +99,19 @@ const farmsPids = {
   [ChainId.MAINNET]: 4,
   [ChainId.CLOTESTNET]: 4,
   [ChainId.BTTMAINNET]: 14,
-  [ChainId.ETCCLASSICMAINNET]: 6
+  [ChainId.ETCCLASSICMAINNET]: 6,
 }
 const busdtFarms = {
   [ChainId.MAINNET]: 5,
   [ChainId.CLOTESTNET]: 5,
   [ChainId.BTTMAINNET]: 19,
-  [ChainId.ETCCLASSICMAINNET]: 5
+  [ChainId.ETCCLASSICMAINNET]: 5,
 }
 const refFarms = {
   [ChainId.MAINNET]: 2,
   [ChainId.CLOTESTNET]: 2,
   [ChainId.BTTMAINNET]: 9,
-  [ChainId.ETCCLASSICMAINNET]: 1
+  [ChainId.ETCCLASSICMAINNET]: 1,
 }
 const fetchFarmsPrices = async (farms) => {
   const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
@@ -130,11 +126,13 @@ const fetchFarmsPrices = async (farms) => {
   const farmsWithPrices = farms.map((farm) => {
     const quoteTokenFarm = getFarmFromTokenSymbol(farms, farm.quoteToken.symbol)
     const baseTokenPrice =
-      farm.pid === 15 && (chainId === Number(process.env.REACT_APP_BTT_CHAIN_ID) || chainId === Number(process.env.REACT_APP_ETC_CHAIN_ID))
+      farm.pid === 15 &&
+      (chainId === ChainId.BTTMAINNET || chainId === ChainId.ETCCLASSICMAINNET)
         ? nativePriceBusdt
         : getFarmBaseTokenPrice(farm, quoteTokenFarm, nativePriceBusdt, cloPrice, chainId)
     const quoteTokenPrice =
-      farm.pid === 15 && (chainId === Number(process.env.REACT_APP_BTT_CHAIN_ID) || chainId === Number(process.env.REACT_APP_ETC_CHAIN_ID))
+      farm.pid === 15 &&
+      (chainId === ChainId.BTTMAINNET || chainId === ChainId.ETCCLASSICMAINNET)
         ? cloPrice
         : getFarmQuoteTokenPrice(farm, quoteTokenFarm, nativePriceBusdt, cloPrice, chainId)
 

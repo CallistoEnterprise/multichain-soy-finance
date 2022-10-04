@@ -7,6 +7,7 @@ import { BLOCKS_PER_YEAR, SOY_PER_BLOCK, localStorageChainIdKey, DEFAULT_CHAIN_I
 import { QuoteToken } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
 import { useFarms, usePriceBnbBusd } from 'state/farms/hooks'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const SOY_POOL_PID = 1
 
@@ -28,9 +29,9 @@ const EarnAPYCard = () => {
   const { t } = useTranslation()
   const farmsLP = useFarms()
   const bnbPrice = usePriceBnbBusd()
+  const { chainId } = useActiveWeb3React()
 
   const maxAPY = useRef(Number.MIN_VALUE)
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
 
   const getHighestAPY = () => {
     const activeFarms = farmsLP.data[chainId].filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')

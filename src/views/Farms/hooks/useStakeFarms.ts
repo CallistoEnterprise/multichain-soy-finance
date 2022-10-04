@@ -7,8 +7,7 @@ import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const useStakeFarms = (pid: number) => {
-  const { account, library } = useActiveWeb3React()
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+  const { account, library, chainId } = useActiveWeb3React()
 
   // const masterChefContract = useMasterchef()
   const currentFarm = CHAINS_CONSTANTS[chainId].farms.find((farm) => farm.pid === pid)

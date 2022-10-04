@@ -45,8 +45,7 @@ const initialState: PoolsState = {
 }
 
 // Thunks
-export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount: BigNumber) => async (dispatch, getState) => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount: BigNumber, chainId: number) => async (dispatch, getState) => {
   const blockLimits = await fetchPoolsBlockLimits()
   const totalStakings = await fetchPoolsTotalStaking()
   const allocationAndRewards = await fetchPoolsRewardPerSecond()
@@ -99,12 +98,12 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount
   dispatch(setPoolsPublicData(liveData))
 }
 
-export const fetchPoolsStakingLimitsAsync = () => async (dispatch, getState) => {
+export const fetchPoolsStakingLimitsAsync = ( chainId: number ) => async (dispatch, getState) => {
   const poolsWithStakingLimit = getState()
     .pools.data.filter(({ stakingLimit }) => stakingLimit !== null && stakingLimit !== undefined)
     .map((pool) => pool.sousId)
 
-  const stakingLimits = await fetchPoolsStakingLimits(poolsWithStakingLimit)
+  const stakingLimits = await fetchPoolsStakingLimits(poolsWithStakingLimit, chainId)
 
   const stakingLimitData = poolsConfig.map((pool) => {
     if (poolsWithStakingLimit.includes(pool.sousId)) {
