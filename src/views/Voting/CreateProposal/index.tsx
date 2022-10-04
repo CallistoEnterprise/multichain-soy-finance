@@ -244,7 +244,7 @@ const CreateProposal = () => {
                   {formErrors.endDate && fieldsState.endDate && <FormErrors errors={formErrors.endDate} />}
                 </Box>
                 <Box mb="24px">
-                  <SecondaryLabel>{t('End Time')}</SecondaryLabel>
+                  <SecondaryLabel>{t('Unlock Time')}</SecondaryLabel>
                   <TimePicker
                     name="endTime"
                     onChange={handleDateChange('endTime')}

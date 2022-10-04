@@ -9,12 +9,9 @@ import tokens from 'config/constants/tokens'
  * Prompt the user to add Polygon as a network on Metamask, or switch to Polygon if the wallet is on a different network
  * @returns {boolean} true if the setup succeeded, false otherwise
  */
-export const setupNetwork = async () => {
+export const setupNetwork = async (chainId: number) => {
   const provider = window.ethereum
   if (provider) {
-    const chainId = window.localStorage.getItem(localStorageChainIdKey)
-      ? Number(window.localStorage.getItem(localStorageChainIdKey))
-      : DEFAULT_CHAIN_ID
 
     const chain: ChainConstants = CHAINS_CONSTANTS[chainId]
 
@@ -94,10 +91,9 @@ export const switchNetwork = async (library, curNet: any) => {
   }
 }
 
-export const setupNetwork2 = async () => {
+export const setupNetwork2 = async (chainId: number) => {
   const provider = window.ethereum
   if (provider) {
-    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
 
     try {
       await provider.request({
@@ -126,8 +122,7 @@ export const setupNetwork2 = async () => {
  * @param tokenDecimals
  * @returns {boolean} true if the token has been added, false otherwise
  */
-export const registerToken = async (tokenAddress: string, tokenSymbol: string, tokenDecimals: number) => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+export const registerToken = async (tokenAddress: string, tokenSymbol: string, tokenDecimals: number, chainId?: number) => {
   const tokenAdded = await window.ethereum.request({
     method: 'wallet_watchAsset',
     params: {
@@ -136,7 +131,7 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
         address: tokenAddress,
         symbol: tokenSymbol,
         decimals: tokenDecimals,
-        image: `${BASE_URL}/images/coins/${chId}/${tokenAddress}.png`,
+        image: `${BASE_URL}/images/coins/${chainId}/${tokenAddress}.png`,
       },
     },
   })

@@ -15,10 +15,12 @@ import {
 } from '.'
 import { State, Pool } from '../types'
 import { transformPool } from './helpers'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 export const useFetchPublicPoolsData = (rewardBlockCount?: BigNumber, rwBLCntOfSousChef?: BigNumber, rwBLCntOfMaticStaking?: BigNumber) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
+  const { chainId } = useActiveWeb3React()
 
   const simpleRpcProvider = useGetRpcProvider()
   useEffect(() => {
@@ -26,13 +28,13 @@ export const useFetchPublicPoolsData = (rewardBlockCount?: BigNumber, rwBLCntOfS
       const blockNumber = await simpleRpcProvider.getBlockNumber()
       // const pubData = await fetchPoolsPublicDataAsync(blockNumber, new BigNumber(0))
       // console.log(pubData)
-      dispatch(fetchPoolsPublicDataAsync(blockNumber, new BigNumber(5))) // , rwBLCntOfSousChef, rwBLCntOfMaticStaking
+      dispatch(fetchPoolsPublicDataAsync(blockNumber, new BigNumber(5), chainId)) // , rwBLCntOfSousChef, rwBLCntOfMaticStaking
     }
     if (simpleRpcProvider){
       fetchPoolsPublicData()
-      dispatch(fetchPoolsStakingLimitsAsync())
+      dispatch(fetchPoolsStakingLimitsAsync(chainId))
     }
-  }, [dispatch, slowRefresh, simpleRpcProvider])
+  }, [dispatch, slowRefresh, simpleRpcProvider, chainId])
 }
 
 export const usePools = (account): { pools: Pool[]; userDataLoaded: boolean } => {

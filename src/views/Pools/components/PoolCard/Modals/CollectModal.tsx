@@ -28,6 +28,7 @@ interface CollectModalProps {
   isBnbPool: boolean
   isCompoundPool?: boolean
   onDismiss?: () => void
+  isNew?: boolean
 }
 
 const CollectModal: React.FC<CollectModalProps> = ({
@@ -39,11 +40,12 @@ const CollectModal: React.FC<CollectModalProps> = ({
   isBnbPool,
   isCompoundPool = false,
   onDismiss,
+  isNew = true
 }) => {
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
-  const { onReward } = useHarvestPool(sousId, isBnbPool)
+  const { onReward } = useHarvestPool(sousId, isNew)
   const { onStake } = useStakePool(sousId, isBnbPool)
   const [pendingTx, setPendingTx] = useState(false)
   const [shouldCompound, setShouldCompound] = useState(isCompoundPool)

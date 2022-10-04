@@ -10,11 +10,6 @@ import { addSoyToMetamask } from 'utils/wallet'
 import config, { bttConfig, etcConfig } from './config'
 import UserMenu from './UserMenu'
 
-// const configs = {
-//   820: config,
-//   199: bttConfig,
-// }
-
 const Menu = (props) => {
   const { chainId } = useActiveWeb3React()
   const { isDark, toggleTheme } = useTheme()

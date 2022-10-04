@@ -16,6 +16,7 @@ interface HarvestActionsProps {
   isLoading?: boolean
   endTimeStr?: string | null
   havestDayStr?: string | null
+  isNew?: boolean | null
 }
 
 const HarvestActions: React.FC<HarvestActionsProps> = ({
@@ -27,6 +28,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   isLoading = false,
   // endTimeStr = null,
   havestDayStr = null,
+  isNew = true
 }) => {
   const { t } = useTranslation()
   const earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
@@ -47,6 +49,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
       sousId={sousId}
       isBnbPool={isBnbPool}
       isCompoundPool={isCompoundPool}
+      isNew={isNew}
     />,
   )
 
@@ -83,9 +86,9 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           </>
         )}
       </Flex>
-      <Button disabled={!hasEarnings || havestDayStr !== null} onClick={onPresentCollect}>
+      {isNew && <Button disabled={!hasEarnings || havestDayStr !== null || !isNew} onClick={onPresentCollect}>
         {isCompoundPool ? t('Collect') : t('Harvest')}
-      </Button>
+      </Button>}
     </Flex>
   )
 }

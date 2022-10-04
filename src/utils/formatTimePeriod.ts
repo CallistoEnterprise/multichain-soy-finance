@@ -22,31 +22,31 @@ const formatTimePeriod = (periods: ReturnType<typeof getTimePeriods>, excludePer
 }
 
 export function getFormattedDateFromTimeStamp(seconds: number) {
-  const date = new Date(seconds*1000)
+  const date = new Date(seconds * 1000)
   const yy = date.getFullYear()
-  const mm = date.getMonth() < 9 ? `0${date.getMonth() + 1}` : date.getMonth() + 1 
+  const mm = date.getMonth() < 9 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
   const dd = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
   return `${dd}/${mm}/${yy}`
 }
 
 export function getTimeFromTimeStamp(seconds: number) {
-  const today = new Date(seconds*1000)
+  const today = new Date(seconds * 1000)
   const hh = today.getHours() < 10 ? `0${today.getHours()}` : today.getHours()
   const mm = today.getMinutes() < 10 ? `0${today.getMinutes()}` : today.getMinutes()
   const ss = today.getSeconds() < 10 ? `0${today.getSeconds()}` : today.getSeconds()
-  
-  return `${hh}:${mm}:${ss}`;
+
+  return `${hh}:${mm}:${ss}`
 }
 
 function getDate(seconds) {
-    return Math.floor(seconds/(3600 * 24))
+  return Math.floor(seconds / (3600 * 24))
 }
 function getHour(seconds) {
-    return Math.floor(seconds % (24 * 3600)/3600)
+  return Math.floor((seconds % (24 * 3600)) / 3600)
 }
 
 function getMin(seconds) {
-    return Math.floor((seconds%3600)/60)
+  return Math.floor((seconds % 3600) / 60)
 }
 
 // function getSec(seconds) {
@@ -56,21 +56,27 @@ function getMin(seconds) {
 // }
 
 function formatString(val: number) {
-    if( val < 10 ) {
-        return `0${val.toString()}`
-    } 
-    return val.toString()
+  if (val < 10) {
+    return `0${val.toString()}`
+  }
+  return val.toString()
 }
 
-export function getTimeFromTimeStamp2(seconds: number) {
-  const date = new Date();
-  const nowSeconds = Math.floor(date.getTime() / 1000);
-  const diff = seconds - nowSeconds;
+export function getTimeFromTimeStamp2(seconds: number, nowSeconds: number) {
+  const diff = seconds - nowSeconds
+  if (diff < 0 && seconds > 0) {
+    return 'Unstakable'
+  }
   if (diff < 0) {
     return null
   }
-  const datetime = `${formatString(getDate(diff))} Days, ${formatString(getHour(diff))} Hours, ${formatString(getMin(diff))} Minutes`
-  return datetime;
+  const datetime =
+    getDate(diff) === 0
+      ? `${formatString(getHour(diff))} Hours, ${formatString(getMin(diff))} Minutes`
+      : `${formatString(getDate(diff))} Days, ${formatString(getHour(diff))} Hours, ${formatString(
+          getMin(diff),
+        )} Minutes`
+  return datetime
 }
 
 export default formatTimePeriod

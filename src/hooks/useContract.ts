@@ -101,14 +101,14 @@ export const useMasterchef = () => {
   return useMemo(() => getMasterchefContract(library?.getSigner()), [library])
 }
 
-export const useSousChef = (id) => {
+export const useSousChef = (id, isNew) => {
   const { library } = useActiveWeb3React()
-  return useMemo(() => getSouschefContract(id, library?.getSigner()), [id, library])
+  return useMemo(() => getSouschefContract(id, isNew, library?.getSigner()), [id, isNew, library])
 }
 
-export const useStakingTokenContract = (id) => {
+export const useStakingTokenContract = (id, isHarvest = false) => {
   const { library } = useActiveWeb3React()
-  return useMemo(() => getStakingTokenContract(id, library?.getSigner()), [id, library])
+  return useMemo(() => getStakingTokenContract(id, isHarvest, library?.getSigner()), [id, isHarvest, library])
 }
 
 export const useSousChefV2 = (id) => {

@@ -1,13 +1,16 @@
 import BigNumber from 'bignumber.js'
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
+import sousChefNewABI from 'config/abi/sousChefNew.json'
+import erc223ABI from 'config/abi/erc223.json'
 // import wcloABI from 'config/abi/weth.json'
 import {multicall3} from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
+import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 
 export const fetchPoolsBlockLimits = async () => {
-  const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
+  const poolsWithEnd = poolsConfig.filter((p) => !p.isNew)
   const callsStartBlock = poolsWithEnd.map((poolConfig) => {
     return {
       address: getAddress(poolConfig.contractAddress),
@@ -36,14 +39,25 @@ export const fetchPoolsBlockLimits = async () => {
 }
 
 export const fetchPoolsTotalStaking = async () => {
-  const nonCloPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'CLO')
-  const bnbPool = poolsConfig.filter((p) => p.stakingToken.symbol === 'CLO')
+  const oldPools = poolsConfig.filter((p) => !p.isNew)
+  const newPools = poolsConfig.filter((p) => p.isNew)
+  // const bnbPool = poolsConfig.filter((p) => p.stakingToken.symbol === 'CLO')
 
-  const callsNonCloPools = nonCloPools.map((poolConfig) => {
+  const callsOldPools = oldPools.map((poolConfig) => {
     return {
       address: getAddress(poolConfig.contractAddress),
       name: 'TotalStakingAmount',
       // params: [getAddress(poolConfig.contractAddress)],
+    }
+  })
+
+  const callsNewPools = newPools.map((poolConfig) => {
+    return {
+      address: getAddress(poolConfig.stakingToken.address),
+      name: 'balanceOf',
+      params: [
+        getAddress(poolConfig.contractAddress)
+      ]
     }
   })
 
@@ -55,7 +69,8 @@ export const fetchPoolsTotalStaking = async () => {
   //   }
   // })
 
-  const nonCloPoolsTotalStaked = await multicall3(sousChefABI, callsNonCloPools)
+  const oldPoolsTotalStaked = await multicall3(sousChefABI, callsOldPools)
+  const newPoolsTotalStaked = await multicall3(erc223ABI, callsNewPools)
   // const cloPoolsTotalStaked = await multicall3(wcloABI, callsCloPools)
 
   // return [
@@ -69,15 +84,19 @@ export const fetchPoolsTotalStaking = async () => {
   //   })),
   // ]
 
+  const totalStakedAmount = [
+    ...oldPoolsTotalStaked,
+    ...newPoolsTotalStaked
+  ]
   return [
-    ...nonCloPools.map((p, index) => ({
+    ...[...oldPools, ...newPools].map((p, index) => ({
       sousId: p.sousId,
-      totalStaked: new BigNumber(nonCloPoolsTotalStaked[index]).toJSON(),
+      totalStaked: new BigNumber(totalStakedAmount[index]).toJSON(),
     })),
-    ...bnbPool.map((p) => ({
-      sousId: p.sousId,
-      totalStaked: new BigNumber(0).toJSON(),
-    })),
+    // ...bnbPool.map((p) => ({
+    //   sousId: p.sousId,
+    //   totalStaked: new BigNumber(0).toJSON(),
+    // })),
   ]
 }
 
@@ -93,9 +112,10 @@ export const fetchPoolStakingLimit = async (sousId?: number): Promise<BigNumber>
 
 export const fetchPoolsStakingLimits = async (
   poolsWithStakingLimit: number[],
+  chainId: number,
 ): Promise<{ [key: string]: BigNumber }> => {
   const validPools = poolsConfig
-    .filter((p) => p.stakingToken.symbol !== 'CLO' && !p.isFinished)
+    .filter((p) => p.stakingToken.symbol !== 'CLO' && !p.isFinished[chainId])
     .filter((p) => !poolsWithStakingLimit.includes(p.sousId))
 
   // Get the staking limit for each valid pool
@@ -109,4 +129,31 @@ export const fetchPoolsStakingLimits = async (
       [validPools[index].sousId]: stakingLimit,
     }
   }, {})
+}
+
+export const fetchPoolsRewardPerSecond = async () => {
+  const newPools = poolsConfig.filter((p) => p.isNew)
+  const calls = newPools.map((poolConfig) => {
+    return {
+      address: getAddress(poolConfig.contractAddress),
+      name: 'getRewardPerSecond',
+    }
+  })
+  const calls2 = newPools.map((poolConfig) => {
+    return {
+      address: getAddress(poolConfig.contractAddress),
+      name: 'getAllocationX1000',
+    }
+  })
+
+  const res = await multicall3(sousChefNewABI, calls)
+  const res2 = await multicall3(sousChefNewABI, calls2)
+
+  return newPools.map((soyPoolConfig, index) => {
+    return {
+      sousId: soyPoolConfig.sousId,
+      rewardPerSecond: new BigNumber(res[index]).div(new BigNumber(10 ** 18)),
+      multiplier1000: new BigNumber(res2[index]),
+    }
+  })
 }

@@ -9,13 +9,13 @@ import { usePmoon, useSousChef, usePmoonVaultContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import useLastUpdated from 'hooks/useLastUpdated'
 
-export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol) => {
+export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol, isNew = true) => {
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { toastSuccess, toastError } = useToast()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
-  const sousChefContract = useSousChef(sousId)
+  const sousChefContract = useSousChef(sousId, isNew)
 
   const handleApprove = useCallback(async () => {
     try {

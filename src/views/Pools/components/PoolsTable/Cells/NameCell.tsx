@@ -9,6 +9,8 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { TokenPairImage } from 'components/TokenImage'
 import CakeVaultTokenPairImage from '../../CakeVaultCard/CakeVaultTokenPairImage'
 import BaseCell, { CellContent } from './BaseCell'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 interface NameCellProps {
   pool: Pool
@@ -24,10 +26,21 @@ const StyledCell = styled(BaseCell)`
   }
 `
 
+const soyTemp = {
+  symbol: 'SOY',
+  address: {
+    [ChainId.MAINNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+    [ChainId.CLOTESTNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+  },
+  decimals: 18,
+  projectLink: 'https://app.soy.finance/',
+}
+
 const NameCell: React.FC<NameCellProps> = ({ pool }) => {
+  const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const { isXs, isSm } = useMatchBreakpoints()
-  const { sousId, stakingToken, earningToken, userData, isFinished, isAutoVault } = pool
+  const { sousId, stakingToken, earningToken, userData, isFinished, isAutoVault, isNew, lockPeriod, lockPeriodUnit } = pool
   const {
     userData: { userShares },
   } = useCakeVault()
@@ -42,8 +55,8 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
 
   const showStakedTag = isAutoVault ? hasVaultShares : isStaked
 
-  let title = `${t('Earn')} ${earningTokenSymbol}`
-  let subtitle = `${t('Freeze')} ${stakingTokenSymbol}`
+  let title = !isNew ? `${t('Earn')} ${earningTokenSymbol}(V1)` : `${stakingToken.symbol} Staking`
+  let subtitle = isNew ? `Time lock ${lockPeriod[chainId]} ${lockPeriodUnit[chainId]}` : `${t('Freeze')} ${stakingTokenSymbol}`
   const showSubtitle = sousId !== 0 || (sousId === 0 && !isXs && !isSm)
 
   if (isAutoVault) {
@@ -59,10 +72,10 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
       {isAutoVault ? (
         <CakeVaultTokenPairImage mr="8px" width={40} height={40} />
       ) : (
-        <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} mr="8px" width={40} height={40} />
+        <TokenPairImage primaryToken={!isNew ? soyTemp : earningToken} secondaryToken={!isNew ? soyTemp : stakingToken} mr="8px" width={40} height={40} />
       )}
       <CellContent>
-        {showStakedTag && (
+        {showStakedTag && !isNew && (
           <Text fontSize="12px" bold color={isFinished ? 'failure' : 'secondary'} textTransform="uppercase">
             {t('Staked')}
           </Text>
@@ -71,7 +84,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
           {title}
         </Text>
         {showSubtitle && (
-          <Text fontSize="12px" color="textSubtle">
+          <Text fontSize="12px" color={!isNew ? "textDisabled" : "textSubtle"}>
             {subtitle}
           </Text>
         )}
