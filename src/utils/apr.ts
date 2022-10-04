@@ -1,12 +1,13 @@
 import BigNumber from 'bignumber.js'
+import { ChainId } from '@soy-libs/sdk-multichain'
 import lpAprs from 'config/constants/lpAprs.json'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { DEFAULT_CHAIN_ID, ONE_YEAR_TIMESTAMP } from 'config';
 
 const POOL_REWARDS = {
   6: {
-    820: new BigNumber(23152 * 365),
-    20729: new BigNumber(23152 * 365)
+    [ChainId.MAINNET]: new BigNumber(23152 * 365),
+    [ChainId.CLOTESTNET]: new BigNumber(23152 * 365)
   },
 }
 /**
