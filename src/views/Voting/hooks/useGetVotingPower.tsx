@@ -28,7 +28,7 @@ const initialState: State = {
 }
 
 const useGetVotingPower = (block?: number, isActive = true): State & { isLoading: boolean } => {
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const [votingPower, setVotingPower] = useState(initialState)
   const [isLoading, setIsLoading] = useState(!!account)
 
@@ -38,7 +38,7 @@ const useGetVotingPower = (block?: number, isActive = true): State & { isLoading
       const simpleRpcProvider = await getRpcProvider()
       try {
         const blockNumber = block || (await simpleRpcProvider.getBlockNumber())
-        const eligiblePools = await getActivePools(blockNumber)
+        const eligiblePools = await getActivePools(blockNumber, chainId)
         const poolAddresses = eligiblePools.map(({ contractAddress }) => getAddress(contractAddress))
         const {
           cakeBalance,

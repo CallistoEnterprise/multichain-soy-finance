@@ -19,7 +19,7 @@ const StyledCell = styled(BaseCell)`
 
 const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
   const { t } = useTranslation()
-  const { sousId, stakingToken, totalStaked, isAutoVault } = pool
+  const { sousId, stakingToken, totalStaked, isAutoVault, isNew } = pool
   const { totalCakeInVault } = useCakeVault()
 
   const isManualCakePool = sousId === 0
@@ -38,7 +38,7 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
+        <Text fontSize="12px" color={!isNew ? 'textDisabled' : "textSubtle"} textAlign="left">
           {t('Total staked')}
         </Text>
         {totalStaked && totalStaked.gte(0) ? (

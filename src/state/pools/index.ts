@@ -4,10 +4,10 @@ import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import poolsConfig from 'config/constants/pools'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { PoolsState, Pool, CakeVault, VaultFees, VaultUser, AppThunk } from 'state/types'
-import { getPoolApr } from 'utils/apr'
+import { getPoolApr, getPoolAprForNew } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getAddress } from 'utils/addressHelpers'
-import { fetchPoolsBlockLimits, fetchPoolsStakingLimits, fetchPoolsTotalStaking } from './fetchPools'
+import { fetchPoolsBlockLimits, fetchPoolsStakingLimits, fetchPoolsTotalStaking, fetchPoolsRewardPerSecond } from './fetchPools'
 import {
   fetchPoolsAllowance,
   fetchUserBalances,
@@ -17,6 +17,7 @@ import {
 import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
 import fetchVaultUser from './fetchVaultUser'
 import { getTokenPricesFromFarm } from './helpers'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const initialState: PoolsState = {
   data: [...poolsConfig],
@@ -44,32 +45,43 @@ const initialState: PoolsState = {
 }
 
 // Thunks
-export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount: BigNumber) => async (dispatch, getState) => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount: BigNumber, chainId: number) => async (dispatch, getState) => {
   const blockLimits = await fetchPoolsBlockLimits()
   const totalStakings = await fetchPoolsTotalStaking()
+  const allocationAndRewards = await fetchPoolsRewardPerSecond()
   const prices = getTokenPricesFromFarm(getState().farms.data[chainId])
 
   const liveData = poolsConfig.map((pool) => {
     const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
     const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
+    const allocationAndReward = allocationAndRewards.find((entry) => entry.sousId === pool.sousId)
     const isPoolEndBlockExceeded = false // currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.endBlock) : false
-    const isPoolFinished = pool.isFinished || isPoolEndBlockExceeded
+    const isPoolFinished = pool.isFinished[chainId] || isPoolEndBlockExceeded
 
     const stakingTokenAddress = pool.stakingToken.address ? getAddress(pool.stakingToken.address).toLowerCase() : null
-    const stakingTokenPrice = stakingTokenAddress ? prices[stakingTokenAddress] : 0
+    const stakingTokenPrice = chainId === ChainId.CLOTESTNET ?  0.022412208310717878 : stakingTokenAddress ? prices[stakingTokenAddress] : 0
 
     const earningTokenAddress = pool.earningToken.address ? getAddress(pool.earningToken.address).toLowerCase() : null
-    const earningTokenPrice = earningTokenAddress ? prices[earningTokenAddress] : 0
+    const earningTokenPrice = chainId === ChainId.CLOTESTNET ?  0.022412208310717878 : earningTokenAddress ? prices[earningTokenAddress] : 0
 
     const RBC = rewardBlockCount
     const apr = !isPoolFinished
-      ? getPoolApr(
+      ? pool.isNew
+      ? getPoolAprForNew(
+        stakingTokenPrice,
+        earningTokenPrice,
+        getBalanceNumber(new BigNumber(totalStaking.totalStaked), pool.stakingToken.decimals),
+        allocationAndReward.rewardPerSecond,
+        allocationAndReward.multiplier1000,
+      )
+      : getPoolApr(
+          pool.sousId,
           stakingTokenPrice,
           earningTokenPrice,
           getBalanceNumber(new BigNumber(totalStaking.totalStaked), pool.stakingToken.decimals),
           parseFloat(pool.tokenPerBlock),
           RBC,
+          chainId
         )
       : 0
 
@@ -79,19 +91,19 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount
       stakingTokenPrice,
       earningTokenPrice,
       apr,
-      isFinished: isPoolFinished,
+      isFinished: pool.isFinished,
     }
   })
 
   dispatch(setPoolsPublicData(liveData))
 }
 
-export const fetchPoolsStakingLimitsAsync = () => async (dispatch, getState) => {
+export const fetchPoolsStakingLimitsAsync = ( chainId: number ) => async (dispatch, getState) => {
   const poolsWithStakingLimit = getState()
     .pools.data.filter(({ stakingLimit }) => stakingLimit !== null && stakingLimit !== undefined)
     .map((pool) => pool.sousId)
 
-  const stakingLimits = await fetchPoolsStakingLimits(poolsWithStakingLimit)
+  const stakingLimits = await fetchPoolsStakingLimits(poolsWithStakingLimit, chainId)
 
   const stakingLimitData = poolsConfig.map((pool) => {
     if (poolsWithStakingLimit.includes(pool.sousId)) {

@@ -10,28 +10,33 @@ import { StyledCard, StyledCardInner } from './StyledCard'
 import CardFooter from './CardFooter'
 import StyledCardHeader from './StyledCardHeader'
 import CardActions from './CardActions'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) => {
-  const { sousId, stakingToken, earningToken, isFinished, userData } = pool
+  const { chainId } = useActiveWeb3React()
+  const { sousId, stakingToken, earningToken, isFinished, userData, lockPeriod, lockPeriodUnit, isNew } = pool
   const { t } = useTranslation()
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const accountHasStakedBalance = stakedBalance.gt(0)
 
   return (
     <StyledCard
-      isFinished={isFinished && sousId !== 0}
-      ribbon={isFinished && <CardRibbon variantColor="textDisabled" text={t('Finished')} />}
+      isFinished={isFinished[chainId] && sousId !== 0}
+      ribbon={isFinished[chainId] && <CardRibbon variantColor="textDisabled" text={t('Finished')} />}
     >
-      <StyledCardInner>
+      <StyledCardInner isNew={isNew}>
         <StyledCardHeader
           isStaking={accountHasStakedBalance}
           earningToken={earningToken}
           stakingToken={stakingToken}
-          isFinished={isFinished && sousId !== 0}
+          isFinished={isFinished[chainId] && sousId !== 0}
+          lockPeriod={isNew ? lockPeriod[chainId] : null}
+          lockPeriodUnit={isNew ? lockPeriodUnit[chainId] : null}
+          isNew={isNew}
         />
         <CardBody>
           <AprRow pool={pool} />
-          <Flex mt="24px" flexDirection="column">
+          <Flex mt="10px" flexDirection="column">
             {account ? (
               <CardActions pool={pool} stakedBalance={stakedBalance} />
             ) : (
@@ -44,7 +49,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
             )}
           </Flex>
         </CardBody>
-        <CardFooter pool={pool} account={account} />
+        {isNew && <CardFooter pool={pool} account={account} />}
       </StyledCardInner>
     </StyledCard>
   )

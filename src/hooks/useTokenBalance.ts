@@ -6,6 +6,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { getRpcProvider } from 'utils/providers'
 import useRefresh from './useRefresh'
 import useLastUpdated from './useLastUpdated'
+import useActiveWeb3React from './useActiveWeb3React'
 
 type UseTokenBalanceState = {
   balance: BigNumber
@@ -87,7 +88,7 @@ export const useBurnedBalance = (tokenAddress: string) => {
 export const useGetBnbBalance = () => {
   const [fetchStatus, setFetchStatus] = useState(FetchStatus.NOT_FETCHED)
   const [balance, setBalance] = useState(BIG_ZERO)
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
   const { lastUpdated, setLastUpdated } = useLastUpdated()
 
   useEffect(() => {

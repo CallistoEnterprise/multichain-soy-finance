@@ -12,16 +12,16 @@ export const ActionContainer = styled.div`
     margin-left: 12px;
     margin-right: 12px;
     margin-bottom: 0;
-    height: 130px;
-    max-height: 130px;
+    height: 150px;
+    max-height: 10px;
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
     margin-left: 32px;
     margin-right: 0;
     margin-bottom: 0;
-    height: 130px;
-    max-height: 130px;
+    height: 150px;
+    max-height: 150px;
   }
 `
 

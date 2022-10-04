@@ -3,6 +3,7 @@ import { Router, Redirect, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { ResetCSS } from '@soy-libs/uikit2'
 import BigNumber from 'bignumber.js'
+import { SUPPORTED_CHAINS } from 'config'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useEagerConnect from 'hooks/useEagerConnect'
 import { setupNetwork2 } from 'utils/wallet'
@@ -28,8 +29,6 @@ import {
 } from './views/AddLiquidity/redirects'
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
-import { ChainId } from '@soy-libs/sdk-multichain'
-import { SUPPORTED_CHAINS } from 'config'
 
 const Wrapper = styled.div`
   display: flex;
@@ -88,7 +87,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const init = async () => {
-      setupNetwork2()
+      setupNetwork2(chainId)
     }
     if (
       account &&

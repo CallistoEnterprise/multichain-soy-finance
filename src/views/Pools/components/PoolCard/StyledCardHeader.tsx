@@ -5,6 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import { Token } from 'config/constants/types'
 import { TokenPairImage } from 'components/TokenImage'
 import CakeVaultTokenPairImage from '../CakeVaultCard/CakeVaultTokenPairImage'
+import { ChainId } from '@soy-libs/sdk-multichain'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
   background: ${({ isFinished, background, theme }) =>
@@ -12,13 +13,26 @@ const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }
   border-radius: ${({ theme }) => `${theme.radii.card} ${theme.radii.card} 0 0`};
 `
 
+const soyTemp = {
+  symbol: 'SOY',
+  address: {
+    [ChainId.MAINNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+    [ChainId.CLOTESTNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+  },
+  decimals: 18,
+  projectLink: 'https://app.soy.finance/',
+}
+
 const StyledCardHeader: React.FC<{
   earningToken: Token
   stakingToken: Token
   isAutoVault?: boolean
   isFinished?: boolean
   isStaking?: boolean
-}> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false }) => {
+  lockPeriod?: number | string
+  lockPeriodUnit?: string
+  isNew?: boolean
+}> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false, lockPeriod, lockPeriodUnit, isNew }) => {
   const { t } = useTranslation()
   const isCakePool = earningToken.symbol === 'SOY' && stakingToken.symbol === 'SOY'
   const background = isStaking ? 'bubblegum' : 'cardHeader'
@@ -30,7 +44,7 @@ const StyledCardHeader: React.FC<{
     }
     if (isCakePool) {
       // manual cake
-      return t('Cold Staking')
+      return !isNew ? t('Cold Staking(V1)') : t('Staking')
     }
     // all other pools
     return t('Earn')
@@ -41,7 +55,7 @@ const StyledCardHeader: React.FC<{
       return t('Automatic restaking')
     }
     if (isCakePool) {
-      return t('Freeze SOY, Earn SOY')
+      return !isNew ? t('Freeze SOY, Earn SOY') : t(`Time lock ${lockPeriod} ${lockPeriodUnit}`)
     }
     return t('Stake %symbol%', { symbol: stakingToken.symbol })
   }
@@ -50,15 +64,15 @@ const StyledCardHeader: React.FC<{
     <Wrapper isFinished={isFinished} background={background}>
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
-          <Heading color={isFinished ? 'textDisabled' : 'body'} scale="lg">
+          <Heading color={!isNew || isFinished ? 'textDisabled' : 'body'} scale="lg">
             {`${earningToken.symbol} ${getHeadingPrefix()}`}
           </Heading>
-          <Text color={isFinished ? 'textDisabled' : 'textSubtle'}>{getSubHeading()}</Text>
+          <Text color={!isNew || isFinished ? 'textDisabled' : 'textSubtle'}>{getSubHeading()}</Text>
         </Flex>
         {isAutoVault ? (
           <CakeVaultTokenPairImage width={64} height={64} />
         ) : (
-          <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} width={64} height={64} />
+          <TokenPairImage primaryToken={!isNew ? soyTemp : earningToken} secondaryToken={!isNew ? soyTemp : stakingToken} width={64} height={64} />
         )}
       </Flex>
     </Wrapper>

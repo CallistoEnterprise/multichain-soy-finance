@@ -5,6 +5,7 @@ import { Heading, Card, CardBody, Flex, ArrowForwardIcon } from '@soy-libs/uikit
 import { NavLink } from 'react-router-dom'
 import pools from 'config/constants/pools'
 import { Pool } from 'state/types'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const StyledFarmStakingCard = styled(Card)`
   background-color: rgba(0,0,0,.9);
@@ -20,7 +21,8 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
   line-height: 44px;
 `
 const EarnAssetCard = () => {
-  const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.stakingToken.symbol.includes('SOY'))
+  const { chainId } = useActiveWeb3React()
+  const activeNonCakePools = pools.filter((pool) => !pool.isFinished[chainId] && !pool.stakingToken.symbol.includes('SOY'))
   const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
   // Always include SOY
   const assets = ['SOY', ...latestPools.map((pool) => pool.stakingToken.symbol)].join(', ')

@@ -58,8 +58,6 @@ export const multicallv2 = async <T = any>(
 
   return res
 }
-
-
 export const multicall3 = async (abi: any[], calls: Call[]) => {
   const web3 = getWeb3NoAccount()
   const multi = new web3.eth.Contract((MultiCallAbi as unknown) as AbiItem, getMulticallAddress())

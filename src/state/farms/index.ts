@@ -69,8 +69,8 @@ export const nonArchivedFarms = {
 export const fetchFarmsPublicDataAsync = createAsyncThunk<Farm[], number[]>(
   'farms/fetchFarmsPublicDataAsync',
   async (pids) => {
-    const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
-    const farmsToFetch = CHAINS_CONSTANTS[chId].farms.filter((farmConfig) => pids.includes(farmConfig.pid))
+    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+    const farmsToFetch = CHAINS_CONSTANTS[chainId].farms.filter((farmConfig) => pids.includes(farmConfig.pid))
 
     // Add price helper farms
     // const farmsWithPriceHelpers = farmsToFetch.concat(priceHelperLpsConfig)
@@ -97,8 +97,8 @@ interface FarmUserDataResponse {
 export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], { account: string; pids: number[] }>(
   'farms/fetchFarmUserDataAsync',
   async ({ account, pids }) => {
-    const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
-    const farmsToFetch = CHAINS_CONSTANTS[chId].farms.filter((farmConfig) => pids.includes(farmConfig.pid))
+    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+    const farmsToFetch = CHAINS_CONSTANTS[chainId].farms.filter((farmConfig) => pids.includes(farmConfig.pid))
     const userFarmAllowances = await fetchFarmUserAllowances(account, farmsToFetch)
     const userFarmTokenBalances = await fetchFarmUserTokenBalances(account, farmsToFetch)
     const userStakedBalances = await fetchFarmUserStakedBalances(account, farmsToFetch)
@@ -128,8 +128,8 @@ export const farmsSlice = createSlice({
   extraReducers: (builder) => {
     // Update farms with live data
     builder.addCase(fetchFarmsPublicDataAsync.fulfilled, (state, action) => {
-      const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
-      state.data[chId] = state.data[chId].map((farm) => {
+      const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+      state.data[chainId] = state.data[chainId].map((farm) => {
         const liveFarmData = action.payload.find((farmData) => farmData.pid === farm.pid)
         return { ...farm, ...liveFarmData }
       })
@@ -137,11 +137,11 @@ export const farmsSlice = createSlice({
 
     // Update farms with user data
     builder.addCase(fetchFarmUserDataAsync.fulfilled, (state, action) => {
-      const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+      const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
       action.payload.forEach((userDataEl) => {
         const { pid } = userDataEl
-        const index = state.data[chId].findIndex((farm) => farm.pid === pid)
-        state.data[chId][index] = { ...state.data[chId][index], userData: userDataEl }
+        const index = state.data[chainId].findIndex((farm) => farm.pid === pid)
+        state.data[chainId][index] = { ...state.data[chainId][index], userData: userDataEl }
       })
 
       state.userDataLoaded = true

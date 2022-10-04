@@ -43,6 +43,7 @@ import bunnyFactoryAbi from 'config/abi/bunnyFactory.json'
 import bunnySpecialAbi from 'config/abi/bunnySpecial.json'
 import bep20Abi from 'config/abi/erc20.json'
 import erc223Abi from 'config/abi/erc223.json'
+import erc223AbiStandard from 'config/abi/erc223Standard.json'
 import erc721Abi from 'config/abi/erc721.json'
 import lpTokenAbi from 'config/abi/lpToken.json'
 import soyAbi from 'config/abi/soy.json'
@@ -54,6 +55,7 @@ import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 import lotteryV2Abi from 'config/abi/lotteryV2.json'
 import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
+import sousChefNew from 'config/abi/sousChefNew.json'
 import sousChefV2 from 'config/abi/sousChefV2.json'
 import sousChefMatic from 'config/abi/sousChefMatic.json'
 import claimRefundAbi from 'config/abi/claimRefund.json'
@@ -103,9 +105,9 @@ const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.
   return new ethers.Contract(address, abi, signerOrProvider)
 }
 
-export const getStakingTokenContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
+export const getStakingTokenContract = (id: number, isHarvest = false, signer?: ethers.Signer | ethers.providers.Provider) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
-  return getContract(erc223Abi, getAddress(config.stakingToken.address), signer)
+  return getContract(isHarvest ? erc223AbiStandard : erc223Abi, getAddress(config.stakingToken.address), signer)
 }
 
 export const getBep20Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
@@ -133,9 +135,9 @@ export const getIfoV1Contract = (address: string, signer?: ethers.Signer | ether
 export const getIfoV2Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(ifoV2Abi, address, signer)
 }
-export const getSouschefContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
+export const getSouschefContract = (id: number, isNew?: boolean, signer?: ethers.Signer | ethers.providers.Provider) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
-  const abi = config.poolCategory === PoolCategory.CLO ? sousChefMatic : sousChef
+  const abi = isNew ? sousChefNew : sousChef
   return getContract(abi, getAddress(config.contractAddress), signer)
 }
 export const getSouschefV2Contract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {

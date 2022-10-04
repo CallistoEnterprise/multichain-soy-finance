@@ -7,15 +7,14 @@ import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const useStakeFarms = (pid: number) => {
-  const { account, library } = useActiveWeb3React()
-  const locChainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+  const { account, library, chainId } = useActiveWeb3React()
 
   // const masterChefContract = useMasterchef()
-  const currentFarm = CHAINS_CONSTANTS[locChainId].farms.find((farm) => farm.pid === pid)
+  const currentFarm = CHAINS_CONSTANTS[chainId].farms.find((farm) => farm.pid === pid)
   const { lpAddresses, localFarmAddresses }= currentFarm
   const lpContract = getLpContractWithAccount(getAddress(lpAddresses), library, account)
   const farmAddress = getAddress(localFarmAddresses)
-  const web3 = useWeb3ProviderByRpc(locChainId)
+  const web3 = useWeb3ProviderByRpc(chainId)
 
   const handleStake = useCallback(
     async (amount: string) => {

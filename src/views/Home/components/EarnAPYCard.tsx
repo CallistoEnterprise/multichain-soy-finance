@@ -7,6 +7,7 @@ import { BLOCKS_PER_YEAR, SOY_PER_BLOCK, localStorageChainIdKey, DEFAULT_CHAIN_I
 import { QuoteToken } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
 import { useFarms, usePriceBnbBusd } from 'state/farms/hooks'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const SOY_POOL_PID = 1
 
@@ -28,12 +29,12 @@ const EarnAPYCard = () => {
   const { t } = useTranslation()
   const farmsLP = useFarms()
   const bnbPrice = usePriceBnbBusd()
+  const { chainId } = useActiveWeb3React()
 
   const maxAPY = useRef(Number.MIN_VALUE)
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
 
   const getHighestAPY = () => {
-    const activeFarms = farmsLP.data[chId].filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
+    const activeFarms = farmsLP.data[chainId].filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
 
     calculateAPY(activeFarms)
 
@@ -42,7 +43,7 @@ const EarnAPYCard = () => {
 
   const calculateAPY = useCallback(
     (farmsToDisplay) => {
-      const cakePriceVsBNB = new BigNumber(farmsLP.data[chId].find((farm) => farm.pid === SOY_POOL_PID)?.tokenPriceVsQuote || 0)
+      const cakePriceVsBNB = new BigNumber(farmsLP.data[chainId].find((farm) => farm.pid === SOY_POOL_PID)?.tokenPriceVsQuote || 0)
 
       farmsToDisplay.map((farm) => {
         if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {
@@ -75,7 +76,7 @@ const EarnAPYCard = () => {
         return apy
       })
     },
-    [bnbPrice, chId, farmsLP],
+    [bnbPrice, chainId, farmsLP],
   )
 
   return (

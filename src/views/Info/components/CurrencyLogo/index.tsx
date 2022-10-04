@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
-import { BASE_URL, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
+import { BASE_URL } from 'config'
 import { isAddress } from 'utils'
 import LogoLoader from './LogoLoader'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const StyledLogo = styled(LogoLoader)<{ size: string }>`
   width: ${({ size }) => size};
@@ -17,15 +18,15 @@ export const CurrencyLogo: React.FC<{
   address?: string
   size?: string
 }> = ({ address, size = '24px', ...rest }) => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+  const { chainId } = useActiveWeb3React()
 
   const src = useMemo(() => {
     const checksummedAddress = isAddress(address)
     if (checksummedAddress) {
-      return `${BASE_URL}/images/coins/${chId}/${checksummedAddress}.png`
+      return `${BASE_URL}/images/coins/${chainId}/${checksummedAddress}.png`
     }
     return null
-  }, [address, chId])
+  }, [address, chainId])
 
   return <StyledLogo size={size} src={src} alt="token logo" {...rest} />
 }

@@ -98,7 +98,11 @@ const Pools: React.FC = () => {
     return [...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
-  const [finishedPools, openPools] = useMemo(() => partition(pools, (pool) => pool.isFinished), [pools])
+  const filteredPools = useMemo(() => {
+    return pools.filter((_p) => !_p.isFinished[chainId])
+  }, [pools, chainId])
+
+  const [finishedPools, openPools] = useMemo(() => partition(filteredPools, (pool) => pool.isFinished[chainId]), [filteredPools, chainId])
   const stakedOnlyFinishedPools = useMemo(
     () =>
       finishedPools.filter((pool) => {
