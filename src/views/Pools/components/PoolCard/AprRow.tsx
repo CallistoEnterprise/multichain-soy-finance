@@ -51,7 +51,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
           <Balance
             fontSize="16px"
             isDisabled={isFinished[chainId]}
-            value={earningsPercentageToDisplay}
+            value={!isNew ? 0 : earningsPercentageToDisplay}
             decimals={2}
             unit="%"
             bold
