@@ -384,6 +384,20 @@ const farms: FarmConfig[] = [
     token: tokens.bcoin,
     quoteToken: tokens.soy,
   },
+  {
+    pid: 33,
+    lpSymbol: 'SOY-VVT LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x7a314519C7F9dD5ca8018C3491e6E9aA97Cf67FC',
+    },
+    localFarmAddresses: {
+      820: '0xfa84594dBcF58951F538b6CEF1e07F6fa9362055',
+      20729: '',
+    },
+    token: tokens.vvt,
+    quoteToken: tokens.soy,
+  },
 ]
 
 export default farms
