@@ -43,13 +43,14 @@
       "decimals": 18,
       "logoURI": "images/coins/0xAB99622d19298EC2BEAB50EFF91A9b6F46Af747C.png"
     },
-        {
-      "name": "Wrapped TWT",
-      "symbol": "ccTWT",
-      "address": "0xCC099e75152ACCda96d54FAbaf6e333ca44AD86e",
-      "chainId": 820,
+    {
+      "name": "Teramite token",
+      "symbol": "TMT",
+      "address": "0xB4dDe88Fd2D7Cf5AA0880fa2Ec893124Cbbe0FA3",
+      "chainId": 20729,
       "decimals": 18,
-      "logoURI": "https://app.soy.finance/images/coins/0xCC099e75152ACCda96d54FAbaf6e333ca44AD86e.png"
+      "logoURI": "images/coins/0xB4dDe88Fd2D7Cf5AA0880fa2Ec893124Cbbe0FA3.png"
     }
+    
   ]
 }
