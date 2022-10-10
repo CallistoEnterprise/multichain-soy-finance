@@ -385,7 +385,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.soy,
   },
   {
-    pid: 33,
+    pid: 38,
     lpSymbol: 'SOY-VVT LP',
     lpAddresses: {
       20729: '',
