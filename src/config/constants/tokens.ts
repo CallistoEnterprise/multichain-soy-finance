@@ -339,6 +339,15 @@ const tokens = {
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xcC6e7E97A46B6F0eD3bC81518Fc816da78F7cb65/transactions"
   },
+  vvt: {
+    symbol: "VVT",
+    address: {
+      [ChainId.MAINNET]: "0x9f9b6DD3DEDB4D2e6C679bCb8782f546400e9A53",
+      [ChainId.CLOTESTNET]: '',
+    },
+    decimals: 18,
+    projectLink: "https://explorer.callisto.network/address/0x9f9b6DD3DEDB4D2e6C679bCb8782f546400e9A53/transactions"
+  },
   wbtt: {
     symbol: "WBTT",
     address: {
