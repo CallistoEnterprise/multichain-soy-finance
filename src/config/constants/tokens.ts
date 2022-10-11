@@ -10,7 +10,7 @@ export const SOY: { [chainId: number]: Token } = {
   ),
   [ChainId.CLOTESTNET]: new Token(
     ChainId.CLOTESTNET,
-    '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
+    '0x5331B7E9f950612Ae445eF4C7178649a7E521Aa8',
     18,
     'SOY',
     'SoyERC223-Token',
@@ -67,7 +67,7 @@ const tokens = {
     symbol: 'SOY',
     address: {
       [ChainId.MAINNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
-      [ChainId.CLOTESTNET]: '0x4c20231BCc5dB8D805DB9197C84c8BA8287CbA92',
+      [ChainId.CLOTESTNET]: '0x5331B7E9f950612Ae445eF4C7178649a7E521Aa8',
       [ChainId.BTTMAINNET]: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
       [ChainId.ETCCLASSICMAINNET]: '0xcC67D978Ddf07971D9050d2b424f36f6C1a15893'
     },
