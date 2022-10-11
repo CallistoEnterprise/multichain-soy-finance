@@ -348,12 +348,21 @@ const tokens = {
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0x9f9b6DD3DEDB4D2e6C679bCb8782f546400e9A53/transactions"
   },
+  tmt: {
+    symbol: "TMT",
+    address: {
+      [ChainId.MAINNET]: '',
+      [ChainId.CLOTESTNET]: "0xB4dDe88Fd2D7Cf5AA0880fa2Ec893124Cbbe0FA3",
+    },
+    decimals: 18,
+    projectLink: "https://testnet-explorer.callisto.network/address/0xB4dDe88Fd2D7Cf5AA0880fa2Ec893124Cbbe0FA3/transactions"
+  },
   wbtt: {
     symbol: "WBTT",
     address: {
       [ChainId.MAINNET]: '',
       [ChainId.CLOTESTNET]: '',
-      [ChainId.BTTMAINNET]: '0x33e85f0e26600a6644b6c910639B0bc7a99fd34e'
+      [ChainId.BTTMAINNET]: "0x33e85f0e26600a6644b6c910639B0bc7a99fd34e",
     },
     decimals: 18,
     projectLink: "https://wbtt.io/"
@@ -362,7 +371,7 @@ const tokens = {
     symbol: "SRT",
     address: {
       [ChainId.MAINNET]: '',
-      [ChainId.CLOTESTNET]: '0xA38760109D760fe65427551242eAC320AD7bf672',
+      [ChainId.CLOTESTNET]: "0xA38760109D760fe65427551242eAC320AD7bf672",
     },
     decimals: 18,
     projectLink: "https://wbtt.io/"
