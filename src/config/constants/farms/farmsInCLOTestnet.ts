@@ -44,6 +44,34 @@ const farms: FarmConfig[] = [
     token: tokens.soy,
     quoteToken: tokens.busdt,
   },
+  {
+    pid: 20,
+    lpSymbol: 'CLO-TMT LP',
+    lpAddresses: {
+      20729: '0x28B4Ffce7BF5E9b984FeebC62c042E4Ee05E443f',
+      820: '',
+    },
+    localFarmAddresses: {
+      820: '',
+      20729: '0xC14e256C295A1C873ae21E05cc88956Add15C293'
+    },
+    token: tokens.wclo,
+    quoteToken: tokens.tmt,
+  },
+  {
+    pid: 22,
+    lpSymbol: 'SOY-TMT LP',
+    lpAddresses: {
+      20729: '0x8531a6FDa1905e91Ce6AB5d1B5F0Dad158CD74E3',
+      820: '',
+    },
+    localFarmAddresses: {
+      820: '',
+      20729: '0xe9d02a3fE2e7785Cd45d99a0F5F923e3E59CfC27'
+    },
+    token: tokens.soy,
+    quoteToken: tokens.tmt,
+  },
 ]
 
 export default farms
