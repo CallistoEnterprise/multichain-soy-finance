@@ -39,7 +39,7 @@ export const WCLO: { [chainId: number]: Token } = {
 }
 export const BUSDT = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4', 18, 'BUSDT', 'Tether USD'),
-  [ChainId.CLOTESTNET]: new Token(ChainId.CLOTESTNET, '0xD83C3D10B30E7C939301DD5f72E0bfb91d3FE0CB', 18, 'BUSDT', 'Tether USD'),
+  [ChainId.CLOTESTNET]: new Token(ChainId.CLOTESTNET, '0xAB99622d19298EC2BEAB50EFF91A9b6F46Af747C', 18, 'BUSDT', 'Tether USD'),
   [ChainId.ETCCLASSICMAINNET]: new Token(ChainId.ETCCLASSICMAINNET, '0xCC48CD0B4a6f50b8f8bf0f9b80eD7881fA547968', 18, 'BUSDT', 'Tether USD'),
   [ChainId.BTTMAINNET]: new Token(ChainId.BTTMAINNET, '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF', 18, 'BUSDT', 'Tether USD')
 }
