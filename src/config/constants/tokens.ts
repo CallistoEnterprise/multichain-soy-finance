@@ -10,7 +10,7 @@ export const SOY: { [chainId: number]: Token } = {
   ),
   [ChainId.CLOTESTNET]: new Token(
     ChainId.CLOTESTNET,
-    '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
+    '0x4c20231BCc5dB8D805DB9197C84c8BA8287CbA92',
     18,
     'SOY',
     'SoyERC223-Token',
