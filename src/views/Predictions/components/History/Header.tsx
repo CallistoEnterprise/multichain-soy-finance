@@ -10,7 +10,7 @@ import {
   Text,
   ButtonMenu,
   ButtonMenuItem,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import { useAppDispatch } from 'state'
 import { HistoryFilter } from 'state/types'
 import { setHistoryFilter, setHistoryPaneState, fetchHistory } from 'state/predictions'

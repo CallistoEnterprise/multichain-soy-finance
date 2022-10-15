@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, useModal, WaitIcon, ButtonProps } from '@soy-libs/uikit2'
+import { Button, useModal, WaitIcon, ButtonProps } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { useLottery } from 'state/lottery/hooks'
 import { LotteryStatus } from 'config/constants/types'

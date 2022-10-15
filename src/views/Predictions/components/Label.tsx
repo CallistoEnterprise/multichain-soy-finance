@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useCountUp } from 'react-countup'
 import styled from 'styled-components'
-import { BnbUsdtPairTokenIcon, Box, Card, PocketWatchIcon, Text } from '@soy-libs/uikit2'
+import { BnbUsdtPairTokenIcon, Box, Card, PocketWatchIcon, Text } from '@callisto-enterprise/soy-uikit2'
 import { formatBigNumberToFixed } from 'utils/formatBalance'
 import { useGetLastOraclePrice } from 'state/hooks'
 import { useTranslation } from 'contexts/Localization'

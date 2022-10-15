@@ -1,5 +1,5 @@
 import React from 'react'
-import { HelpIcon, useTooltip, Box, BoxProps } from '@soy-libs/uikit2'
+import { HelpIcon, useTooltip, Box, BoxProps } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 
 interface Props extends BoxProps {

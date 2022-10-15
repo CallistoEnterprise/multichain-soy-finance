@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Flex, Skeleton } from '@soy-libs/uikit2'
+import { Box, Flex, Skeleton } from '@callisto-enterprise/soy-uikit2'
 import times from 'lodash/times'
 import styled from 'styled-components'
 

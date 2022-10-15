@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
-import { Card, CardBody, CardHeader, Text, useTooltip, HelpIcon, Flex } from '@soy-libs/uikit2'
+import { Card, CardBody, CardHeader, Text, useTooltip, HelpIcon, Flex } from '@callisto-enterprise/soy-uikit2'
 import { Ifo, PoolIds } from 'config/constants/types'
 import { useProfile } from 'state/profile/hooks'
 import { PublicIfoData, WalletIfoData } from 'views/Ifos/types'

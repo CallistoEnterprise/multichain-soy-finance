@@ -32,6 +32,8 @@
   },
   "dependencies": {
     "@binance-chain/bsc-connector": "^1.0.0",
+    "@callisto-enterprise/soy-sdk": "0.0.3",
+    "@callisto-enterprise/soy-uikit2": "^0.3.8",
     "@ethersproject/experimental": "^5.0.1",
     "@reduxjs/toolkit": "^1.6.1",
     "@soy-libs/sdk-multichain": "^0.1.1",

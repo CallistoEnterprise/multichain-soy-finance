@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, HelpIcon, IconButton } from '@soy-libs/uikit2'
+import { Flex, HelpIcon, IconButton } from '@callisto-enterprise/soy-uikit2'
 import FlexRow from './FlexRow'
 import { PricePairLabel, TimerLabel } from './Label'
 import PrevNextNav from './PrevNextNav'

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Modal, Flex, Button, Text, Skeleton, Box } from '@soy-libs/uikit2'
+import { Modal, Flex, Button, Text, Skeleton, Box } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import FlippersShare from '../pngs/flippers-share.png'

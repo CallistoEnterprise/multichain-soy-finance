@@ -4,7 +4,7 @@ import {
   TokenPairImageProps as UIKitTokenPairImageProps,
   TokenImage as UIKitTokenImage,
   ImageProps,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import { BASE_URL } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { Token } from 'config/constants/types'

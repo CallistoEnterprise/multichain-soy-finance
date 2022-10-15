@@ -16,7 +16,7 @@ import {
   Spinner,
   Image,
   useMatchBreakpoints,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import Page from 'components/Layout/Page'
 import { getCallistoExpLink } from 'utils'
 import truncateHash from 'utils/truncateHash'

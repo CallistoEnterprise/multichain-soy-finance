@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { AutoRenewIcon, Button, Flex } from '@soy-libs/uikit2'
+import { AutoRenewIcon, Button, Flex } from '@callisto-enterprise/soy-uikit2'
 import { Achievement } from 'state/types'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'

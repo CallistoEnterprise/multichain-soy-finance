@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box } from '@soy-libs/uikit2'
+import { Box } from '@callisto-enterprise/soy-uikit2'
 
 const Row = styled(Box)<{
   width?: string

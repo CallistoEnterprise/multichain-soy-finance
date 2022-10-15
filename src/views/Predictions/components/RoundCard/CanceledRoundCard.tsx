@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardBody, Text, Flex, BlockIcon, LinkExternal } from '@soy-libs/uikit2'
+import { CardBody, Text, Flex, BlockIcon, LinkExternal } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { NodeRound, BetPosition } from 'state/types'
 import { useGetTotalIntervalBlocks } from 'state/hooks'

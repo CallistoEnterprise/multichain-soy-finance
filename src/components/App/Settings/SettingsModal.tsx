@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Text, PancakeToggle, Flex, Message, Modal, ModalBody, InjectedModalProps } from '@soy-libs/uikit2'
+import { Button, Text, PancakeToggle, Flex, Message, Modal, ModalBody, InjectedModalProps } from '@callisto-enterprise/soy-uikit2'
 import {
   useAudioModeManager,
   useExpertModeManager,

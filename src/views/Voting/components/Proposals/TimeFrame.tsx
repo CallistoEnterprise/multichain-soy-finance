@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@soy-libs/uikit2'
+import { Text } from '@callisto-enterprise/soy-uikit2'
 import { toDate, format } from 'date-fns'
 import { useTranslation } from 'contexts/Localization'
 import { ProposalState } from 'state/types'

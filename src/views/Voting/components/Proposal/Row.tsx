@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Grid, Box } from '@soy-libs/uikit2'
+import { Grid, Box } from '@callisto-enterprise/soy-uikit2'
 
 export const AddressColumn = styled(Box).attrs({ alignItems: 'center' })`
   grid-area: address;

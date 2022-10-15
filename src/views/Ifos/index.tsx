@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
 import { Route, useRouteMatch, Link } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem, Flex } from '@soy-libs/uikit2'
+import { ButtonMenu, ButtonMenuItem, Flex } from '@callisto-enterprise/soy-uikit2'
 import Container from 'components/Layout/Container'
 import Hero from './components/Hero'
 import CurrentIfo from './CurrentIfo'

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
-import { Trade, TradeType } from '@soy-libs/sdk-multichain'
-import { Button, Text, ErrorIcon, ArrowDownIcon } from '@soy-libs/uikit2'
+import { Trade, TradeType } from '@callisto-enterprise/soy-sdk'
+import { Button, Text, ErrorIcon, ArrowDownIcon } from '@callisto-enterprise/soy-uikit2'
 import { Field } from 'state/swap/actions'
 import { isAddress, shortenAddress } from 'utils'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown, warningSeverity } from 'utils/prices'

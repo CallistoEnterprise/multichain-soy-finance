@@ -1,4 +1,4 @@
-import { Percent } from '@soy-libs/sdk-multichain'
+import { Percent } from '@callisto-enterprise/soy-sdk'
 import { ALLOWED_PRICE_IMPACT_HIGH, PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN } from '../../../config/constants'
 
 /**

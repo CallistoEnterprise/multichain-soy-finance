@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Token, Currency } from '@soy-libs/sdk-multichain'
-import { Button, Text, ErrorIcon, Flex, Message, Checkbox, Link, Tag, Grid } from '@soy-libs/uikit2'
+import { Token, Currency } from '@callisto-enterprise/soy-sdk'
+import { Button, Text, ErrorIcon, Flex, Message, Checkbox, Link, Tag, Grid } from '@callisto-enterprise/soy-uikit2'
 import { AutoColumn } from 'components/Layout/Column'
 import { useAddUserToken } from 'state/user/hooks'
 import { getCallistoExpLink } from 'utils'

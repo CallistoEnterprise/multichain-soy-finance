@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, useWalletModal } from '@soy-libs/uikit2'
+import { Button, useWalletModal } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import useAuth from 'hooks/useAuth'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, TextProps } from '@soy-libs/uikit2'
+import { Text, TextProps } from '@callisto-enterprise/soy-uikit2'
 
 export interface PercentProps extends TextProps {
   value: number | undefined

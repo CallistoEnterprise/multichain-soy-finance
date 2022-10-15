@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { HelpIcon } from '@soy-libs/uikit2'
+import { HelpIcon } from '@callisto-enterprise/soy-uikit2'
 
 const BAD_SRCS: { [tokenAddress: string]: true } = {}
 

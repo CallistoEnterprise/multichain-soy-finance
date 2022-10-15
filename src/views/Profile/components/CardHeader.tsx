@@ -1,5 +1,5 @@
 import styled, { DefaultTheme } from 'styled-components'
-import { CardHeader as UIKitCardHeader } from '@soy-libs/uikit2'
+import { CardHeader as UIKitCardHeader } from '@callisto-enterprise/soy-uikit2'
 
 const getBackground = (theme: DefaultTheme) => {
   if (theme.isDark) {

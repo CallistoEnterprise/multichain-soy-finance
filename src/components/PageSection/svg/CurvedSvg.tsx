@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css, DefaultTheme } from 'styled-components'
-import { Box } from '@soy-libs/uikit2'
+import { Box } from '@callisto-enterprise/soy-uikit2'
 import { ClipFill } from '../types'
 
 interface CurveProps {

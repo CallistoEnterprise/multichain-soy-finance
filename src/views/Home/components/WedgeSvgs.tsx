@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Svg, SvgProps } from '@soy-libs/uikit2'
+import { Svg, SvgProps } from '@callisto-enterprise/soy-uikit2'
 
 export const OuterWedgeWrapper = styled.div`
   z-index: -1;

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Modal, Text, InjectedModalProps, Button, AutoRenewIcon } from '@soy-libs/uikit2'
+import { Modal, Text, InjectedModalProps, Button, AutoRenewIcon } from '@callisto-enterprise/soy-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import useToast from 'hooks/useToast'
 import { useClaimRefundContract } from 'hooks/useContract'

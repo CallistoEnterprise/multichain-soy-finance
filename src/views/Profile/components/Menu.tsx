@@ -1,7 +1,7 @@
 import { useTranslation } from 'contexts/Localization'
 import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import { ChevronLeftIcon, Flex, Text, ButtonMenu, ButtonMenuItem } from '@soy-libs/uikit2'
+import { ChevronLeftIcon, Flex, Text, ButtonMenu, ButtonMenuItem } from '@callisto-enterprise/soy-uikit2'
 
 interface MenuProps {
   activeIndex?: number

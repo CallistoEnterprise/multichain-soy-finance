@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, ModalBody, Text, Image, Button, Link, OpenNewIcon } from '@soy-libs/uikit2'
+import { Modal, ModalBody, Text, Image, Button, Link, OpenNewIcon } from '@callisto-enterprise/soy-uikit2'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import { Token } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'

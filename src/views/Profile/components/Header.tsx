@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Flex, Heading, useModal } from '@soy-libs/uikit2'
+import { Button, Flex, Heading, useModal } from '@callisto-enterprise/soy-uikit2'
 import { useProfile } from 'state/profile/hooks'
 import { useTranslation } from 'contexts/Localization'
 import ClaimNftAndCakeModal, { useCanClaim } from './ClaimGiftModal'

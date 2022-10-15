@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@soy-libs/sdk-multichain'
+import { ChainId, Token } from '@callisto-enterprise/soy-sdk'
 
 export const SOY: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(

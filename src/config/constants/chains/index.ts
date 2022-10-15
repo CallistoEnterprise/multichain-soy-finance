@@ -1,4 +1,4 @@
-import { ChainId } from '@soy-libs/sdk-multichain'
+import { ChainId } from '@callisto-enterprise/soy-sdk'
 import MAINNET_CONSTANTS from './mainnet'
 import BTT_CONSTANTS from './btt'
 import ETC_CONSTANTS from './etc'

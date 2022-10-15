@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardHeader, CardBody, CommunityIcon, Heading, PrizeIcon, Text } from '@soy-libs/uikit2'
+import { Card, CardHeader, CardBody, CommunityIcon, Heading, PrizeIcon, Text } from '@callisto-enterprise/soy-uikit2'
 import { Team } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
 import ComingSoon from 'views/Profile/components/ComingSoon'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Heading, Skeleton, Text } from '@soy-libs/uikit2'
+import { Button, Heading, Skeleton, Text } from '@callisto-enterprise/soy-uikit2'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'

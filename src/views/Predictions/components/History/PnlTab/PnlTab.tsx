@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { Box, Flex, Heading, Text, Button, Link, OpenNewIcon } from '@soy-libs/uikit2'
+import { Box, Flex, Heading, Text, Button, Link, OpenNewIcon } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { getRoundResult, Result } from 'state/predictions/helpers'
 import { getCallistoExpLink } from 'utils'

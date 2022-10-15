@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Flex, Heading, ProposalIcon } from '@soy-libs/uikit2'
+import { Box, Button, Flex, Heading, ProposalIcon } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'

@@ -1,4 +1,4 @@
-import { TokenAmount, Pair, Currency } from '@soy-libs/sdk-multichain'
+import { TokenAmount, Pair, Currency } from '@callisto-enterprise/soy-sdk'
 import { useMemo } from 'react'
 import IUniswapV2PairABI from 'config/abi/IUniswapV2Pair.json'
 import { Interface } from '@ethersproject/abi'

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-// import { Text, BaseLayout } from '@soy-libs/uikit2'
+// import { Text, BaseLayout } from '@callisto-enterprise/soy-uikit2'
 // import PageSection from 'components/PageSection'
 // import { useWeb3React } from '@web3-react/core'
 // import useTheme from 'hooks/useTheme'

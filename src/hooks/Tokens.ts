@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, ETHERS, Token, currencyEquals } from '@soy-libs/sdk-multichain'
+import { Currency, ETHERS, Token, currencyEquals } from '@callisto-enterprise/soy-sdk'
 import { useMemo } from 'react'
 import { arrayify } from 'ethers/lib/utils'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Modal } from '@soy-libs/uikit2'
+import { Box, Modal } from '@callisto-enterprise/soy-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import { SnapshotCommand } from 'state/types'

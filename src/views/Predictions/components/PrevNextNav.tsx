@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArrowBackIcon, ArrowForwardIcon, BunnyCardsIcon, Card, IconButton } from '@soy-libs/uikit2'
+import { ArrowBackIcon, ArrowForwardIcon, BunnyCardsIcon, Card, IconButton } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { useGetCurrentEpoch, useGetSortedRounds } from 'state/hooks'
 import useSwiper from '../hooks/useSwiper'

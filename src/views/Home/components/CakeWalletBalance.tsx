@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@soy-libs/uikit2'
+import { Text } from '@callisto-enterprise/soy-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'

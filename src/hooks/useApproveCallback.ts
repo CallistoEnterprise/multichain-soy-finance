@@ -1,6 +1,6 @@
 import { MaxUint256 } from '@ethersproject/constants'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Trade, TokenAmount, CurrencyAmount, ETHERS } from '@soy-libs/sdk-multichain'
+import { Trade, TokenAmount, CurrencyAmount, ETHERS } from '@callisto-enterprise/soy-sdk'
 import { useCallback, useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { ROUTER_ADDRESS } from '../config/constants'

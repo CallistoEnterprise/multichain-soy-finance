@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Flex, Text } from '@soy-libs/uikit2'
+import { Modal, Flex, Text } from '@callisto-enterprise/soy-uikit2'
 import { useAppDispatch } from 'state'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'

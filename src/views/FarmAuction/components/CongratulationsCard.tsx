@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Heading, Card, CardHeader, CardBody, Flex } from '@soy-libs/uikit2'
+import { Text, Heading, Card, CardHeader, CardBody, Flex } from '@callisto-enterprise/soy-uikit2'
 import { Auction, Bidder } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'

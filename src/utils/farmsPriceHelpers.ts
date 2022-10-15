@@ -1,4 +1,4 @@
-import { ChainId } from '@soy-libs/sdk-multichain'
+import { ChainId } from '@callisto-enterprise/soy-sdk'
 import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { Farm } from 'state/types'
 

@@ -17,7 +17,7 @@ import {
   ButtonMenuItem,
   HelpIcon,
   useTooltip,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import Page from 'components/Layout/Page'
 import { getCallistoExpLink } from 'utils'

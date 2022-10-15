@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, LaurelLeftIcon, LaurelRightIcon } from '@soy-libs/uikit2'
+import { Flex, LaurelLeftIcon, LaurelRightIcon } from '@callisto-enterprise/soy-uikit2'
 import { RibbonProps } from '../../types'
 import {
   RibbonDownMidExpanding,

@@ -1,4 +1,4 @@
-import { Heading } from '@soy-libs/uikit2'
+import { Heading } from '@callisto-enterprise/soy-uikit2'
 import styled, { DefaultTheme } from 'styled-components'
 
 const H1SizeStyles = (theme: DefaultTheme) => `

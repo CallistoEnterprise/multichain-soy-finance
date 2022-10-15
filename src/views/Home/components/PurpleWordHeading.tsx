@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, TextProps } from '@soy-libs/uikit2'
+import { Heading, TextProps } from '@callisto-enterprise/soy-uikit2'
 import useTheme from 'hooks/useTheme'
 
 interface HeadingProps extends TextProps {

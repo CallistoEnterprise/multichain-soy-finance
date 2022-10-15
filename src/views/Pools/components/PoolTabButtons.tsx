@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouteMatch, Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { ButtonMenu, ButtonMenuItem, Toggle, Text, NotificationDot } from '@soy-libs/uikit2'
+import { ButtonMenu, ButtonMenuItem, Toggle, Text, NotificationDot } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import ToggleView, { ViewMode } from './ToggleView/ToggleView'
 

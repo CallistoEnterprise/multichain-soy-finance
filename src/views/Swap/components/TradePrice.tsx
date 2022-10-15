@@ -1,6 +1,6 @@
 import React from 'react'
-import { Price } from '@soy-libs/sdk-multichain'
-import { Text, AutoRenewIcon } from '@soy-libs/uikit2'
+import { Price } from '@callisto-enterprise/soy-sdk'
+import { Text, AutoRenewIcon } from '@callisto-enterprise/soy-uikit2'
 import { StyledBalanceMaxMini } from './styleds'
 
 interface TradePriceProps {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Text } from '@soy-libs/uikit2'
+import { Heading, Text } from '@callisto-enterprise/soy-uikit2'
 import { useProfile } from 'state/profile/hooks'
 import { useTranslation } from 'contexts/Localization'
 import HeaderWrapper from 'views/Profile/components/HeaderWrapper'
