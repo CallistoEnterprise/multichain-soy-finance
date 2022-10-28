@@ -78,7 +78,7 @@ export const SUGGESTED_BASES: ChainTokenList = {
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET], SOY[ChainId.MAINNET], BUSDT[ChainId.MAINNET]],
-  [ChainId.CLOTESTNET]: [WETH[ChainId.CLOTESTNET], SOY[ChainId.CLOTESTNET], BUSDT[ChainId.MAINNET]],
+  [ChainId.CLOTESTNET]: [WETH[ChainId.CLOTESTNET], SOY[ChainId.CLOTESTNET], BUSDT[ChainId.CLOTESTNET]],
   [ChainId.ETHEREUM]: [WETH[ChainId.ETHEREUM]],
   [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
   [ChainId.KOVAN]: [WETH[ChainId.KOVAN]],
