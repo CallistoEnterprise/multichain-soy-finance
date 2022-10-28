@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Flex, Box } from '@soy-libs/uikit2'
+import { Text, Flex, Box } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import truncateWalletAddress from 'utils/truncateWalletAddress'
 import { LeaderboardDataItem } from '../../../types'

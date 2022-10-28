@@ -1,4 +1,4 @@
-import { Currency, ETHERS, Token } from '@soy-libs/sdk-multichain'
+import { Currency, ETHERS, Token } from '@callisto-enterprise/soy-sdk'
 import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 

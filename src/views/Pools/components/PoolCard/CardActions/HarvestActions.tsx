@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Button, Heading, useModal, Skeleton } from '@soy-libs/uikit2'
+import { Flex, Text, Button, Heading, useModal, Skeleton } from '@callisto-enterprise/soy-uikit2'
 import BigNumber from 'bignumber.js'
 import { Token } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'

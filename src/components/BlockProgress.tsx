@@ -1,5 +1,5 @@
 import React from 'react'
-import { Progress, ProgressProps } from '@soy-libs/uikit2'
+import { Progress, ProgressProps } from '@callisto-enterprise/soy-uikit2'
 import { useBlock } from 'state/block/hooks'
 
 interface BlockProgressProps extends ProgressProps {

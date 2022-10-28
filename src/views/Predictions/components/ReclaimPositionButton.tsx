@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react'
-import { AutoRenewIcon, Button, ButtonProps } from '@soy-libs/uikit2'
+import { AutoRenewIcon, Button, ButtonProps } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { usePredictionsContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'

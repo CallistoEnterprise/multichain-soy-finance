@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, Button, Input, Flex, Grid } from '@soy-libs/uikit2'
+import { Text, Button, Input, Flex, Grid } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import QuestionHelper from '../../QuestionHelper'
 import { AutoColumn } from '../../Layout/Column'

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Flex, ChevronRightIcon, Box, SmallDotIcon, PrizeIcon } from '@soy-libs/uikit2'
+import { Text, Flex, ChevronRightIcon, Box, SmallDotIcon, PrizeIcon } from '@callisto-enterprise/soy-uikit2'
 import { dateOptions, timeOptions } from '../../helpers'
 
 interface FinishedRoundRowProps {

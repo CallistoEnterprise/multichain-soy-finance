@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTheme } from 'styled-components'
-import { Svg, SvgProps } from '@soy-libs/uikit2'
+import { Svg, SvgProps } from '@callisto-enterprise/soy-uikit2'
 
 interface MultiplierProps extends SvgProps {
   isActive: boolean

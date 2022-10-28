@@ -10,7 +10,7 @@ import {
   Progress,
   Button,
   ChevronUpIcon,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Ifo, IfoStatus, PoolIds } from 'config/constants/types'

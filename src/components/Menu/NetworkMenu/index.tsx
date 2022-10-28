@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { 
   Flex,
   ChevronDownIcon
-} from "@soy-libs/uikit2";
+} from "@callisto-enterprise/soy-uikit2";
 import isTouchDevice from "./isTouchDevice";
 import { UserMenuProps, variants } from "./types";
 import MenuIcon from "./MenuIcon";

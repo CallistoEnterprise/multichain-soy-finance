@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Heading } from '@soy-libs/uikit2'
+import { Flex, Heading } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { useAchievements } from 'state/achievements/hooks'
 import AchievementCard from './AchievementCard'

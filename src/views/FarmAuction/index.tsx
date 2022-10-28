@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Heading, Text, Flex, Link, Breadcrumbs } from '@soy-libs/uikit2'
+import { Button, Heading, Text, Flex, Link, Breadcrumbs } from '@callisto-enterprise/soy-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import PageHeader from 'components/PageHeader'

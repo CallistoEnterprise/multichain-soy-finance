@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, InjectedModalProps, Skeleton, Text } from '@soy-libs/uikit2'
+import { Button, InjectedModalProps, Skeleton, Text } from '@callisto-enterprise/soy-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
 import { useProfile } from 'state/profile/hooks'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Card, CardBody, CardHeader, Flex, Heading, LinkExternal, Text } from '@soy-libs/uikit2'
+import { Box, Card, CardBody, CardHeader, Flex, Heading, LinkExternal, Text } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { format } from 'date-fns'
 import { Proposal } from 'state/types'

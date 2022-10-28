@@ -8,7 +8,7 @@ import {
   PlayCircleOutlineIcon,
   Text,
   WaitIcon,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import styled from 'styled-components'
 import { useAppDispatch } from 'state'

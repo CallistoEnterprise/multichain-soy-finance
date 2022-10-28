@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'contexts/Localization'
 import { getCallistoExpLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { Flex, Link, PocketWatchIcon, Text, Skeleton } from '@soy-libs/uikit2'
+import { Flex, Link, PocketWatchIcon, Text, Skeleton } from '@callisto-enterprise/soy-uikit2'
 import getTimePeriods from 'utils/getTimePeriods'
 import { PublicIfoData } from 'views/Ifos/types'
 

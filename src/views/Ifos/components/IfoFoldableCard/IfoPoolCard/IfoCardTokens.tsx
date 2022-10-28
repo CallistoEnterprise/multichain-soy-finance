@@ -10,7 +10,7 @@ import {
   Button,
   AutoRenewIcon,
   BunnyPlaceholderIcon,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import { Ifo, PoolIds, Token } from 'config/constants/types'
 import tokens from 'config/constants/tokens'

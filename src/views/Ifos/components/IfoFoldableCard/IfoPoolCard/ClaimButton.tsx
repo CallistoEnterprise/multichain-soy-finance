@@ -1,5 +1,5 @@
 import React from 'react'
-import { AutoRenewIcon, Button } from '@soy-libs/uikit2'
+import { AutoRenewIcon, Button } from '@callisto-enterprise/soy-uikit2'
 import { PoolIds } from 'config/constants/types'
 import { WalletIfoData } from 'views/Ifos/types'
 import { useTranslation } from 'contexts/Localization'

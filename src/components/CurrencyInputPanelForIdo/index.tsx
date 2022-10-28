@@ -1,6 +1,6 @@
 import React from 'react'
-import { Currency, Pair } from '@soy-libs/sdk-multichain'
-import { Button, ChevronDownIcon, Text, useModal, Flex } from '@soy-libs/uikit2'
+import { Currency, Pair } from '@callisto-enterprise/soy-sdk'
+import { Button, ChevronDownIcon, Text, useModal, Flex } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

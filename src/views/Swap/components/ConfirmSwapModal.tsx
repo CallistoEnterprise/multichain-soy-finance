@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
-import { currencyEquals, Trade } from '@soy-libs/sdk-multichain'
-import { InjectedModalProps } from '@soy-libs/uikit2'
+import { currencyEquals, Trade } from '@callisto-enterprise/soy-sdk'
+import { InjectedModalProps } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import TransactionConfirmationModal, {
   ConfirmationModalContent,

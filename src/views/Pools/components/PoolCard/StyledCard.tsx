@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components'
-import { Card, Box } from '@soy-libs/uikit2'
+import { Card, Box } from '@callisto-enterprise/soy-uikit2'
 
 const PromotedGradient = keyframes`
   0% {

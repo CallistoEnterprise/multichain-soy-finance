@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody } from '@soy-libs/uikit2'
+import { Heading, Card, CardBody } from '@callisto-enterprise/soy-uikit2'
 
 interface HowToCardProps {
   number?: number

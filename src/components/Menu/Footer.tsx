@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex } from '@soy-libs/uikit2'
+import { Flex } from '@callisto-enterprise/soy-uikit2'
 // import { useTranslation } from 'contexts/Localization'LinkExternal,, Svg, Image, Button
 
 const Wrapper = styled.div`

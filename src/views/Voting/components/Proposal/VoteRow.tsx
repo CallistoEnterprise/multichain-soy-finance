@@ -1,6 +1,6 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import { Flex, LinkExternal, Text, Tag, CheckmarkCircleIcon } from '@soy-libs/uikit2'
+import { Flex, LinkExternal, Text, Tag, CheckmarkCircleIcon } from '@callisto-enterprise/soy-uikit2'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import truncateWalletAddress from 'utils/truncateWalletAddress'
 import { getCallistoExpLink } from 'utils'

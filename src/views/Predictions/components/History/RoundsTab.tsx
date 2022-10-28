@@ -1,6 +1,6 @@
 import React from 'react'
 import { orderBy } from 'lodash'
-import { Box, Heading, Text } from '@soy-libs/uikit2'
+import { Box, Heading, Text } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { Bet } from 'state/types'
 import HistoricalBet from './HistoricalBet'

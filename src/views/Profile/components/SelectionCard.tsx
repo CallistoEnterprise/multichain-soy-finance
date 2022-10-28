@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, Radio } from '@soy-libs/uikit2'
+import { Card, Radio } from '@callisto-enterprise/soy-uikit2'
 
 interface SelectionCardProps {
   name: string

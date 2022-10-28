@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import confetti from 'canvas-confetti'
-import { Modal, Text, Button, Flex, InjectedModalProps } from '@soy-libs/uikit2'
+import { Modal, Text, Button, Flex, InjectedModalProps } from '@callisto-enterprise/soy-uikit2'
 import history from 'routerHistory'
 import { delay } from 'lodash'
 import { useTranslation } from 'contexts/Localization'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Skeleton } from '@soy-libs/uikit2'
+import { Flex, Skeleton } from '@callisto-enterprise/soy-uikit2'
 
 export const SkeletonCardActions = () => {
   return <Skeleton height="48px" />

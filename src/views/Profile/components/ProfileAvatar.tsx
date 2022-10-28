@@ -1,5 +1,5 @@
 import React from 'react'
-import { NoProfileAvatarIcon } from '@soy-libs/uikit2'
+import { NoProfileAvatarIcon } from '@callisto-enterprise/soy-uikit2'
 import { Profile } from 'state/types'
 import styled from 'styled-components'
 

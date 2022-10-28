@@ -1,7 +1,7 @@
 import React from 'react'
 import Page from 'components/Layout/Page'
 import { Link, Redirect, useParams } from 'react-router-dom'
-import { ChevronLeftIcon, Flex, Text } from '@soy-libs/uikit2'
+import { ChevronLeftIcon, Flex, Text } from '@callisto-enterprise/soy-uikit2'
 import PageLoader from 'components/Loader/PageLoader'
 import teams from 'config/constants/teams'
 import { useTranslation } from 'contexts/Localization'

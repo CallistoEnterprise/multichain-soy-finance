@@ -14,7 +14,7 @@ import {
   SubMenuItem,
   EllipsisIcon,
   LinkExternal,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getCallistoExpLink } from 'utils'
 import { getBalanceNumber } from 'utils/formatBalance'

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Heading, Card, CardHeader, CardBody, Flex, Link, Box } from '@soy-libs/uikit2'
+import { Text, Heading, Card, CardHeader, CardBody, Flex, Link, Box } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import FoldableText from 'components/FoldableText'
 import { FORM_ADDRESS } from '../helpers'

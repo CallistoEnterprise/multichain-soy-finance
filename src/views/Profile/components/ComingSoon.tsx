@@ -1,5 +1,5 @@
 import React from 'react'
-import { BunnyPlaceholderIcon, Flex, Heading } from '@soy-libs/uikit2'
+import { BunnyPlaceholderIcon, Flex, Heading } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 
 interface ComingSoonProps {

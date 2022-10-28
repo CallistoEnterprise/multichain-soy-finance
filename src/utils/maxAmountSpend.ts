@@ -1,4 +1,4 @@
-import { ChainId, CurrencyAmount, ETHERS, JSBI } from '@soy-libs/sdk-multichain'
+import { ChainId, CurrencyAmount, ETHERS, JSBI } from '@callisto-enterprise/soy-sdk'
 import { MIN_CLO } from '../config/constants'
 
 /**

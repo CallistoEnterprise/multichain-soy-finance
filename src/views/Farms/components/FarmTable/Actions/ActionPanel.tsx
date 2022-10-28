@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { LinkExternal, Text } from '@soy-libs/uikit2'
+import { LinkExternal, Text } from '@callisto-enterprise/soy-uikit2'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'

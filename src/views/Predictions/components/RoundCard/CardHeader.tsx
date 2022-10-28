@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { Flex, Text } from '@soy-libs/uikit2'
+import { Flex, Text } from '@callisto-enterprise/soy-uikit2'
 import styled, { DefaultTheme } from 'styled-components'
 
 type Status = 'expired' | 'live' | 'next' | 'soon' | 'canceled' | 'calculating'

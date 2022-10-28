@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Modal, Button, NoProfileAvatarIcon, Flex } from '@soy-libs/uikit2'
+import { Modal, Button, NoProfileAvatarIcon, Flex } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { CompetitionProps } from '../../types'
 import MakeProfile from './MakeProfile'

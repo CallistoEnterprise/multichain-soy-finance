@@ -1,4 +1,4 @@
-import { Language } from '@soy-libs/uikit2'
+import { Language } from '@callisto-enterprise/soy-uikit2'
 
 export const AR: Language = { locale: 'ar-SA', language: 'العربية', code: 'ar' }
 export const BN: Language = { locale: 'bn-BD', language: 'বাংলা', code: 'bn' }

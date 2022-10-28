@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Flex, Spinner, Text } from '@soy-libs/uikit2'
+import { Flex, Spinner, Text } from '@callisto-enterprise/soy-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import styled from 'styled-components'
 import ConnectWalletButton from 'components/ConnectWalletButton'

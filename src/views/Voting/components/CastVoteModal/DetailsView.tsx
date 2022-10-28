@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Flex } from '@soy-libs/uikit2'
+import { Text, Flex } from '@callisto-enterprise/soy-uikit2'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { VotingBox, ModalInner } from './styles'

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading } from '@soy-libs/uikit2'
+import { Card, CardBody, Heading } from '@callisto-enterprise/soy-uikit2'
 
 interface NotificationProps {
   title: string

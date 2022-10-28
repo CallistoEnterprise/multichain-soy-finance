@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Flex, Skeleton, UserMenuItem } from '@soy-libs/uikit2'
+import { Flex, Skeleton, UserMenuItem } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 
 interface ProfileUserMenuItemProps {

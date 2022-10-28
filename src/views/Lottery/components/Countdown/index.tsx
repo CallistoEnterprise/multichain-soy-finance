@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Heading, Skeleton } from '@soy-libs/uikit2'
+import { Flex, Heading, Skeleton } from '@callisto-enterprise/soy-uikit2'
 import getTimePeriods from 'utils/getTimePeriods'
 import Timer from './Timer'
 import useNextEventCountdown from '../../hooks/useNextEventCountdown'

@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { AddressZero } from '@ethersproject/constants'
-import { TokenAmount, Token, ChainId, Percent, JSBI } from '@soy-libs/sdk-multichain'
+import { TokenAmount, Token, ChainId, Percent, JSBI } from '@callisto-enterprise/soy-sdk'
 
 import {
   getCallistoExpLink,

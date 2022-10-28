@@ -1,5 +1,5 @@
 import React from 'react'
-import { BoxProps, Flex, Text } from '@soy-libs/uikit2'
+import { BoxProps, Flex, Text } from '@callisto-enterprise/soy-uikit2'
 import { BetPosition, Round } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { formatUsd } from '../History/helpers'

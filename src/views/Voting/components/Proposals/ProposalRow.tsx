@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowForwardIcon, Box, IconButton, Flex, Text } from '@soy-libs/uikit2'
+import { ArrowForwardIcon, Box, IconButton, Flex, Text } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { Proposal } from 'state/types'
 import { isCoreProposal } from '../../helpers'

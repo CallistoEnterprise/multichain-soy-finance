@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react'
-import { Token } from '@soy-libs/sdk-multichain'
-import { Button, Text, CheckmarkCircleIcon } from '@soy-libs/uikit2'
+import { Token } from '@callisto-enterprise/soy-sdk'
+import { Button, Text, CheckmarkCircleIcon } from '@callisto-enterprise/soy-uikit2'
 import { AutoRow, RowFixed } from 'components/Layout/Row'
 import { AutoColumn } from 'components/Layout/Column'
 import CurrencyLogo from 'components/Logo/CurrencyLogo'

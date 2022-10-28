@@ -1,6 +1,6 @@
 import React from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { Box, Flex, Heading, Text, PrizeIcon, BlockIcon, LinkExternal, useTooltip, InfoIcon } from '@soy-libs/uikit2'
+import { Box, Flex, Heading, Text, PrizeIcon, BlockIcon, LinkExternal, useTooltip, InfoIcon } from '@callisto-enterprise/soy-uikit2'
 import { useAppDispatch } from 'state'
 import { useTranslation } from 'contexts/Localization'
 import { useGetRewardRate } from 'state/hooks'

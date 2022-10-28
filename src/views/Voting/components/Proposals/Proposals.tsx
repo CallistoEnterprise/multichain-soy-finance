@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Breadcrumbs, Card, Flex, Heading, Text } from '@soy-libs/uikit2'
+import { Box, Breadcrumbs, Card, Flex, Heading, Text } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import Container from 'components/Layout/Container'
 import { useAppDispatch } from 'state'

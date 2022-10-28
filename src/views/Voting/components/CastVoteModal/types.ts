@@ -1,4 +1,4 @@
-import { InjectedModalProps } from '@soy-libs/uikit2'
+import { InjectedModalProps } from '@callisto-enterprise/soy-uikit2'
 
 export enum ConfirmVoteView {
   MAIN = 'main',

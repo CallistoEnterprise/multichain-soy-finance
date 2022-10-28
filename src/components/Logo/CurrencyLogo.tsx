@@ -1,4 +1,4 @@
-import { Currency, ETHERS, Token } from '@soy-libs/sdk-multichain'
+import { Currency, ETHERS, Token } from '@callisto-enterprise/soy-sdk'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

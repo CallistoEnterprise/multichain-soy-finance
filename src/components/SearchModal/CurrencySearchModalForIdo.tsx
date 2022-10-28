@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Currency } from '@soy-libs/sdk-multichain'
+import { Currency } from '@callisto-enterprise/soy-sdk'
 import {
   ModalContainer,
   ModalHeader,
@@ -9,7 +9,7 @@ import {
   ModalBody,
   InjectedModalProps,
   Heading,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import usePrevious from 'hooks/usePreviousValue'
 import { useTranslation } from 'contexts/Localization'

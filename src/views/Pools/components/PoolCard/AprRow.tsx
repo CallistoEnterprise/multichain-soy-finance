@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton } from '@soy-libs/uikit2' // useTooltip
+import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton } from '@callisto-enterprise/soy-uikit2' // useTooltip
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 import ApyCalculatorModal from 'components/ApyCalculatorModal/poolAPY'

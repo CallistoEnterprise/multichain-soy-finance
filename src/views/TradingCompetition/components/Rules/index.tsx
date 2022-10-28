@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text } from '@soy-libs/uikit2'
+import { Flex, Text } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import RulesCard from './RulesCard'

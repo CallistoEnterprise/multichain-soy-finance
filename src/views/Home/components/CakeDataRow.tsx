@@ -4,7 +4,7 @@ import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getSoyAddress } from 'utils/addressHelpers'
 import { getBalanceNumber, formatLocalisedCompactNumber } from 'utils/formatBalance'
 import { usePriceCakeBusd } from 'state/farms/hooks'
-import { Flex, Text, Heading, Skeleton } from '@soy-libs/uikit2'
+import { Flex, Text, Heading, Skeleton } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 

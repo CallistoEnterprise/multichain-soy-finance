@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardHeader, Box, Heading, Text } from '@soy-libs/uikit2'
+import { Card, CardHeader, Box, Heading, Text } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import PrizesGrid from './PrizesGrid'
 

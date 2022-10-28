@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Text, Flex, ChevronRightIcon } from '@soy-libs/uikit2'
+import { Heading, Text, Flex, ChevronRightIcon } from '@callisto-enterprise/soy-uikit2'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
