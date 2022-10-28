@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { format } from 'date-fns'
-import { Text, Flex, Box } from '@soy-libs/uikit2'
+import { Text, Flex, Box } from '@callisto-enterprise/soy-uikit2'
 import { Auction, AuctionStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
 

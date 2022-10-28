@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { NoProfileAvatarIcon, LaurelLeftIcon, LaurelRightIcon, Skeleton } from '@soy-libs/uikit2'
+import { NoProfileAvatarIcon, LaurelLeftIcon, LaurelRightIcon, Skeleton } from '@callisto-enterprise/soy-uikit2'
 import { YourScoreProps } from '../../types'
 import ProfileAvatar from '../../../Profile/components/ProfileAvatar'
 import Sticker from '../Sticker'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Flex, Button, useModal, Skeleton, useTooltip, AutoRenewIcon, HelpIcon } from '@soy-libs/uikit2'
+import { Flex, Button, useModal, Skeleton, useTooltip, AutoRenewIcon, HelpIcon } from '@callisto-enterprise/soy-uikit2'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { useBlockLatestTimestamp } from 'utils'

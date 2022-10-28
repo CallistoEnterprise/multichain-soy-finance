@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useRouteMatch } from 'react-router-dom'
-import { Box, Flex, ButtonMenu, ButtonMenuItem } from '@soy-libs/uikit2'
+import { Box, Flex, ButtonMenu, ButtonMenuItem } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 // import Search from 'views/Info/components/InfoSearch'
 

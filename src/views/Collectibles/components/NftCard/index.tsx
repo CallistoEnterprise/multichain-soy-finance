@@ -9,7 +9,7 @@ import {
   AutoRenewIcon,
   Button,
   Text
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
 import { Nft } from 'config/constants/types'

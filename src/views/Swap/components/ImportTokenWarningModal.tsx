@@ -1,6 +1,6 @@
 import React from 'react'
-import { Token } from '@soy-libs/sdk-multichain'
-import { Modal, InjectedModalProps } from '@soy-libs/uikit2'
+import { Token } from '@callisto-enterprise/soy-sdk'
+import { Modal, InjectedModalProps } from '@callisto-enterprise/soy-uikit2'
 import ImportToken from 'components/SearchModal/ImportToken'
 
 interface Props extends InjectedModalProps {

@@ -13,7 +13,7 @@ import {
   useModal,
   Box,
   useTooltip,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePriceCakeBusd } from 'state/farms/hooks'

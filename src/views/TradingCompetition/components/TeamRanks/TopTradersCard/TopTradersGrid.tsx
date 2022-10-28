@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Skeleton } from '@soy-libs/uikit2'
+import { Box, Skeleton } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { LeaderboardDataItem } from '../../../types'
 import GridItem from './GridItem'

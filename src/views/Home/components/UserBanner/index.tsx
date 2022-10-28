@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, Flex } from '@soy-libs/uikit2'
+import { Card, CardBody, Flex } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import HarvestCard from './HarvestCard'
 import UserDetail from './UserDetail'

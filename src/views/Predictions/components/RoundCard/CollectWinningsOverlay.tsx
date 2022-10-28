@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, TrophyGoldIcon } from '@soy-libs/uikit2'
+import { Flex, TrophyGoldIcon } from '@callisto-enterprise/soy-uikit2'
 import { useGetIsClaimable } from 'state/hooks'
 import { useTranslation } from 'contexts/Localization'
 import CollectWinningsButton from '../CollectWinningsButton'

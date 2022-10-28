@@ -9,7 +9,7 @@ import {
   TeamPlayerIcon,
   TrophyGoldIcon,
   Skeleton,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { UserTradingInformationProps } from '../../types'
 import { useCompetitionCakeRewards, getRewardGroupAchievements } from '../../helpers'

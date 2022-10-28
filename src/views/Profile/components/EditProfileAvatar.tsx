@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useModal } from '@soy-libs/uikit2'
+import { useModal } from '@callisto-enterprise/soy-uikit2'
 import EditProfileModal from './EditProfileModal'
 import ProfileAvatar, { ProfileAvatarProps } from './ProfileAvatar'
 

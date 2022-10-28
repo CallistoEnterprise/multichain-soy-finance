@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Progress } from '@soy-libs/uikit2'
+import { Progress } from '@callisto-enterprise/soy-uikit2'
 import { differenceInSeconds } from 'date-fns'
 import { Auction, AuctionStatus } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Heading, Text } from '@soy-libs/uikit2'
+import { Button, Heading, Text } from '@callisto-enterprise/soy-uikit2'
 import history from 'routerHistory'
 import { useTranslation } from 'contexts/Localization'
 import { CompetitionProps } from 'views/TradingCompetition/types'

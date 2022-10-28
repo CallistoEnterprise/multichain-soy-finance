@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card } from '@soy-libs/uikit2'
+import { Card } from '@callisto-enterprise/soy-uikit2'
 
 export const BodyWrapper = styled(Card)`
   border-radius: 24px;

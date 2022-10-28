@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Heading, Text } from '@soy-libs/uikit2'
+import { Box, Heading, Text } from '@callisto-enterprise/soy-uikit2'
 import Container from 'components/Layout/Container'
 import { useTranslation } from 'contexts/Localization'
 

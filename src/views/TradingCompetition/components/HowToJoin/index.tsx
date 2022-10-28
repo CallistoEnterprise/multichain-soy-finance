@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Heading, Link } from '@soy-libs/uikit2'
+import { Flex, Text, Heading, Link } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import HowToCard from './HowToCard'

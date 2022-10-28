@@ -1,5 +1,5 @@
 import React from 'react'
-import { InjectedModalProps, Modal } from '@soy-libs/uikit2'
+import { InjectedModalProps, Modal } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import useEditProfile, { Views } from './reducer'
 import StartView from './StartView'

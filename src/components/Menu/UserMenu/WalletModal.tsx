@@ -10,7 +10,7 @@ import {
   ModalContainer,
   ModalHeader as UIKitModalHeader,
   ModalTitle,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'

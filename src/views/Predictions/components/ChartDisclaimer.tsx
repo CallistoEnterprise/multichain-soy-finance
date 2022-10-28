@@ -1,5 +1,5 @@
 import React from 'react'
-import { ModalContainer, ModalBody, Text, Button, InjectedModalProps, LinkExternal, Flex } from '@soy-libs/uikit2'
+import { ModalContainer, ModalBody, Text, Button, InjectedModalProps, LinkExternal, Flex } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 
 interface ChartDisclaimerProps extends InjectedModalProps {

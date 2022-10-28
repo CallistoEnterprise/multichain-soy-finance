@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import orderBy from 'lodash/orderBy'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon } from '@soy-libs/uikit2'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon } from '@callisto-enterprise/soy-uikit2'
 import { NavLink } from 'react-router-dom'
 import pools from 'config/constants/pools'
 import { Pool } from 'state/types'

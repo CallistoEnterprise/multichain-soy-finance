@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Text, Flex, Skeleton, Box, Image } from '@soy-libs/uikit2'
+import { Text, Flex, Skeleton, Box, Image } from '@callisto-enterprise/soy-uikit2'
 import { useFarmAuctionContract } from 'hooks/useContract'
 import { useTranslation } from 'contexts/Localization'
 import { usePriceCakeBusd } from 'state/farms/hooks'

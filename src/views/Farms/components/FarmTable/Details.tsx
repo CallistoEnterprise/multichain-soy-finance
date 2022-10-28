@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ChevronDownIcon, useMatchBreakpoints } from '@soy-libs/uikit2'
+import { ChevronDownIcon, useMatchBreakpoints } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 
 interface DetailsProps {

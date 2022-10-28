@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, BoxProps } from '@soy-libs/uikit2'
+import { Box, BoxProps } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 
 export const VotingBox = styled.div`

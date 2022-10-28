@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Heading, Card, CardHeader, CardBody, Flex } from '@soy-libs/uikit2'
+import { Text, Heading, Card, CardHeader, CardBody, Flex } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { usePmoon, useFarmAuctionContract } from 'hooks/useContract'

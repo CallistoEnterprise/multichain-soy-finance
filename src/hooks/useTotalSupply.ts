@@ -1,5 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber'
-import { Token, TokenAmount } from '@soy-libs/sdk-multichain'
+import { Token, TokenAmount } from '@callisto-enterprise/soy-sdk'
 import { useTokenContract } from './useContract'
 import { useSingleCallResult } from '../state/multicall/hooks'
 

@@ -13,7 +13,7 @@ import {
   LinkExternal,
   Text,
   useModal,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import { useHistory } from 'react-router'
 import { useWeb3React } from '@web3-react/core'
 import times from 'lodash/times'

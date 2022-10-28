@@ -13,7 +13,7 @@ import {
   Box,
   CardFooter,
   ExpandableLabel,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'

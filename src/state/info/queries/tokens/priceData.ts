@@ -6,7 +6,7 @@ import { PriceChartEntry } from 'state/info/types'
 import { INFO_CLIENT } from 'config/constants/endpoints'
 import { coinPrice,derivedCOIN } from 'config/constants/info'
 
-import { ChainId } from "@soy-libs/sdk-multichain"
+import { ChainId } from "@callisto-enterprise/soy-sdk"
 
 const chainId = 820 //parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 

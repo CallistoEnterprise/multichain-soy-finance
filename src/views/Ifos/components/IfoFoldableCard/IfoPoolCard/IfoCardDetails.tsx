@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Flex, Box, Skeleton } from '@soy-libs/uikit2'
+import { Text, Flex, Box, Skeleton } from '@callisto-enterprise/soy-uikit2'
 import { PublicIfoData } from 'views/Ifos/types'
 import { useTranslation } from 'contexts/Localization'
 import { Ifo, PoolIds } from 'config/constants/types'

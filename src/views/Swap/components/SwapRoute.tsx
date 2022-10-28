@@ -1,6 +1,6 @@
 import React, { Fragment, memo } from 'react'
-import { Trade } from '@soy-libs/sdk-multichain'
-import { Text, Flex, ChevronRightIcon } from '@soy-libs/uikit2'
+import { Trade } from '@callisto-enterprise/soy-sdk'
+import { Text, Flex, ChevronRightIcon } from '@callisto-enterprise/soy-uikit2'
 import { unwrappedToken } from 'utils/wrappedCurrency'
 
 export default memo(function SwapRoute({ trade }: { trade: Trade }) {

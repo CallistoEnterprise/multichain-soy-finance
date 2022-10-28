@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text } from '@soy-libs/uikit2'
+import { Box, Text } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 
 const BaseLabel = styled.label`

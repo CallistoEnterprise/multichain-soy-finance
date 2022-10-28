@@ -1,6 +1,6 @@
-import { Currency, Percent, Price } from '@soy-libs/sdk-multichain'
+import { Currency, Percent, Price } from '@callisto-enterprise/soy-sdk'
 import React from 'react'
-import { Text } from '@soy-libs/uikit2'
+import { Text } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { AutoColumn } from '../../components/Layout/Column'
 import { AutoRow } from '../../components/Layout/Row'

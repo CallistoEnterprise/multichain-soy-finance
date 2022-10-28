@@ -1,4 +1,4 @@
-import { ChainId, Currency, currencyEquals, JSBI, Price, WETH } from '@soy-libs/sdk-multichain'
+import { ChainId, Currency, currencyEquals, JSBI, Price, WETH } from '@callisto-enterprise/soy-sdk'
 import { useMemo } from 'react'
 import { DEFAULT_CHAIN_ID } from 'config';
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

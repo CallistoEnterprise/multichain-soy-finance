@@ -5,7 +5,7 @@ import {
   Card,
   CardBody,
   Button,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { Nft } from 'config/constants/types'
 import Preview from './Preview'

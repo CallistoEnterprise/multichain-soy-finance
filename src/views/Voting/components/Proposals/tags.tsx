@@ -1,5 +1,5 @@
 import React from 'react'
-import { TagProps } from '@soy-libs/uikit2'
+import { TagProps } from '@callisto-enterprise/soy-uikit2'
 import { ClosedTag, CommunityTag, CoreTag, SoonTag, VoteNowTag } from 'components/Tags'
 import { ProposalState } from 'state/types'
 

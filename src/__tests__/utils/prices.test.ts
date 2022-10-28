@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Pair, Route, Token, TokenAmount, Trade, TradeType } from '@soy-libs/sdk-multichain'
+import { ChainId, JSBI, Pair, Route, Token, TokenAmount, Trade, TradeType } from '@callisto-enterprise/soy-sdk'
 import { computeTradePriceBreakdown } from 'utils/prices'
 
 describe('prices', () => {

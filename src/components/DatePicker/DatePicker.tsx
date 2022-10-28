@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker'
-import { Input, InputProps } from '@soy-libs/uikit2'
+import { Input, InputProps } from '@callisto-enterprise/soy-uikit2'
 
 import 'react-datepicker/dist/react-datepicker.css'
 

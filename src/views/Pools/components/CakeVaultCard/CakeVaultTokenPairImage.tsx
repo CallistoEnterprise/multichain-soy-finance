@@ -1,5 +1,5 @@
 import React from 'react'
-import { TokenPairImage, ImageProps } from '@soy-libs/uikit2'
+import { TokenPairImage, ImageProps } from '@callisto-enterprise/soy-uikit2'
 import { BASE_URL } from 'config'
 import tokens from 'config/constants/tokens'
 import { getAddress } from 'utils/addressHelpers'

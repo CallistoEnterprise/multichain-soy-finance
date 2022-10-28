@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Text, Box } from '@soy-libs/uikit2'
+import { Flex, Text, Box } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { Pool } from 'state/types'
 import { BIG_ZERO } from 'utils/bigNumber'

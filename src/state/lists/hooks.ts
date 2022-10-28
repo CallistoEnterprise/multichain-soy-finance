@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@soy-libs/sdk-multichain'
+import { ChainId, Token } from '@callisto-enterprise/soy-sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'

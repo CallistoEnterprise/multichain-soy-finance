@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Box } from '@soy-libs/uikit2'
+import { Box } from '@callisto-enterprise/soy-uikit2'
 import { DefaultTheme, useTheme } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 

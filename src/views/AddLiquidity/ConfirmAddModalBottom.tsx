@@ -1,6 +1,6 @@
-import { Currency, CurrencyAmount, Fraction, Percent } from '@soy-libs/sdk-multichain'
+import { Currency, CurrencyAmount, Fraction, Percent } from '@callisto-enterprise/soy-sdk'
 import React from 'react'
-import { Button, Text } from '@soy-libs/uikit2'
+import { Button, Text } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { RowBetween, RowFixed } from '../../components/Layout/Row'
 import { CurrencyLogo } from '../../components/Logo'

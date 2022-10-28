@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, UserMenuItem, WarningIcon } from '@soy-libs/uikit2'
+import { Flex, UserMenuItem, WarningIcon } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 
 interface WalletUserMenuItemProps {

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Heading } from '@soy-libs/uikit2'
+import { Heading } from '@callisto-enterprise/soy-uikit2'
 import history from 'routerHistory'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/Layout/Page'
 import NftList from './components/PadList'
-import { ChainId } from '@soy-libs/sdk-multichain'
+import { ChainId } from '@callisto-enterprise/soy-sdk'
 
 const StyledHero = styled.div`
   border-bottom: 2px solid ${({ theme }) => theme.colors.textSubtle};

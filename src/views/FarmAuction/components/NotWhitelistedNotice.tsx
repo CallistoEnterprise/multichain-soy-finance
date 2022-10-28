@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Flex, Message, Box, HelpIcon } from '@soy-libs/uikit2'
+import { Text, Flex, Message, Box, HelpIcon } from '@callisto-enterprise/soy-uikit2'
 import { Auction, ConnectedBidder } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
 

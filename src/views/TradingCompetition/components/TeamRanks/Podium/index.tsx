@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
-import { Flex, Box, Text, Skeleton } from '@soy-libs/uikit2'
+import { Flex, Box, Text, Skeleton } from '@callisto-enterprise/soy-uikit2'
 import TeamPodiumIcon from './TeamPodiumIcon'
 import { PodiumBase } from '../../../svgs'
 import { TeamLeaderboardProps } from '../../../types'

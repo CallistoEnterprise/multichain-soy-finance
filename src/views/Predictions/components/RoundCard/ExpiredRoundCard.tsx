@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { Box, BlockIcon, CardBody } from '@soy-libs/uikit2'
+import { Box, BlockIcon, CardBody } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { NodeRound, BetPosition, NodeLedger } from 'state/types'
 import { useGetBetByEpoch } from 'state/hooks'

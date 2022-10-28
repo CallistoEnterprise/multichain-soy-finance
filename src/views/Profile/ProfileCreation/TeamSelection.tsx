@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Card, CardBody, CommunityIcon, Flex, Heading, Text } from '@soy-libs/uikit2'
+import { Card, CardBody, CommunityIcon, Flex, Heading, Text } from '@callisto-enterprise/soy-uikit2'
 import shuffle from 'lodash/shuffle'
 import { useTeams } from 'state/teams/hooks'
 import { useTranslation } from 'contexts/Localization'

@@ -1,7 +1,7 @@
 import React from 'react'
 import _uniqueId from 'lodash/uniqueId'
 import styled from 'styled-components'
-import { Flex } from '@soy-libs/uikit2'
+import { Flex } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { CountdownProps } from '../../types'
 import Step from './Step'

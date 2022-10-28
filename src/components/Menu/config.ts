@@ -1,4 +1,4 @@
-import { MenuEntry } from '@soy-libs/uikit2'
+import { MenuEntry } from '@callisto-enterprise/soy-uikit2'
 import { ContextApi } from 'contexts/Localization/types'
 
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [

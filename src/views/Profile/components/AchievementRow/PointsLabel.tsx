@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, FlexProps, PrizeIcon, Text } from '@soy-libs/uikit2'
+import { Flex, FlexProps, PrizeIcon, Text } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 
 interface PointsLabelProps extends FlexProps {

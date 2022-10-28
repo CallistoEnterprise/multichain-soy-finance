@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHERS, TokenAmount, WETH } from '@soy-libs/sdk-multichain'
-import { Button, Text, Flex, AddIcon, CardBody, Message, useModal } from '@soy-libs/uikit2'
+import { Currency, currencyEquals, ETHERS, TokenAmount, WETH } from '@callisto-enterprise/soy-sdk'
+import { Button, Text, Flex, AddIcon, CardBody, Message, useModal } from '@callisto-enterprise/soy-uikit2'
 import { RouteComponentProps } from 'react-router-dom'
 import { DEFAULT_CHAIN_ID } from 'config';
 import { useIsTransactionUnsupported } from 'hooks/Trades'

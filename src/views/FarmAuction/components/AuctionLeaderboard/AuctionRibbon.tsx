@@ -1,4 +1,4 @@
-import { Text } from '@soy-libs/uikit2'
+import { Text } from '@callisto-enterprise/soy-uikit2'
 import { Auction, AuctionStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
 import React from 'react'

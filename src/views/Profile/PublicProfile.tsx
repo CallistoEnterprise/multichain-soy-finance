@@ -15,7 +15,7 @@ import {
   BlockIcon,
   VisibilityOn,
   VisibilityOff,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { useProfile } from 'state/profile/hooks'
 import usePersistState from 'hooks/usePersistState'

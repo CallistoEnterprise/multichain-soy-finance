@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, ButtonProps, useModal } from '@soy-libs/uikit2'
+import { Button, ButtonProps, useModal } from '@callisto-enterprise/soy-uikit2'
 import CollectRoundWinningsModal from './CollectRoundWinningsModal'
 
 interface CollectWinningsButtonProps extends ButtonProps {

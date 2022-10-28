@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Flex, InjectedModalProps, LinkExternal, Message, Text } from '@soy-libs/uikit2'
+import { Box, Button, Flex, InjectedModalProps, LinkExternal, Message, Text } from '@callisto-enterprise/soy-uikit2'
 import useTokenBalance, { useGetBnbBalance } from 'hooks/useTokenBalance'
 import { getSoyAddress } from 'utils/addressHelpers'
 import useAuth from 'hooks/useAuth'

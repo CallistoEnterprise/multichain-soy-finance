@@ -1,4 +1,4 @@
-import { ChainId } from '@soy-libs/sdk-multichain'
+import { ChainId } from '@callisto-enterprise/soy-sdk'
 import tokens from './tokens'
 import { PoolConfig, PoolCategory } from './types'
 

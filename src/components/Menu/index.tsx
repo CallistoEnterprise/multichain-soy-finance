@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu as UikitMenu } from '@soy-libs/uikit2'
+import { Menu as UikitMenu } from '@callisto-enterprise/soy-uikit2'
 import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Text } from '@soy-libs/uikit2'
+import { Box, Button, Text } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { useAppDispatch } from 'state'
 import { setHistoryPaneState } from 'state/predictions'

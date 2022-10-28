@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { Breadcrumbs, Heading, Text } from '@soy-libs/uikit2'
+import { Breadcrumbs, Heading, Text } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { ProfileCreationContext } from './contexts/ProfileCreationProvider'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardBody, Flex, Spinner, WaitIcon, TooltipText, useTooltip, InfoIcon } from '@soy-libs/uikit2'
+import { CardBody, Flex, Spinner, WaitIcon, TooltipText, useTooltip, InfoIcon } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { NodeRound, BetPosition } from 'state/types'
 import { useGetTotalIntervalBlocks } from 'state/hooks'

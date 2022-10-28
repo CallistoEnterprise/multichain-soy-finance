@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from 'react'
 import styled from 'styled-components'
-import { StarFillIcon, StarLineIcon } from '@soy-libs/uikit2'
+import { StarFillIcon, StarLineIcon } from '@callisto-enterprise/soy-uikit2'
 import useTheme from 'hooks/useTheme'
 
 const HoverIcon = styled.div`

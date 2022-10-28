@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useMemo } from 'react'
 import styled from 'styled-components'
-import { Text, Input, Flex, Skeleton, useMatchBreakpoints } from '@soy-libs/uikit2'
+import { Text, Input, Flex, Skeleton, useMatchBreakpoints } from '@callisto-enterprise/soy-uikit2'
 import useFetchSearchResults from 'state/info/queries/search'
 import { CurrencyLogo, DoubleCurrencyLogo } from 'views/Info/components/CurrencyLogo'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'

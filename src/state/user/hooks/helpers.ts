@@ -1,4 +1,4 @@
-import { Token } from '@soy-libs/sdk-multichain'
+import { Token } from '@callisto-enterprise/soy-sdk'
 import { SerializedToken } from '../actions'
 
 export function serializeToken(token: Token): SerializedToken {

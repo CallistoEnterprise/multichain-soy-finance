@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex } from '@soy-libs/uikit2'
+import { Flex } from '@callisto-enterprise/soy-uikit2'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Footer from 'components/Menu/Footer'
 import SubNav from 'components/Menu/SubNav'
-import { ChainId } from '@soy-libs/sdk-multichain'
+import { ChainId } from '@callisto-enterprise/soy-sdk'
 
 const StyledPage = styled.div`
   display: flex;

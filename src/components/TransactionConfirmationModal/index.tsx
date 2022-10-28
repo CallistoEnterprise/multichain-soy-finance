@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { ChainId, Currency, Token } from '@soy-libs/sdk-multichain'
+import { ChainId, Currency, Token } from '@callisto-enterprise/soy-sdk'
 import styled from 'styled-components'
 import {
   Button,
@@ -13,7 +13,7 @@ import {
   Spinner,
   Modal,
   InjectedModalProps,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import { registerToken } from 'utils/wallet'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

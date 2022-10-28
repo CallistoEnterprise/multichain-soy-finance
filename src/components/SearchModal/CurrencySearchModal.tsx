@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Currency, Token } from '@soy-libs/sdk-multichain'
+import { Currency, Token } from '@callisto-enterprise/soy-sdk'
 import {
   ModalContainer,
   ModalHeader,
@@ -10,7 +10,7 @@ import {
   InjectedModalProps,
   Heading,
   Button,
-} from '@soy-libs/uikit2'
+} from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import usePrevious from 'hooks/usePreviousValue'
 import { TokenList } from '@uniswap/token-lists'

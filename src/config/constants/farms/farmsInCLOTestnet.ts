@@ -3,43 +3,43 @@ import { FarmConfig } from '../types'
 
 const farms: FarmConfig[] = [  
    {
-    pid: 2,
+    pid: 23,
     lpSymbol: 'SOY-CLO LP',
     lpAddresses: {
-      20729: '0xb691dcF32ce577Cd15B5426c07969bDF0f757361',
-      820: '0x1ceE27d0627ce8A81dF9B4D7eEE0d753b8c2F613',
+      20729: '0x8e58f4ddb28e1247bb868ca56909cae4379c3dd8',
+      820: '',
     },
     localFarmAddresses: {
-      820: '0xf43Db9BeC8F8626Cb5ADD409C7EBc7272c8f5F8f',
-      20729: '0x093E764cC19FAD812d5F8aDD5A624eC0b934A4b4'
+      820: '',
+      20729: '0x11e826C2b7a9f3e956A25CE4990Adff631493C72'
     },
     token: tokens.soy,
     quoteToken: tokens.wclo,
   },
   {
-    pid: 4,
+    pid: 25,
     lpSymbol: 'BUSDT-CLO LP',
     lpAddresses: {
-      20729: '0x0f01090542433BbF6F58D640D45C34165aA1409d',
-      820: '0xB852AD87329986EaC6e991954fe329231D1E4De1',
+      20729: '0x427c92b6ee9c4885448708c725f909E9521b41AA',
+      820: '',
     },
     localFarmAddresses: {
-      820: '0x3E5B906eE1Cb467E1511a2b1ad5a1bc4a3F9BF8B',
-      20729: '0x093E764cC19FAD812d5F8aDD5A624eC0b934A4b4'
+      820: '',
+      20729: '0x3095564bD195B30C4D6d0ad034d3aB52ECC6523A'
     },
     token: tokens.busdt,
     quoteToken: tokens.wclo,
   },
   {
-    pid: 5,
+    pid: 24,
     lpSymbol: 'SOY-BUSDT LP',
     lpAddresses: {
-      20729: '0x093E764cC19FAD812d5F8aDD5A624eC0b934A4b4',
-      820: '0x23288A0a9c7ac3bEC523aeED146E4F0bf04d6309',
+      20729: '0x79601d78fdc16cd0fbbE79D54aE5a1A010EC16a2',
+      820: '',
     },
     localFarmAddresses: {
-      820: '0xf16edf5Ba6bc116C17f6769deB470a190e272381',
-      20729: '0x093E764cC19FAD812d5F8aDD5A624eC0b934A4b4'
+      820: '',
+      20729: '0x95626AE6260dA16463D0e9CA077cbE9b47c25Fa8'
     },
     token: tokens.soy,
     quoteToken: tokens.busdt,

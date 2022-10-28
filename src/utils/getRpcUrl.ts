@@ -1,5 +1,5 @@
 import sample from 'lodash/sample'
-import { ChainId } from '@soy-libs/sdk-multichain'
+import { ChainId } from '@callisto-enterprise/soy-sdk'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const getNodeUrl = () => {

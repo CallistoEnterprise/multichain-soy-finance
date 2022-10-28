@@ -1,4 +1,4 @@
-import { Pair, Token } from '@soy-libs/sdk-multichain'
+import { Pair, Token } from '@callisto-enterprise/soy-sdk'
 import flatMap from 'lodash/flatMap'
 import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'

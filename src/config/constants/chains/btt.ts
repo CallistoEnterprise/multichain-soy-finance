@@ -1,4 +1,4 @@
-import { ChainId } from '@soy-libs/sdk-multichain'
+import { ChainId } from '@callisto-enterprise/soy-sdk'
 import BigNumber from 'bignumber.js'
 import { BASE_URL } from 'config'
 import type { ChainConstants } from './types'
