@@ -14,7 +14,7 @@ const priceHelperLps: FarmConfig[] = [
     lpSymbol: 'BUSDT-CLO LP',
     lpAddresses: {
       820: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
-      20729: '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
+      20729: '0x427c92b6ee9c4885448708c725f909E9521b41AA',
     },
     token: tokens.busdt,
     quoteToken: tokens.clo,

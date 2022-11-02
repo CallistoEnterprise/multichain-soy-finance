@@ -72,7 +72,7 @@ const TooltipContent = ({ blockNumber, t }: { blockNumber: number; t: ContextApi
         {t('Block %num%', { num: blockNumber })}
       </Text>
       <Link external href={getCallistoExpLink(blockNumber, 'block', chainId)}>
-        {t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}}`)}
+        {t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}`)}
       </Link>
     </>
   )

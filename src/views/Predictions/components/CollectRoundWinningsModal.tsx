@@ -85,7 +85,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({
           </Text>
           {receipt.transactionHash && (
             <LinkExternal href={getCallistoExpLink(receipt.transactionHash, 'transaction')}>
-              {t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}}`)}
+              {t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}`)}
             </LinkExternal>
           )}
         </Box>,

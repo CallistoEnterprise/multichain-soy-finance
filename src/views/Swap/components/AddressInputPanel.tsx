@@ -105,7 +105,7 @@ export default function AddressInputPanel({
               <Text>{t('Recipient')}</Text>
               {address && chainId && (
                 <Link external small href={getCallistoExpLink(name ?? address, 'address', chainId)}>
-                  ({t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}}`)})
+                  ({t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}`)})
                 </Link>
               )}
             </RowBetween>
