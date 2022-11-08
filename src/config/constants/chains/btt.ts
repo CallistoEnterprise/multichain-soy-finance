@@ -17,7 +17,7 @@ const BTT_CONSTANTS: ChainConstants = {
     nativeAddress: '0x0000000000000000000000000000000000001010',
     wrappedNativeAddress: '0x33e85f0e26600a6644b6c910639B0bc7a99fd34e',
   },
-  rpcs: ['https://rpc.ankr.com/bttc','https://rpc.bt.io/'],
+  rpcs: ['https://rpc.ankr.com/bttc'],
   explorer: {
     name: 'BttcScan',
     url: 'https://bttcscan.com/',
