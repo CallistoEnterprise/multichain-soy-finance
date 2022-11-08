@@ -83,7 +83,7 @@ function TransactionSubmittedContent({
           <Text fontSize="20px">{t('Transaction Submitted')}</Text>
           {chainId && hash && (
             <Link external small href={getCallistoExpLink(hash, 'transaction', chainId)}>
-              {t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}}`)}
+              {t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}`)}
             </Link>
           )}
           {currencyToAdd && library?.provider?.isMetaMask && (

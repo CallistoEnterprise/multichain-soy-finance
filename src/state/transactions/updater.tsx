@@ -76,7 +76,7 @@ export default function Updater(): null {
                   <Text>{transactions[hash]?.summary ?? `Hash: ${hash.slice(0, 8)}...${hash.slice(58, 65)}`}</Text>
                   {chainId && (
                     <Link external href={getCallistoExpLink(hash, 'transaction', chainId)}>
-                      {`View on ${CHAINS_CONSTANTS[chainId].explorer.name}}`}
+                      {`View on ${CHAINS_CONSTANTS[chainId].explorer.name}`}
                     </Link>
                   )}
                 </Flex>,
