@@ -168,6 +168,10 @@ const Farms: React.FC = () => {
           ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm?.lpAddresses[chainId], chainId)
           : { cakeRewardsApr: 0, lpRewardsApr: 0 }
 
+        
+        //console.log({"name": farm.lpSymbol, "farm":farm, "apr":{ apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity.toString() }})
+        //if(farm.poolWeight !== "0")
+        //  console.log(farm.lpSymbol, "has liq", Number(totalLiquidity.toString()).toFixed(0), "weight", farm.poolWeight, "and apr", cakeRewardsApr)
         return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
       })
 
@@ -302,6 +306,9 @@ const Farms: React.FC = () => {
         multiplier: farm.multiplier,
       },
       details: farm,
+      tags: {
+        isCore: !farm.isCommunity
+      }
     }
 
     return row

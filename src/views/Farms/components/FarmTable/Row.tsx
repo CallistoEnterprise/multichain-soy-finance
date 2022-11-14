@@ -5,11 +5,13 @@ import { useMatchBreakpoints } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import { useFarmUser } from 'state/farms/hooks'
+import { CoreTag } from 'components/Tags'
 
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
 import Earned, { EarnedProps } from './Earned'
 import Details from './Details'
+import Tags, { TagProps } from './Tags'
 import Multiplier, { MultiplierProps } from './Multiplier'
 import Liquidity, { LiquidityProps } from './Liquidity'
 import ActionPanel from './Actions/ActionPanel'
@@ -23,6 +25,7 @@ export interface RowProps {
   multiplier: MultiplierProps
   liquidity: LiquidityProps
   details: FarmWithStakedValue
+  tags: TagProps
 }
 
 interface RowPropsWithLoading extends RowProps {
@@ -36,6 +39,7 @@ const cells = {
   details: Details,
   multiplier: Multiplier,
   liquidity: Liquidity,
+  tags: Tags
 }
 
 const CellInner = styled.div`
