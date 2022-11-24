@@ -62,7 +62,7 @@ const farms: FarmConfig[] = [
     pid: 22,
     lpSymbol: 'SOY-TMT LP',
     lpAddresses: {
-      20729: '0x397F68cA220713d12d4Dcfd5c59938949EC0E486',
+      20729: '0x8531a6fda1905e91ce6ab5d1b5f0dad158cd74e3',
       820: '',
     },
     localFarmAddresses: {
