@@ -76,7 +76,8 @@ export const getFarmApr = (
   const yearlySoyRewardAllocation = CHAINS_CONSTANTS[chainId].rewardTokensPerYear.times(poolWeight)
   const soyRewardsApr = yearlySoyRewardAllocation.times(soyPriceUsd).div(poolLiquidityUsd).times(100)
   let soyRewardsAprAsNumber = null
-  if (!soyRewardsApr.isNaN() && soyRewardsApr.isFinite()) {
+  
+  if (!soyRewardsApr.isNaN() /* && soyRewardsApr.isFinite() */) {
     soyRewardsAprAsNumber = soyRewardsApr.toNumber()
   }
   const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0

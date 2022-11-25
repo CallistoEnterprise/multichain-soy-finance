@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   masterChef: {
-    20729: '0x84122f45f224f9591C13183675477AA62e993B13',
+    20729: '0x9F66541abc036503Ae074E1E28638b0Cb6165458',
     820: '0x64Fa36ACD0d13472FD786B03afC9C52aD5FCf023',
     199: '0x06dC704b8313ab9216a79363b870fc6E558B4438',
     61: '0x346984a5a13241dAf2587571Ce7D86cEA77bfB7e'

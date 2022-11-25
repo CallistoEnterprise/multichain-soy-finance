@@ -10,9 +10,7 @@ export const LP_HOLDERS_FEE = 0.0017
 export const TREASURY_FEE = 0.0003
 export const BUYBACK_FEE = 0.0005
 export const SS_V2_START = CHAINS_CONSTANTS[chainId].subgraph.startTimestamp
-export const trackedReserveCOIN = CHAINS_CONSTANTS[chainId].subgraph.vars.trackedReserveCOIN
-export const coinPrice = CHAINS_CONSTANTS[chainId].subgraph.vars.coinPrice
-export const derivedCOIN = CHAINS_CONSTANTS[chainId].subgraph.vars.derivedCOIN
+export const { trackedReserveCOIN, coinPrice, derivedCOIN } = CHAINS_CONSTANTS[chainId].subgraph.vars
 
 export const ONE_DAY_UNIX = 86400 // 24h * 60m * 60s
 export const ONE_HOUR_SECONDS = 3600
