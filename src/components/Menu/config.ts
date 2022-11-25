@@ -1,3 +1,4 @@
+import { ChainId } from '@callisto-enterprise/soy-sdk'
 import { MenuEntry } from '@callisto-enterprise/soy-uikit2'
 import { ContextApi } from 'contexts/Localization/types'
 
@@ -211,5 +212,55 @@ export const etcConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     ],
   },
 ]
+
+export const clotestnetConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
+  {
+    label: t('Home'),
+    icon: 'HomeIcon',
+    href: '/home',
+  },
+  {
+    label: t('Trade'),
+    icon: 'TradeIcon',
+    items: [
+      {
+        label: t('Exchange'),
+        href: '/swap',
+      },
+      {
+        label: t('Liquidity'),
+        href: '/pool',
+      },
+    ],
+  },
+  {
+    label: t('Farms'),
+    icon: 'FarmIcon',
+    href: '/farms',
+  },
+  {
+    label: t('Staking Pools'),
+    icon: 'PoolIcon',
+    href: '/staking',
+  },
+  {
+    label: t('Info'),
+    icon: 'InfoIcon',
+    href: '/info'
+  },
+]
+
+export const getConfig = (chainId:ChainId) => {
+  switch(chainId) {
+    case ChainId.BTTMAINNET:
+      return bttConfig
+    case ChainId.ETCCLASSICMAINNET:
+      return etcConfig
+    case ChainId.CLOTESTNET:
+      return clotestnetConfig
+    default:
+      return config
+  }
+}
 
 export default config
