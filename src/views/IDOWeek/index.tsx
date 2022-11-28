@@ -88,7 +88,7 @@ export default function IDODaily() {
 
   const publicData = useGetPublicData()
   const userData = useGetUserDetail()
-  const {statistics, hasBidder, soyToClaim} = userData
+  const {statistics, hasBidder, soyToClaim, refetch} = userData
   const [approveStatus, setApproveStatus] = useState('')
 
   // get custom setting values for user 
@@ -205,6 +205,7 @@ export default function IDODaily() {
       if (res) {
         toastSuccess("Success!", "Your bid was successfully claimed.")
         setClaimPending(false)
+        refetch()
       } else {
         toastWarning("Warning!", "Rejected transaction.")
         setClaimPending(false)

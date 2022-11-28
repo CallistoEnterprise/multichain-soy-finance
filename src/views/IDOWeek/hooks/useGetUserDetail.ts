@@ -11,6 +11,11 @@ const useGetUserDetail = () => {
         hasBidder: false
     })
     const { account, library } = useWeb3React()
+    const [ refetchCounter, setRefetchCounter ] = useState(0)
+
+    const refetch = () => {
+      setRefetchCounter(refetchCounter => refetchCounter+1)
+    }
     // const cloUsdPrice = usePriceBnbBusd()
 
     useEffect(() => {
@@ -42,9 +47,9 @@ const useGetUserDetail = () => {
         }
         if(account)
             getData()
-    }, [account, library])
+    }, [account, library, refetchCounter])
 
-    return userData
+    return {...userData, refetch}
 }
 
 export default useGetUserDetail
