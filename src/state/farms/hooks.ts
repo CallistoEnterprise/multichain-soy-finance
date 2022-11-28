@@ -35,19 +35,19 @@ export const usePollFarmsData = (includeArchive = false) => {
  */
 const coreFarms = {
   [ChainId.MAINNET]: [2, 4],
-  [ChainId.CLOTESTNET]: [2, 4],
+  [ChainId.CLOTESTNET]: [20, 22, 23, 24, 25],
   [ChainId.BTTMAINNET]: [10, 14, 19, 9],
   [ChainId.ETCCLASSICMAINNET]: [2, 6, 5, 1],
 }
 const coreEthFarms = {
   [ChainId.MAINNET]: 2,
-  [ChainId.CLOTESTNET]: 2,
+  [ChainId.CLOTESTNET]: 23,
   [ChainId.BTTMAINNET]: 19,
   [ChainId.ETCCLASSICMAINNET]: 5,
 }
 const busdtFarms = {
   [ChainId.MAINNET]: 4,
-  [ChainId.CLOTESTNET]: 4,
+  [ChainId.CLOTESTNET]: 25,
   [ChainId.BTTMAINNET]: 14,
   [ChainId.ETCCLASSICMAINNET]: 6,
 }

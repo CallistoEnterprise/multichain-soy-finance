@@ -86,7 +86,7 @@ const Chart = ({ data, setHoverValue, setHoverDate }: LineChartProps) => {
         />
         <Tooltip
           cursor={{ fill: theme.colors.backgroundDisabled }}
-          contentStyle={{ display: 'none' }}
+          contentStyle={{ display: 'none' }} // @ts-ignore ???
           formatter={(tooltipValue, name, props) => (
             <HoverUpdater payload={props.payload} setHoverValue={setHoverValue} setHoverDate={setHoverDate} />
           )}
