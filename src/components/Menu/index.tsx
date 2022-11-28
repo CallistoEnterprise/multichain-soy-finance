@@ -19,7 +19,7 @@ const Menu = (props) => {
   const { currentLanguage, setLanguage, t } = useTranslation()
   // const priceData = useGetPriceData()
   // const cloPriceUsd = priceData? Number(priceData.callisto.usd) : undefined
-console.log("multichain isTestnet", chainId === ChainId.CLOTESTNET)
+  
   return (
     <UikitMenu
       userMenu={<UserMenu />}
