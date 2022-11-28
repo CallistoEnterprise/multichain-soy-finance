@@ -9,6 +9,7 @@ import { useProfile } from 'state/profile/hooks'
 import { addSoyToMetamask } from 'utils/wallet'
 import { getConfig } from './config'
 import UserMenu from './UserMenu'
+import { ChainId } from '@callisto-enterprise/soy-sdk'
 
 const Menu = (props) => {
   const { chainId } = useActiveWeb3React()
@@ -18,7 +19,7 @@ const Menu = (props) => {
   const { currentLanguage, setLanguage, t } = useTranslation()
   // const priceData = useGetPriceData()
   // const cloPriceUsd = priceData? Number(priceData.callisto.usd) : undefined
-
+console.log("multichain isTestnet", chainId === ChainId.CLOTESTNET)
   return (
     <UikitMenu
       userMenu={<UserMenu />}
@@ -37,6 +38,7 @@ const Menu = (props) => {
         showPip: !profile?.username,
       }}
       addSoyToMetamask={() => addSoyToMetamask(chainId)}
+      isTestnet = {chainId === ChainId.CLOTESTNET}
       {...props}
     />
   )
