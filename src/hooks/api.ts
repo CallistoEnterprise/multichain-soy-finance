@@ -17,7 +17,7 @@ export const useGetStats = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://openapi.debank.com/v2/protocol?id=polysafemoon')
+        const response = await fetch('') // https://openapi.debank.com/v2/protocol?id=polysafemoon
         const responseData: DeBankTvlResponse = await response.json()
 
         setData(responseData)
