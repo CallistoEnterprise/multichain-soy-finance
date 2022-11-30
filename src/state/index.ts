@@ -7,8 +7,8 @@ import infoReducer from './info'
 import poolsReducer from './pools'
 //import predictionsReducer from './predictions'
 import profileReducer from './profile'
-import teamsReducer from './teams'
-import achievementsReducer from './achievements'
+//import teamsReducer from './teams'
+//import achievementsReducer from './achievements'
 import blockReducer from './block'
 //import votingReducer from './voting'
 //import lotteryReducer from './lottery'
@@ -27,14 +27,14 @@ const PERSISTED_KEYS: string[] = ['user', 'transactions', 'lists']
 const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
   reducer: {
-    achievements: achievementsReducer,
+    //achievements: achievementsReducer,
     block: blockReducer,
     farms: farmsReducer,
     info: infoReducer,
     pools: poolsReducer,
     //predictions: predictionsReducer,
     profile: profileReducer,
-    teams: teamsReducer,
+    //teams: teamsReducer,
     //voting: votingReducer,
     //lottery: lotteryReducer,
 

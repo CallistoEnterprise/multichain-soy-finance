@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 import { getProfileContract } from 'utils/contractHelpers'
 import { Nft } from 'config/constants/types'
 import { Profile } from 'state/types'
-import { getTeam } from 'state/teams/helpers'
+//import { getTeam } from 'state/teams/helpers'
 import { transformProfileResponse } from './helpers'
 
 const profileContract = getProfileContract()
@@ -39,7 +39,7 @@ const getProfile = async (address: string): Promise<GetProfileResponse> => {
 
     const profileResponse = await profileContract.getUserProfile(address)
     const { userId, points, teamId, tokenId, nftAddress, isActive } = transformProfileResponse(profileResponse)
-    const team = await getTeam(teamId)
+    const team = undefined//await getTeam(teamId)
     const username = await getUsername(address)
 
     // If the profile is not active the tokenId returns 0, which is still a valid token id
