@@ -244,6 +244,12 @@ export const clotestnetConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/staking',
   },
   {
+    label: t('Faucet'),
+    icon: 'BridgeIcon',
+    href: 'https:/faucet.callisto.network/',
+    target: "_blank"
+  },
+  {
     label: t('Info'),
     icon: 'InfoIcon',
     href: '/info'
