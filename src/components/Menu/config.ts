@@ -48,13 +48,6 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'IDOIcon',
     href: '/ido',
   },
-  // {
-  //   label: t('CHOAM'),
-  //   href: 'https://choamtoken.com/',
-  //   icon: "ChoamIcon",
-  //   target: "_blank",
-  //   status: menuStatus.SOLDOUT
-  // },
   {
     label: t('NFT'),
     icon: 'NftIcon',
