@@ -33,7 +33,47 @@
       "address": "0xB4dDe88Fd2D7Cf5AA0880fa2Ec893124Cbbe0FA3",
       "chainId": 20729,
       "decimals": 18,
-      "logoURI": "images/coins/0xB4dDe88Fd2D7Cf5AA0880fa2Ec893124Cbbe0FA3.png"
+      "logoURI": "images/coins/20729/0xB4dDe88Fd2D7Cf5AA0880fa2Ec893124Cbbe0FA3.png"
+    },
+    {
+      "name": "CatCoin",
+      "symbol": "CAT",
+      "address": "0xEd385a41AB79625973617E43d6F591a5F3668716",
+      "chainId": 20729,
+      "decimals": 18,
+      "logoURI": "images/coins/20729/0xEd385a41AB79625973617E43d6F591a5F3668716.png"
+    },
+    {
+      "name": "DaeDalus",
+      "symbol": "DAD",
+      "address": "0xb1f1b49ed2bE5FaE8Bd07d6CD462D81578f950bd",
+      "chainId": 20729,
+      "decimals": 18,
+      "logoURI": "images/coins/20729/0xb1f1b49ed2bE5FaE8Bd07d6CD462D81578f950bd.png"
+    },
+    {
+      "name": "Artemis",
+      "symbol": "ART",
+      "address": "0xBb311da561ACE7e7329Bcd9A79aA3cd98BE14F8D",
+      "chainId": 20729,
+      "decimals": 18,
+      "logoURI": "images/coins/20729/0xBb311da561ACE7e7329Bcd9A79aA3cd98BE14F8D.png"
+    },
+    {
+      "name": "MOON",
+      "symbol": "MNN",
+      "address": "0x0DD4011b77A138A1969c11c3d87496B955F7BAF6",
+      "chainId": 20729,
+      "decimals": 18,
+      "logoURI": "images/coins/20729/0x0DD4011b77A138A1969c11c3d87496B955F7BAF6.png"
+    },
+    {
+      "name": "Fitter",
+      "symbol": "FTR",
+      "address": "0x996fc789002EfB99fd735c23DC77AA3CD89Fd56d",
+      "chainId": 20729,
+      "decimals": 18,
+      "logoURI": "images/coins/20729/0x996fc789002EfB99fd735c23DC77AA3CD89Fd56d.png"
     }
     
   ]
