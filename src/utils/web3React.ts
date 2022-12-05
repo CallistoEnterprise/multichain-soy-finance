@@ -2,7 +2,6 @@ import UAuth from '@uauth/js'
 import { UAuthConnector } from '@uauth/web3-react'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
-import { BscConnector } from '@binance-chain/bsc-connector'
 import type { AbstractConnector } from '@web3-react/abstract-connector'
 import { ConnectorNames } from '@callisto-enterprise/soy-uikit2'
 import { ethers } from 'ethers'
@@ -25,8 +24,6 @@ const walletconnect = new WalletConnectConnector({
   bridge: 'https://soyfinance.bridge.walletconnect.org/',
   qrcode: true,
 })
-
-const bscConnector = new BscConnector({ supportedChainIds })
 
 export const uauth = new UAuthConnector({
   clientID: process.env.REACT_APP_UNSTOPPABLE_CLIENT_ID,
@@ -54,7 +51,6 @@ export const connectors: Record<string, AbstractConnector> = {
 export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Injected]: injected,
   [ConnectorNames.WalletConnect]: walletconnect,
-  [ConnectorNames.BSC]: bscConnector,
   [ConnectorNames.Unstoppable]: uauth,
 }
 

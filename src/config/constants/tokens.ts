@@ -357,6 +357,51 @@ const tokens = {
     decimals: 18,
     projectLink: "https://testnet-explorer.callisto.network/address/0xB4dDe88Fd2D7Cf5AA0880fa2Ec893124Cbbe0FA3/transactions"
   },
+  cat: {
+    symbol: "CAT",
+    address: {
+      [ChainId.MAINNET]: '',
+      [ChainId.CLOTESTNET]: "0xEd385a41AB79625973617E43d6F591a5F3668716",
+    },
+    decimals: 18,
+    projectLink: "https://testnet-explorer.callisto.network/address/0xEd385a41AB79625973617E43d6F591a5F3668716/transactions"
+  },
+  dad: {
+    symbol: "DAD",
+    address: {
+      [ChainId.MAINNET]: '',
+      [ChainId.CLOTESTNET]: "0xb1f1b49ed2bE5FaE8Bd07d6CD462D81578f950bd",
+    },
+    decimals: 18,
+    projectLink: "https://testnet-explorer.callisto.network/address/0xb1f1b49ed2bE5FaE8Bd07d6CD462D81578f950bd/transactions"
+  },
+  art: {
+    symbol: "ART",
+    address: {
+      [ChainId.MAINNET]: '',
+      [ChainId.CLOTESTNET]: "0xBb311da561ACE7e7329Bcd9A79aA3cd98BE14F8D",
+    },
+    decimals: 18,
+    projectLink: "https://testnet-explorer.callisto.network/address/0xBb311da561ACE7e7329Bcd9A79aA3cd98BE14F8D/transactions"
+  },
+  mnn: {
+    symbol: "MNN",
+    address: {
+      [ChainId.MAINNET]: '',
+      [ChainId.CLOTESTNET]: "0x0DD4011b77A138A1969c11c3d87496B955F7BAF6",
+    },
+    decimals: 18,
+    projectLink: "https://testnet-explorer.callisto.network/address/0x0DD4011b77A138A1969c11c3d87496B955F7BAF6/transactions"
+  },
+  ftr: {
+    symbol: "FTR",
+    address: {
+      [ChainId.MAINNET]: '',
+      [ChainId.CLOTESTNET]: "0x996fc789002EfB99fd735c23DC77AA3CD89Fd56d",
+    },
+    decimals: 18,
+    projectLink: "https://testnet-explorer.callisto.network/address/0x996fc789002EfB99fd735c23DC77AA3CD89Fd56d/transactions"
+  },
   wbtt: {
     symbol: "WBTT",
     address: {

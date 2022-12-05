@@ -1,4 +1,6 @@
-import { useMemo } from 'react'
+export {} // this is only for predictions
+
+/*import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { ethers } from 'ethers'
 import { minBy, orderBy } from 'lodash'
@@ -9,7 +11,7 @@ import { parseBigNumberObj } from './predictions/helpers'
 // Don't add anything here. These hooks will be moved the the predictions folder
 
 // Predictions
-export const useGetRounds = () => {
+/*export const useGetRounds = () => {
   const rounds = useSelector((state: State) => state.predictions.rounds)
   return Object.keys(rounds).reduce((accum, epoch) => {
     return {
@@ -48,9 +50,9 @@ export const useGetIsClaimable = (epoch) => {
   return claimableStatuses[epoch] || false
 }
 
-/**
+**
  * Used to get the range of rounds to poll for
- */
+ * /
 export const useGetEarliestEpoch = () => {
   return useSelector((state: State) => {
     const earliestRound = minBy(Object.values(state.predictions.rounds), 'epoch')
@@ -145,3 +147,4 @@ export const useGetLastOraclePrice = () => {
     return ethers.BigNumber.from(lastOraclePrice)
   }, [lastOraclePrice])
 }
+*/

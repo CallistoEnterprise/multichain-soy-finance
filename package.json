@@ -31,9 +31,8 @@
     ]
   },
   "dependencies": {
-    "@binance-chain/bsc-connector": "^1.0.0",
     "@callisto-enterprise/soy-sdk": "0.1.1",
-    "@callisto-enterprise/soy-uikit2": "^0.4.1",
+    "@callisto-enterprise/soy-uikit2": "^0.4.5",
     "@reduxjs/toolkit": "^1.6.1",
     "@types/multicodec": "^1.0.0",
     "@types/node": "^13.13.5",

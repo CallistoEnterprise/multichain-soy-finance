@@ -48,13 +48,6 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'IDOIcon',
     href: '/ido',
   },
-  // {
-  //   label: t('CHOAM'),
-  //   href: 'https://choamtoken.com/',
-  //   icon: "ChoamIcon",
-  //   target: "_blank",
-  //   status: menuStatus.SOLDOUT
-  // },
   {
     label: t('NFT'),
     icon: 'NftIcon',
@@ -242,6 +235,12 @@ export const clotestnetConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('Staking Pools'),
     icon: 'PoolIcon',
     href: '/staking',
+  },
+  {
+    label: t('Faucet'),
+    icon: 'BridgeIcon',
+    href: 'https://faucet.callisto.network/',
+    target: "_blank"
   },
   {
     label: t('Info'),
