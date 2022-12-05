@@ -3,9 +3,11 @@ import { NoProfileAvatarIcon, Flex, Heading, Skeleton, Text } from '@callisto-en
 import { useWeb3React } from '@web3-react/core'
 import styled from 'styled-components'
 import { useProfile } from 'state/profile/hooks'
-import ProfileAvatar from 'views/Profile/components/ProfileAvatar'
+// import ProfileAvatar from 'views/Profile/components/ProfileAvatar'
 import { useTranslation } from 'contexts/Localization'
 import truncateWalletAddress from 'utils/truncateWalletAddress'
+
+const ProfileAvatar = styled.div<{profile}>``
 
 const Desktop = styled(Flex)`
   align-items: center;

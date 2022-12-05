@@ -67,10 +67,10 @@ export const cakeSectionData: SalesSectionProps = {
   images: {
     path: '/images/home/soy/',
     attributes: [
-      { src: 'bottom-right', alt: 'Small 3d polysafemoon' },
-      { src: 'top-right', alt: 'Small 3d polysafemoon' },
-      { src: 'coin', alt: 'SOY token' },
-      { src: 'top-left', alt: 'Small 3d polysafemoon' },
+      { src: 'bottom-right', alt: 'Soy' },
+      { src: 'top-right', alt: 'Soy' },
+      { src: 'coin', alt: 'Soy' },
+      { src: 'top-left', alt: 'Soy' },
     ],
   },
 }
