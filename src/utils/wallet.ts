@@ -43,7 +43,6 @@ export const setupNetwork = async (chainId: number) => {
   }
 }
 
-
 export const switchNetwork = async (library, curNet: any) => {
   const provider = await library?.provider // window.ethereum;
 
