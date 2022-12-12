@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link, useLocation } from 'react-router-dom'
 import { ButtonMenu, ButtonMenuItem } from '@callisto-enterprise/soy-uikit2'
+import { ChainId } from '@callisto-enterprise/soy-sdk'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledNav = styled.nav`
@@ -31,6 +33,9 @@ const getActiveIndex = (pathname: string): number => {
 const Nav = () => {
   const location = useLocation()
   const { t } = useTranslation()
+
+  const { chainId } = useActiveWeb3React()
+
   return (
     <StyledNav>
       <ButtonMenu activeIndex={getActiveIndex(location.pathname)} >
@@ -40,12 +45,16 @@ const Nav = () => {
         <ButtonMenuItem id="pool-nav-link" to="/pool" as={Link}>
           {t('Liquidity')}
         </ButtonMenuItem>
-        <ButtonMenuItem id="pool-nav-bridge" href="https://bridge.soy.finance/" as="a" target="_blank">
-          {t('Bridge')}
-        </ButtonMenuItem>
-        {/* <ButtonMenuItem id="pool-nav-choam" className="d-none" href="https://choamtoken.com/publicsale" as="a" target="_blank">
-          {t('CHOAM Sale')}
-        </ButtonMenuItem> */}
+        {chainId !== ChainId.CLOTESTNET ? (
+          <ButtonMenuItem id="pool-nav-bridge" href="https://bridge.soy.finance/" as="a" target="_blank">
+            {t('Bridge')}
+          </ButtonMenuItem>
+        ) : (
+          <ButtonMenuItem id="pool-nav-bridge" href="https://faucet.callisto.network/" as="a" target="_blank">
+            {t('Faucet')}
+          </ButtonMenuItem>
+        )}
+        
       </ButtonMenu>
     </StyledNav>
   )
