@@ -6,7 +6,7 @@ import BigNumber from 'bignumber.js'
 import { SUPPORTED_CHAINS } from 'config'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useEagerConnect from 'hooks/useEagerConnect'
-import { setupNetwork2 } from 'utils/wallet'
+import { switchNetwork } from 'utils/wallet'
 import { usePollBlockNumber } from 'state/block/hooks'
 import { usePollCoreFarmData } from 'state/farms/hooks'
 import { DatePickerPortal } from 'components/DatePicker'
@@ -87,7 +87,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const init = async () => {
-      setupNetwork2(chainId)
+      switchNetwork(chainId)
     }
     if (
       account &&
