@@ -49,7 +49,7 @@ const useStatusTransitions = () => {
       }, 10000)
       return () => clearInterval(interval)
     }
-    return () => null
+    //return () => null
   }, [status, previousStatus, isTransitioning, currentLotteryId, dispatch])
 }
 

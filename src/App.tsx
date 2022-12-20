@@ -19,9 +19,6 @@ import EasterEgg from './components/EasterEgg'
 import history from './routerHistory'
 import RouteChangeTracker from './RouteChangeTracker'
 // Views included in the main bundle
-import Pools from './views/Pools'
-import Swap from './views/Swap'
-import IDO from './views/IDO'
 import {
   RedirectDuplicateTokenIds,
   RedirectOldAddLiquidityPathStructure,
@@ -72,6 +69,12 @@ const Info = lazy(() => import('./views/Info'))
 
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
 const IDOWeek = lazy(() => import('./views/IDOWeek'))
+
+const Pools = lazy(() => import('./views/Pools'))
+const Swap = lazy(() => import('./views/Swap'))
+const IDO = lazy(() => import('./views/IDO'))
+
+const Lottery = lazy(() => import('./views/Lottery'))
 
 // This config is required for number formatting
 BigNumber.config({
@@ -133,14 +136,12 @@ const App: React.FC = () => {
                 <Route exact path="/create/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
                 <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
                 <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
-                <Route path="/info">
-                  <Info />
-                </Route>
-                <Route path="/farms">
-                  <Farms />
-                </Route>
+                <Route path="/info" component={Info} />
+                <Route path="/farms" component={Farms} />
                 <Route exact strict path="/ido" component={IDO} />
                 <Route exact strict path="/ido-week" component={IDOWeek} />
+                <Route exact strict path="/lottery" component={Lottery} />
+
                 <Route path="/home">
                   <Redirect to="/swap" />
                 </Route>

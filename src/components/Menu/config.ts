@@ -44,6 +44,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     target: "_blank"
   },
   {
+    label: t('Lottery'),
+    icon: 'TicketIcon',
+    href: '/lottery'
+  },
+  {
     label: t('SOY Finance IDO'),
     icon: 'IDOIcon',
     href: '/ido',
