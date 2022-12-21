@@ -31,8 +31,8 @@
     ]
   },
   "dependencies": {
-    "@callisto-enterprise/soy-sdk": "0.1.1",
-    "@callisto-enterprise/soy-uikit2": "^0.4.5",
+    "@callisto-enterprise/soy-sdk": "0.1.7",
+    "@callisto-enterprise/soy-uikit2": "^0.5.6",
     "@reduxjs/toolkit": "^1.6.1",
     "@types/multicodec": "^1.0.0",
     "@types/node": "^13.13.5",
