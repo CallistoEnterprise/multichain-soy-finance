@@ -10,18 +10,17 @@ import {
 } from '@web3-react/walletconnect-connector'
 import { ConnectorNames, connectorLocalStorageKey } from '@callisto-enterprise/soy-uikit2'
 import { connectorsByName } from 'utils/web3React'
-import { switchNetwork } from 'utils/wallet'
+import { setupNetwork } from 'utils/wallet'
 import useToast from 'hooks/useToast'
 import { profileClear } from 'state/profile'
 import { useAppDispatch } from 'state'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from './useActiveWeb3React'
-import { DEFAULT_CHAIN_ID } from 'config'
 
 const useAuth = () => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const { activate, deactivate, chainId } = useActiveWeb3React()
+  const { activate, deactivate, chainId} = useActiveWeb3React()
   const { toastError } = useToast()
 
   const login = useCallback(
@@ -29,7 +28,7 @@ const useAuth = () => {
       const connector = connectorsByName[connectorID]
 
       if (connector === connectorsByName.Unstoppable) {
-        const hasSetup1 = await switchNetwork({chainId:DEFAULT_CHAIN_ID})
+        const hasSetup1 = await setupNetwork(chainId)
         if (!hasSetup1) {
           return
         }
@@ -38,7 +37,7 @@ const useAuth = () => {
       if (connector) {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
-            const hasSetup = await switchNetwork({chainId:DEFAULT_CHAIN_ID})
+            const hasSetup = await setupNetwork(chainId)
             if (hasSetup) {
               activate(connector)
             }
@@ -64,7 +63,7 @@ const useAuth = () => {
         toastError(t('Unable to find connector'), t('The connector config is wrong'))
       }
     },
-    [t, activate, toastError/*, chainId*/],
+    [t, activate, toastError, chainId],
   )
 
   const logout = useCallback(() => {

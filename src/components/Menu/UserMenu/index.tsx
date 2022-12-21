@@ -73,7 +73,7 @@ const UserMenu = () => {
   }, [chainId])
 
   const handleSwitchNetwork = async (curNet) => {
-    await switchNetwork(curNet, library)
+    await switchNetwork(library, curNet)
   }
 
   if (!account) {

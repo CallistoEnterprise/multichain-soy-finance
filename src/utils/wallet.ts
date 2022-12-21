@@ -5,8 +5,46 @@ import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { ChainConstants } from 'config/constants/chains/types'
 import tokens from 'config/constants/tokens'
 
-export const switchNetwork = async (curNet: any, library?) => {
-  const provider = library ? await library?.provider : window.ethereum;
+/**
+ * Prompt the user to add Polygon as a network on Metamask, or switch to Polygon if the wallet is on a different network
+ * @returns {boolean} true if the setup succeeded, false otherwise
+ */
+export const setupNetwork = async (chainId: number) => {
+  const provider = window.ethereum
+  if (provider) {
+
+    const chain: ChainConstants = CHAINS_CONSTANTS[chainId]
+
+    try {
+      await provider.request({
+        method: 'wallet_addEthereumChain',
+        params: [
+          {
+            chainId: chain.general.hexChainId,
+            chainName: chain.general.officialName,
+            nativeCurrency: {
+              name: chain.general.officialName,
+              symbol: chain.general.nativeSymbol,
+              decimals: 18,
+            },
+            rpcUrls: chain.rpcs,
+            blockExplorerUrls: [`${chain.explorer.url}`],
+          },
+        ],
+      })
+      return true
+    } catch (error) {
+      console.error('Failed to setup the network in Metamask:', error)
+      return false
+    }
+  } else {
+    console.error("Can't setup the Polygon network on metamask because window.ethereum is undefined")
+    return false
+  }
+}
+
+export const switchNetwork = async (library, curNet: any) => {
+  const provider = await library?.provider // window.ethereum;
 
   if (provider) {
     // const chainId = Number(curNet.chainId);
@@ -53,49 +91,10 @@ export const switchNetwork = async (curNet: any, library?) => {
   }
 }
 
-/**
- * Prompt the user to add Polygon as a network on Metamask, or switch to Polygon if the wallet is on a different network
- * @returns {boolean} true if the setup succeeded, false otherwise
- */
-/* export const setupNetwork = async (chainId: number) => {
-  const provider = window.ethereum
-  if (provider) {
-
-    const chain: ChainConstants = CHAINS_CONSTANTS[chainId]
-
-    // console.log("Setup network!")
-
-    try {
-      await provider.request({
-        method: 'wallet_addEthereumChain',
-        params: [
-          {
-            chainId: chain.general.hexChainId,
-            chainName: chain.general.officialName,
-            nativeCurrency: {
-              name: chain.general.officialName,
-              symbol: chain.general.nativeSymbol,
-              decimals: 18,
-            },
-            rpcUrls: chain.rpcs,
-            blockExplorerUrls: [`${chain.explorer.url}`],
-          },
-        ],
-      })
-      return true
-    } catch (error) {
-      console.error('Failed to setup the network in Metamask:', error)
-      return false
-    }
-  } else {
-    console.error("Can't setup the Polygon network on metamask because window.ethereum is undefined")
-    return false
-  }
-}
-
 export const setupNetwork2 = async (chainId: number) => {
   const provider = window.ethereum
   if (provider) {
+
     try {
       await provider.request({
         method: 'wallet_switchEthereumChain',
@@ -114,7 +113,7 @@ export const setupNetwork2 = async (chainId: number) => {
     console.error("Can't setup the BSC network on metamask because window.ethereum is undefined")
     return false
   }
-} */
+}
 
 /**
  * Prompt the user to add a custom token to metamask
