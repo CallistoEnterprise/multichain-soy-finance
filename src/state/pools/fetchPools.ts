@@ -4,7 +4,7 @@ import sousChefABI from 'config/abi/sousChef.json'
 import sousChefNewABI from 'config/abi/sousChefNew.json'
 import erc223ABI from 'config/abi/erc223.json'
 // import wcloABI from 'config/abi/weth.json'
-import {multicall3} from 'utils/multicall'
+import { multicall3 } from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
@@ -55,9 +55,7 @@ export const fetchPoolsTotalStaking = async () => {
     return {
       address: getAddress(poolConfig.stakingToken.address),
       name: 'balanceOf',
-      params: [
-        getAddress(poolConfig.contractAddress)
-      ]
+      params: [getAddress(poolConfig.contractAddress)],
     }
   })
 
@@ -84,10 +82,7 @@ export const fetchPoolsTotalStaking = async () => {
   //   })),
   // ]
 
-  const totalStakedAmount = [
-    ...oldPoolsTotalStaked,
-    ...newPoolsTotalStaked
-  ]
+  const totalStakedAmount = [...oldPoolsTotalStaked, ...newPoolsTotalStaked]
   return [
     ...[...oldPools, ...newPools].map((p, index) => ({
       sousId: p.sousId,

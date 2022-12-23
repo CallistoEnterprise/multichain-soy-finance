@@ -135,14 +135,16 @@ const Farms: React.FC = () => {
   // Users with no wallet connected should see 0 as Earned amount
   // Connected users should see loading indicator until first userData has loaded
   const userDataReady = !account || (!!account && userDataLoaded)
-  
+
   const [stakedOnly, setStakedOnly] = useState(!isActive)
   useEffect(() => {
     setStakedOnly(!isActive)
   }, [isActive])
 
   const activeFarms = farmsLP[chainId].filter((farm) => farm.pid !== 0 && !isArchivedPid(farm.pid))
-  const inactiveFarms = farmsLP[chainId].filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  const inactiveFarms = farmsLP[chainId].filter(
+    (farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid),
+  )
   const archivedFarms = farmsLP[chainId].filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
@@ -386,7 +388,7 @@ const Farms: React.FC = () => {
   return (
     <>
       <PageHeader background="rgba(0,0,0,.5)">
-        <Heading as="h1" scale="xxl" color="secondary" mb="24px" style={{textAlign: 'center'}}>
+        <Heading as="h1" scale="xxl" color="secondary" mb="24px" style={{ textAlign: 'center' }}>
           {t('Farms')}
         </Heading>
       </PageHeader>

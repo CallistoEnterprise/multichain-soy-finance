@@ -6,7 +6,7 @@ import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHERS } from 'sdk'
-import { DEFAULT_CHAIN_ID } from 'config';
+import { DEFAULT_CHAIN_ID } from 'config'
 import SoyRouterABI from '../config/abi/soyRouter.json'
 import { ROUTER_ADDRESS } from '../config/constants'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'

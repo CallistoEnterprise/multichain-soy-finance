@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import {multicall3} from 'utils/multicall'
+import { multicall3 } from 'utils/multicall'
 import { getMasterChefAddress } from 'utils/addressHelpers'
 import masterChefABI from 'config/abi/masterchef.json'
 import { FarmConfig } from 'config/constants/types'
@@ -26,7 +26,10 @@ const useFarmsWithBalance = () => {
       }))
 
       const rawResults = await multicall3(masterChefABI, calls)
-      const results = CHAINS_CONSTANTS[chainId].farms.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
+      const results = CHAINS_CONSTANTS[chainId].farms.map((farm, index) => ({
+        ...farm,
+        balance: new BigNumber(rawResults[index]),
+      }))
 
       setFarmsWithBalances(results)
     }

@@ -29,7 +29,7 @@ const InfoNav = () => {
     activeIndex = 1
   }
   return (
-    <NavWrapper style={{width: '100%'}}>
+    <NavWrapper style={{ width: '100%' }}>
       <Box>
         <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
           <ButtonMenuItem as={Link} to="/info">

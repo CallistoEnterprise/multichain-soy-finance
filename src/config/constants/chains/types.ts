@@ -19,8 +19,8 @@ export interface ChainConstants {
     url: string
   }
   subgraph?: {
-    infoClient:string
-    blocksClient:string
+    infoClient: string
+    blocksClient: string
     startTimestamp: number
     vars?: {
       trackedReserveCOIN: string

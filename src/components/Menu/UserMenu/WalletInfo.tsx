@@ -36,8 +36,12 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
       {hasLowBnbBalance && (
         <Message variant="warning" mb="24px">
           <Box>
-            <Text fontWeight="bold">{t(`${CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase()} Balance Low`)}</Text>
-            <Text as="p">{t(`You need ${CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase()} for transaction fees.`)}</Text>
+            <Text fontWeight="bold">
+              {t(`${CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase()} Balance Low`)}
+            </Text>
+            <Text as="p">
+              {t(`You need ${CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase()} for transaction fees.`)}
+            </Text>
           </Box>
         </Message>
       )}
@@ -50,7 +54,9 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
         <Text>{getFullDisplayBalance(cakeBalance, 18, 3)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="end" mb="24px">
-        <LinkExternal href={getCallistoExpLink(account, 'address', chainId)}>{t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}`)}</LinkExternal>
+        <LinkExternal href={getCallistoExpLink(account, 'address', chainId)}>
+          {t(`View on ${CHAINS_CONSTANTS[chainId].explorer.name}`)}
+        </LinkExternal>
       </Flex>
       <Button variant="secondary" width="100%" onClick={handleLogout}>
         {t('Disconnect Wallet')}

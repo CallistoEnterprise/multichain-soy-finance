@@ -41,7 +41,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('Bridge'),
     icon: 'BridgeIcon',
     href: 'https://bridge.soy.finance/',
-    target: "_blank"
+    target: '_blank',
   },
   {
     label: t('SOY Finance IDO'),
@@ -56,7 +56,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Info'),
     icon: 'InfoIcon',
-    href: '/info'
+    href: '/info',
   },
   {
     label: t('More'),
@@ -65,17 +65,17 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       {
         label: t('Github'),
         href: 'https://github.com/SoyFinance',
-        target: "_blank"
+        target: '_blank',
       },
       {
         label: t('Docs'),
         href: 'https://callisto.network/',
-        target: "_blank"
+        target: '_blank',
       },
       {
         label: t('Blog'),
         href: 'https://callisto.network/blog/',
-        target: "_blank"
+        target: '_blank',
       },
     ],
   },
@@ -116,7 +116,7 @@ export const bttConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('Bridge'),
     icon: 'BridgeIcon',
     href: 'https://bridge.soy.finance/',
-    target: "_blank"
+    target: '_blank',
   },
   {
     label: t('More'),
@@ -125,17 +125,17 @@ export const bttConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       {
         label: t('Github'),
         href: 'https://github.com/SoyFinance',
-        target: "_blank"
+        target: '_blank',
       },
       {
         label: t('Docs'),
         href: 'https://callisto.network/',
-        target: "_blank"
+        target: '_blank',
       },
       {
         label: t('Blog'),
         href: 'https://callisto.network/blog/',
-        target: "_blank"
+        target: '_blank',
       },
     ],
   },
@@ -176,7 +176,7 @@ export const etcConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('Bridge'),
     icon: 'BridgeIcon',
     href: 'https://bridge.soy.finance/',
-    target: "_blank"
+    target: '_blank',
   },
   /*{
     label: t('Info'),
@@ -190,17 +190,17 @@ export const etcConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       {
         label: t('Github'),
         href: 'https://github.com/SoyFinance',
-        target: "_blank"
+        target: '_blank',
       },
       {
         label: t('Docs'),
         href: 'https://callisto.network/',
-        target: "_blank"
+        target: '_blank',
       },
       {
         label: t('Blog'),
         href: 'https://callisto.network/blog/',
-        target: "_blank"
+        target: '_blank',
       },
     ],
   },
@@ -240,17 +240,17 @@ export const clotestnetConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('Faucet'),
     icon: 'BridgeIcon',
     href: 'https://faucet.callisto.network/',
-    target: "_blank"
+    target: '_blank',
   },
   {
     label: t('Info'),
     icon: 'InfoIcon',
-    href: '/info'
+    href: '/info',
   },
 ]
 
-export const getConfig = (chainId:ChainId) => {
-  switch(chainId) {
+export const getConfig = (chainId: ChainId) => {
+  switch (chainId) {
     case ChainId.BTTMAINNET:
       return bttConfig
     case ChainId.ETCCLASSICMAINNET:

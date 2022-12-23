@@ -38,7 +38,7 @@ const Nav = () => {
 
   return (
     <StyledNav>
-      <ButtonMenu activeIndex={getActiveIndex(location.pathname)} >
+      <ButtonMenu activeIndex={getActiveIndex(location.pathname)}>
         <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
           {t('Swap')}
         </ButtonMenuItem>
@@ -54,7 +54,6 @@ const Nav = () => {
             {t('Faucet')}
           </ButtonMenuItem>
         )}
-        
       </ButtonMenu>
     </StyledNav>
   )

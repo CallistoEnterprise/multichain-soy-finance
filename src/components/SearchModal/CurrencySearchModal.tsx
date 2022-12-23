@@ -69,7 +69,7 @@ export default function CurrencySearchModal({
   // used for import list
   const [importList, setImportList] = useState<TokenList | undefined>()
   const [listURL, setListUrl] = useState<string | undefined>()
-  
+
   const { t } = useTranslation()
 
   const config = {

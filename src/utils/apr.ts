@@ -2,12 +2,12 @@ import BigNumber from 'bignumber.js'
 import { ChainId } from 'sdk'
 import lpAprs from 'config/constants/lpAprs.json'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
-import { DEFAULT_CHAIN_ID, ONE_YEAR_TIMESTAMP } from 'config';
+import { DEFAULT_CHAIN_ID, ONE_YEAR_TIMESTAMP } from 'config'
 
 const POOL_REWARDS = {
   6: {
     [ChainId.MAINNET]: new BigNumber(23152 * 365),
-    [ChainId.CLOTESTNET]: new BigNumber(23152 * 365)
+    [ChainId.CLOTESTNET]: new BigNumber(23152 * 365),
   },
 }
 /**
@@ -25,7 +25,7 @@ export const getPoolApr = (
   totalStaked: number,
   tokenPerBlock: number,
   rewardBlockCount: BigNumber,
-  chainId = DEFAULT_CHAIN_ID
+  chainId = DEFAULT_CHAIN_ID,
 ): number => {
   // const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(tokenPerBlock).times(rewardBlockCount)
   const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(POOL_REWARDS[poolId][chainId])
@@ -43,7 +43,7 @@ export const getPoolApr = (
  * @param rewardPerSecond Amount of new SOY allocated to the pool for each second
  * @returns Null if the APR is NaN or infinite.
  */
- export const getPoolAprForNew = (
+export const getPoolAprForNew = (
   stakingTokenPrice: number,
   rewardTokenPrice: number,
   totalStaked: number,
@@ -71,12 +71,12 @@ export const getFarmApr = (
   soyPriceUsd: BigNumber,
   poolLiquidityUsd: BigNumber,
   farmAddress: string,
-  chainId = DEFAULT_CHAIN_ID
+  chainId = DEFAULT_CHAIN_ID,
 ): { cakeRewardsApr: number; lpRewardsApr: number } => {
   const yearlySoyRewardAllocation = CHAINS_CONSTANTS[chainId].rewardTokensPerYear.times(poolWeight)
   const soyRewardsApr = yearlySoyRewardAllocation.times(soyPriceUsd).div(poolLiquidityUsd).times(100)
   let soyRewardsAprAsNumber = null
-  
+
   if (!soyRewardsApr.isNaN() /* && soyRewardsApr.isFinite() */) {
     soyRewardsAprAsNumber = soyRewardsApr.toNumber()
   }

@@ -23,7 +23,9 @@ describe('utils', () => {
       expect(getCallistoExpLink('abc', 'address', ChainId.MAINNET)).toEqual('https://CallistoExp.com/address/abc')
     })
     it('enum', () => {
-      expect(getCallistoExpLink('abc', 'address', ChainId.CLOTESTNET)).toEqual('https://mumbai.CallistoExp.com/address/abc')
+      expect(getCallistoExpLink('abc', 'address', ChainId.CLOTESTNET)).toEqual(
+        'https://mumbai.CallistoExp.com/address/abc',
+      )
     })
   })
 

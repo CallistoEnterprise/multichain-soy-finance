@@ -2,7 +2,15 @@ import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { Flex, CardFooter, ExpandableLabel, Text, HelpIcon, useTooltip, Skeleton } from '@callisto-enterprise/soy-uikit2'
+import {
+  Flex,
+  CardFooter,
+  ExpandableLabel,
+  Text,
+  HelpIcon,
+  useTooltip,
+  Skeleton,
+} from '@callisto-enterprise/soy-uikit2'
 import { Pool } from 'state/types'
 import { getTimeFromTimeStamp2 } from 'utils/formatTimePeriod'
 import { useBlockLatestTimestamp } from 'utils'
@@ -70,34 +78,42 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
     <CardFooter>
       <Flex mb="2px" justifyContent="center" flexDirection="column">
         <Flex justifyContent="space-between">
-          <Text small color={!isNew ? 'textDisabled' : "primary"}>
+          <Text small color={!isNew ? 'textDisabled' : 'primary'}>
             {t(isNew ? 'Unlock in:' : 'Next Harvest In')}:
           </Text>
-          {isNew && 
+          {isNew && (
             <Flex>
-              <Text small color="primary">{endTimeStr ? endTimeStr : t('~days')}</Text>
+              <Text small color="primary">
+                {endTimeStr ? endTimeStr : t('~days')}
+              </Text>
               <span ref={harvestTargetRef}>
                 <HelpIcon color="textSubtle" width="20px" ml="6px" />
               </span>
             </Flex>
-          }
+          )}
         </Flex>
         {!isNew && (
           <Flex mb="0px" justifyContent="flex-start">
-            {havestDayStr && havestDayStr !== 'Unstakable' ? <Text small>{havestDayStr}</Text> : <Skeleton width="200px" height="21px" />}
+            {havestDayStr && havestDayStr !== 'Unstakable' ? (
+              <Text small>{havestDayStr}</Text>
+            ) : (
+              <Skeleton width="200px" height="21px" />
+            )}
             <span ref={harvestTargetRef}>
-              <HelpIcon color={!isNew ? 'textDisabled' : "textSubtle"} width="20px" ml="6px" />
+              <HelpIcon color={!isNew ? 'textDisabled' : 'textSubtle'} width="20px" ml="6px" />
             </span>
           </Flex>
         )}
         {harvestTooltipVisible && harvestTooltip}
       </Flex>
       {!isNew && <Line />}
-      {!isNew && <ExpandableButtonWrapper>
-        <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
-          {isExpanded ? t('Hide') : t('Details')}
-        </ExpandableLabel>
-      </ExpandableButtonWrapper>}
+      {!isNew && (
+        <ExpandableButtonWrapper>
+          <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
+            {isExpanded ? t('Hide') : t('Details')}
+          </ExpandableLabel>
+        </ExpandableButtonWrapper>
+      )}
       {isExpanded && !isNew && <ExpandedFooter pool={pool} account={account} endTimeStr={endTimeStr} />}
     </CardFooter>
   )

@@ -54,8 +54,14 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
   )
 }
 
-export const BidderHeader = ({ title, handleClick, loading, claimAmount = 0, noConfig = false, totalLockedSoy = 0 }) => {
-
+export const BidderHeader = ({
+  title,
+  handleClick,
+  loading,
+  claimAmount = 0,
+  noConfig = false,
+  totalLockedSoy = 0,
+}) => {
   return (
     <AppHeaderContainer>
       <Flex alignItems="center" mr={noConfig ? 0 : '16px'}>
@@ -72,15 +78,8 @@ export const BidderHeader = ({ title, handleClick, loading, claimAmount = 0, noC
         </Flex>
       </Flex>
       <Flex>
-        <Button
-          onClick={handleClick}
-          disabled={loading || claimAmount <= 0}
-        >
-          {
-            loading ?
-            <CircleLoader />:
-            'Claim'
-          }
+        <Button onClick={handleClick} disabled={loading || claimAmount <= 0}>
+          {loading ? <CircleLoader /> : 'Claim'}
         </Button>
       </Flex>
     </AppHeaderContainer>

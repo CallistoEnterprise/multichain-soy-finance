@@ -4,12 +4,22 @@ import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHERS, Percent, WETH } from 'sdk'
-import { Button, Text, AddIcon, ArrowDownIcon, CardBody, Slider, Box, Flex, useModal } from '@callisto-enterprise/soy-uikit2'
+import {
+  Button,
+  Text,
+  AddIcon,
+  ArrowDownIcon,
+  CardBody,
+  Slider,
+  Box,
+  Flex,
+  useModal,
+} from '@callisto-enterprise/soy-uikit2'
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
 import { useTranslation } from 'contexts/Localization'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
-import { DEFAULT_CHAIN_ID } from 'config';
+import { DEFAULT_CHAIN_ID } from 'config'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -97,7 +107,10 @@ export default function RemoveLiquidity({
 
   // allowance handling
   const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(null)
-  const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN_ID])
+  const [approval, approveCallback] = useApproveCallback(
+    parsedAmounts[Field.LIQUIDITY],
+    ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN_ID],
+  )
 
   async function onAttemptToApprove() {
     if (!pairContract || !pair || !library || !deadline) throw new Error('missing dependencies')
@@ -542,8 +555,14 @@ export default function RemoveLiquidity({
                         </StyledInternalLink>
                       ) : oneCurrencyIsWETH ? (
                         <StyledInternalLink
-                          to={`/remove/${currencyA && currencyEquals(currencyA, WETH[chainId]) ? CHAINS_CONSTANTS[chainId].general.nativeSymbol : currencyIdA}/${
-                            currencyB && currencyEquals(currencyB, WETH[chainId]) ? CHAINS_CONSTANTS[chainId].general.nativeSymbol : currencyIdB
+                          to={`/remove/${
+                            currencyA && currencyEquals(currencyA, WETH[chainId])
+                              ? CHAINS_CONSTANTS[chainId].general.nativeSymbol
+                              : currencyIdA
+                          }/${
+                            currencyB && currencyEquals(currencyB, WETH[chainId])
+                              ? CHAINS_CONSTANTS[chainId].general.nativeSymbol
+                              : currencyIdB
                           }`}
                         >
                           {t('Receive CLO')}

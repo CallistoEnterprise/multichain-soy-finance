@@ -4,9 +4,9 @@ import { getBlocksFromTimestamps } from 'views/Info/hooks/useBlocksFromTimestamp
 import { multiQuery } from 'views/Info/utils/infoQueryHelpers'
 import { PriceChartEntry } from 'state/info/types'
 import { INFO_CLIENT } from 'config/constants/endpoints'
-import { coinPrice,derivedCOIN } from 'config/constants/info'
+import { coinPrice, derivedCOIN } from 'config/constants/info'
 
-import { ChainId } from "sdk"
+import { ChainId } from 'sdk'
 
 const chainId = 820 //parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 
@@ -85,20 +85,19 @@ const fetchTokenPriceData = async (
       // if its CLO price e.g. `b123` split('t')[1] will be undefined and skip CLO price entry
 
       if (timestamp) {
-        if (chainId === ChainId.MAINNET){
+        if (chainId === ChainId.MAINNET) {
           tokenPrices.push({
             timestamp,
             derivedCOIN: prices[priceKey]?.derivedCLO ? parseFloat(prices[priceKey].derivedCLO) : 0,
             priceUSD: 0,
           })
-        } else if (chainId === ChainId.ETCCLASSICMAINNET){
+        } else if (chainId === ChainId.ETCCLASSICMAINNET) {
           tokenPrices.push({
             timestamp,
             derivedCOIN: prices[priceKey]?.derivedETC ? parseFloat(prices[priceKey].derivedETC) : 0,
             priceUSD: 0,
           })
         }
-
       }
     })
 
@@ -110,9 +109,9 @@ const fetchTokenPriceData = async (
         const tokenPriceIndex = tokenPrices.findIndex((tokenPrice) => tokenPrice.timestamp === timestamp)
         if (tokenPriceIndex >= 0) {
           const { derivedCOIN } = tokenPrices[tokenPriceIndex]
-          if (chainId === ChainId.MAINNET){
-          tokenPrices[tokenPriceIndex].priceUSD = parseFloat(prices[priceKey]?.cloPrice ?? 0) * derivedCOIN
-          } else if (chainId === ChainId.ETCCLASSICMAINNET){
+          if (chainId === ChainId.MAINNET) {
+            tokenPrices[tokenPriceIndex].priceUSD = parseFloat(prices[priceKey]?.cloPrice ?? 0) * derivedCOIN
+          } else if (chainId === ChainId.ETCCLASSICMAINNET) {
             tokenPrices[tokenPriceIndex].priceUSD = parseFloat(prices[priceKey]?.etcPrice ?? 0) * derivedCOIN
           }
         }

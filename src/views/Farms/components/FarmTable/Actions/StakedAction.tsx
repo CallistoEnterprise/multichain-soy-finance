@@ -1,6 +1,15 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, Text, Heading } from '@callisto-enterprise/soy-uikit2'
+import {
+  Button,
+  useModal,
+  IconButton,
+  AddIcon,
+  MinusIcon,
+  Skeleton,
+  Text,
+  Heading,
+} from '@callisto-enterprise/soy-uikit2'
 import { useLocation } from 'react-router-dom'
 import { BigNumber } from 'bignumber.js'
 import ConnectWalletButton from 'components/ConnectWalletButton'

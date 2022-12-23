@@ -12,7 +12,6 @@ import tokens from 'config/constants/tokens'
 export const setupNetwork = async (chainId: number) => {
   const provider = window.ethereum
   if (provider) {
-
     const chain: ChainConstants = CHAINS_CONSTANTS[chainId]
 
     try {
@@ -94,7 +93,6 @@ export const switchNetwork = async (library, curNet: any) => {
 export const setupNetwork2 = async (chainId: number) => {
   const provider = window.ethereum
   if (provider) {
-
     try {
       await provider.request({
         method: 'wallet_switchEthereumChain',
@@ -122,7 +120,12 @@ export const setupNetwork2 = async (chainId: number) => {
  * @param tokenDecimals
  * @returns {boolean} true if the token has been added, false otherwise
  */
-export const registerToken = async (tokenAddress: string, tokenSymbol: string, tokenDecimals: number, chainId?: number) => {
+export const registerToken = async (
+  tokenAddress: string,
+  tokenSymbol: string,
+  tokenDecimals: number,
+  chainId?: number,
+) => {
   const tokenAdded = await window.ethereum.request({
     method: 'wallet_watchAsset',
     params: {

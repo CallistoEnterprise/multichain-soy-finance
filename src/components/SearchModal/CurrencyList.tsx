@@ -19,13 +19,13 @@ import { isTokenOnList } from '../../utils'
 import ImportRow from './ImportRow'
 
 function currencyKey(currency: Currency): string {
-  return currency instanceof Token 
+  return currency instanceof Token
     ? currency.address
-    : currency === ETHERS[ChainId.MAINNET]
-    || currency === ETHERS[ChainId.BTTMAINNET]
-    || currency === ETHERS[ChainId.ETCCLASSICMAINNET]
-    || currency === ETHERS[ChainId.BSC]
-    || currency === ETHERS[ChainId.ETHEREUM]
+    : currency === ETHERS[ChainId.MAINNET] ||
+      currency === ETHERS[ChainId.BTTMAINNET] ||
+      currency === ETHERS[ChainId.ETCCLASSICMAINNET] ||
+      currency === ETHERS[ChainId.BSC] ||
+      currency === ETHERS[ChainId.ETHEREUM]
     ? 'ETHER'
     : ''
 }

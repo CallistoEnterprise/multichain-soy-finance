@@ -195,7 +195,7 @@ export class Trade {
       this.inputAmount.currency,
       this.outputAmount.currency,
       this.inputAmount.raw,
-      this.outputAmount.raw
+      this.outputAmount.raw,
     )
     this.nextMidPrice = Price.fromRoute(new Route(nextPairs, route.input))
     this.priceImpact = computePriceImpact(route.midPrice, this.inputAmount, this.outputAmount)
@@ -258,7 +258,7 @@ export class Trade {
     // used in recursion.
     currentPairs: Pair[] = [],
     originalAmountIn: CurrencyAmount = currencyAmountIn,
-    bestTrades: Trade[] = []
+    bestTrades: Trade[] = [],
   ): Trade[] {
     invariant(pairs.length > 0, 'PAIRS')
     invariant(maxHops > 0, 'MAX_HOPS')
@@ -297,10 +297,10 @@ export class Trade {
           new Trade(
             new Route([...currentPairs, pair], originalAmountIn.currency, currencyOut),
             originalAmountIn,
-            TradeType.EXACT_INPUT
+            TradeType.EXACT_INPUT,
           ),
           maxNumResults,
-          tradeComparator
+          tradeComparator,
         )
       } else if (maxHops > 1 && pairs.length > 1) {
         const pairsExcludingThisPair = pairs.slice(0, i).concat(pairs.slice(i + 1, pairs.length))
@@ -312,11 +312,11 @@ export class Trade {
           currencyOut,
           {
             maxNumResults,
-            maxHops: maxHops - 1
+            maxHops: maxHops - 1,
           },
           [...currentPairs, pair],
           originalAmountIn,
-          bestTrades
+          bestTrades,
         )
       }
     }
@@ -347,7 +347,7 @@ export class Trade {
     // used in recursion.
     currentPairs: Pair[] = [],
     originalAmountOut: CurrencyAmount = currencyAmountOut,
-    bestTrades: Trade[] = []
+    bestTrades: Trade[] = [],
   ): Trade[] {
     invariant(pairs.length > 0, 'PAIRS')
     invariant(maxHops > 0, 'MAX_HOPS')
@@ -386,10 +386,10 @@ export class Trade {
           new Trade(
             new Route([pair, ...currentPairs], currencyIn, originalAmountOut.currency),
             originalAmountOut,
-            TradeType.EXACT_OUTPUT
+            TradeType.EXACT_OUTPUT,
           ),
           maxNumResults,
-          tradeComparator
+          tradeComparator,
         )
       } else if (maxHops > 1 && pairs.length > 1) {
         const pairsExcludingThisPair = pairs.slice(0, i).concat(pairs.slice(i + 1, pairs.length))
@@ -401,11 +401,11 @@ export class Trade {
           amountIn,
           {
             maxNumResults,
-            maxHops: maxHops - 1
+            maxHops: maxHops - 1,
           },
           [pair, ...currentPairs],
           originalAmountOut,
-          bestTrades
+          bestTrades,
         )
       }
     }

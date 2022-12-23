@@ -19,4 +19,6 @@ export const localStorageChainIdKey = 'soyfinanceChainId'
 export const DEFAULT_CHAIN_ID = process.env.REACT_APP_DEFAULT_CHAIN_ID
   ? Number(process.env.REACT_APP_DEFAULT_CHAIN_ID)
   : ChainId.MAINNET
-export const SUPPORTED_CHAINS = (process.env.REACT_APP_SUPPORTED_CHAINS as string).split(',').map(chainId => Number(chainId)) as ChainId[]
+export const SUPPORTED_CHAINS = (process.env.REACT_APP_SUPPORTED_CHAINS as string)
+  .split(',')
+  .map((chainId) => Number(chainId)) as ChainId[]

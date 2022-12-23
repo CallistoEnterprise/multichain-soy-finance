@@ -86,7 +86,8 @@ export default function CurrencySearchModalForIdo({
             showCommonBases={showCommonBases}
             showImportView={() => setModalView(CurrencyModalView.importToken)}
             // setImportToken={()}
-          />)}
+          />
+        )}
       </StyledModalBody>
     </StyledModalContainer>
   )

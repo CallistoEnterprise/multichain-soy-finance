@@ -46,7 +46,7 @@ const ETHERS: { [chainId in ChainId]: Currency } = {
   [ChainId.BSC]: Currency.BNBETHER,
   [ChainId.BSCTESTNET]: Currency.BNBETHER,
   [ChainId.BTTMAINNET]: Currency.BTTETHER,
-  [ChainId.ETCCLASSICMAINNET]: Currency.ETCETHER
+  [ChainId.ETCCLASSICMAINNET]: Currency.ETCETHER,
 }
 
 export { ETHERS }

@@ -11,7 +11,6 @@ interface WarningTokenList {
 }
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-const SwapWarningTokens = <WarningTokenList>{
-}
+const SwapWarningTokens = <WarningTokenList>{}
 
 export default SwapWarningTokens

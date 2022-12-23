@@ -101,7 +101,9 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     performanceFee,
   })
 
-  const customAPR = (365 * getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken })).toFixed(2,)
+  const customAPR = (
+    365 * getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken })
+  ).toFixed(2)
 
   return (
     <Modal title={t('ROI')} onDismiss={onDismiss}>
@@ -199,15 +201,15 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text textAlign="right" mr="12px" ml="12px">
-            {(getRoi({
+            {getRoi({
               amountEarned: tokenEarnedPerThousand365D,
               amountInvested: oneThousandDollarsWorthOfToken,
-            }).toFixed(roundingDecimals))}
+            }).toFixed(roundingDecimals)}
             %
           </Text>
         </GridItem>
         <GridItem>
-          <Text textAlign="right">{(tokenEarnedPerThousand365D)}</Text>
+          <Text textAlign="right">{tokenEarnedPerThousand365D}</Text>
         </GridItem>
       </Grid>
       <Flex justifyContent="center">

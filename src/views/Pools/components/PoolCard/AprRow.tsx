@@ -56,9 +56,11 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
             unit="%"
             bold
           />
-          {!isNew && <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
-            <CalculateIcon color="textSubtle" width="18px" />
-          </IconButton>}
+          {!isNew && (
+            <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
+              <CalculateIcon color="textSubtle" width="18px" />
+            </IconButton>
+          )}
         </Flex>
       )}
     </Flex>

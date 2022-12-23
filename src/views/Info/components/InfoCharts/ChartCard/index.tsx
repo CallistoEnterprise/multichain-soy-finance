@@ -91,13 +91,10 @@ const ChartCard: React.FC<ChartCardProps> = ({ variant, chartData, tokenData, to
       </TabToggleGroup>
 
       <Flex flexDirection="column" px="24px" pt="24px">
-        
         <Text small color="secondary" textAlign="end">
           {hoverDate || currentDate}
         </Text>
-        <Text textAlign="end">
-          {getLatestValueDisplay()}
-        </Text>
+        <Text textAlign="end">{getLatestValueDisplay()}</Text>
       </Flex>
 
       <Box px="24px" height={variant === 'token' ? '250px' : '335px'}>

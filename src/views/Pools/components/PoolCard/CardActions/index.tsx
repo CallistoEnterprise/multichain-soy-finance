@@ -25,7 +25,17 @@ interface CardActionsProps {
 }
 
 const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
-  const { sousId, stakingToken, stakingTokenPrice, earningToken, harvest, poolCategory, userData, earningTokenPrice, isNew } = pool
+  const {
+    sousId,
+    stakingToken,
+    stakingTokenPrice,
+    earningToken,
+    harvest,
+    poolCategory,
+    userData,
+    earningTokenPrice,
+    isNew,
+  } = pool
   // Pools using native CLO behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.CLO
   const { t } = useTranslation()
@@ -35,7 +45,7 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
   const needsApproval = false // !allowance.gt(0) && !isBnbPool
   const isStaked = stakedBalance.gt(0)
   const isLoading = !userData
-  
+
   const curTime = useBlockLatestTimestamp()
 
   const endStaking = userData ? userData.stakedStatus.endTime.toNumber() : 0
@@ -55,10 +65,20 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
       <Flex flexDirection="column">
         <Flex justifyContent="space-between" alignItems="center">
           <Box display="inline">
-            <InlineText color={!isNew ? 'textDisabled' : isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
+            <InlineText
+              color={!isNew ? 'textDisabled' : isStaked ? 'secondary' : 'textSubtle'}
+              textTransform="uppercase"
+              bold
+              fontSize="12px"
+            >
               {isStaked ? stakingToken.symbol : t('Stake')}{' '}
             </InlineText>
-            <InlineText color={!isNew ? 'textDisabled' : isStaked ? 'textSubtle' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
+            <InlineText
+              color={!isNew ? 'textDisabled' : isStaked ? 'textSubtle' : 'secondary'}
+              textTransform="uppercase"
+              bold
+              fontSize="12px"
+            >
               {isStaked ? t('Staked') : `${stakingToken.symbol}`}
             </InlineText>
           </Box>
@@ -69,7 +89,7 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
                 <Text fontSize="12px" color="textSubtle">
                   <Balance
                     fontSize="12px"
-                    color={!isNew ? 'textDisabled' : "textSubtle"}
+                    color={!isNew ? 'textDisabled' : 'textSubtle'}
                     decimals={2}
                     value={stakedTokenDollarBalance}
                     prefix="~"
@@ -82,11 +102,11 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
         </Flex>
         {harvest && (
           <>
-            <Box display="inline" style={{marginTop: 10}}>
-              <InlineText color={!isNew ? 'textDisabled' : "secondary"} textTransform="uppercase" bold fontSize="12px">
+            <Box display="inline" style={{ marginTop: 10 }}>
+              <InlineText color={!isNew ? 'textDisabled' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
                 {`${earningToken.symbol} `}
               </InlineText>
-              <InlineText color={!isNew ? 'textDisabled' : "textSubtle"} textTransform="uppercase" bold fontSize="12px">
+              <InlineText color={!isNew ? 'textDisabled' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
                 {t('Earned')}
               </InlineText>
             </Box>

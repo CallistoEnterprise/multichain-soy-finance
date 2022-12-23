@@ -17,17 +17,17 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '5',
     isFinished: {
       [ChainId.MAINNET]: false,
-      [ChainId.CLOTESTNET]: false
+      [ChainId.CLOTESTNET]: false,
     },
     lockPeriod: {
       [ChainId.MAINNET]: 7,
-      [ChainId.CLOTESTNET]: 1
+      [ChainId.CLOTESTNET]: 1,
     },
     lockPeriodUnit: {
       [ChainId.MAINNET]: 'days',
-      [ChainId.CLOTESTNET]: 'hour'
+      [ChainId.CLOTESTNET]: 'hour',
     },
-    isNew: true
+    isNew: true,
   },
   {
     sousId: 2,
@@ -43,17 +43,17 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '5',
     isFinished: {
       [ChainId.MAINNET]: false,
-      [ChainId.CLOTESTNET]: false
+      [ChainId.CLOTESTNET]: false,
     },
     lockPeriod: {
       [ChainId.MAINNET]: 30,
-      [ChainId.CLOTESTNET]: 2
+      [ChainId.CLOTESTNET]: 2,
     },
     lockPeriodUnit: {
       [ChainId.MAINNET]: 'days',
-      [ChainId.CLOTESTNET]: 'hours'
+      [ChainId.CLOTESTNET]: 'hours',
     },
-    isNew: true
+    isNew: true,
   },
   {
     sousId: 3,
@@ -69,17 +69,17 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '5',
     isFinished: {
       [ChainId.MAINNET]: false,
-      [ChainId.CLOTESTNET]: true
+      [ChainId.CLOTESTNET]: true,
     },
     lockPeriod: {
       [ChainId.MAINNET]: 91,
-      [ChainId.CLOTESTNET]: 2
+      [ChainId.CLOTESTNET]: 2,
     },
     lockPeriodUnit: {
       [ChainId.MAINNET]: 'days',
-      [ChainId.CLOTESTNET]: 'hours'
+      [ChainId.CLOTESTNET]: 'hours',
     },
-    isNew: true
+    isNew: true,
   },
   {
     sousId: 4,
@@ -95,17 +95,17 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '5',
     isFinished: {
       [ChainId.MAINNET]: false,
-      [ChainId.CLOTESTNET]: true
+      [ChainId.CLOTESTNET]: true,
     },
     lockPeriod: {
       [ChainId.MAINNET]: 182,
-      [ChainId.CLOTESTNET]: 2
+      [ChainId.CLOTESTNET]: 2,
     },
     lockPeriodUnit: {
       [ChainId.MAINNET]: 'days',
-      [ChainId.CLOTESTNET]: 'hours'
+      [ChainId.CLOTESTNET]: 'hours',
     },
-    isNew: true
+    isNew: true,
   },
   {
     sousId: 5,
@@ -121,17 +121,17 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '5',
     isFinished: {
       [ChainId.MAINNET]: false,
-      [ChainId.CLOTESTNET]: true
+      [ChainId.CLOTESTNET]: true,
     },
     lockPeriod: {
       [ChainId.MAINNET]: 365,
-      [ChainId.CLOTESTNET]: 2
+      [ChainId.CLOTESTNET]: 2,
     },
     lockPeriodUnit: {
       [ChainId.MAINNET]: 'days',
-      [ChainId.CLOTESTNET]: 'hours'
+      [ChainId.CLOTESTNET]: 'hours',
     },
-    isNew: true
+    isNew: true,
   },
   {
     sousId: 6,
@@ -147,9 +147,9 @@ const pools: PoolConfig[] = [
     sortOrder: 1,
     isFinished: {
       [ChainId.MAINNET]: false,
-      [ChainId.CLOTESTNET]: false
+      [ChainId.CLOTESTNET]: false,
     },
-    isNew: false
+    isNew: false,
   },
 ]
 

@@ -16,7 +16,7 @@ export const useGetRpcProvider = () => {
     init()
   }, [])
 
-  return provider;
+  return provider
 }
 export const usePollBlockNumber = () => {
   const dispatch = useAppDispatch()

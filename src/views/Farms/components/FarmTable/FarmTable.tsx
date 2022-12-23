@@ -70,7 +70,6 @@ const FarmTable: React.FC<ITableProps> = (props) => {
     })
   }
 
-
   return (
     <Container>
       <TableContainer>
@@ -86,7 +85,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
         <ScrollButtonContainer>
           <Button variant="text" onClick={scrollToTop}>
             {t('To Top')}
-            <ChevronUpIcon color="primary" ml="5px"/>
+            <ChevronUpIcon color="primary" ml="5px" />
           </Button>
         </ScrollButtonContainer>
       </TableContainer>

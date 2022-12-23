@@ -32,7 +32,16 @@ const StyledCardHeader: React.FC<{
   lockPeriod?: number | string
   lockPeriodUnit?: string
   isNew?: boolean
-}> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false, lockPeriod, lockPeriodUnit, isNew }) => {
+}> = ({
+  earningToken,
+  stakingToken,
+  isFinished = false,
+  isAutoVault = false,
+  isStaking = false,
+  lockPeriod,
+  lockPeriodUnit,
+  isNew,
+}) => {
   const { t } = useTranslation()
   const isCakePool = earningToken.symbol === 'SOY' && stakingToken.symbol === 'SOY'
   const background = isStaking ? 'bubblegum' : 'cardHeader'
@@ -72,7 +81,12 @@ const StyledCardHeader: React.FC<{
         {isAutoVault ? (
           <CakeVaultTokenPairImage width={64} height={64} />
         ) : (
-          <TokenPairImage primaryToken={!isNew ? soyTemp : earningToken} secondaryToken={!isNew ? soyTemp : stakingToken} width={64} height={64} />
+          <TokenPairImage
+            primaryToken={!isNew ? soyTemp : earningToken}
+            secondaryToken={!isNew ? soyTemp : stakingToken}
+            width={64}
+            height={64}
+          />
         )}
       </Flex>
     </Wrapper>

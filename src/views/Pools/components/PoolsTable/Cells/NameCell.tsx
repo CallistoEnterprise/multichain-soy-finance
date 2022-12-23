@@ -40,7 +40,8 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const { isXs, isSm } = useMatchBreakpoints()
-  const { sousId, stakingToken, earningToken, userData, isFinished, isAutoVault, isNew, lockPeriod, lockPeriodUnit } = pool
+  const { sousId, stakingToken, earningToken, userData, isFinished, isAutoVault, isNew, lockPeriod, lockPeriodUnit } =
+    pool
   const {
     userData: { userShares },
   } = useCakeVault()
@@ -56,7 +57,9 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const showStakedTag = isAutoVault ? hasVaultShares : isStaked
 
   let title = !isNew ? `${t('Earn')} ${earningTokenSymbol}(V1)` : `${stakingToken.symbol} Staking`
-  let subtitle = isNew ? `Time lock ${lockPeriod[chainId]} ${lockPeriodUnit[chainId]}` : `${t('Freeze')} ${stakingTokenSymbol}`
+  let subtitle = isNew
+    ? `Time lock ${lockPeriod[chainId]} ${lockPeriodUnit[chainId]}`
+    : `${t('Freeze')} ${stakingTokenSymbol}`
   const showSubtitle = sousId !== 0 || (sousId === 0 && !isXs && !isSm)
 
   if (isAutoVault) {
@@ -72,7 +75,13 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
       {isAutoVault ? (
         <CakeVaultTokenPairImage mr="8px" width={40} height={40} />
       ) : (
-        <TokenPairImage primaryToken={!isNew ? soyTemp : earningToken} secondaryToken={!isNew ? soyTemp : stakingToken} mr="8px" width={40} height={40} />
+        <TokenPairImage
+          primaryToken={!isNew ? soyTemp : earningToken}
+          secondaryToken={!isNew ? soyTemp : stakingToken}
+          mr="8px"
+          width={40}
+          height={40}
+        />
       )}
       <CellContent>
         {showStakedTag && !isNew && (
@@ -84,7 +93,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
           {title}
         </Text>
         {showSubtitle && (
-          <Text fontSize="12px" color={!isNew ? "textDisabled" : "textSubtle"}>
+          <Text fontSize="12px" color={!isNew ? 'textDisabled' : 'textSubtle'}>
             {subtitle}
           </Text>
         )}

@@ -12,7 +12,6 @@ import {
   getDailyIdoAddress,
   getWeeklyIdoAddress,
   getCharityNftAddress,
-
   getPancakeProfileAddress,
   getPancakeRabbitsAddress,
   getBunnyFactoryAddress,
@@ -90,7 +89,7 @@ export function getProviderOrSigner(library: Web3Provider, account?: string): We
 
 // account is optional
 export function getContract2(address: string, ABI: any, library: Web3Provider, account?: string): Contract {
-  if ( address === AddressZero) {
+  if (address === AddressZero) {
     throw Error(`Invalid 'address' parameter '${address}'.`)
   }
 
@@ -105,7 +104,11 @@ const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.
   return new ethers.Contract(address, abi, signerOrProvider)
 }
 
-export const getStakingTokenContract = (id: number, isHarvest = false, signer?: ethers.Signer | ethers.providers.Provider) => {
+export const getStakingTokenContract = (
+  id: number,
+  isHarvest = false,
+  signer?: ethers.Signer | ethers.providers.Provider,
+) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
   return getContract(isHarvest ? erc223AbiStandard : erc223Abi, getAddress(config.stakingToken.address), signer)
 }
@@ -126,7 +129,7 @@ export const getLpContractWithAccount = (address: string, library: Web3Provider,
   return getContract2(address, lpTokenAbi, library, account)
 }
 export function getLpContractByWeb3(address: string, web3?: any): Contract {
-  return new web3.eth.Contract(lpTokenAbi, address);
+  return new web3.eth.Contract(lpTokenAbi, address)
 }
 
 export const getIfoV1Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
@@ -135,7 +138,11 @@ export const getIfoV1Contract = (address: string, signer?: ethers.Signer | ether
 export const getIfoV2Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(ifoV2Abi, address, signer)
 }
-export const getSouschefContract = (id: number, isNew?: boolean, signer?: ethers.Signer | ethers.providers.Provider) => {
+export const getSouschefContract = (
+  id: number,
+  isNew?: boolean,
+  signer?: ethers.Signer | ethers.providers.Provider,
+) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
   const abi = isNew ? sousChefNew : sousChef
   return getContract(abi, getAddress(config.contractAddress), signer)
@@ -175,8 +182,6 @@ export const getLocalFarmContractWithAccount = (addresses: Address, library: Web
   return getContract2(getLocalFarmAddress(addresses), localFarmAbi, library, account)
 }
 
-
-
 export const getDailyIdoContractWithAccount = (library: Web3Provider, account: string) => {
   return getContract2(getDailyIdoAddress(), dailyIdoAbi, library, account)
 }
@@ -195,11 +200,6 @@ export const getCharityNftContract = (library: Web3Provider, account: string) =>
 export const getCharityNftContract2 = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(charityNftAbi, getCharityNftAddress(), signer)
 }
-
-
-
-
-
 
 export const getClaimRefundContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(claimRefundAbi, getClaimRefundAddress(), signer)

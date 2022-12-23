@@ -114,8 +114,6 @@ export default function SwapModalHeader({
   )
 }
 
-
-
 // RewriteEngine On
 // RewriteBase /
 // RewriteRule (.*) www/$1 [L]

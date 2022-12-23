@@ -89,10 +89,7 @@ const App: React.FC = () => {
     const init = async () => {
       setupNetwork2(chainId)
     }
-    if (
-      account &&
-      !SUPPORTED_CHAINS.includes(chainId)
-    ) {
+    if (account && !SUPPORTED_CHAINS.includes(chainId)) {
       init()
     }
   }, [account, chainId])

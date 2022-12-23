@@ -126,13 +126,11 @@ const fetchFarmsPrices = async (farms) => {
   const farmsWithPrices = farms.map((farm) => {
     const quoteTokenFarm = getFarmFromTokenSymbol(farms, farm.quoteToken.symbol)
     const baseTokenPrice =
-      farm.pid === 15 &&
-      (chainId === ChainId.BTTMAINNET || chainId === ChainId.ETCCLASSICMAINNET)
+      farm.pid === 15 && (chainId === ChainId.BTTMAINNET || chainId === ChainId.ETCCLASSICMAINNET)
         ? nativePriceBusdt
         : getFarmBaseTokenPrice(farm, quoteTokenFarm, nativePriceBusdt, cloPrice, chainId)
     const quoteTokenPrice =
-      farm.pid === 15 &&
-      (chainId === ChainId.BTTMAINNET || chainId === ChainId.ETCCLASSICMAINNET)
+      farm.pid === 15 && (chainId === ChainId.BTTMAINNET || chainId === ChainId.ETCCLASSICMAINNET)
         ? cloPrice
         : getFarmQuoteTokenPrice(farm, quoteTokenFarm, nativePriceBusdt, cloPrice, chainId)
 

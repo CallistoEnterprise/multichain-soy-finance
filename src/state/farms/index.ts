@@ -51,18 +51,24 @@ const noAccountFarmConfigETC = CHAINS_CONSTANTS[ChainId.ETCCLASSICMAINNET].farms
   },
 }))
 
-const initialState: FarmsState = { data: {
-  [ChainId.MAINNET]: noAccountFarmConfig,
-  [ChainId.CLOTESTNET]: noAccountFarmConfigForCLOTest,
-  [ChainId.BTTMAINNET]: noAccountFarmConfigBTT,
-  [ChainId.ETCCLASSICMAINNET]: noAccountFarmConfigETC
-}, loadArchivedFarmsData: false, userDataLoaded: false }
+const initialState: FarmsState = {
+  data: {
+    [ChainId.MAINNET]: noAccountFarmConfig,
+    [ChainId.CLOTESTNET]: noAccountFarmConfigForCLOTest,
+    [ChainId.BTTMAINNET]: noAccountFarmConfigBTT,
+    [ChainId.ETCCLASSICMAINNET]: noAccountFarmConfigETC,
+  },
+  loadArchivedFarmsData: false,
+  userDataLoaded: false,
+}
 
 export const nonArchivedFarms = {
   [ChainId.MAINNET]: CHAINS_CONSTANTS[ChainId.MAINNET].farms.filter(({ pid }) => !isArchivedPid(pid)),
   [ChainId.CLOTESTNET]: CHAINS_CONSTANTS[ChainId.CLOTESTNET].farms.filter(({ pid }) => !isArchivedPid(pid)),
   [ChainId.BTTMAINNET]: CHAINS_CONSTANTS[ChainId.BTTMAINNET].farms.filter(({ pid }) => !isArchivedPid(pid)),
-  [ChainId.ETCCLASSICMAINNET]: CHAINS_CONSTANTS[ChainId.ETCCLASSICMAINNET].farms.filter(({ pid }) => !isArchivedPid(pid)),
+  [ChainId.ETCCLASSICMAINNET]: CHAINS_CONSTANTS[ChainId.ETCCLASSICMAINNET].farms.filter(
+    ({ pid }) => !isArchivedPid(pid),
+  ),
 }
 
 // Async thunks

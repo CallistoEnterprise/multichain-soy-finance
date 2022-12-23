@@ -4,7 +4,7 @@ import localFarmABI from 'config/abi/localFarm.json'
 import erc20 from 'config/abi/erc20.json'
 import { getAddress, getLocalFarmAddress, getMasterChefAddress } from 'utils/addressHelpers'
 import { BIG_TEN, BIG_ZERO } from 'utils/bigNumber'
-import {multicall3} from 'utils/multicall'
+import { multicall3 } from 'utils/multicall'
 import { Farm, SerializedBigNumber } from '../types'
 
 type PublicFarmData = {
@@ -24,7 +24,7 @@ type PublicFarmData = {
 const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
   const { lpAddresses, token, quoteToken, localFarmAddresses } = farm
   const lpAddress = getAddress(lpAddresses)
-  
+
   const calls = [
     // Balance of token in the LP contract
     {
@@ -61,7 +61,8 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
     },
   ]
 
-  const [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals] = await multicall3(erc20, calls)
+  const [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals] =
+    await multicall3(erc20, calls)
 
   // Ratio in % of LP tokens that are staked in the MC, vs the total number in circulation
   const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
@@ -78,27 +79,26 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
   const lpTotalInQuoteToken = quoteTokenAmountMc.times(new BigNumber(2))
   // Only make masterchef calls if farm has pid
   const [allocPoint] = await multicall3(localFarmABI, [
-      {
-        address: getLocalFarmAddress(localFarmAddresses),
-        name: 'getAllocationX1000',
-        params: []
-      }
-    ])
-  
-  const [totalAllocPoint]= await multicall3(masterchefABI, [
+    {
+      address: getLocalFarmAddress(localFarmAddresses),
+      name: 'getAllocationX1000',
+      params: [],
+    },
+  ])
+
+  const [totalAllocPoint] = await multicall3(masterchefABI, [
     {
       address: getMasterChefAddress(),
-      name: 'totalMultipliers'
-    }
+      name: 'totalMultipliers',
+    },
   ])
-  const [mulitiplierOfFarm]= await multicall3(masterchefABI, [
+  const [mulitiplierOfFarm] = await multicall3(masterchefABI, [
     {
       address: getMasterChefAddress(),
       name: 'localFarms',
-      params: [farm.pid]
-    }
+      params: [farm.pid],
+    },
   ])
-
 
   // const [chainMultiplier]= await multicall3(masterchefABI, [
   //   {

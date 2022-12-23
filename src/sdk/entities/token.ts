@@ -62,28 +62,28 @@ export const WETH = {
     '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
     18,
     'WCLO',
-    'Wrapped CLO'
+    'Wrapped CLO',
   ),
   [ChainId.CLOTESTNET]: new Token(
     ChainId.CLOTESTNET,
     '0xbd2D3BCe975FD72E44A73cC8e834aD1B8441BdDa',
     18,
     'WCLO',
-    'Wrapped CLO'
+    'Wrapped CLO',
   ),
   [ChainId.ETHEREUM]: new Token(
     ChainId.ETHEREUM,
     '0xbd2D3BCe975FD72E44A73cC8e834aD1B8441BdDa',
     18,
     'WETH',
-    'Wrapped ETH'
+    'Wrapped ETH',
   ),
   [ChainId.RINKEBY]: new Token(
     ChainId.RINKEBY,
     '0xbd2D3BCe975FD72E44A73cC8e834aD1B8441BdDa',
     18,
     'WETH',
-    'Wrapped ETH'
+    'Wrapped ETH',
   ),
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xbd2D3BCe975FD72E44A73cC8e834aD1B8441BdDa', 18, 'WETH', 'Wrapped ETH'),
   [ChainId.BSC]: new Token(ChainId.BSC, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'WBNB', 'Wrapped BNB'),
@@ -92,20 +92,20 @@ export const WETH = {
     '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
     18,
     'WBNB',
-    'Wrapped BNB'
+    'Wrapped BNB',
   ),
   [ChainId.BTTMAINNET]: new Token(
     ChainId.BTTMAINNET,
     '0x33e85f0e26600a6644b6c910639B0bc7a99fd34e',
     18,
     'WBTT',
-    'Wrapped BTT'
+    'Wrapped BTT',
   ),
   [ChainId.ETCCLASSICMAINNET]: new Token(
     ChainId.ETCCLASSICMAINNET,
     '0x35e9A89e43e45904684325970B2E2d258463e072',
     18,
     'WETC',
-    'Wrapped ETC'
-  )
+    'Wrapped ETC',
+  ),
 }

@@ -7,9 +7,9 @@ import { useBlocksFromTimestamps } from 'views/Info/hooks/useBlocksFromTimestamp
 import { getPercentChange, getChangeForPeriod, getAmountChange } from 'views/Info/utils/infoDataHelpers'
 import { TokenData } from 'state/info/types'
 import { useBnbPrices } from 'views/Info/hooks/useBnbPrices'
-import { coinPrice,derivedCOIN } from 'config/constants/info' 
+import { coinPrice, derivedCOIN } from 'config/constants/info'
 
-import { ChainId } from "sdk"
+import { ChainId } from 'sdk'
 
 const chainId = parseInt('820' ?? '820') //parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 
@@ -36,7 +36,10 @@ interface EtcTokenFields {
 }
 
 interface FormattedTokenFields
-  extends Omit<EtcTokenFields, 'derivedETC' | 'derivedUSD' | 'tradeVolumeUSD' | 'totalTransactions' | 'totalLiquidity'> {
+  extends Omit<
+    EtcTokenFields,
+    'derivedETC' | 'derivedUSD' | 'tradeVolumeUSD' | 'totalTransactions' | 'totalLiquidity'
+  > {
   derivedETC?: number
   derivedCLO?: number
   derivedUSD: number
@@ -105,7 +108,7 @@ const fetchTokenData = async (
     if (chainId === ChainId.MAINNET) {
       const data = await request<CloTokenQueryResponse>(INFO_CLIENT, query)
       return { data, error: false }
-    } else if (chainId === ChainId.ETCCLASSICMAINNET){
+    } else if (chainId === ChainId.ETCCLASSICMAINNET) {
       const data = await request<EtcTokenQueryResponse>(INFO_CLIENT, query)
       return { data, error: false }
     }
@@ -122,17 +125,17 @@ if (chainId === ChainId.MAINNET) {
     if (!tokens) {
       return {}
     }
-    return tokens.reduce((accum: { [address: string]: FormattedTokenFields }, tokenData) => {      
-        const { derivedCLO, derivedUSD, tradeVolumeUSD, totalTransactions, totalLiquidity } = tokenData
-        accum[tokenData.id] = {
-          ...tokenData,
-          derivedCLO: parseFloat(derivedCLO),
-          derivedUSD: parseFloat(derivedUSD),
-          tradeVolumeUSD: parseFloat(tradeVolumeUSD),
-          totalTransactions: parseFloat(totalTransactions),
-          totalLiquidity: parseFloat(totalLiquidity),
-        }
-       
+    return tokens.reduce((accum: { [address: string]: FormattedTokenFields }, tokenData) => {
+      const { derivedCLO, derivedUSD, tradeVolumeUSD, totalTransactions, totalLiquidity } = tokenData
+      accum[tokenData.id] = {
+        ...tokenData,
+        derivedCLO: parseFloat(derivedCLO),
+        derivedUSD: parseFloat(derivedUSD),
+        tradeVolumeUSD: parseFloat(tradeVolumeUSD),
+        totalTransactions: parseFloat(totalTransactions),
+        totalLiquidity: parseFloat(totalLiquidity),
+      }
+
       return accum
     }, {})
   }
@@ -141,17 +144,17 @@ if (chainId === ChainId.MAINNET) {
     if (!tokens) {
       return {}
     }
-    return tokens.reduce((accum: { [address: string]: FormattedTokenFields }, tokenData) => {      
-        const { derivedETC, derivedUSD, tradeVolumeUSD, totalTransactions, totalLiquidity } = tokenData
-        accum[tokenData.id] = {
-          ...tokenData,
-          derivedETC: parseFloat(derivedETC),
-          derivedUSD: parseFloat(derivedUSD),
-          tradeVolumeUSD: parseFloat(tradeVolumeUSD),
-          totalTransactions: parseFloat(totalTransactions),
-          totalLiquidity: parseFloat(totalLiquidity),
-        }
-       
+    return tokens.reduce((accum: { [address: string]: FormattedTokenFields }, tokenData) => {
+      const { derivedETC, derivedUSD, tradeVolumeUSD, totalTransactions, totalLiquidity } = tokenData
+      accum[tokenData.id] = {
+        ...tokenData,
+        derivedETC: parseFloat(derivedETC),
+        derivedUSD: parseFloat(derivedUSD),
+        tradeVolumeUSD: parseFloat(tradeVolumeUSD),
+        totalTransactions: parseFloat(totalTransactions),
+        totalLiquidity: parseFloat(totalLiquidity),
+      }
+
       return accum
     }, {})
   }
@@ -193,13 +196,11 @@ const useFetchedTokenDatas = (tokenAddresses: string[]): TokenDatas => {
 
         // Calculate data and format
         const formatted = tokenAddresses.reduce((accum: { [address: string]: TokenData }, address) => {
-
           const current: FormattedTokenFields | undefined = parsed[address]
           const oneDay: FormattedTokenFields | undefined = parsed24[address]
           const twoDays: FormattedTokenFields | undefined = parsed48[address]
           const week: FormattedTokenFields | undefined = parsed7d[address]
           const twoWeeks: FormattedTokenFields | undefined = parsed14d[address]
-
 
           const [volumeUSD, volumeUSDChange] = getChangeForPeriod(
             current?.tradeVolumeUSD,
@@ -219,14 +220,14 @@ const useFetchedTokenDatas = (tokenAddresses: string[]): TokenDatas => {
           let priceUSDOneDay
           let priceUSDWeek
           // Prices of tokens for now, 24h ago and 7d ago
-          if (chainId === ChainId.ETCCLASSICMAINNET){
-             priceUSD = current ? current.derivedETC * cloPrices.current : 0
-             priceUSDOneDay = oneDay ? oneDay.derivedETC * cloPrices.oneDay : 0
-             priceUSDWeek = week ? week.derivedETC * cloPrices.week : 0  
-          } else if (chainId === ChainId.MAINNET){
+          if (chainId === ChainId.ETCCLASSICMAINNET) {
+            priceUSD = current ? current.derivedETC * cloPrices.current : 0
+            priceUSDOneDay = oneDay ? oneDay.derivedETC * cloPrices.oneDay : 0
+            priceUSDWeek = week ? week.derivedETC * cloPrices.week : 0
+          } else if (chainId === ChainId.MAINNET) {
             priceUSD = current ? current.derivedCLO * cloPrices.current : 0
             priceUSDOneDay = oneDay ? oneDay.derivedCLO * cloPrices.oneDay : 0
-            priceUSDWeek = week ? week.derivedCLO * cloPrices.week : 0  
+            priceUSDWeek = week ? week.derivedCLO * cloPrices.week : 0
           }
           const priceUSDChange = getPercentChange(priceUSD, priceUSDOneDay)
           const priceUSDChangeWeek = getPercentChange(priceUSD, priceUSDWeek)

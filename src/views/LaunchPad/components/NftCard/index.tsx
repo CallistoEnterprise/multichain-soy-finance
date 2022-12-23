@@ -1,11 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ethers } from 'ethers'
-import {
-  Card,
-  CardBody,
-  Button,
-} from '@callisto-enterprise/soy-uikit2'
+import { Card, CardBody, Button } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { Nft } from 'config/constants/types'
 import Preview from './Preview'
@@ -26,16 +22,16 @@ const StyledCard = styled(Card)`
   background-color: transparent;
 `
 
-const BuyButton = styled(Button)<{bkColor?: string}>`
-  background-color: ${({bkColor}) => bkColor};
-  color: #FFFFFF;
+const BuyButton = styled(Button)<{ bkColor?: string }>`
+  background-color: ${({ bkColor }) => bkColor};
+  color: #ffffff;
 `
 
 const NftCard: React.FC<NftCardProps> = ({ nft }) => {
   const { t } = useTranslation()
 
   const handleConfirm = async () => {
-    window.open('https://warz.vip/#/ico/', '_blank');
+    window.open('https://warz.vip/#/ico/', '_blank')
   }
 
   return (
@@ -43,12 +39,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
       <Preview nft={nft} isOwned={false} />
 
       <CardBody>
-        <BuyButton
-          width="100%"
-          mt="0px"
-          bkColor = {nft.primaryColor}
-          onClick={handleConfirm}
-        >
+        <BuyButton width="100%" mt="0px" bkColor={nft.primaryColor} onClick={handleConfirm}>
           {t('Discover VIPWarz')}
         </BuyButton>
       </CardBody>

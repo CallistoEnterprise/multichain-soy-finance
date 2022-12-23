@@ -6,12 +6,12 @@ const preferredQuoteTokensForMulti = {
   [ChainId.MAINNET]: ['BUSDT', 'WCLO'],
   [ChainId.CLOTESTNET]: ['BUSDT', 'WCLO'],
   [ChainId.BTTMAINNET]: ['BUSDT', 'WBTT', 'ccCLO', 'SOY'],
-  [ChainId.ETCCLASSICMAINNET]: ['BUSDT', 'WETC', 'ccCLO', 'SOY']
+  [ChainId.ETCCLASSICMAINNET]: ['BUSDT', 'WETC', 'ccCLO', 'SOY'],
 }
 /**
  * Returns the first farm with a quote token that matches from an array of preferred quote tokens
  * @param farms Array of farms
- * @param preferredQuoteTokens Array of preferred quote tokens 
+ * @param preferredQuoteTokens Array of preferred quote tokens
  * @returns A preferred farm, if found - or the first element of the farms array
  */
 export const filterFarmsByQuoteToken = (farms: Farm[]): Farm => {

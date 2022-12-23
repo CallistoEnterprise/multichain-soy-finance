@@ -1,8 +1,8 @@
 import tokens from '../tokens'
 import { FarmConfig } from '../types'
 
-const farms: FarmConfig[] = [  
-   {
+const farms: FarmConfig[] = [
+  {
     pid: 23,
     lpSymbol: 'SOY-CLO LP',
     lpAddresses: {
@@ -11,7 +11,7 @@ const farms: FarmConfig[] = [
     },
     localFarmAddresses: {
       820: '',
-      20729: '0x11e826C2b7a9f3e956A25CE4990Adff631493C72'
+      20729: '0x11e826C2b7a9f3e956A25CE4990Adff631493C72',
     },
     token: tokens.soy,
     quoteToken: tokens.wclo,
@@ -25,7 +25,7 @@ const farms: FarmConfig[] = [
     },
     localFarmAddresses: {
       820: '',
-      20729: '0x3095564bD195B30C4D6d0ad034d3aB52ECC6523A'
+      20729: '0x3095564bD195B30C4D6d0ad034d3aB52ECC6523A',
     },
     token: tokens.busdt,
     quoteToken: tokens.wclo,
@@ -39,7 +39,7 @@ const farms: FarmConfig[] = [
     },
     localFarmAddresses: {
       820: '',
-      20729: '0x95626AE6260dA16463D0e9CA077cbE9b47c25Fa8'
+      20729: '0x95626AE6260dA16463D0e9CA077cbE9b47c25Fa8',
     },
     token: tokens.soy,
     quoteToken: tokens.busdt,
@@ -53,7 +53,7 @@ const farms: FarmConfig[] = [
     },
     localFarmAddresses: {
       820: '',
-      20729: '0xC14e256C295A1C873ae21E05cc88956Add15C293'
+      20729: '0xC14e256C295A1C873ae21E05cc88956Add15C293',
     },
     token: tokens.wclo,
     quoteToken: tokens.tmt,
@@ -67,7 +67,7 @@ const farms: FarmConfig[] = [
     },
     localFarmAddresses: {
       820: '',
-      20729: '0xe9d02a3fE2e7785Cd45d99a0F5F923e3E59CfC27'
+      20729: '0xe9d02a3fE2e7785Cd45d99a0F5F923e3E59CfC27',
     },
     token: tokens.soy,
     quoteToken: tokens.tmt,

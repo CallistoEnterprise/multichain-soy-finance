@@ -27,7 +27,7 @@ export const transformUserData = (userData: UserData) => {
       time: userData ? new BigNumber(userData.stakedStatus.time) : BIG_ZERO,
       multiplier: userData ? new BigNumber(userData.stakedStatus.multiplier) : BIG_ZERO,
       endTime: userData ? new BigNumber(userData.stakedStatus.endTime) : BIG_ZERO,
-    }
+    },
   }
 }
 

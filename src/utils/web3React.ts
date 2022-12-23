@@ -12,7 +12,7 @@ const POLLING_INTERVAL = 12000
 const supportedChainIds = []
 const RPC_URLS = {}
 
-Object.keys(CHAINS_CONSTANTS).forEach(key => {
+Object.keys(CHAINS_CONSTANTS).forEach((key) => {
   supportedChainIds.push(Number(key))
   RPC_URLS[key] = CHAINS_CONSTANTS[key].rpcs[0]
 })

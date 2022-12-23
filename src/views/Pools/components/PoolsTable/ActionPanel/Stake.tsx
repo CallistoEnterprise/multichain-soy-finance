@@ -1,7 +1,19 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text, AutoRenewIcon, HelpIcon } from '@callisto-enterprise/soy-uikit2'
+import {
+  Button,
+  useModal,
+  IconButton,
+  AddIcon,
+  MinusIcon,
+  Skeleton,
+  useTooltip,
+  Flex,
+  Text,
+  AutoRenewIcon,
+  HelpIcon,
+} from '@callisto-enterprise/soy-uikit2'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useCakeVault } from 'state/pools/hooks'
 import { Pool } from 'state/types'
@@ -180,7 +192,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : "textSubtle"} as="span" textTransform="uppercase">
+          <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : 'textSubtle'} as="span" textTransform="uppercase">
             {t('Start staking')}
           </Text>
         </ActionTitles>
@@ -195,7 +207,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : "textSubtle"} as="span" textTransform="uppercase">
+          <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : 'textSubtle'} as="span" textTransform="uppercase">
             {t('Start staking')}
           </Text>
         </ActionTitles>
@@ -210,7 +222,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : "textSubtle"} as="span" textTransform="uppercase">
+          <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : 'textSubtle'} as="span" textTransform="uppercase">
             {t('Enable pool')}
           </Text>
         </ActionTitles>
@@ -228,10 +240,10 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : "secondary"} as="span" textTransform="uppercase">
+          <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : 'secondary'} as="span" textTransform="uppercase">
             {stakingToken.symbol}{' '}
           </Text>
-          <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : "textSubtle"} as="span" textTransform="uppercase">
+          <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : 'textSubtle'} as="span" textTransform="uppercase">
             {isAutoVault ? t('Staked (compounding)') : t('Staked')}
           </Text>
         </ActionTitles>
@@ -331,10 +343,10 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   return (
     <ActionContainer>
       <ActionTitles>
-        <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : "secondary"} as="span" textTransform="uppercase">
+        <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : 'secondary'} as="span" textTransform="uppercase">
           {t('Stake')}{' '}
         </Text>
-        <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : "textSubtle"} as="span" textTransform="uppercase">
+        <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : 'textSubtle'} as="span" textTransform="uppercase">
           {stakingToken.symbol}
         </Text>
       </ActionTitles>

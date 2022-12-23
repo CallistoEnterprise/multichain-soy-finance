@@ -25,7 +25,7 @@ import {
   getBunnySpecialCakeVaultContract,
   getBunnySpecialPredictionContract,
   getFarmAuctionContract,
-  getCharityNftContract2
+  getCharityNftContract2,
 } from 'utils/contractHelpers'
 
 // Imports below migrated from Exchange useContract.ts

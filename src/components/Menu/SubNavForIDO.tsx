@@ -15,9 +15,7 @@ const StyledNav = styled.nav`
 `
 
 const getActiveIndex = (pathname: string): number => {
-  if (
-    pathname.includes('/ido-week')
-  ) {
+  if (pathname.includes('/ido-week')) {
     return 1
   }
   return 0
@@ -28,7 +26,7 @@ const NavForIDO = () => {
   const { t } = useTranslation()
   return (
     <StyledNav>
-      <ButtonMenu activeIndex={getActiveIndex(location.pathname)} >
+      <ButtonMenu activeIndex={getActiveIndex(location.pathname)}>
         <ButtonMenuItem id="swap-nav-link" to="/ido" as={Link}>
           {t('Daily')}
         </ButtonMenuItem>

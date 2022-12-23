@@ -1,6 +1,6 @@
 import { ChainId, Currency, currencyEquals, JSBI, Price, WETH } from 'sdk'
 import { useMemo } from 'react'
-import { DEFAULT_CHAIN_ID } from 'config';
+import { DEFAULT_CHAIN_ID } from 'config'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { BUSDT, SOY } from '../config/constants/tokens'
 import { PairState, usePairs } from './usePairs'
