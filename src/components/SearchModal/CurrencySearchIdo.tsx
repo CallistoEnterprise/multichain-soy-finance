@@ -1,5 +1,5 @@
 import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from 'react'
-import { ChainId, Currency, ETHERS, Token } from '@callisto-enterprise/soy-sdk'
+import { ChainId, Currency, ETHERS, Token } from 'sdk'
 import { Text, Input, Box } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { FixedSizeList } from 'react-window'

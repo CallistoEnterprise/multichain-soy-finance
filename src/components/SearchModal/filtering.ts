@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Token } from '@callisto-enterprise/soy-sdk'
+import { Token } from 'sdk'
 import { isAddress } from '../../utils'
 
 export function filterTokens(tokens: Token[], search: string): Token[] {

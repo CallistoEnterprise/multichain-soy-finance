@@ -9,7 +9,7 @@ import { useProfile } from 'state/profile/hooks'
 import { addSoyToMetamask } from 'utils/wallet'
 import { getConfig } from './config'
 import UserMenu from './UserMenu'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { ChainId } from 'sdk'
 
 const Menu = (props) => {
   const { chainId } = useActiveWeb3React()

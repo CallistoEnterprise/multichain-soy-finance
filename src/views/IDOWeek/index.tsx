@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { CurrencyAmount } from '@callisto-enterprise/soy-sdk'
+import { CurrencyAmount } from 'sdk'
 import { Button, Box, Card } from '@callisto-enterprise/soy-uikit2'
 import BigNumber from 'bignumber.js'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'

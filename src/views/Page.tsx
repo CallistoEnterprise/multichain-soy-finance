@@ -4,7 +4,7 @@ import { Flex } from '@callisto-enterprise/soy-uikit2'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Footer from 'components/Menu/Footer'
 import SubNav from 'components/Menu/SubNav'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { ChainId } from 'sdk'
 
 const StyledPage = styled.div`
   display: flex;

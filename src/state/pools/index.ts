@@ -17,7 +17,7 @@ import {
 import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
 import fetchVaultUser from './fetchVaultUser'
 import { getTokenPricesFromFarm } from './helpers'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { ChainId } from 'sdk'
 
 const initialState: PoolsState = {
   data: [...poolsConfig],

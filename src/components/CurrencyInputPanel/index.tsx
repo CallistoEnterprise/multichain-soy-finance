@@ -1,5 +1,5 @@
 import React from 'react'
-import { Currency, Pair } from '@callisto-enterprise/soy-sdk'
+import { Currency, Pair } from 'sdk'
 import { Button, ChevronDownIcon, Text, useModal, Flex } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'

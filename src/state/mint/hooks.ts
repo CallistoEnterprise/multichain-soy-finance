@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, ETHERS, JSBI, Pair, Percent, Price, TokenAmount } from '@callisto-enterprise/soy-sdk'
+import { Currency, CurrencyAmount, ETHERS, JSBI, Pair, Percent, Price, TokenAmount } from 'sdk'
 import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

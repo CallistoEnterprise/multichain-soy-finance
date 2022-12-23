@@ -27,7 +27,7 @@ import PoolTabButtons from './components/PoolTabButtons'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData } from './helpers'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { ChainId } from 'sdk'
 // import useRewardBlockCountOfSous, { useRewardBlockCountForMaticStaking } from './hooks/useRewardBlockCount'
 
 const CardLayout = styled(FlexLayout)`

@@ -1,4 +1,4 @@
-import { Currency, currencyEquals, ETHERS, WETH } from '@callisto-enterprise/soy-sdk'
+import { Currency, currencyEquals, ETHERS, WETH } from 'sdk'
 import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { tryParseAmount } from '../state/swap/hooks'

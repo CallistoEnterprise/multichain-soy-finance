@@ -1,4 +1,4 @@
-import { Token as SDKToken, Pair, ChainId } from '@callisto-enterprise/soy-sdk'
+import { Token as SDKToken, Pair, ChainId } from 'sdk'
 import tokens from './tokens'
 import { FarmAuctionBidderConfig, Token } from './types'
 

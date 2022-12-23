@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Token, Currency } from '@callisto-enterprise/soy-sdk'
+import { Token, Currency } from 'sdk'
 import { Button, Text, ErrorIcon, Flex, Message, Checkbox, Link, Tag, Grid } from '@callisto-enterprise/soy-uikit2'
 import { AutoColumn } from 'components/Layout/Column'
 import { useAddUserToken } from 'state/user/hooks'

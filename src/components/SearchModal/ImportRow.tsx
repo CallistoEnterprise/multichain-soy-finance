@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react'
-import { Token } from '@callisto-enterprise/soy-sdk'
+import { Token } from 'sdk'
 import { Button, Text, CheckmarkCircleIcon } from '@callisto-enterprise/soy-uikit2'
 import { AutoRow, RowFixed } from 'components/Layout/Row'
 import { AutoColumn } from 'components/Layout/Column'

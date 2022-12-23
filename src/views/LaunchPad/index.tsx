@@ -6,7 +6,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/Layout/Page'
 import NftList from './components/PadList'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { ChainId } from 'sdk'
 
 const StyledHero = styled.div`
   border-bottom: 2px solid ${({ theme }) => theme.colors.textSubtle};

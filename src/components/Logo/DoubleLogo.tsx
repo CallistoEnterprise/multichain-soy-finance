@@ -1,4 +1,4 @@
-import { Currency } from '@callisto-enterprise/soy-sdk'
+import { Currency } from 'sdk'
 import React from 'react'
 import styled from 'styled-components'
 import CurrencyLogo from './CurrencyLogo'

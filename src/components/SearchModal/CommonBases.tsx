@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChainId, Currency, currencyEquals, ETHERS, Token } from '@callisto-enterprise/soy-sdk'
+import { ChainId, Currency, currencyEquals, ETHERS, Token } from 'sdk'
 import { Text } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'

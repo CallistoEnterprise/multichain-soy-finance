@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@callisto-enterprise/soy-sdk'
+import { ChainId, JSBI, Percent, Token, WETH } from 'sdk'
 import { BUSDT, SOY, WCLO } from './tokens'
 
 export const ROUTER_ADDRESS = {

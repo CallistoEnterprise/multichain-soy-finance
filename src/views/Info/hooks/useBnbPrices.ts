@@ -3,7 +3,7 @@ import { getDeltaTimestamps } from 'views/Info/utils/infoQueryHelpers'
 import { useState, useEffect } from 'react'
 import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
-import { ChainId } from "@callisto-enterprise/soy-sdk"
+import { ChainId } from "sdk"
 
 const chainId = 820 // parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 

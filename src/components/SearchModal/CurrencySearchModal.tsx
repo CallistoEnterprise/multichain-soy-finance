@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Currency, Token } from '@callisto-enterprise/soy-sdk'
+import { Currency, Token } from 'sdk'
 import {
   ModalContainer,
   ModalHeader,

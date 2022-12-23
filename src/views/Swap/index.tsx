@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { CurrencyAmount, JSBI, Token, Trade } from '@callisto-enterprise/soy-sdk'
+import { CurrencyAmount, JSBI, Token, Trade } from 'sdk'
 import { Button, Text, ArrowDownIcon, Box, useModal } from '@callisto-enterprise/soy-uikit2'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'

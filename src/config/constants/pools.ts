@@ -1,4 +1,4 @@
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { ChainId } from 'sdk'
 import tokens from './tokens'
 import { PoolConfig, PoolCategory } from './types'
 

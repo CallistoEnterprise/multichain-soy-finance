@@ -1,5 +1,5 @@
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
-import { ChainId, Currency, CurrencyAmount, currencyEquals, ETHERS, Token } from '@callisto-enterprise/soy-sdk'
+import { ChainId, Currency, CurrencyAmount, currencyEquals, ETHERS, Token } from 'sdk'
 import { Text } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { FixedSizeList } from 'react-window'

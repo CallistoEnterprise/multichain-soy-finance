@@ -1,5 +1,5 @@
 import React from 'react'
-import { Trade, TradeType } from '@callisto-enterprise/soy-sdk'
+import { Trade, TradeType } from 'sdk'
 import { Text } from '@callisto-enterprise/soy-uikit2'
 import { Field } from 'state/swap/actions'
 import { useUserSlippageTolerance } from 'state/user/hooks'
