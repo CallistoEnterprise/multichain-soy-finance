@@ -11,7 +11,7 @@ import profileReducer from './profile'
 //import achievementsReducer from './achievements'
 import blockReducer from './block'
 //import votingReducer from './voting'
-//import lotteryReducer from './lottery'
+import lotteryReducer from './lottery'
 import application from './application/reducer'
 import { updateVersion } from './global/actions'
 import user from './user/reducer'
@@ -36,7 +36,7 @@ const store = configureStore({
     profile: profileReducer,
     //teams: teamsReducer,
     //voting: votingReducer,
-    //lottery: lotteryReducer,
+    lottery: lotteryReducer,
 
     // Exchange
     application,
