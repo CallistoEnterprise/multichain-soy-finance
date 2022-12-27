@@ -40,11 +40,6 @@ export class Currency {
 const ETHERS: { [chainId in ChainId]: Currency } = {
   [ChainId.MAINNET]: Currency.ETHER,
   [ChainId.CLOTESTNET]: Currency.ETHERCLOTEST,
-  [ChainId.ETHEREUM]: Currency.MAINETHER,
-  [ChainId.RINKEBY]: Currency.MAINETHER,
-  [ChainId.KOVAN]: Currency.MAINETHER,
-  [ChainId.BSC]: Currency.BNBETHER,
-  [ChainId.BSCTESTNET]: Currency.BNBETHER,
   [ChainId.BTTMAINNET]: Currency.BTTETHER,
   [ChainId.ETCCLASSICMAINNET]: Currency.ETCETHER,
 }

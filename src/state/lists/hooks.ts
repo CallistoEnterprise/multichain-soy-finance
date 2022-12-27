@@ -61,11 +61,6 @@ export type TokenAddressMap = Readonly<{
 const EMPTY_LIST: TokenAddressMap = {
   [ChainId.MAINNET]: {},
   [ChainId.CLOTESTNET]: {},
-  [ChainId.ETHEREUM]: {},
-  [ChainId.RINKEBY]: {},
-  [ChainId.KOVAN]: {},
-  [ChainId.BSC]: {},
-  [ChainId.BSCTESTNET]: {},
   [ChainId.ETCCLASSICMAINNET]: {},
   [ChainId.BTTMAINNET]: {},
 }
@@ -120,11 +115,6 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
   return {
     [ChainId.MAINNET]: { ...map1[ChainId.MAINNET], ...map2[ChainId.MAINNET] },
     [ChainId.CLOTESTNET]: { ...map1[ChainId.CLOTESTNET], ...map2[ChainId.CLOTESTNET] },
-    [ChainId.ETHEREUM]: { ...map1[ChainId.ETHEREUM], ...map2[ChainId.ETHEREUM] },
-    [ChainId.RINKEBY]: { ...map1[ChainId.RINKEBY], ...map2[ChainId.RINKEBY] },
-    [ChainId.KOVAN]: { ...map1[ChainId.KOVAN], ...map2[ChainId.KOVAN] },
-    [ChainId.BSC]: { ...map1[ChainId.BSC], ...map2[ChainId.BSC] },
-    [ChainId.BSCTESTNET]: { ...map1[ChainId.BSCTESTNET], ...map2[ChainId.BSCTESTNET] },
     [ChainId.ETCCLASSICMAINNET]: { ...map1[ChainId.ETCCLASSICMAINNET], ...map2[ChainId.ETCCLASSICMAINNET] },
     [ChainId.BTTMAINNET]: { ...map1[ChainId.BTTMAINNET], ...map2[ChainId.BTTMAINNET] },
   }

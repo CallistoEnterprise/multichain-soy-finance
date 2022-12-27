@@ -23,9 +23,7 @@ function currencyKey(currency: Currency): string {
     ? currency.address
     : currency === ETHERS[ChainId.MAINNET] ||
       currency === ETHERS[ChainId.BTTMAINNET] ||
-      currency === ETHERS[ChainId.ETCCLASSICMAINNET] ||
-      currency === ETHERS[ChainId.BSC] ||
-      currency === ETHERS[ChainId.ETHEREUM]
+      currency === ETHERS[ChainId.ETCCLASSICMAINNET]
     ? 'ETHER'
     : ''
 }
