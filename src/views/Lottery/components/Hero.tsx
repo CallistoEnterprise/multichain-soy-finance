@@ -9,7 +9,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
 import { TicketPurchaseCard } from '../svgs'
 import BuyTicketsButton from './BuyTicketsButton'
-import LotteryJpg from 'assets/lottery-ticket.jpg'
+import LotteryImage from 'assets/lottery-ticket.png'
 import { BASE_URL } from 'config'
 
 const floatingStarsLeft = keyframes`
@@ -252,13 +252,13 @@ const Hero = () => {
       <Decorations />
       <StarsDecorations display={['none', 'none', 'block']}>
         <img src={`${BASE_URL}/images/soyswap.png`} width="40px" height="22px" alt="" />
-        <img src={`${BASE_URL}/images/soyswap.png`} width="70px" height="62px" alt="" />
+        <img src={`${BASE_URL}/images/soyswap.png`} width="35px" height="19px" alt="" />
         <img src={`${BASE_URL}/images/group-soy.svg`} width="130px" height="144px" alt="" />
         <img src={`${BASE_URL}/images/right-soy.svg`} width="123px" height="83px" alt="" />
         <img src={`${BASE_URL}/images/left-soy.svg`} width="121px" height="72px" alt="" />
       </StarsDecorations>
       <Heading mb="8px" scale="md" color="#ffffff">
-        {t('The soyfinance Lottery')}
+        {t('The Soy.Finance Lottery')}
       </Heading>
       {getHeroHeading()}
       <TicketContainer
@@ -268,7 +268,7 @@ const Hero = () => {
         alignItems="center"
         justifyContent="center"
       >
-        <img src={LotteryJpg} />
+        <img src={LotteryImage} alt="Ticket Illustration" />
         {/*}
         <ButtonWrapper>
           <StyledBuyTicketButton disabled={ticketBuyIsDisabled} />

@@ -4,6 +4,7 @@ import { Box, Flex, Text, Heading, useMatchBreakpoints, Link } from '@callisto-e
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { BallWithNumber, MatchExampleA, MatchExampleB, PoolAllocationChart } from '../svgs'
+import LotterySlothBottompage from 'assets/lottery-sloth-bottompage.png'
 
 const Divider = styled.div`
   background-color: ${({ theme }) => theme.colors.cardBorder};
@@ -217,12 +218,12 @@ const HowToPlay: React.FC = () => {
     {
       label: t('Step %number%', { number: 1 }),
       title: t('Buy Tickets'),
-      subtitle: t('Prices are set when the round starts, equal to 5 USD in SOY per ticket.'),
+      subtitle: t('Price of a ticket is 250 SOY.'),
     },
     {
       label: t('Step %number%', { number: 2 }),
       title: t('Wait for the Draw'),
-      subtitle: t('There are two draws every day: one every 12 hours.'),
+      subtitle: t('There is one draw daily.'),
     },
     {
       label: t('Step %number%', { number: 3 }),
@@ -264,14 +265,14 @@ const HowToPlay: React.FC = () => {
             <li>
               <Text display="inline" color="textSubtle">
                 {t(
-                  'Ticket A: The first 3 digits and the last 2 digits match, but the 4th digit is wrong, so this ticket only wins a “Match first 3” prize.',
+                  'Ticket A: The first digit and the last digit match, but the 2nd digit is wrong, so this ticket only wins a “Match first 1” prize.',
                 )}
               </Text>
             </li>
             <li>
               <Text display="inline" color="textSubtle">
                 {t(
-                  'Ticket B: Even though the last 5 digits match, the first digit is wrong, so this ticket doesn’t win a prize.',
+                  'Ticket B: Even though the last 2 digits match, the first digit is wrong, so this ticket doesn’t win a prize.',
                 )}
               </Text>
             </li>
@@ -299,7 +300,9 @@ const HowToPlay: React.FC = () => {
           <BulletList>
             <li>
               <Text display="inline" color="textSubtle">
-                {t('100% of the SOY paid by people buying tickets that round goes back into the prize pools.')}
+                {t(
+                  '90% of the SOY paid by people buying tickets that round goes back into the prize pools. 10% is burned.',
+                )}
               </Text>
             </li>
           </BulletList>
@@ -316,17 +319,18 @@ const HowToPlay: React.FC = () => {
             </li>
           </BulletList>
           <Heading my="16px" scale="md">
-            {t('SOY Injections')}
+            {t('SOY Burns')}
           </Heading>
           <BulletList>
             <li>
               <Text display="inline" color="textSubtle">
                 {t(
-                  '10,000 SOY from the treasury is added to a lottery round every other day. This SOY is of course also included in rollovers! Read more in our guide to ',
+                  '10% of raised SOY is burned, removing it from circulation and acting as a steady upwards force on SOY price. Read more in our guide to ',
                 )}
                 <InlineLink href="https://docs.soyfinance.finance/tokenomics/SOY/soy-tokenomics">
                   {t('SOY Tokenomics')}
                 </InlineLink>
+                .
               </Text>
             </li>
           </BulletList>
@@ -338,7 +342,7 @@ const HowToPlay: React.FC = () => {
       <Divider />
       <Flex justifyContent="center" alignItems="center" flexDirection={['column', 'column', 'row']}>
         <Flex maxWidth="240px" mr="8px" mb="16px">
-          <img src="/images/lottery/tombola.png" alt="tombola bunny" />
+          <img src={LotterySlothBottompage} alt="Lottery Sloth" style={{ height: '100px' }} />
         </Flex>
         <Flex maxWidth="300px" flexDirection="column">
           <Heading mb="16px" scale="md">
