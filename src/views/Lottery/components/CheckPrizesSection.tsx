@@ -9,6 +9,8 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import ClaimPrizesModal from './ClaimPrizesModal'
 import useGetUnclaimedRewards, { FetchStatus } from '../hooks/useGetUnclaimedRewards'
 import LotteryImageSmall from 'assets/lottery-ticket-small.png'
+import LotterySlothLeft from 'assets/lottery-sloth-sedi.png'
+import LotterySlothRight from 'assets/lottery-sloth-ceka.png'
 
 const TicketImage = styled.img`
   height: 60px;
@@ -123,7 +125,7 @@ const CheckPrizesSection = () => {
     }
     return (
       <Flex alignItems="center" justifyContent="center">
-        <TicketImage src={LotteryImageSmall} alt="lottery ticket" />
+        <TicketImage src={LotterySlothLeft} alt="lottery ticket" />
         <Flex mx={['4px', null, '16px']} flexDirection="column">
           <Heading textAlign="center" color="#F4EEFF" mb="24px">
             {t('Are you a winner?')}
@@ -137,7 +139,7 @@ const CheckPrizesSection = () => {
             {checkNowText()}
           </Button>
         </Flex>
-        <TicketImage src={LotteryImageSmall} alt="lottery ticket" />
+        <TicketImage src={LotterySlothRight} alt="lottery ticket" />
       </Flex>
     )
   }

@@ -60,20 +60,38 @@ const floatingTickeRight = keyframes`
   }  
 `
 
+const floatingSoyRight = keyframes`
+  from {
+    transform: translate(0,  0px);
+  }
+  50% {
+    transform: translate(15px, 0px);
+  }
+  to {
+    transform: translate(0, -0px);
+  }  
+`
+
 const mainTicketAnimation = keyframes`
   from {
+    transform: rotate(-6deg);
+  }
+  25% {
     transform: rotate(0deg);
   }
   50% {
     transform: rotate(6deg);
   }
-  to {
+  75% {
     transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-6deg);
   }  
 `
 
 const TicketContainer = styled(Flex)`
-  animation: ${mainTicketAnimation} 3s ease-in-out infinite;
+  animation: ${mainTicketAnimation} 6s ease-in-out infinite;
 `
 
 const PrizeTotalBalance = styled(Balance)`
@@ -142,6 +160,9 @@ const StarsDecorations = styled(Box)`
   & :nth-child(5) {
     animation: ${floatingTickeRight} 6s ease-in-out infinite;
   }
+  & :nth-child(6) {
+    animation: ${floatingSoyRight} 3s ease-in-out infinite;
+  }
 
   ${({ theme }) => theme.mediaQueries.sm} {
     & :nth-child(1) {
@@ -163,6 +184,10 @@ const StarsDecorations = styled(Box)`
     & :nth-child(5) {
       right: 8%;
       top: 67%;
+    }
+    & :nth-child(6) {
+      right: 8%;
+      top: 46%;
     }
   }
 
@@ -187,6 +212,10 @@ const StarsDecorations = styled(Box)`
       right: 17%;
       top: 67%;
     }
+    & :nth-child(6) {
+      right: 17%;
+      top: 46%;
+    }
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
@@ -209,6 +238,10 @@ const StarsDecorations = styled(Box)`
     & :nth-child(5) {
       right: 24%;
       top: 67%;
+    }
+    & :nth-child(6) {
+      right: 24%;
+      top: 46%;
     }
   }
 `
@@ -256,6 +289,7 @@ const Hero = () => {
         <img src={`${BASE_URL}/images/group-soy.svg`} width="130px" height="144px" alt="" />
         <img src={`${BASE_URL}/images/right-soy.svg`} width="123px" height="83px" alt="" />
         <img src={`${BASE_URL}/images/left-soy.svg`} width="121px" height="72px" alt="" />
+        <img src={`${BASE_URL}/images/soyswap.png`} width="40px" height="22px" alt="" />
       </StarsDecorations>
       <Heading mb="8px" scale="md" color="#ffffff">
         {t('The Soy.Finance Lottery')}

@@ -78,6 +78,7 @@ const BallsContainer = styled(Flex)`
   gap: 6.5px;
   padding-left: 7px;
   align-items: center;
+  justify-content: center;
   width: 100%;
 `
 
@@ -94,9 +95,6 @@ const ExampleBalls = () => {
       <BallWithNumber size={ballSize} fontSize={fontSize} color="yellow" number="9" />
       <BallWithNumber size={ballSize} fontSize={fontSize} color="green" number="1" />
       <BallWithNumber size={ballSize} fontSize={fontSize} color="aqua" number="3" />
-      <BallWithNumber size={ballSize} fontSize={fontSize} color="teal" number="6" />
-      <BallWithNumber size={ballSize} fontSize={fontSize} color="lilac" number="6" />
-      <BallWithNumber size={ballSize} fontSize={fontSize} color="pink" number="2" />
     </BallsContainer>
   )
 }
@@ -104,7 +102,7 @@ const ExampleBalls = () => {
 const MatchExampleContainer = styled.div`
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 2fr;
   grid-template-rows: 46px 64px 64px;
 `
 
@@ -112,18 +110,18 @@ const MatchExampleCard = () => {
   const { isDark } = useTheme()
   const { isXs } = useMatchBreakpoints()
   const { t } = useTranslation()
-  const exampleWidth = isXs ? '210px' : '258px'
+  const exampleWidth = isXs ? '130px' : '180px'
   return (
-    <StyledStepCard width={['280px', '330px', '380px']}>
+    <StyledStepCard width={['270px', '290px', '270px']}>
       <StepCardInner height="220px">
         <MatchExampleContainer>
           <Box />
           <ExampleBalls />
-          <Text lineHeight="72px" textAlign="right" color="secondary" bold mr="20px">
+          <Text lineHeight="72px" textAlign="right" color="secondary" bold mr="10px">
             {t('A')}
           </Text>
           <MatchExampleA width={exampleWidth} height="46px" isDark={isDark} />
-          <Text lineHeight="72px" textAlign="right" color="secondary" bold mr="20px">
+          <Text lineHeight="72px" textAlign="right" color="secondary" bold mr="10px">
             {t('B')}
           </Text>
           <MatchExampleB width={exampleWidth} height="46px" isDark={isDark} />
@@ -159,47 +157,35 @@ const AllocationMatch: React.FC<{ color: string; text: string }> = ({ color, tex
 const PoolAllocations = () => {
   const { t } = useTranslation()
   return (
-    <StyledStepCard width={['280px', '330px', '380px']}>
-      <StepCardInner height="420px">
+    <StyledStepCard width={['270px', '290px', '270px']}>
+      <StepCardInner height="400px">
         <Flex mb="32px" justifyContent="center">
           <PoolAllocationChart width="100px" height="100px" />
         </Flex>
-        <Flex justifyContent="space-between">
+        <Flex justifyContent="space-between" style={{ marginBottom: '10px' }}>
           <Text fontSize="12px" color="secondary" bold textTransform="uppercase">
             {t('Digits matched')}
           </Text>
-          <Text fontSize="12px" color="secondary" bold textTransform="uppercase">
+          <Text fontSize="12px" color="secondary" bold textTransform="uppercase" style={{ textAlign: 'right' }}>
             {t('Prize pool allocation')}
           </Text>
         </Flex>
         <AllocationGrid>
           <AllocationMatch color="#FFE362" text={t('Matches first %digits%', { digits: 1 })} />
           <Text textAlign="right" bold>
-            1%
+            10%
           </Text>
           <AllocationMatch color="#85C54E" text={t('Matches first %digits%', { digits: 2 })} />
           <Text textAlign="right" bold>
-            3%
+            25%
           </Text>
           <AllocationMatch color="#028E75" text={t('Matches first %digits%', { digits: 3 })} />
           <Text textAlign="right" bold>
-            6%
-          </Text>
-          <AllocationMatch color="#36E8F5" text={t('Matches first %digits%', { digits: 4 })} />
-          <Text textAlign="right" bold>
-            10%
-          </Text>
-          <AllocationMatch color="#A881FC" text={t('Matches first %digits%', { digits: 5 })} />
-          <Text textAlign="right" bold>
-            20%
-          </Text>
-          <AllocationMatch color="#D750B2" text={t('Matches all 6')} />
-          <Text textAlign="right" bold>
-            40%
+            55%
           </Text>
           <AllocationMatch color="#BDC2C4" text={t('Burn Pool')} />
           <Text textAlign="right" bold>
-            20%
+            10%
           </Text>
         </AllocationGrid>
       </StepCardInner>
