@@ -1,5 +1,5 @@
 import { BigNumber } from 'ethers'
-import { ChainId } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { Farm } from 'state/types'
 import { getBep20Contract, getLpContract } from 'utils/contractHelpers'

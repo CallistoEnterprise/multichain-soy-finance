@@ -1,4 +1,5 @@
-import { ChainId, JSBI, Pair, Route, Token, TokenAmount, Trade, TradeType } from 'sdk'
+import { JSBI, Pair, Route, Token, TokenAmount, Trade, TradeType } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { computeTradePriceBreakdown } from 'utils/prices'
 
 describe('prices', () => {

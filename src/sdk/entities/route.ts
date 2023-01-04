@@ -1,4 +1,4 @@
-import { ChainId } from '../constants'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import invariant from 'tiny-invariant'
 
 import { Currency, ETHERS } from './currency'

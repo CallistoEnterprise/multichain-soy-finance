@@ -1,4 +1,5 @@
-import { ChainId, CurrencyAmount, ETHERS, JSBI } from 'sdk'
+import { CurrencyAmount, ETHERS, JSBI } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { MIN_CLO } from '../config/constants'
 
 /**

@@ -1,4 +1,5 @@
-import { ChainId, CurrencyAmount, Fraction, JSBI, Percent, TokenAmount, Trade } from 'sdk'
+import { CurrencyAmount, Fraction, JSBI, Percent, TokenAmount, Trade } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import {
   BLOCKED_PRICE_IMPACT_NON_EXPERT,
   ALLOWED_PRICE_IMPACT_HIGH,

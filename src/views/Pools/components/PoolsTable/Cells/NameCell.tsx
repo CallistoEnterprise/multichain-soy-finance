@@ -10,7 +10,7 @@ import { TokenPairImage } from 'components/TokenImage'
 import CakeVaultTokenPairImage from '../../CakeVaultCard/CakeVaultTokenPairImage'
 import BaseCell, { CellContent } from './BaseCell'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { ChainId } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 interface NameCellProps {
   pool: Pool

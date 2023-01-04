@@ -1,4 +1,5 @@
-import { ChainId, WETH, Token, Fetcher } from '../../sdk'
+import { WETH, Token, Fetcher } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 // TODO: replace the provider in these tests
 describe.skip('data', () => {

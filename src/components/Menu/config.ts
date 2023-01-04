@@ -1,4 +1,4 @@
-import { ChainId } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { MenuEntry } from '@callisto-enterprise/soy-uikit2'
 import { ContextApi } from 'contexts/Localization/types'
 

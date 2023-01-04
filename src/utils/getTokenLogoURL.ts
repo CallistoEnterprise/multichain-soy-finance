@@ -1,4 +1,4 @@
-import { ChainId } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { BASE_URL, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 
 const getTokenLogoURL = (address: string) => {

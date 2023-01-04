@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { ChainId } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import isArchivedPid from 'utils/farmHelpers'

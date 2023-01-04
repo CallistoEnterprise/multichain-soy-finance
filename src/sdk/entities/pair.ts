@@ -15,8 +15,8 @@ import {
   FIVE,
   FEES_NUMERATOR,
   FEES_DENOMINATOR,
-  ChainId,
 } from '../constants'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { sqrt, parseBigintIsh } from '../utils'
 import { InsufficientReservesError, InsufficientInputAmountError } from '../errors'
 import { Token } from './token'

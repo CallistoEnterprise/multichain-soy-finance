@@ -1,4 +1,5 @@
-import { ChainId, Token } from '../../sdk'
+import { Token } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 describe('Token', () => {
   const ADDRESS_ONE = '0x0000000000000000000000000000000000000001'

@@ -9,7 +9,7 @@ import { TokenData } from 'state/info/types'
 import { useBnbPrices } from 'views/Info/hooks/useBnbPrices'
 import { coinPrice, derivedCOIN } from 'config/constants/info'
 
-import { ChainId } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 const chainId = parseInt('820' ?? '820') //parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 

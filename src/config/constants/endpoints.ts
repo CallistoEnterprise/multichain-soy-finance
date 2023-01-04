@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ChainId } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { CHAINS_CONSTANTS } from './chains'
 import { chain } from 'lodash'

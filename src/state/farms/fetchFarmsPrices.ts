@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { ChainId } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { BIG_ONE, BIG_ZERO } from 'utils/bigNumber'

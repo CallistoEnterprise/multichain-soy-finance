@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { ChainId } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import lpAprs from 'config/constants/lpAprs.json'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { DEFAULT_CHAIN_ID, ONE_YEAR_TIMESTAMP } from 'config'

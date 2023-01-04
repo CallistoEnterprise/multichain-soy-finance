@@ -1,14 +1,15 @@
 import JSBI from 'jsbi'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 // exports for external consumption
 export type BigintIsh = JSBI | bigint | string
 
-export enum ChainId {
-  ETC = 61,
-  BTT = 199,
-  Mainnet = 820,
-  Testnet = 20729,
-}
+/*export enum ChainId {
+  ETC = 6 1,
+  BTT = 1 9 9,
+  Mainnet = 8 2 0,
+  Testnet = 2 0 7 2 9,
+}*/
 
 export enum TradeType {
   EXACT_INPUT,

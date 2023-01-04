@@ -1,4 +1,4 @@
-import { ChainId } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { createStore, Store } from 'redux'
 import { updateBlockNumber } from './actions'
 import reducer, { ApplicationState } from './reducer'

@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { ChainId } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { BIG_TEN } from 'utils/bigNumber'
 
 export const CALLISTO_BLOCK_TIME = 2.2

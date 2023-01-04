@@ -1,6 +1,7 @@
 import JSBI from 'jsbi'
 
-import { ChainId, SolidityType } from '../constants'
+import { SolidityType } from '../constants'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { validateSolidityTypeInstance } from '../utils'
 
 /**

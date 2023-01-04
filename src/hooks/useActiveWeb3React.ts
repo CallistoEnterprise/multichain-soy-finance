@@ -7,7 +7,7 @@ import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { Networks } from 'config/constants/networks'
 import { getRpcForMulti } from 'utils/getRpcUrl'
 import Web3 from 'web3'
-import { ChainId } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 export const getProviderByChainId = (chainId) => {
   const filtered = Networks.filter((_) => Number(_.chainId) === chainId)

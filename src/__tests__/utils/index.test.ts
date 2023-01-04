@@ -1,6 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { AddressZero } from '@ethersproject/constants'
-import { TokenAmount, Token, ChainId, Percent, JSBI } from 'sdk'
+import { TokenAmount, Token, Percent, JSBI } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 import {
   getCallistoExpLink,
