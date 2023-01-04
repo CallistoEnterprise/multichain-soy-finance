@@ -59,10 +59,10 @@ export type TokenAddressMap = Readonly<{
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: TokenAddressMap = {
-  [ChainId.MAINNET]: {},
-  [ChainId.CLOTESTNET]: {},
-  [ChainId.ETCCLASSICMAINNET]: {},
-  [ChainId.BTTMAINNET]: {},
+  [ChainId.Mainnet]: {},
+  [ChainId.Testnet]: {},
+  [ChainId.ETC]: {},
+  [ChainId.BTT]: {},
 }
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =
@@ -113,10 +113,10 @@ export function useAllLists(): {
 
 function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddressMap {
   return {
-    [ChainId.MAINNET]: { ...map1[ChainId.MAINNET], ...map2[ChainId.MAINNET] },
-    [ChainId.CLOTESTNET]: { ...map1[ChainId.CLOTESTNET], ...map2[ChainId.CLOTESTNET] },
-    [ChainId.ETCCLASSICMAINNET]: { ...map1[ChainId.ETCCLASSICMAINNET], ...map2[ChainId.ETCCLASSICMAINNET] },
-    [ChainId.BTTMAINNET]: { ...map1[ChainId.BTTMAINNET], ...map2[ChainId.BTTMAINNET] },
+    [ChainId.Mainnet]: { ...map1[ChainId.Mainnet], ...map2[ChainId.Mainnet] },
+    [ChainId.Testnet]: { ...map1[ChainId.Testnet], ...map2[ChainId.Testnet] },
+    [ChainId.ETC]: { ...map1[ChainId.ETC], ...map2[ChainId.ETC] },
+    [ChainId.BTT]: { ...map1[ChainId.BTT], ...map2[ChainId.BTT] },
   }
 }
 

@@ -66,11 +66,11 @@ export const fetchPoolsPublicDataAsync =
 
       const stakingTokenAddress = pool.stakingToken.address ? getAddress(pool.stakingToken.address).toLowerCase() : null
       const stakingTokenPrice =
-        chainId === ChainId.CLOTESTNET ? 0.022412208310717878 : stakingTokenAddress ? prices[stakingTokenAddress] : 0
+        chainId === ChainId.Testnet ? 0.022412208310717878 : stakingTokenAddress ? prices[stakingTokenAddress] : 0
 
       const earningTokenAddress = pool.earningToken.address ? getAddress(pool.earningToken.address).toLowerCase() : null
       const earningTokenPrice =
-        chainId === ChainId.CLOTESTNET ? 0.022412208310717878 : earningTokenAddress ? prices[earningTokenAddress] : 0
+        chainId === ChainId.Testnet ? 0.022412208310717878 : earningTokenAddress ? prices[earningTokenAddress] : 0
 
       const RBC = rewardBlockCount
       const apr = !isPoolFinished

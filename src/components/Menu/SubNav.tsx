@@ -45,7 +45,7 @@ const Nav = () => {
         <ButtonMenuItem id="pool-nav-link" to="/pool" as={Link}>
           {t('Liquidity')}
         </ButtonMenuItem>
-        {chainId !== ChainId.CLOTESTNET ? (
+        {chainId !== ChainId.Testnet ? (
           <ButtonMenuItem id="pool-nav-bridge" href="https://bridge.soy.finance/" as="a" target="_blank">
             {t('Bridge')}
           </ButtonMenuItem>

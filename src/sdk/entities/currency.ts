@@ -38,10 +38,10 @@ export class Currency {
 }
 
 const ETHERS: { [chainId in ChainId]: Currency } = {
-  [ChainId.MAINNET]: Currency.ETHER,
-  [ChainId.CLOTESTNET]: Currency.ETHERCLOTEST,
-  [ChainId.BTTMAINNET]: Currency.BTTETHER,
-  [ChainId.ETCCLASSICMAINNET]: Currency.ETCETHER,
+  [ChainId.Mainnet]: Currency.ETHER,
+  [ChainId.Testnet]: Currency.ETHERCLOTEST,
+  [ChainId.BTT]: Currency.BTTETHER,
+  [ChainId.ETC]: Currency.ETCETHER,
 }
 
 export { ETHERS }

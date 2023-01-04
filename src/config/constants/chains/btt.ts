@@ -7,7 +7,7 @@ import farms from '../farms/farmsInBTT'
 
 const BTT_CONSTANTS: ChainConstants = {
   general: {
-    chainId: ChainId.BTTMAINNET,
+    chainId: ChainId.BTT,
     hexChainId: '0xc7',
     chainName: 'BitTorrent',
     officialName: 'BitTorrent Chain Mainnet',

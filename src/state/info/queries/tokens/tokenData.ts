@@ -105,10 +105,10 @@ const fetchTokenData = async (
         twoWeeksAgo: ${TOKEN_AT_BLOCK(block14d, tokenAddresses)}
       }
     `
-    if (chainId === ChainId.MAINNET) {
+    if (chainId === ChainId.Mainnet) {
       const data = await request<CloTokenQueryResponse>(INFO_CLIENT, query)
       return { data, error: false }
-    } else if (chainId === ChainId.ETCCLASSICMAINNET) {
+    } else if (chainId === ChainId.ETC) {
       const data = await request<EtcTokenQueryResponse>(INFO_CLIENT, query)
       return { data, error: false }
     }
@@ -120,7 +120,7 @@ const fetchTokenData = async (
 
 let parseTokenData
 // Transforms tokens into "0xADDRESS: { ...TokenFields }" format and cast strings to numbers
-if (chainId === ChainId.MAINNET) {
+if (chainId === ChainId.Mainnet) {
   parseTokenData = (tokens?: CloTokenFields[]) => {
     if (!tokens) {
       return {}
@@ -139,7 +139,7 @@ if (chainId === ChainId.MAINNET) {
       return accum
     }, {})
   }
-} else if (chainId === ChainId.ETCCLASSICMAINNET) {
+} else if (chainId === ChainId.ETC) {
   parseTokenData = (tokens?: EtcTokenFields[]) => {
     if (!tokens) {
       return {}
@@ -220,11 +220,11 @@ const useFetchedTokenDatas = (tokenAddresses: string[]): TokenDatas => {
           let priceUSDOneDay
           let priceUSDWeek
           // Prices of tokens for now, 24h ago and 7d ago
-          if (chainId === ChainId.ETCCLASSICMAINNET) {
+          if (chainId === ChainId.ETC) {
             priceUSD = current ? current.derivedETC * cloPrices.current : 0
             priceUSDOneDay = oneDay ? oneDay.derivedETC * cloPrices.oneDay : 0
             priceUSDWeek = week ? week.derivedETC * cloPrices.week : 0
-          } else if (chainId === ChainId.MAINNET) {
+          } else if (chainId === ChainId.Mainnet) {
             priceUSD = current ? current.derivedCLO * cloPrices.current : 0
             priceUSDOneDay = oneDay ? oneDay.derivedCLO * cloPrices.oneDay : 0
             priceUSDWeek = week ? week.derivedCLO * cloPrices.week : 0

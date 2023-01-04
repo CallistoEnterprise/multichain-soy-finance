@@ -11,16 +11,16 @@ import { ChainId } from './constants'
 import { Token } from './entities/token'
 
 let TOKEN_DECIMALS_CACHE: { [chainId: number]: { [address: string]: number } } = {
-  [ChainId.MAINNET]: {
+  [ChainId.Mainnet]: {
     '0xE0B7927c4aF23765Cb51314A0E0521A9645F0E2A': 18, // DGD
   },
-  [ChainId.CLOTESTNET]: {
+  [ChainId.Testnet]: {
     '0xE0B7927c4aF23765Cb51314A0E0521A9645F0E2A': 18, // DGD
   },
-  [ChainId.ETCCLASSICMAINNET]: {
+  [ChainId.ETC]: {
     '0xE0B7927c4aF23765Cb51314A0E0521A9645F0E2A': 18, // DGD
   },
-  [ChainId.BTTMAINNET]: {
+  [ChainId.BTT]: {
     '0xE0B7927c4aF23765Cb51314A0E0521A9645F0E2A': 18, // DGD
   },
 }

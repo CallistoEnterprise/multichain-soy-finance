@@ -28,7 +28,7 @@ export function isAddress(value: any): string | false {
 export function getCallistoExpLink(
   data: string | number,
   type: 'transaction' | 'token' | 'address' | 'block' | 'countdown',
-  chainId: ChainId = ChainId.MAINNET,
+  chainId: ChainId = ChainId.Mainnet,
 ): string {
   switch (type) {
     case 'transaction': {

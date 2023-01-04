@@ -19,8 +19,8 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
         chainId && wrapped && currencyEquals(WETH[chainId], wrapped) ? undefined : currency,
         chainId ? WETH[chainId] : undefined,
       ],
-      [wrapped?.equals(BUSDT[chainId]) ? undefined : wrapped, chainId === ChainId.MAINNET ? BUSDT[chainId] : undefined],
-      [chainId ? WETH[chainId] : undefined, chainId === ChainId.MAINNET ? BUSDT[chainId] : undefined],
+      [wrapped?.equals(BUSDT[chainId]) ? undefined : wrapped, chainId === ChainId.Mainnet ? BUSDT[chainId] : undefined],
+      [chainId ? WETH[chainId] : undefined, chainId === ChainId.Mainnet ? BUSDT[chainId] : undefined],
     ],
     [chainId, currency, wrapped],
   )

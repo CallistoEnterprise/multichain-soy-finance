@@ -7,7 +7,7 @@ import farms from '../farms/farmsInETC'
 
 const ETC_CONSTANTS: ChainConstants = {
   general: {
-    chainId: ChainId.ETCCLASSICMAINNET,
+    chainId: ChainId.ETC,
     hexChainId: '0x3D',
     chainName: 'ETC Chain',
     officialName: 'Ethereum Classic Mainnet',

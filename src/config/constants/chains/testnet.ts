@@ -7,7 +7,7 @@ import farms from '../farms/farmsInCLOTestnet'
 
 const TESTNET_CONSTANTS: ChainConstants = {
   general: {
-    chainId: ChainId.CLOTESTNET,
+    chainId: ChainId.Testnet,
     hexChainId: '0x50F9',
     chainName: 'CLO Testnet',
     officialName: 'Callisto Testnet',

@@ -251,11 +251,11 @@ export const clotestnetConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
 
 export const getConfig = (chainId: ChainId) => {
   switch (chainId) {
-    case ChainId.BTTMAINNET:
+    case ChainId.BTT:
       return bttConfig
-    case ChainId.ETCCLASSICMAINNET:
+    case ChainId.ETC:
       return etcConfig
-    case ChainId.CLOTESTNET:
+    case ChainId.Testnet:
       return clotestnetConfig
     default:
       return config

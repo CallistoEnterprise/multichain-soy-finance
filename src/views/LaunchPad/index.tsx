@@ -21,7 +21,7 @@ const LaunchPad = () => {
     const init = () => {
       history.push('/')
     }
-    if (chainId !== ChainId.MAINNET) {
+    if (chainId !== ChainId.Mainnet) {
       init()
     }
   }, [chainId])

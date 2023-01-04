@@ -7,7 +7,7 @@ import farms from '../farms/farmsInCLO'
 
 const MAINNET_CONSTANTS: ChainConstants = {
   general: {
-    chainId: ChainId.MAINNET,
+    chainId: ChainId.Mainnet,
     hexChainId: '0x334',
     chainName: 'Callisto',
     officialName: 'Callisto Mainnet',

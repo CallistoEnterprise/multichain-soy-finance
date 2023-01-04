@@ -150,9 +150,9 @@ export const useBnbPrices = (): BnbPrices | undefined => {
     const fetch = async () => {
       const [block24, block48, blockWeek] = blocks
       let fetchPrices
-      if (chainId === ChainId.MAINNET) {
+      if (chainId === ChainId.Mainnet) {
         fetchPrices = fetchCloPrices
-      } else if (chainId === ChainId.ETCCLASSICMAINNET) {
+      } else if (chainId === ChainId.ETC) {
         fetchPrices = fetchEtcPrices
       }
 

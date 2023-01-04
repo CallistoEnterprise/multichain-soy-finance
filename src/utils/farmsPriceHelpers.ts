@@ -3,10 +3,10 @@ import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { Farm } from 'state/types'
 
 const preferredQuoteTokensForMulti = {
-  [ChainId.MAINNET]: ['BUSDT', 'WCLO'],
-  [ChainId.CLOTESTNET]: ['BUSDT', 'WCLO'],
-  [ChainId.BTTMAINNET]: ['BUSDT', 'WBTT', 'ccCLO', 'SOY'],
-  [ChainId.ETCCLASSICMAINNET]: ['BUSDT', 'WETC', 'ccCLO', 'SOY'],
+  [ChainId.Mainnet]: ['BUSDT', 'WCLO'],
+  [ChainId.Testnet]: ['BUSDT', 'WCLO'],
+  [ChainId.BTT]: ['BUSDT', 'WBTT', 'ccCLO', 'SOY'],
+  [ChainId.ETC]: ['BUSDT', 'WETC', 'ccCLO', 'SOY'],
 }
 /**
  * Returns the first farm with a quote token that matches from an array of preferred quote tokens

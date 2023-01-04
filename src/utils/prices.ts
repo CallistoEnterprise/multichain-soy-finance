@@ -16,7 +16,7 @@ const INPUT_FRACTION_AFTER_FEE = ONE_HUNDRED_PERCENT.subtract(BASE_FEE)
 // computes price breakdown for the trade
 export function computeTradePriceBreakdown(
   trade?: Trade | null,
-  chainId = ChainId.MAINNET,
+  chainId = ChainId.Mainnet,
 ): {
   priceImpactWithoutFee: Percent | undefined
   realizedLPFee: CurrencyAmount | undefined | null

@@ -6,8 +6,8 @@ import { DEFAULT_CHAIN_ID, ONE_YEAR_TIMESTAMP } from 'config'
 
 const POOL_REWARDS = {
   6: {
-    [ChainId.MAINNET]: new BigNumber(23152 * 365),
-    [ChainId.CLOTESTNET]: new BigNumber(23152 * 365),
+    [ChainId.Mainnet]: new BigNumber(23152 * 365),
+    [ChainId.Testnet]: new BigNumber(23152 * 365),
   },
 }
 /**

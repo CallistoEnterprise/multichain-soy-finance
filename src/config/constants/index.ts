@@ -2,10 +2,10 @@ import { ChainId, JSBI, Percent, Token, WETH } from 'sdk'
 import { BUSDT, SOY, WCLO } from './tokens'
 
 export const ROUTER_ADDRESS = {
-  [ChainId.MAINNET]: '0xeB5B468fAacC6bBdc14c4aacF0eec38ABCCC13e7',
-  [ChainId.CLOTESTNET]: '0xdbe46b17FFd35D6865b69F9398AC5454389BF38c',
-  [ChainId.BTTMAINNET]: '0x8Cb2e43e5AEB329de592F7e49B6c454649b61929',
-  [ChainId.ETCCLASSICMAINNET]: '0x8c5Bba04B2f5CCCe0f8F951D2DE9616BE190070D',
+  [ChainId.Mainnet]: '0xeB5B468fAacC6bBdc14c4aacF0eec38ABCCC13e7',
+  [ChainId.Testnet]: '0xdbe46b17FFd35D6865b69F9398AC5454389BF38c',
+  [ChainId.BTT]: '0x8Cb2e43e5AEB329de592F7e49B6c454649b61929',
+  [ChainId.ETC]: '0x8c5Bba04B2f5CCCe0f8F951D2DE9616BE190070D',
 }
 
 // a list of tokens by chain
@@ -15,19 +15,10 @@ type ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], SOY[ChainId.MAINNET], BUSDT[ChainId.MAINNET]],
-  [ChainId.CLOTESTNET]: [WETH[ChainId.CLOTESTNET], SOY[ChainId.CLOTESTNET]],
-  [ChainId.ETCCLASSICMAINNET]: [
-    WETH[ChainId.ETCCLASSICMAINNET],
-    SOY[ChainId.ETCCLASSICMAINNET],
-    BUSDT[ChainId.ETCCLASSICMAINNET],
-  ],
-  [ChainId.BTTMAINNET]: [
-    WETH[ChainId.BTTMAINNET],
-    SOY[ChainId.BTTMAINNET],
-    BUSDT[ChainId.BTTMAINNET],
-    WCLO[ChainId.BTTMAINNET],
-  ],
+  [ChainId.Mainnet]: [WETH[ChainId.Mainnet], SOY[ChainId.Mainnet], BUSDT[ChainId.Mainnet]],
+  [ChainId.Testnet]: [WETH[ChainId.Testnet], SOY[ChainId.Testnet]],
+  [ChainId.ETC]: [WETH[ChainId.ETC], SOY[ChainId.ETC], BUSDT[ChainId.ETC]],
+  [ChainId.BTT]: [WETH[ChainId.BTT], SOY[ChainId.BTT], BUSDT[ChainId.BTT], WCLO[ChainId.BTT]],
 }
 
 /**
@@ -35,53 +26,44 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  * @example { [WBTC.address]: [renBTC], [renBTC.address]: [WBTC] }
  */
 export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
-  [ChainId.MAINNET]: {},
-  [ChainId.CLOTESTNET]: {},
-  [ChainId.ETCCLASSICMAINNET]: {},
-  [ChainId.BTTMAINNET]: {},
+  [ChainId.Mainnet]: {},
+  [ChainId.Testnet]: {},
+  [ChainId.ETC]: {},
+  [ChainId.BTT]: {},
 }
 
 /**
  * Some tokens can only be swapped via certain pairs, so we override the list of bases that are considered for these
  * tokens.
- * @example [AMPL.address]: [DAI, WETH[ChainId.MAINNET]]
+ * @example [AMPL.address]: [DAI, WETH[ChainId.Mainnet]]
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
-  [ChainId.MAINNET]: {},
-  [ChainId.CLOTESTNET]: {},
-  [ChainId.ETCCLASSICMAINNET]: {},
-  [ChainId.BTTMAINNET]: {},
+  [ChainId.Mainnet]: {},
+  [ChainId.Testnet]: {},
+  [ChainId.ETC]: {},
+  [ChainId.BTT]: {},
 }
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.MAINNET]: [SOY[ChainId.MAINNET], BUSDT[ChainId.MAINNET]],
-  [ChainId.CLOTESTNET]: [SOY[ChainId.CLOTESTNET], BUSDT[ChainId.CLOTESTNET]],
-  [ChainId.ETCCLASSICMAINNET]: [SOY[ChainId.ETCCLASSICMAINNET], BUSDT[ChainId.ETCCLASSICMAINNET]],
-  [ChainId.BTTMAINNET]: [SOY[ChainId.BTTMAINNET], BUSDT[ChainId.BTTMAINNET], WCLO[ChainId.BTTMAINNET]],
+  [ChainId.Mainnet]: [SOY[ChainId.Mainnet], BUSDT[ChainId.Mainnet]],
+  [ChainId.Testnet]: [SOY[ChainId.Testnet], BUSDT[ChainId.Testnet]],
+  [ChainId.ETC]: [SOY[ChainId.ETC], BUSDT[ChainId.ETC]],
+  [ChainId.BTT]: [SOY[ChainId.BTT], BUSDT[ChainId.BTT], WCLO[ChainId.BTT]],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], SOY[ChainId.MAINNET], BUSDT[ChainId.MAINNET]],
-  [ChainId.CLOTESTNET]: [WETH[ChainId.CLOTESTNET], SOY[ChainId.CLOTESTNET], BUSDT[ChainId.CLOTESTNET]],
-  [ChainId.ETCCLASSICMAINNET]: [
-    WETH[ChainId.ETCCLASSICMAINNET],
-    SOY[ChainId.ETCCLASSICMAINNET],
-    BUSDT[ChainId.ETCCLASSICMAINNET],
-  ],
-  [ChainId.BTTMAINNET]: [
-    WETH[ChainId.BTTMAINNET],
-    SOY[ChainId.BTTMAINNET],
-    BUSDT[ChainId.BTTMAINNET],
-    WCLO[ChainId.BTTMAINNET],
-  ],
+  [ChainId.Mainnet]: [WETH[ChainId.Mainnet], SOY[ChainId.Mainnet], BUSDT[ChainId.Mainnet]],
+  [ChainId.Testnet]: [WETH[ChainId.Testnet], SOY[ChainId.Testnet], BUSDT[ChainId.Testnet]],
+  [ChainId.ETC]: [WETH[ChainId.ETC], SOY[ChainId.ETC], BUSDT[ChainId.ETC]],
+  [ChainId.BTT]: [WETH[ChainId.BTT], SOY[ChainId.BTT], BUSDT[ChainId.BTT], WCLO[ChainId.BTT]],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-  [ChainId.MAINNET]: [[SOY[ChainId.MAINNET], WCLO[ChainId.MAINNET]]],
-  [ChainId.BTTMAINNET]: [[WETH[ChainId.BTTMAINNET], SOY[ChainId.BTTMAINNET]]],
-  [ChainId.ETCCLASSICMAINNET]: [[WETH[ChainId.ETCCLASSICMAINNET], SOY[ChainId.ETCCLASSICMAINNET]]],
+  [ChainId.Mainnet]: [[SOY[ChainId.Mainnet], WCLO[ChainId.Mainnet]]],
+  [ChainId.BTT]: [[WETH[ChainId.BTT], SOY[ChainId.BTT]]],
+  [ChainId.ETC]: [[WETH[ChainId.ETC], SOY[ChainId.ETC]]],
 }
 
 export const NetworkContextName = 'NETWORK'

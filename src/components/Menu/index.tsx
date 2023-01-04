@@ -38,7 +38,7 @@ const Menu = (props) => {
         showPip: !profile?.username,
       }}
       addSoyToMetamask={() => addSoyToMetamask(chainId)}
-      isTestnet={chainId === ChainId.CLOTESTNET}
+      isTestnet={chainId === ChainId.Testnet}
       {...props}
     />
   )

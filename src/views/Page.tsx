@@ -37,7 +37,7 @@ const Page: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...pro
       <SubNav />
       {children}
       <Flex flexGrow={1} />
-      {(chainId === ChainId.MAINNET || chainId === ChainId.CLOTESTNET) && <Footer />}
+      {(chainId === ChainId.Mainnet || chainId === ChainId.Testnet) && <Footer />}
     </StyledPage>
   )
 }

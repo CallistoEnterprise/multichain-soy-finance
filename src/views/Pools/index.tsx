@@ -129,7 +129,7 @@ const Pools: React.FC = () => {
     const init = () => {
       history.push('/')
     }
-    if (chainId !== ChainId.MAINNET && chainId !== ChainId.CLOTESTNET) {
+    if (chainId !== ChainId.Mainnet && chainId !== ChainId.Testnet) {
       init()
     }
   }, [chainId])

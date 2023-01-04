@@ -57,7 +57,7 @@ function CurrencySearchIdo({
 
   const showETH: boolean = useMemo(() => {
     const s = debouncedQuery.toLowerCase().trim()
-    return chainId === ChainId.MAINNET || chainId === ChainId.CLOTESTNET
+    return chainId === ChainId.Mainnet || chainId === ChainId.Testnet
       ? s === '' || s === 'c' || s === 'cl' || s === 'clo'
       : s === '' || s === 'b' || s === 'bt' || s === 'btt'
   }, [debouncedQuery, chainId])

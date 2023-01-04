@@ -4,7 +4,7 @@ import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { Farm } from 'state/types'
 import { getBep20Contract, getLpContract } from 'utils/contractHelpers'
 
-const { farms } = CHAINS_CONSTANTS[ChainId.MAINNET]
+const { farms } = CHAINS_CONSTANTS[ChainId.Mainnet]
 // Test only against the last 10 farms, for performance concern
 const farmsToTest: [number, Farm][] = farms
   .filter((farm) => farm.pid !== 0)

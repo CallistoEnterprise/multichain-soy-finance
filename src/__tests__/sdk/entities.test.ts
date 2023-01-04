@@ -6,8 +6,8 @@
 //   '0x0000000000000000000000000000000000000002',
 //   '0x0000000000000000000000000000000000000003'
 // ]
-// const CHAIN_ID = ChainId.CLOTESTNET
-// const WETH = _WETH[ChainId.CLOTESTNET]
+// const CHAIN_ID = ChainId.Testnet
+// const WETH = _WETH[ChainId.Testnet]
 // const DECIMAL_PERMUTATIONS: [number, number, number][] = [
 //   [0, 0, 0],
 //   [0, 9, 18],

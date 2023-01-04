@@ -80,10 +80,10 @@ export interface Profile {
 
 export interface FarmsState {
   data: {
-    [ChainId.MAINNET]: Farm[]
-    [ChainId.CLOTESTNET]: Farm[]
-    [ChainId.BTTMAINNET]: Farm[]
-    [ChainId.ETCCLASSICMAINNET]: Farm[]
+    [ChainId.Mainnet]: Farm[]
+    [ChainId.Testnet]: Farm[]
+    [ChainId.BTT]: Farm[]
+    [ChainId.ETC]: Farm[]
   }
   loadArchivedFarmsData: boolean
   userDataLoaded: boolean

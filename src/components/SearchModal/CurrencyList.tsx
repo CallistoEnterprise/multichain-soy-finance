@@ -21,9 +21,7 @@ import ImportRow from './ImportRow'
 function currencyKey(currency: Currency): string {
   return currency instanceof Token
     ? currency.address
-    : currency === ETHERS[ChainId.MAINNET] ||
-      currency === ETHERS[ChainId.BTTMAINNET] ||
-      currency === ETHERS[ChainId.ETCCLASSICMAINNET]
+    : currency === ETHERS[ChainId.Mainnet] || currency === ETHERS[ChainId.BTT] || currency === ETHERS[ChainId.ETC]
     ? 'ETHER'
     : ''
 }

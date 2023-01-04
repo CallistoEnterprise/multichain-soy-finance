@@ -4,7 +4,7 @@ import { useTokenContract } from 'hooks/useContract'
 import { getWeeklyIdoAddress } from 'utils/addressHelpers'
 
 function useGetAllowance(address?: string, owner?: string) {
-  // const token = useMemo(() => new Token(ChainId.MAINNET, address, 18, 'token', 'token'), [address])
+  // const token = useMemo(() => new Token(ChainId.Mainnet, address, 18, 'token', 'token'), [address])
   const [allowance, setAllowance] = useState(false)
   const contract = useTokenContract(address, false)
   const spender = getWeeklyIdoAddress()

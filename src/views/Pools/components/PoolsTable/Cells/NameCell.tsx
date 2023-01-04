@@ -29,8 +29,8 @@ const StyledCell = styled(BaseCell)`
 const soyTemp = {
   symbol: 'SOY',
   address: {
-    [ChainId.MAINNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
-    [ChainId.CLOTESTNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+    [ChainId.Mainnet]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+    [ChainId.Testnet]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
   },
   decimals: 18,
   projectLink: 'https://app.soy.finance/',
