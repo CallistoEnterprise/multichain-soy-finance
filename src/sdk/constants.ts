@@ -23,7 +23,7 @@ export enum Rounding {
 }
 
 export const FACTORY_ADDRESS = {
-  [ChainId.Mainnet]: '0x9CC.7C769eA3B37F1Af0Ad642A268b80dc80754c5',
+  [ChainId.Mainnet]: '0x9CC7C769eA3B37F1Af0Ad642A268b80dc80754c5',
   [ChainId.Testnet]: '0x9D43dd4C1Ef8384c070Bfd05615142F55EFBD89f',
   [ChainId.ETC]: '0x23675f1Ac7cce101Aff647B96d7201EfCf66E4b0',
   [ChainId.BTT]: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
