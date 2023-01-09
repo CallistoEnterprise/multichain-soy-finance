@@ -11,8 +11,7 @@ import { getAddress } from '../addressHelpers'
  */
 export const getActivePools = async (block?: number, chainId?: number) => {
   const simpleRpcProvider = await getRpcProvider()
-  const eligiblePools = pools
-    .filter((pool) => !pool.isFinished[chainId] || pool.isFinished[chainId] === undefined)
+  const eligiblePools = pools.filter((pool) => !pool.isFinished[chainId] || pool.isFinished[chainId] === undefined)
   const blockNumber = block || (await simpleRpcProvider.getBlockNumber())
   const startBlockCalls = eligiblePools.map(({ contractAddress }) => ({
     address: getAddress(contractAddress),

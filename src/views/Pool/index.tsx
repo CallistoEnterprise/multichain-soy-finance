@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
-import { Pair } from '@callisto-enterprise/soy-sdk'
+import { Pair } from 'sdk'
 import { Text, Flex, CardBody, CardFooter, Button, AddIcon } from '@callisto-enterprise/soy-uikit2'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'

@@ -20,7 +20,7 @@ import useActiveWeb3React from './useActiveWeb3React'
 const useAuth = () => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const { activate, deactivate, chainId} = useActiveWeb3React()
+  const { activate, deactivate, chainId } = useActiveWeb3React()
   const { toastError } = useToast()
 
   const login = useCallback(

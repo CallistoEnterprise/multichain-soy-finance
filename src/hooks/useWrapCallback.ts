@@ -1,4 +1,4 @@
-import { Currency, currencyEquals, ETHERS, WETH } from '@callisto-enterprise/soy-sdk'
+import { Currency, currencyEquals, ETHERS, WETH } from 'sdk'
 import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { tryParseAmount } from '../state/swap/hooks'
@@ -28,7 +28,10 @@ export default function useWrapCallback(
   const wethContract = useWETHContract()
   const balance = useCurrencyBalance(account ?? undefined, inputCurrency)
   // we can always parse the amount typed as the input currency, since wrapping is 1:1
-  const inputAmount = useMemo(() => tryParseAmount(typedValue, inputCurrency, chainId), [inputCurrency, typedValue, chainId])
+  const inputAmount = useMemo(
+    () => tryParseAmount(typedValue, inputCurrency, chainId),
+    [inputCurrency, typedValue, chainId],
+  )
   const addTransaction = useTransactionAdder()
 
   return useMemo(() => {
@@ -36,7 +39,7 @@ export default function useWrapCallback(
 
     const sufficientBalance = inputAmount && balance && !balance.lessThan(inputAmount)
 
-    if ((inputCurrency === ETHERS[chainId]) && currencyEquals(WETH[chainId], outputCurrency)) {
+    if (inputCurrency === ETHERS[chainId] && currencyEquals(WETH[chainId], outputCurrency)) {
       return {
         wrapType: WrapType.WRAP,
         execute:
@@ -53,7 +56,7 @@ export default function useWrapCallback(
         inputError: sufficientBalance ? undefined : 'Insufficient CLO balance',
       }
     }
-    if (currencyEquals(WETH[chainId], inputCurrency) && (outputCurrency === ETHERS[chainId])) {
+    if (currencyEquals(WETH[chainId], inputCurrency) && outputCurrency === ETHERS[chainId]) {
       return {
         wrapType: WrapType.UNWRAP,
         execute:

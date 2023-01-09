@@ -19,7 +19,7 @@ interface PoolRowProps {
 }
 
 const StyledRow = styled.div<{ isNew?: boolean }>`
-  background: ${({ isNew }) => isNew ? 'transparent': 'grey'} !important;
+  background: ${({ isNew }) => (isNew ? 'transparent' : 'grey')} !important;
   background-color: transparent;
   display: flex;
   cursor: pointer;

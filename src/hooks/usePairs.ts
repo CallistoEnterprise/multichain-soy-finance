@@ -1,4 +1,4 @@
-import { TokenAmount, Pair, Currency } from '@callisto-enterprise/soy-sdk'
+import { TokenAmount, Pair, Currency } from 'sdk'
 import { useMemo } from 'react'
 import IUniswapV2PairABI from 'config/abi/IUniswapV2Pair.json'
 import { Interface } from '@ethersproject/abi'

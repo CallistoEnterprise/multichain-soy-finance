@@ -2,14 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ethers } from 'ethers'
 import { useWeb3React } from '@web3-react/core'
-import {
-  Card,
-  CardBody,
-  Heading,
-  AutoRenewIcon,
-  Button,
-  Text
-} from '@callisto-enterprise/soy-uikit2'
+import { Card, CardBody, Heading, AutoRenewIcon, Button, Text } from '@callisto-enterprise/soy-uikit2'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
 import { Nft } from 'config/constants/types'
@@ -36,23 +29,23 @@ const StyledCard = styled(Card)`
   background-color: transparent;
 `
 
-const Header = styled(InfoRow)<{bkColor?: string}>`
+const Header = styled(InfoRow)<{ bkColor?: string }>`
   min-height: 70px;
   width: 100%;
-  background-color: ${({bkColor}) => bkColor};
+  background-color: ${({ bkColor }) => bkColor};
   justify-content: center;
   flex-direction: column;
 `
-const BuyButton = styled(Button)<{bkColor?: string}>`
-  background-color: ${({bkColor}) => bkColor};
-  color: #FFFFFF;
+const BuyButton = styled(Button)<{ bkColor?: string }>`
+  background-color: ${({ bkColor }) => bkColor};
+  color: #ffffff;
 `
 
 const PriceSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   min-height: 40px;
   width: 100%;
 `
@@ -69,25 +62,24 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
   const { balance } = useGetBnbBalance()
 
   const handleConfirm = async () => {
-
     const intAmount = parseInt(inputAmount, 10)
-    if ((nft.classId % 3 === 0) && (intAmount > nft.maxPrice || nft.minPrice > intAmount)) {
+    if (nft.classId % 3 === 0 && (intAmount > nft.maxPrice || nft.minPrice > intAmount)) {
       toastWarning('Please input a correct amount!')
-      return;
+      return
     }
-    if ((nft.classId % 3 === 1) && (intAmount > nft.maxPrice || nft.minPrice > intAmount)) {
+    if (nft.classId % 3 === 1 && (intAmount > nft.maxPrice || nft.minPrice > intAmount)) {
       toastWarning('Please input a correct amount!')
-      return;
+      return
     }
     if (nft.classId % 3 === 2 && nft.minPrice > intAmount) {
       toastWarning('Please input a correct amount!')
-      return;
+      return
     }
     const decimalBalance = balance.dividedBy(BIG_TEN.pow(18))
 
     if (decimalBalance.toNumber() <= intAmount) {
       toastWarning('Insufficient balance!')
-      return;
+      return
     }
     setIsConfirming(true)
 
@@ -105,9 +97,13 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
 
   return (
     <StyledCard isActive={false}>
-      <Header bkColor = {nft.primaryColor}>
-        <Heading textAlign="center" color="#000">{subName}</Heading>
-        <Text textAlign="center" fontSize='18px'>{name}</Text>
+      <Header bkColor={nft.primaryColor}>
+        <Heading textAlign="center" color="#000">
+          {subName}
+        </Heading>
+        <Text textAlign="center" fontSize="18px">
+          {name}
+        </Text>
       </Header>
       <PriceSection>
         <Heading color="#000">{`${nft.minPrice} - ${nft.maxPrice === 'infinity' ? '∞' : nft.maxPrice}`} CLO</Heading>
@@ -127,10 +123,10 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
         <BuyButton
           width="100%"
           mt="0px"
-          bkColor = {nft.primaryColor}
+          bkColor={nft.primaryColor}
           onClick={handleConfirm}
           endIcon={isConfirming ? <AutoRenewIcon color="currentColor" spin /> : null}
-          disabled = {!account}
+          disabled={!account}
         >
           {account ? t('Buy Now') : t('Connect Wallet')}
         </BuyButton>

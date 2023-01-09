@@ -74,9 +74,7 @@ const FarmedStakingCard = () => {
               onClick={harvestAllFarms}
               width="100%"
             >
-              {pendingTx
-                ? t('Collecting SOY')
-                : t(`Harvest all (${balancesWithValue.length})`)}
+              {pendingTx ? t('Collecting SOY') : t(`Harvest all (${balancesWithValue.length})`)}
             </Button>
           ) : (
             <UnlockButton width="100%" />

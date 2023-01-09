@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Currency, Token } from '@callisto-enterprise/soy-sdk'
+import { Currency, Token } from 'sdk'
 import {
   ModalContainer,
   ModalHeader,
@@ -69,7 +69,7 @@ export default function CurrencySearchModal({
   // used for import list
   const [importList, setImportList] = useState<TokenList | undefined>()
   const [listURL, setListUrl] = useState<string | undefined>()
-  
+
   const { t } = useTranslation()
 
   const config = {

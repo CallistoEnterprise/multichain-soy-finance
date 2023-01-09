@@ -11,7 +11,7 @@ const useStakeFarms = (pid: number) => {
 
   // const masterChefContract = useMasterchef()
   const currentFarm = CHAINS_CONSTANTS[chainId].farms.find((farm) => farm.pid === pid)
-  const { lpAddresses, localFarmAddresses }= currentFarm
+  const { lpAddresses, localFarmAddresses } = currentFarm
   const lpContract = getLpContractWithAccount(getAddress(lpAddresses), library, account)
   const farmAddress = getAddress(localFarmAddresses)
   const web3 = useWeb3ProviderByRpc(chainId)

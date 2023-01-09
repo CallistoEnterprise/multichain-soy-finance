@@ -7,7 +7,6 @@ import useRefresh from './useRefresh'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const useAllEarnings = () => {
-
   const [balances, setBalance] = useState([])
   const { account, chainId } = useWeb3React()
   const { fastRefresh } = useRefresh()

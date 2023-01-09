@@ -1,23 +1,23 @@
-import React from "react";
-import { FlexProps } from "styled-system";
+import React from 'react'
+import { FlexProps } from 'styled-system'
 
 export const variants = {
-  DEFAULT: "default",
-  WARNING: "warning",
-  DANGER: "danger",
-  PENDING: "pending",
-} as const;
+  DEFAULT: 'default',
+  WARNING: 'warning',
+  DANGER: 'danger',
+  PENDING: 'pending',
+} as const
 
-export type Variant = typeof variants[keyof typeof variants];
+export type Variant = typeof variants[keyof typeof variants]
 
 export interface UserMenuProps extends FlexProps {
-  account?: string;
-  text?: string;
-  avatarSrc?: string;
-  variant?: Variant;
-  children?: any;
+  account?: string
+  text?: string
+  avatarSrc?: string
+  variant?: Variant
+  children?: any
 }
 
 export interface UserMenuItemProps {
-  disabled?: boolean;
+  disabled?: boolean
 }

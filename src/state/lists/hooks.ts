@@ -1,4 +1,5 @@
-import { ChainId, Token } from '@callisto-enterprise/soy-sdk'
+import { Token } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
@@ -51,23 +52,18 @@ export class WrappedTokenInfo extends Token {
   }
 }
 
-export type TokenAddressMap = Readonly<
-  { [chainId in ChainId]: Readonly<{ [tokenAddress: string]: { token: WrappedTokenInfo; list: TokenList } }> }
->
+export type TokenAddressMap = Readonly<{
+  [chainId in ChainId]: Readonly<{ [tokenAddress: string]: { token: WrappedTokenInfo; list: TokenList } }>
+}>
 
 /**
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: TokenAddressMap = {
-  [ChainId.MAINNET]: {},
-  [ChainId.CLOTESTNET]: {},
-  [ChainId.ETHEREUM]: {},
-  [ChainId.RINKEBY]: {},
-  [ChainId.KOVAN]: {},
-  [ChainId.BSC]: {},
-  [ChainId.BSCTESTNET]: {},
-  [ChainId.ETCCLASSICMAINNET]: {},
-  [ChainId.BTTMAINNET]: {}
+  [ChainId.Mainnet]: {},
+  [ChainId.Testnet]: {},
+  [ChainId.ETC]: {},
+  [ChainId.BTT]: {},
 }
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =
@@ -118,15 +114,10 @@ export function useAllLists(): {
 
 function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddressMap {
   return {
-    [ChainId.MAINNET]: { ...map1[ChainId.MAINNET], ...map2[ChainId.MAINNET] },
-    [ChainId.CLOTESTNET]: { ...map1[ChainId.CLOTESTNET], ...map2[ChainId.CLOTESTNET] },
-    [ChainId.ETHEREUM]: {...map1[ChainId.ETHEREUM], ...map2[ChainId.ETHEREUM]},
-    [ChainId.RINKEBY]: {...map1[ChainId.RINKEBY], ...map2[ChainId.RINKEBY]},
-    [ChainId.KOVAN]: {...map1[ChainId.KOVAN], ...map2[ChainId.KOVAN]},
-    [ChainId.BSC]: {...map1[ChainId.BSC], ...map2[ChainId.BSC]},
-    [ChainId.BSCTESTNET]: {...map1[ChainId.BSCTESTNET], ...map2[ChainId.BSCTESTNET]},
-    [ChainId.ETCCLASSICMAINNET]: {...map1[ChainId.ETCCLASSICMAINNET], ...map2[ChainId.ETCCLASSICMAINNET]},
-    [ChainId.BTTMAINNET]: {...map1[ChainId.BTTMAINNET], ...map2[ChainId.BTTMAINNET]}
+    [ChainId.Mainnet]: { ...map1[ChainId.Mainnet], ...map2[ChainId.Mainnet] },
+    [ChainId.Testnet]: { ...map1[ChainId.Testnet], ...map2[ChainId.Testnet] },
+    [ChainId.ETC]: { ...map1[ChainId.ETC], ...map2[ChainId.ETC] },
+    [ChainId.BTT]: { ...map1[ChainId.BTT], ...map2[ChainId.BTT] },
   }
 }
 
@@ -175,13 +166,13 @@ export function useCombinedActiveList(): TokenAddressMap {
   const { chainId } = useActiveWeb3React()
   const activeListUrls = useActiveListUrls()
   const activeTokens = useCombinedTokenMapFromUrls(activeListUrls)
-  
+
   const tokens = useMemo(() => {
     return tokenLists[chainId]
   }, [chainId])
 
   const defaultTokenMap = listToTokenMap(tokens ?? DEFAULT_TOKEN_LIST)
-  
+
   return combineMaps(activeTokens, defaultTokenMap)
 }
 

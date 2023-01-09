@@ -105,15 +105,18 @@ const CandleChart = ({ data, setValue, setLabel, ...rest }: LineChartProps) => {
         wickUpColor: theme.colors.success,
       })
 
-      const latestPrice = data[data.length-1].open
-      const pricePrecision = latestPrice.toFixed(20).match(/\d+\.(0?)+\d{3}/g)[0].split(".")[1].length
+      const latestPrice = data[data.length - 1].open
+      const pricePrecision = latestPrice
+        .toFixed(20)
+        .match(/\d+\.(0?)+\d{3}/g)[0]
+        .split('.')[1].length
       series.applyOptions({
         priceFormat: {
-            type: 'price',
-            precision: pricePrecision,
-            minMove: parseFloat((10**-(pricePrecision)).toFixed(pricePrecision)),
+          type: 'price',
+          precision: pricePrecision,
+          minMove: parseFloat((10 ** -pricePrecision).toFixed(pricePrecision)),
         },
-      });
+      })
 
       series.setData(data)
 

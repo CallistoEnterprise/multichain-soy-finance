@@ -14,8 +14,7 @@ const Table = styled.table`
     padding: 8px;
   }
 `
-const Text = styled.p`
-`;
+const Text = styled.p``
 
 const ThemedComponent = styled.div`
   color: ${({ theme }) => theme.colors.text};
@@ -47,7 +46,7 @@ const markdownComponents: Partial<NormalComponents & SpecialComponents> = {
   h5: Title,
   h6: Title, //as="p" my="16px" {...props}
   p: (props) => {
-    return <Text  />
+    return <Text />
   },
   table: Table,
   ol: (props) => {

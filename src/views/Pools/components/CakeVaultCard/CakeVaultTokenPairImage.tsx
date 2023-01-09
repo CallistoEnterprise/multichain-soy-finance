@@ -9,7 +9,9 @@ const CakeVaultTokenPairImage: React.FC<Omit<ImageProps, 'src'>> = (props) => {
   const { chainId } = useActiveWeb3React()
   const primaryTokenSrc = `${BASE_URL}/images/coins/${chainId}/${getAddress(tokens.soy.address)}.png`
 
-  return <TokenPairImage primarySrc={primaryTokenSrc} secondarySrc={`${BASE_URL}/images/coins/autorenew.svg`} {...props} />
+  return (
+    <TokenPairImage primarySrc={primaryTokenSrc} secondarySrc={`${BASE_URL}/images/coins/autorenew.svg`} {...props} />
+  )
 }
 
 export default CakeVaultTokenPairImage

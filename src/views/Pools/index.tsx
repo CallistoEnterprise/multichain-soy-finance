@@ -27,7 +27,7 @@ import PoolTabButtons from './components/PoolTabButtons'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData } from './helpers'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 // import useRewardBlockCountOfSous, { useRewardBlockCountForMaticStaking } from './hooks/useRewardBlockCount'
 
 const CardLayout = styled(FlexLayout)`
@@ -90,7 +90,7 @@ const Pools: React.FC = () => {
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
   const [viewMode, setViewMode] = usePersistState(ViewMode.CARD, { localStorageKey: 'soyfinance_pool_view' })
-  const [searchQuery, ] = useState('')
+  const [searchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
 
@@ -102,7 +102,10 @@ const Pools: React.FC = () => {
     return pools.filter((_p) => !_p.isFinished[chainId])
   }, [pools, chainId])
 
-  const [finishedPools, openPools] = useMemo(() => partition(filteredPools, (pool) => pool.isFinished[chainId]), [filteredPools, chainId])
+  const [finishedPools, openPools] = useMemo(
+    () => partition(filteredPools, (pool) => pool.isFinished[chainId]),
+    [filteredPools, chainId],
+  )
   const stakedOnlyFinishedPools = useMemo(
     () =>
       finishedPools.filter((pool) => {
@@ -126,7 +129,7 @@ const Pools: React.FC = () => {
     const init = () => {
       history.push('/')
     }
-    if (chainId !== ChainId.MAINNET && chainId !== ChainId.CLOTESTNET) {
+    if (chainId !== ChainId.Mainnet && chainId !== ChainId.Testnet) {
       init()
     }
   }, [chainId])
@@ -171,11 +174,7 @@ const Pools: React.FC = () => {
     switch (sortOption) {
       case 'apr':
         // Ternary is needed to prevent pools without APR (like MIX) getting top spot
-        return orderBy(
-          poolsToSort,
-          (pool: Pool) => (pool.apr ? getAprData(pool, 18).apr : 0),
-          'desc',
-        )
+        return orderBy(poolsToSort, (pool: Pool) => (pool.apr ? getAprData(pool, 18).apr : 0), 'desc')
       case 'earned':
         return orderBy(
           poolsToSort,
@@ -188,11 +187,7 @@ const Pools: React.FC = () => {
           'desc',
         )
       case 'totalStaked':
-        return orderBy(
-          poolsToSort,
-          (pool: Pool) => (pool.totalStaked.toNumber()),
-          'desc',
-        )
+        return orderBy(poolsToSort, (pool: Pool) => pool.totalStaked.toNumber(), 'desc')
       default:
         return poolsToSort
     }
@@ -214,7 +209,6 @@ const Pools: React.FC = () => {
 
   chosenPools = sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   chosenPoolsLength.current = chosenPools.length
-
 
   const cardLayout = (
     <CardLayout>
@@ -285,7 +279,7 @@ const Pools: React.FC = () => {
                 />
               </ControlStretch>
             </LabelWrapper>
-            <div style = {{minWidth: 120}} />
+            <div style={{ minWidth: 120 }} />
             {/* <LabelWrapper style={{ marginLeft: 16 }}>
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
                 {t('Search')}

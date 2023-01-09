@@ -15,7 +15,7 @@ const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
   width: 300px;
-  background-color: rgba(0,0,0,.9);
+  background-color: rgba(0, 0, 0, 0.9);
 
   ${({ theme }) => theme.mediaQueries.lg} {
     margin: 0;
@@ -43,7 +43,9 @@ const EarnAPYCard = () => {
 
   const calculateAPY = useCallback(
     (farmsToDisplay) => {
-      const cakePriceVsBNB = new BigNumber(farmsLP.data[chainId].find((farm) => farm.pid === SOY_POOL_PID)?.tokenPriceVsQuote || 0)
+      const cakePriceVsBNB = new BigNumber(
+        farmsLP.data[chainId].find((farm) => farm.pid === SOY_POOL_PID)?.tokenPriceVsQuote || 0,
+      )
 
       farmsToDisplay.map((farm) => {
         if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {

@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import BigNumber from 'bignumber.js'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceAmount } from 'utils/formatBalance'
@@ -34,22 +34,22 @@ export const usePollFarmsData = (includeArchive = false) => {
  * 4 = BUSDT-CLO LP
  */
 const coreFarms = {
-  [ChainId.MAINNET]: [2, 4],
-  [ChainId.CLOTESTNET]: [20, 22, 23, 24, 25],
-  [ChainId.BTTMAINNET]: [10, 14, 19, 9],
-  [ChainId.ETCCLASSICMAINNET]: [2, 6, 5, 1],
+  [ChainId.Mainnet]: [2, 4],
+  [ChainId.Testnet]: [20, 22, 23, 24, 25],
+  [ChainId.BTT]: [10, 14, 19, 9],
+  [ChainId.ETC]: [2, 6, 5, 1],
 }
 const coreEthFarms = {
-  [ChainId.MAINNET]: 2,
-  [ChainId.CLOTESTNET]: 23,
-  [ChainId.BTTMAINNET]: 19,
-  [ChainId.ETCCLASSICMAINNET]: 5,
+  [ChainId.Mainnet]: 2,
+  [ChainId.Testnet]: 23,
+  [ChainId.BTT]: 19,
+  [ChainId.ETC]: 5,
 }
 const busdtFarms = {
-  [ChainId.MAINNET]: 4,
-  [ChainId.CLOTESTNET]: 25,
-  [ChainId.BTTMAINNET]: 14,
-  [ChainId.ETCCLASSICMAINNET]: 6,
+  [ChainId.Mainnet]: 4,
+  [ChainId.Testnet]: 25,
+  [ChainId.BTT]: 14,
+  [ChainId.ETC]: 6,
 }
 
 export const usePollCoreFarmData = () => {

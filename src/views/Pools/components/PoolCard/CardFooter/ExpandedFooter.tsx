@@ -3,7 +3,16 @@ import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
-import { Flex, MetamaskIcon, Text, LinkExternal, Skeleton, useTooltip, Button, HelpIcon } from '@callisto-enterprise/soy-uikit2'
+import {
+  Flex,
+  MetamaskIcon,
+  Text,
+  LinkExternal,
+  Skeleton,
+  useTooltip,
+  Button,
+  HelpIcon,
+} from '@callisto-enterprise/soy-uikit2'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCakeVault } from 'state/pools/hooks'

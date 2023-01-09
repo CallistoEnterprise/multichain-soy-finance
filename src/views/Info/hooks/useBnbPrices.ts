@@ -3,7 +3,7 @@ import { getDeltaTimestamps } from 'views/Info/utils/infoQueryHelpers'
 import { useState, useEffect } from 'react'
 import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
-import { ChainId } from "@callisto-enterprise/soy-sdk"
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 const chainId = 820 // parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 
@@ -107,7 +107,6 @@ const fetchCloPrices = async (
   }
 }
 
-
 const fetchEtcPrices = async (
   block24: number,
   block48: number,
@@ -151,14 +150,14 @@ export const useBnbPrices = (): BnbPrices | undefined => {
     const fetch = async () => {
       const [block24, block48, blockWeek] = blocks
       let fetchPrices
-      if (chainId === ChainId.MAINNET){
+      if (chainId === ChainId.Mainnet) {
         fetchPrices = fetchCloPrices
-      } else if (chainId === ChainId.ETCCLASSICMAINNET){
+      } else if (chainId === ChainId.ETC) {
         fetchPrices = fetchEtcPrices
       }
 
       const { cloPrices, error: fetchError } = await fetchPrices(block24.number, block48.number, blockWeek.number)
-      
+
       if (fetchError) {
         setError(true)
       } else {

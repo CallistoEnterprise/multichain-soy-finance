@@ -1,4 +1,4 @@
-import { Currency, Percent, Price } from '@callisto-enterprise/soy-sdk'
+import { Currency, Percent, Price } from 'sdk'
 import React from 'react'
 import { Text } from '@callisto-enterprise/soy-uikit2'
 import { useTranslation } from 'contexts/Localization'

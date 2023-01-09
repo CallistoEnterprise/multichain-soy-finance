@@ -1,6 +1,6 @@
 import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
-import { TOKEN_BLACKLIST,trackedReserveCOIN } from 'config/constants/info'
+import { TOKEN_BLACKLIST, trackedReserveCOIN } from 'config/constants/info'
 
 /**
  * Data for showing Pools table on the Token page

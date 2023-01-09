@@ -1,9 +1,9 @@
 import sample from 'lodash/sample'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const getNodeUrl = () => {
-  return sample(CHAINS_CONSTANTS[ChainId.MAINNET].rpcs)
+  return sample(CHAINS_CONSTANTS[ChainId.Mainnet].rpcs)
 }
 
 export const getRpcForMulti = (rpcs) => {

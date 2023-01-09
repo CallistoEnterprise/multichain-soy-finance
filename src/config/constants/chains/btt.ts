@@ -1,4 +1,4 @@
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import BigNumber from 'bignumber.js'
 import { BASE_URL } from 'config'
 import type { ChainConstants } from './types'
@@ -7,7 +7,7 @@ import farms from '../farms/farmsInBTT'
 
 const BTT_CONSTANTS: ChainConstants = {
   general: {
-    chainId: ChainId.BTTMAINNET,
+    chainId: ChainId.BTT,
     hexChainId: '0xc7',
     chainName: 'BitTorrent',
     officialName: 'BitTorrent Chain Mainnet',

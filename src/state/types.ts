@@ -3,7 +3,7 @@ import { AnyAction } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
 import { CampaignType, FarmConfig, LotteryStatus, LotteryTicket, Nft, PoolConfig, Team } from 'config/constants/types'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
 
@@ -80,10 +80,10 @@ export interface Profile {
 
 export interface FarmsState {
   data: {
-    [ChainId.MAINNET]: Farm[],
-    [ChainId.CLOTESTNET]: Farm[],
-    [ChainId.BTTMAINNET]: Farm[],
-    [ChainId.ETCCLASSICMAINNET]: Farm[],
+    [ChainId.Mainnet]: Farm[]
+    [ChainId.Testnet]: Farm[]
+    [ChainId.BTT]: Farm[]
+    [ChainId.ETC]: Farm[]
   }
   loadArchivedFarmsData: boolean
   userDataLoaded: boolean

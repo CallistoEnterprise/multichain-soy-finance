@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { BIG_TEN } from 'utils/bigNumber'
 
 export const CALLISTO_BLOCK_TIME = 2.2
@@ -18,5 +18,7 @@ export const ONE_YEAR_TIMESTAMP = 365 * 24 * 60 * 60
 export const localStorageChainIdKey = 'soyfinanceChainId'
 export const DEFAULT_CHAIN_ID = process.env.REACT_APP_DEFAULT_CHAIN_ID
   ? Number(process.env.REACT_APP_DEFAULT_CHAIN_ID)
-  : ChainId.MAINNET
-export const SUPPORTED_CHAINS = (process.env.REACT_APP_SUPPORTED_CHAINS as string).split(',').map(chainId => Number(chainId)) as ChainId[]
+  : ChainId.Mainnet
+export const SUPPORTED_CHAINS = (process.env.REACT_APP_SUPPORTED_CHAINS as string)
+  .split(',')
+  .map((chainId) => Number(chainId)) as ChainId[]

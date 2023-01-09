@@ -1,14 +1,12 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@callisto-enterprise/soy-sdk'
+import { JSBI, Percent, Token, WETH } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { BUSDT, SOY, WCLO } from './tokens'
 
 export const ROUTER_ADDRESS = {
-  [ChainId.MAINNET]: '0xeB5B468fAacC6bBdc14c4aacF0eec38ABCCC13e7',
-  [ChainId.CLOTESTNET]: '0xdbe46b17FFd35D6865b69F9398AC5454389BF38c',
-  [ChainId.BTTMAINNET]: '0x8Cb2e43e5AEB329de592F7e49B6c454649b61929',
-  [ChainId.BSC]: '0x8c5Bba04B2f5CCCe0f8F951D2DE9616BE190070D',
-  [ChainId.BSCTESTNET]: '0x8c5Bba04B2f5CCCe0f8F951D2DE9616BE190070D',
-  [ChainId.ETCCLASSICMAINNET]: '0x8c5Bba04B2f5CCCe0f8F951D2DE9616BE190070D',
-  [ChainId.ETHEREUM]: ''
+  [ChainId.Mainnet]: '0xeB5B468fAacC6bBdc14c4aacF0eec38ABCCC13e7',
+  [ChainId.Testnet]: '0xdbe46b17FFd35D6865b69F9398AC5454389BF38c',
+  [ChainId.BTT]: '0x8Cb2e43e5AEB329de592F7e49B6c454649b61929',
+  [ChainId.ETC]: '0x8c5Bba04B2f5CCCe0f8F951D2DE9616BE190070D',
 }
 
 // a list of tokens by chain
@@ -18,15 +16,10 @@ type ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], SOY[ChainId.MAINNET], BUSDT[ChainId.MAINNET]],
-  [ChainId.CLOTESTNET]: [WETH[ChainId.CLOTESTNET], SOY[ChainId.CLOTESTNET]],
-  [ChainId.ETHEREUM]: [WETH[ChainId.ETHEREUM]],
-  [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
-  [ChainId.KOVAN]: [WETH[ChainId.KOVAN]],
-  [ChainId.BSC]: [WETH[ChainId.BSC]],
-  [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
-  [ChainId.ETCCLASSICMAINNET]: [WETH[ChainId.ETCCLASSICMAINNET], SOY[ChainId.ETCCLASSICMAINNET], BUSDT[ChainId.ETCCLASSICMAINNET]],
-  [ChainId.BTTMAINNET]: [WETH[ChainId.BTTMAINNET], SOY[ChainId.BTTMAINNET], BUSDT[ChainId.BTTMAINNET], WCLO[ChainId.BTTMAINNET]]
+  [ChainId.Mainnet]: [WETH[ChainId.Mainnet], SOY[ChainId.Mainnet], BUSDT[ChainId.Mainnet]],
+  [ChainId.Testnet]: [WETH[ChainId.Testnet], SOY[ChainId.Testnet]],
+  [ChainId.ETC]: [WETH[ChainId.ETC], SOY[ChainId.ETC], BUSDT[ChainId.ETC]],
+  [ChainId.BTT]: [WETH[ChainId.BTT], SOY[ChainId.BTT], BUSDT[ChainId.BTT], WCLO[ChainId.BTT]],
 }
 
 /**
@@ -34,70 +27,44 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  * @example { [WBTC.address]: [renBTC], [renBTC.address]: [WBTC] }
  */
 export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
-  [ChainId.MAINNET]: {},
-  [ChainId.CLOTESTNET]: {},
-  [ChainId.ETHEREUM]: {},
-  [ChainId.RINKEBY]: {},
-  [ChainId.KOVAN]: {},
-  [ChainId.BSC]: {},
-  [ChainId.BSCTESTNET]: {},
-  [ChainId.ETCCLASSICMAINNET]: {},
-  [ChainId.BTTMAINNET]: {},
+  [ChainId.Mainnet]: {},
+  [ChainId.Testnet]: {},
+  [ChainId.ETC]: {},
+  [ChainId.BTT]: {},
 }
 
 /**
  * Some tokens can only be swapped via certain pairs, so we override the list of bases that are considered for these
  * tokens.
- * @example [AMPL.address]: [DAI, WETH[ChainId.MAINNET]]
+ * @example [AMPL.address]: [DAI, WETH[ChainId.Mainnet]]
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
-  [ChainId.MAINNET]: {},
-  [ChainId.CLOTESTNET]: {},
-  [ChainId.ETHEREUM]: {},
-  [ChainId.RINKEBY]: {},
-  [ChainId.KOVAN]: {},
-  [ChainId.BSC]: {},
-  [ChainId.BSCTESTNET]: {},
-  [ChainId.ETCCLASSICMAINNET]: {},
-  [ChainId.BTTMAINNET]: {},
+  [ChainId.Mainnet]: {},
+  [ChainId.Testnet]: {},
+  [ChainId.ETC]: {},
+  [ChainId.BTT]: {},
 }
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.MAINNET]: [SOY[ChainId.MAINNET], BUSDT[ChainId.MAINNET]],
-  [ChainId.CLOTESTNET]: [SOY[ChainId.CLOTESTNET], BUSDT[ChainId.CLOTESTNET],],
-  [ChainId.ETHEREUM]: [WETH[ChainId.ETHEREUM]],
-  [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
-  [ChainId.KOVAN]: [WETH[ChainId.KOVAN]],
-  [ChainId.BSC]: [WETH[ChainId.BSC]],
-  [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
-  [ChainId.ETCCLASSICMAINNET]: [SOY[ChainId.ETCCLASSICMAINNET], BUSDT[ChainId.ETCCLASSICMAINNET]],
-  [ChainId.BTTMAINNET]: [SOY[ChainId.BTTMAINNET], BUSDT[ChainId.BTTMAINNET], WCLO[ChainId.BTTMAINNET]]
+  [ChainId.Mainnet]: [SOY[ChainId.Mainnet], BUSDT[ChainId.Mainnet]],
+  [ChainId.Testnet]: [SOY[ChainId.Testnet], BUSDT[ChainId.Testnet]],
+  [ChainId.ETC]: [SOY[ChainId.ETC], BUSDT[ChainId.ETC]],
+  [ChainId.BTT]: [SOY[ChainId.BTT], BUSDT[ChainId.BTT], WCLO[ChainId.BTT]],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], SOY[ChainId.MAINNET], BUSDT[ChainId.MAINNET]],
-  [ChainId.CLOTESTNET]: [WETH[ChainId.CLOTESTNET], SOY[ChainId.CLOTESTNET], BUSDT[ChainId.CLOTESTNET]],
-  [ChainId.ETHEREUM]: [WETH[ChainId.ETHEREUM]],
-  [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
-  [ChainId.KOVAN]: [WETH[ChainId.KOVAN]],
-  [ChainId.BSC]: [WETH[ChainId.BSC]],
-  [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
-  [ChainId.ETCCLASSICMAINNET]: [WETH[ChainId.ETCCLASSICMAINNET], SOY[ChainId.ETCCLASSICMAINNET], BUSDT[ChainId.ETCCLASSICMAINNET]],
-  [ChainId.BTTMAINNET]: [WETH[ChainId.BTTMAINNET], SOY[ChainId.BTTMAINNET], BUSDT[ChainId.BTTMAINNET], WCLO[ChainId.BTTMAINNET]]
+  [ChainId.Mainnet]: [WETH[ChainId.Mainnet], SOY[ChainId.Mainnet], BUSDT[ChainId.Mainnet]],
+  [ChainId.Testnet]: [WETH[ChainId.Testnet], SOY[ChainId.Testnet], BUSDT[ChainId.Testnet]],
+  [ChainId.ETC]: [WETH[ChainId.ETC], SOY[ChainId.ETC], BUSDT[ChainId.ETC]],
+  [ChainId.BTT]: [WETH[ChainId.BTT], SOY[ChainId.BTT], BUSDT[ChainId.BTT], WCLO[ChainId.BTT]],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-  [ChainId.MAINNET]: [
-    [SOY[ChainId.MAINNET], WCLO[ChainId.MAINNET]]
-  ],
-  [ChainId.BTTMAINNET]: [
-    [WETH[ChainId.BTTMAINNET], SOY[ChainId.BTTMAINNET]]
-  ],
-  [ChainId.ETCCLASSICMAINNET]: [
-    [WETH[ChainId.ETCCLASSICMAINNET], SOY[ChainId.ETCCLASSICMAINNET]]
-  ],
+  [ChainId.Mainnet]: [[SOY[ChainId.Mainnet], WCLO[ChainId.Mainnet]]],
+  [ChainId.BTT]: [[WETH[ChainId.BTT], SOY[ChainId.BTT]]],
+  [ChainId.ETC]: [[WETH[ChainId.ETC], SOY[ChainId.ETC]]],
 }
 
 export const NetworkContextName = 'NETWORK'
@@ -129,8 +96,7 @@ export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
 
 // SDN OFAC addresses
-export const BLOCKED_ADDRESSES: string[] = [
-]
+export const BLOCKED_ADDRESSES: string[] = []
 
 // export { default as farmsConfig } from './farms'
 export { default as poolsConfig } from './pools'

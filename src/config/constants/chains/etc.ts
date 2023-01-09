@@ -1,4 +1,4 @@
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import BigNumber from 'bignumber.js'
 import { BASE_URL } from 'config'
 import type { ChainConstants } from './types'
@@ -7,7 +7,7 @@ import farms from '../farms/farmsInETC'
 
 const ETC_CONSTANTS: ChainConstants = {
   general: {
-    chainId: ChainId.ETCCLASSICMAINNET,
+    chainId: ChainId.ETC,
     hexChainId: '0x3D',
     chainName: 'ETC Chain',
     officialName: 'Ethereum Classic Mainnet',
@@ -17,20 +17,20 @@ const ETC_CONSTANTS: ChainConstants = {
     nativeAddress: '0x0000000000000000000000000000000000000005',
     wrappedNativeAddress: '0x35e9A89e43e45904684325970B2E2d258463e072',
   },
-  rpcs: ['https://01.callisto.network/etcnode2','https://etc.etcdesktop.com'],
+  rpcs: ['https://01.callisto.network/etcnode2', 'https://etc.etcdesktop.com'],
   explorer: {
     name: 'ETCScan',
     url: 'https://blockscout.com/etc/mainnet/',
   },
-  subgraph:{
-    infoClient:'https://03.callisto.network/subgraphsetc/name/soyswapetc',
-    blocksClient:'https://03.callisto.network/subgraphsetc/name/blocksetc',
+  subgraph: {
+    infoClient: 'https://03.callisto.network/subgraphsetc/name/soyswapetc',
+    blocksClient: 'https://03.callisto.network/subgraphsetc/name/blocksetc',
     startTimestamp: 1655710961, // June-20-2022 10:42:41 AM +3 UTC
     vars: {
-      trackedReserveCOIN:'trackedReserveETC',
-      coinPrice:'etcPrice',
-      derivedCOIN:'derivedETC'
-    }
+      trackedReserveCOIN: 'trackedReserveETC',
+      coinPrice: 'etcPrice',
+      derivedCOIN: 'derivedETC',
+    },
   },
   tokenLists: DEFAULT_TOKEN_LIST,
   farms: farms,

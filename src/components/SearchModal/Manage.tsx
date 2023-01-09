@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Token } from '@callisto-enterprise/soy-sdk'
+import { Token } from 'sdk'
 import { ButtonMenu, ButtonMenuItem, ModalBody } from '@callisto-enterprise/soy-uikit2'
 import styled from 'styled-components'
 import { TokenList } from '@uniswap/token-lists'

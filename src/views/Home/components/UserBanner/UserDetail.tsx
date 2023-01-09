@@ -7,7 +7,7 @@ import { useProfile } from 'state/profile/hooks'
 import { useTranslation } from 'contexts/Localization'
 import truncateWalletAddress from 'utils/truncateWalletAddress'
 
-const ProfileAvatar = styled.div<{profile}>``
+const ProfileAvatar = styled.div<{ profile }>``
 
 const Desktop = styled(Flex)`
   align-items: center;

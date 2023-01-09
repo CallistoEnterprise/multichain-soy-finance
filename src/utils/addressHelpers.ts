@@ -42,9 +42,6 @@ export const getStakingPoolAddress = (poolId: number | string) => {
   return getAddress(pool.contractAddress)
 }
 
-
-
-
 export const getSousChefAddress = () => {
   return getAddress(addresses.sousChef)
 }

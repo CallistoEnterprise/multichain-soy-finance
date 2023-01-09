@@ -1,5 +1,5 @@
 import React, { Fragment, memo } from 'react'
-import { Trade } from '@callisto-enterprise/soy-sdk'
+import { Trade } from 'sdk'
 import { Text, Flex, ChevronRightIcon } from '@callisto-enterprise/soy-uikit2'
 import { unwrappedToken } from 'utils/wrappedCurrency'
 

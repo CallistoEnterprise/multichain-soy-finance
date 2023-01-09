@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
-import { ChainId, Currency, Token } from '@callisto-enterprise/soy-sdk'
+import { Currency, Token } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import styled from 'styled-components'
 import {
   Button,
