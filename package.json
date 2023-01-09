@@ -105,8 +105,9 @@
     "@types/simplemde": "^1.11.7",
     "@typescript-eslint/eslint-plugin": "^5.3.0",
     "@typescript-eslint/parser": "^5.3.0",
+    "@svgr/webpack": "^6.2.1",
     "acorn": "^8.7.1",
-    "ajv": "^6.12.6",
+    "ajv": "^8.6.1",
     "eslint": "^8.1.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -120,5 +121,9 @@
   "resolutions": {
     "//": "See https://github.com/facebook/create-react-app/issues/11773",
     "react-error-overlay": "6.0.9"
+  },
+  "overrides": {
+    "@svgr/webpack": "^6.2.1"
   }
 }
+
