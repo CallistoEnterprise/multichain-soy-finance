@@ -11,7 +11,6 @@ const getBlockSubqueries = (timestamps: number[]) =>
     } }) {
       number
     }`
-    
   })
 
 const blocksQueryConstructor = (subqueries: string[]) => {

@@ -7,7 +7,12 @@ import { PoolsState, Pool, CakeVault, VaultFees, VaultUser, AppThunk } from 'sta
 import { getPoolApr, getPoolAprForNew } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getAddress } from 'utils/addressHelpers'
-import { fetchPoolsBlockLimits, fetchPoolsStakingLimits, fetchPoolsTotalStaking, fetchPoolsRewardPerSecond } from './fetchPools'
+import {
+  fetchPoolsBlockLimits,
+  fetchPoolsStakingLimits,
+  fetchPoolsTotalStaking,
+  fetchPoolsRewardPerSecond,
+} from './fetchPools'
 import {
   fetchPoolsAllowance,
   fetchUserBalances,
@@ -17,7 +22,7 @@ import {
 import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
 import fetchVaultUser from './fetchVaultUser'
 import { getTokenPricesFromFarm } from './helpers'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 const initialState: PoolsState = {
   data: [...poolsConfig],
@@ -45,60 +50,63 @@ const initialState: PoolsState = {
 }
 
 // Thunks
-export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount: BigNumber, chainId: number) => async (dispatch, getState) => {
-  const blockLimits = await fetchPoolsBlockLimits()
-  const totalStakings = await fetchPoolsTotalStaking()
-  const allocationAndRewards = await fetchPoolsRewardPerSecond()
-  const prices = getTokenPricesFromFarm(getState().farms.data[chainId])
+export const fetchPoolsPublicDataAsync =
+  (currentBlock: number, rewardBlockCount: BigNumber, chainId: number) => async (dispatch, getState) => {
+    const blockLimits = await fetchPoolsBlockLimits()
+    const totalStakings = await fetchPoolsTotalStaking()
+    const allocationAndRewards = await fetchPoolsRewardPerSecond()
+    const prices = getTokenPricesFromFarm(getState().farms.data[chainId])
 
-  const liveData = poolsConfig.map((pool) => {
-    const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
-    const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
-    const allocationAndReward = allocationAndRewards.find((entry) => entry.sousId === pool.sousId)
-    const isPoolEndBlockExceeded = false // currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.endBlock) : false
-    const isPoolFinished = pool.isFinished[chainId] || isPoolEndBlockExceeded
+    const liveData = poolsConfig.map((pool) => {
+      const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
+      const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
+      const allocationAndReward = allocationAndRewards.find((entry) => entry.sousId === pool.sousId)
+      const isPoolEndBlockExceeded = false // currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.endBlock) : false
+      const isPoolFinished = pool.isFinished[chainId] || isPoolEndBlockExceeded
 
-    const stakingTokenAddress = pool.stakingToken.address ? getAddress(pool.stakingToken.address).toLowerCase() : null
-    const stakingTokenPrice = chainId === ChainId.CLOTESTNET ?  0.022412208310717878 : stakingTokenAddress ? prices[stakingTokenAddress] : 0
+      const stakingTokenAddress = pool.stakingToken.address ? getAddress(pool.stakingToken.address).toLowerCase() : null
+      const stakingTokenPrice =
+        chainId === ChainId.Testnet ? 0.022412208310717878 : stakingTokenAddress ? prices[stakingTokenAddress] : 0
 
-    const earningTokenAddress = pool.earningToken.address ? getAddress(pool.earningToken.address).toLowerCase() : null
-    const earningTokenPrice = chainId === ChainId.CLOTESTNET ?  0.022412208310717878 : earningTokenAddress ? prices[earningTokenAddress] : 0
+      const earningTokenAddress = pool.earningToken.address ? getAddress(pool.earningToken.address).toLowerCase() : null
+      const earningTokenPrice =
+        chainId === ChainId.Testnet ? 0.022412208310717878 : earningTokenAddress ? prices[earningTokenAddress] : 0
 
-    const RBC = rewardBlockCount
-    const apr = !isPoolFinished
-      ? pool.isNew
-      ? getPoolAprForNew(
+      const RBC = rewardBlockCount
+      const apr = !isPoolFinished
+        ? pool.isNew
+          ? getPoolAprForNew(
+              stakingTokenPrice,
+              earningTokenPrice,
+              getBalanceNumber(new BigNumber(totalStaking.totalStaked), pool.stakingToken.decimals),
+              allocationAndReward.rewardPerSecond,
+              allocationAndReward.multiplier1000,
+            )
+          : getPoolApr(
+              pool.sousId,
+              stakingTokenPrice,
+              earningTokenPrice,
+              getBalanceNumber(new BigNumber(totalStaking.totalStaked), pool.stakingToken.decimals),
+              parseFloat(pool.tokenPerBlock),
+              RBC,
+              chainId,
+            )
+        : 0
+
+      return {
+        ...blockLimit,
+        ...totalStaking,
         stakingTokenPrice,
         earningTokenPrice,
-        getBalanceNumber(new BigNumber(totalStaking.totalStaked), pool.stakingToken.decimals),
-        allocationAndReward.rewardPerSecond,
-        allocationAndReward.multiplier1000,
-      )
-      : getPoolApr(
-          pool.sousId,
-          stakingTokenPrice,
-          earningTokenPrice,
-          getBalanceNumber(new BigNumber(totalStaking.totalStaked), pool.stakingToken.decimals),
-          parseFloat(pool.tokenPerBlock),
-          RBC,
-          chainId
-        )
-      : 0
+        apr,
+        isFinished: pool.isFinished,
+      }
+    })
 
-    return {
-      ...blockLimit,
-      ...totalStaking,
-      stakingTokenPrice,
-      earningTokenPrice,
-      apr,
-      isFinished: pool.isFinished,
-    }
-  })
+    dispatch(setPoolsPublicData(liveData))
+  }
 
-  dispatch(setPoolsPublicData(liveData))
-}
-
-export const fetchPoolsStakingLimitsAsync = ( chainId: number ) => async (dispatch, getState) => {
+export const fetchPoolsStakingLimitsAsync = (chainId: number) => async (dispatch, getState) => {
   const poolsWithStakingLimit = getState()
     .pools.data.filter(({ stakingLimit }) => stakingLimit !== null && stakingLimit !== undefined)
     .map((pool) => pool.sousId)

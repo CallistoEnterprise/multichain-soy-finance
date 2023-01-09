@@ -28,7 +28,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   isLoading = false,
   // endTimeStr = null,
   havestDayStr = null,
-  isNew = true
+  isNew = true,
 }) => {
   const { t } = useTranslation()
   const earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
@@ -86,9 +86,11 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           </>
         )}
       </Flex>
-      {isNew && <Button disabled={!hasEarnings || havestDayStr !== null || !isNew} onClick={onPresentCollect}>
-        {isCompoundPool ? t('Collect') : t('Harvest')}
-      </Button>}
+      {isNew && (
+        <Button disabled={!hasEarnings || havestDayStr !== null || !isNew} onClick={onPresentCollect}>
+          {isCompoundPool ? t('Collect') : t('Harvest')}
+        </Button>
+      )}
     </Flex>
   )
 }

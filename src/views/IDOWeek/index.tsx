@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { CurrencyAmount } from '@callisto-enterprise/soy-sdk'
+import { CurrencyAmount } from 'sdk'
 import { Button, Box, Card } from '@callisto-enterprise/soy-uikit2'
 import BigNumber from 'bignumber.js'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
@@ -23,11 +23,7 @@ import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useAppro
 import { useSwapCallback } from '../../hooks/useSwapCallback'
 import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
 import { Field } from '../../state/swap/actions'
-import {
-  useDerivedSwapInfo,
-  useSwapActionHandlers,
-  useSwapState,
-} from '../../state/swap/hooks'
+import { useDerivedSwapInfo, useSwapActionHandlers, useSwapState } from '../../state/swap/hooks'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
@@ -49,7 +45,6 @@ const CustomRow = styled.div`
   align-items: center;
   @media screen and (max-width: 768px) {
     flex-direction: column;
-
   }
 `
 const SpacerH = styled.div`
@@ -74,7 +69,6 @@ const BidderWrapper = styled(Card)`
 `
 
 export default function IDODaily() {
-
   const { t } = useTranslation()
 
   const { account, chainId } = useActiveWeb3React()
@@ -88,10 +82,10 @@ export default function IDODaily() {
 
   const publicData = useGetPublicData()
   const userData = useGetUserDetail()
-  const {statistics, hasBidder, soyToClaim, refetch} = userData
+  const { statistics, hasBidder, soyToClaim, refetch } = userData
   const [approveStatus, setApproveStatus] = useState('')
 
-  // get custom setting values for user 
+  // get custom setting values for user
   const [allowedSlippage] = useUserSlippageTolerance()
 
   // swap state
@@ -99,9 +93,7 @@ export default function IDODaily() {
   const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currencies[Field.INPUT] ?? undefined)
 
-  const {
-    wrapType,
-  } = useWrapCallback(currencies[Field.INPUT], currencies[Field.OUTPUT], typedValue)
+  const { wrapType } = useWrapCallback(currencies[Field.INPUT], currencies[Field.OUTPUT], typedValue)
   const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
   const trade = showWrap ? undefined : v2Trade
 
@@ -149,12 +141,18 @@ export default function IDODaily() {
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT], chainId)
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
-
-  const tempSymbol = currencies[Field.INPUT]?.name.includes('ERC223') ?
-                     `${currencies[Field.INPUT]?.symbol.toLocaleLowerCase()}_erc223`:
-                     currencies[Field.INPUT]?.symbol.toLocaleLowerCase()
-  const otherToken = tokens[tempSymbol]?? {}
-  const allowance = useGetAllowance(otherToken === undefined ? '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a' : otherToken.address === undefined ? '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a' : getAddress(otherToken.address), account?? undefined)
+  const tempSymbol = currencies[Field.INPUT]?.name.includes('ERC223')
+    ? `${currencies[Field.INPUT]?.symbol.toLocaleLowerCase()}_erc223`
+    : currencies[Field.INPUT]?.symbol.toLocaleLowerCase()
+  const otherToken = tokens[tempSymbol] ?? {}
+  const allowance = useGetAllowance(
+    otherToken === undefined
+      ? '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a'
+      : otherToken.address === undefined
+      ? '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a'
+      : getAddress(otherToken.address),
+    account ?? undefined,
+  )
 
   const { onApprove } = useApprove()
 
@@ -167,33 +165,35 @@ export default function IDODaily() {
 
   const handleSubmit = async () => {
     if (
-      (parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance + 0.005) && (currencies[Field.INPUT].symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase())) ||
-      (parseFloat(formattedAmounts[Field.INPUT]) >= parseFloat(balance) && (currencies[Field.INPUT].symbol !== CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase()) )
+      (parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance + 0.005) &&
+        currencies[Field.INPUT].symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase()) ||
+      (parseFloat(formattedAmounts[Field.INPUT]) >= parseFloat(balance) &&
+        currencies[Field.INPUT].symbol !== CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase())
     ) {
-      toastWarning("Warning!", "Insufficient balance.")
-      return;
+      toastWarning('Warning!', 'Insufficient balance.')
+      return
     }
     const inputAmount = getDecimalAmount(new BigNumber(formattedAmounts[Field.INPUT]))
     try {
       setTxPending(true)
-      let tokenAddr = '';
-      if (currencies[Field.INPUT].symbol  === CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase()) {
+      let tokenAddr = ''
+      if (currencies[Field.INPUT].symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol.toUpperCase()) {
         tokenAddr = CHAINS_CONSTANTS[chainId].general.nativeAddress
       } else {
         tokenAddr = getAddress(otherToken.address)
       }
 
       const res = await onStakeBet(tokenAddr, inputAmount)
-      if (res){
-        toastSuccess("Success!", "Your bid was successfully placed.")
+      if (res) {
+        toastSuccess('Success!', 'Your bid was successfully placed.')
         setTxPending(false)
       } else {
-        toastWarning("Warning!", "Rejected transaction.")
+        toastWarning('Warning!', 'Rejected transaction.')
         setTxPending(false)
       }
-    } catch(err) {
+    } catch (err) {
       setTxPending(false)
-      toastError("Error!", "Excution reverted!")
+      toastError('Error!', 'Excution reverted!')
       console.info(err)
     }
   }
@@ -203,16 +203,16 @@ export default function IDODaily() {
       setClaimPending(true)
       const res = await onClaim()
       if (res) {
-        toastSuccess("Success!", "Your bid was successfully claimed.")
+        toastSuccess('Success!', 'Your bid was successfully claimed.')
         setClaimPending(false)
         refetch()
       } else {
-        toastWarning("Warning!", "Rejected transaction.")
+        toastWarning('Warning!', 'Rejected transaction.')
         setClaimPending(false)
       }
-    } catch(err) {
+    } catch (err) {
       setClaimPending(false)
-      toastError("Error!", "Excution reverted!")
+      toastError('Error!', 'Excution reverted!')
       console.info(err)
     }
   }
@@ -231,7 +231,7 @@ export default function IDODaily() {
   const handleMaxInput = useCallback(() => {
     if (maxAmountInput) {
       onUserInput(Field.INPUT, maxAmountInput.toExact())
-    } 
+    }
   }, [maxAmountInput, onUserInput])
 
   return (
@@ -242,14 +242,14 @@ export default function IDODaily() {
           <Wrapper id="swap-page">
             <AutoColumn gap="md">
               <Counter
-                item={!publicData ? 0: publicData.endTime}
-                curRound = {publicData ? publicData.currentRound : 0}
-                soyToSell = {publicData ? publicData.soyToSell : 0}
-                iteration = {publicData ? publicData.iteration : 0}
+                item={!publicData ? 0 : publicData.endTime}
+                curRound={publicData ? publicData.currentRound : 0}
+                soyToSell={publicData ? publicData.soyToSell : 0}
+                iteration={publicData ? publicData.iteration : 0}
                 weekly
               />
               <AutoColumn justify="space-between">
-                <StatusSection currentAmount={publicData ? publicData.currentCollectedUSD : 0}/>
+                <StatusSection currentAmount={publicData ? publicData.currentCollectedUSD : 0} />
               </AutoColumn>
               {/* { publicData && <AutoColumn justify="space-between">
                 <AutoRow justify='space-between' style={{ padding: '0 1rem' }}>
@@ -285,29 +285,28 @@ export default function IDODaily() {
               />
             </AutoColumn>
             <Box mt="1rem">
-              {
-                !allowance && otherToken.address !== undefined && !approveStatus.includes(`[${otherToken.symbol}]`) ?
+              {!allowance && otherToken.address !== undefined && !approveStatus.includes(`[${otherToken.symbol}]`) ? (
                 <Button
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   onClick={async () => {
                     if (account) {
                       setTxPending(true)
-                      try{
+                      try {
                         const res = await onApprove(getAddress(otherToken.address))
                         if (res) {
-                          toastSuccess("Success!", "Approved successfully.")
+                          toastSuccess('Success!', 'Approved successfully.')
                           setTxPending(false)
                           setApproveStatus(`${approveStatus}[${otherToken.symbol}]`)
                         } else {
-                          toastWarning("Warning!", "Rejected transaction.")
+                          toastWarning('Warning!', 'Rejected transaction.')
                           setTxPending(false)
                         }
-                      } catch(err) {
-                        toastError("Error!", "Approving failed.")
+                      } catch (err) {
+                        toastError('Error!', 'Approving failed.')
                         setTxPending(false)
                       }
                     } else {
-                      console.error("connect wallet!")
+                      console.error('connect wallet!')
                     }
                   }}
                   id="swap-button"
@@ -315,19 +314,16 @@ export default function IDODaily() {
                   disabled
                   // disabled={!account}
                 >
-                  {
-                    txPending?
-                    <CircleLoader />:
-                    'Approve'
-                  }
-                </Button>:
+                  {txPending ? <CircleLoader /> : 'Approve'}
+                </Button>
+              ) : (
                 <Button
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   onClick={() => {
                     if (account) {
                       handleSubmit()
                     } else {
-                      console.error("connect wallet!")
+                      console.error('connect wallet!')
                     }
                   }}
                   id="swap-button"
@@ -335,34 +331,43 @@ export default function IDODaily() {
                   disabled
                   // disabled={!account || balance === '0' || parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) || parseFloat(formattedAmounts[Field.INPUT]) === 0 || formattedAmounts[Field.INPUT] === ''}
                 >
-                  {txPending?
-                  <CircleLoader />:
-                  `IDO is closed`
-                  //  account && parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) ?
-                  // `Insufficient balance`:
-                  // `Submit Your Bid`
+                  {
+                    txPending ? <CircleLoader /> : `IDO is closed`
+                    //  account && parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) ?
+                    // `Insufficient balance`:
+                    // `Submit Your Bid`
                   }
-                </Button>}
+                </Button>
+              )}
             </Box>
           </Wrapper>
         </AppBody>
         {account && hasBidder && <SpacerH />}
         {account && hasBidder && <SpacerV />}
-        {account && hasBidder && <BidderWrapper>
-          <BidderHeader title={t('Bidder Statistics')} handleClick={() => handleClaim()} loading={claimPending} claimAmount={soyToClaim}/>
-          <Wrapper id="swap-page">
+        {account && hasBidder && (
+          <BidderWrapper>
+            <BidderHeader
+              title={t('Bidder Statistics')}
+              handleClick={() => handleClaim()}
+              loading={claimPending}
+              claimAmount={soyToClaim}
+            />
+            <Wrapper id="swap-page">
               <AutoColumn justify="space-between">
-                {
-                  statistics.map((item, index) => {
-                    if (item.unlockDate === 0) return null
-                    return (
-                      <BidderStatus item={item} key={item.id} prevSoyPrice={publicData ? publicData.prevSoyUsdPrice[index] : 0} />
-                    )
-                  })
-                }
+                {statistics.map((item, index) => {
+                  if (item.unlockDate === 0) return null
+                  return (
+                    <BidderStatus
+                      item={item}
+                      key={item.id}
+                      prevSoyPrice={publicData ? publicData.prevSoyUsdPrice[index] : 0}
+                    />
+                  )
+                })}
               </AutoColumn>
-          </Wrapper>
-        </BidderWrapper>}
+            </Wrapper>
+          </BidderWrapper>
+        )}
       </CustomRow>
     </IDOPage>
   )

@@ -75,7 +75,7 @@ const Chart = ({ data, setHoverValue, setHoverDate }: LineChartProps) => {
         <YAxis
           dataKey="value"
           scale="linear"
-          domain={[dataMin => (dataMin), dataMax => (dataMax * 1.115)]}
+          domain={[(dataMin) => dataMin, (dataMax) => dataMax * 1.115]}
           axisLine={false}
           tickLine={false}
           color={theme.colors.textSubtle}

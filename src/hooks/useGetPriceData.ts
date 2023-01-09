@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 type ApiResponse = {
-  callisto:{
+  callisto: {
     usd: number
     USD_24H_CHANGE: number
     USD_24H_VOL: number
@@ -9,7 +9,8 @@ type ApiResponse = {
   }
 }
 
-const api = 'https://api.coingecko.com/api/v3/simple/price?ids=callisto&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true'
+const api =
+  'https://api.coingecko.com/api/v3/simple/price?ids=callisto&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true'
 
 const useGetPriceData = () => {
   const [data, setData] = useState<ApiResponse | null>(null)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Token } from '@callisto-enterprise/soy-sdk'
+import { Token } from 'sdk'
 import { Modal, InjectedModalProps } from '@callisto-enterprise/soy-uikit2'
 import ImportToken from 'components/SearchModal/ImportToken'
 

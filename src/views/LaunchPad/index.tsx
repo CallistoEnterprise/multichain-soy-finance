@@ -6,7 +6,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/Layout/Page'
 import NftList from './components/PadList'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 const StyledHero = styled.div`
   border-bottom: 2px solid ${({ theme }) => theme.colors.textSubtle};
@@ -21,7 +21,7 @@ const LaunchPad = () => {
     const init = () => {
       history.push('/')
     }
-    if (chainId !== ChainId.MAINNET) {
+    if (chainId !== ChainId.Mainnet) {
       init()
     }
   }, [chainId])

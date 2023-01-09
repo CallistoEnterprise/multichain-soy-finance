@@ -1,6 +1,7 @@
-import { ChainId, Currency, currencyEquals, JSBI, Price, WETH } from '@callisto-enterprise/soy-sdk'
+import { Currency, currencyEquals, JSBI, Price, WETH } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { useMemo } from 'react'
-import { DEFAULT_CHAIN_ID } from 'config';
+import { DEFAULT_CHAIN_ID } from 'config'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { BUSDT, SOY } from '../config/constants/tokens'
 import { PairState, usePairs } from './usePairs'
@@ -19,8 +20,8 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
         chainId && wrapped && currencyEquals(WETH[chainId], wrapped) ? undefined : currency,
         chainId ? WETH[chainId] : undefined,
       ],
-      [wrapped?.equals(BUSDT[chainId]) ? undefined : wrapped, chainId === ChainId.MAINNET ? BUSDT[chainId] : undefined],
-      [chainId ? WETH[chainId] : undefined, chainId === ChainId.MAINNET ? BUSDT[chainId] : undefined],
+      [wrapped?.equals(BUSDT[chainId]) ? undefined : wrapped, chainId === ChainId.Mainnet ? BUSDT[chainId] : undefined],
+      [chainId ? WETH[chainId] : undefined, chainId === ChainId.Mainnet ? BUSDT[chainId] : undefined],
     ],
     [chainId, currency, wrapped],
   )

@@ -9,13 +9,13 @@ const useGetUserDetail = () => {
     statistics: [],
     soyLocked: 0,
     soyToClaim: 0,
-    hasBidder: false
+    hasBidder: false,
   })
   const { account, library } = useWeb3React()
-  const [ refetchCounter, setRefetchCounter ] = useState(0)
+  const [refetchCounter, setRefetchCounter] = useState(0)
 
   const refetch = () => {
-    setRefetchCounter(refetchCounter => refetchCounter+1)
+    setRefetchCounter((refetchCounter) => refetchCounter + 1)
   }
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const useGetUserDetail = () => {
       let hasBidder = false
       const ret = lockedSoy.map((item, index) => {
         if (parseInt(lockedDate[index].toString()) !== 0 && !hasBidder) {
-          hasBidder = true;
+          hasBidder = true
         }
         return {
           id: `Round ${index + 1}`,
@@ -41,14 +41,13 @@ const useGetUserDetail = () => {
         statistics: ret,
         soyLocked,
         soyToClaim,
-        hasBidder
+        hasBidder,
       })
     }
-    if (account)
-      getData()
+    if (account) getData()
   }, [account, library, refetchCounter])
 
-  return {...userData, refetch}
+  return { ...userData, refetch }
 }
 
 export default useGetUserDetail

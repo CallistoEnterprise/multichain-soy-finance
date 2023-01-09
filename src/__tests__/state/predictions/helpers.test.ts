@@ -53,7 +53,6 @@ describe('transformBetResponse', () => {
     //   claimed: false,
     //   user: userResponse,
     // }
-
     // expect(transformBetResponse(betResponseWithoutRound)).toEqual({
     //   id: 'id',
     //   hash: 'hash',
@@ -99,7 +98,6 @@ describe('transformBetResponse', () => {
     //     bets: [],
     //   },
     // }
-
     // expect(transformBetResponse(betResponseWithRound)).toEqual({
     //   id: 'id',
     //   hash: 'hash',

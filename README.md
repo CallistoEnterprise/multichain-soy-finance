@@ -4,10 +4,10 @@
 
 ## Technical info
 
--   App is written in React with Typescript.
--   Store and binding solution is [Redux](https://redux.js.org/)
--   Configuration layer is done with [Craco](https://www.npmjs.com/package/@craco/craco)
--   Project is forked from [Pancake swap](https://github.com/pancakeswap/pancake-frontend) (The codebase is currently different, but the similar fork with the original codebase is [here](https://github.com/Yepman0620/pancake-frontend))
+- App is written in React with Typescript.
+- Store and binding solution is [Redux](https://redux.js.org/)
+- Configuration layer is done with [Craco](https://www.npmjs.com/package/@craco/craco)
+- Project is forked from [Pancake swap](https://github.com/pancakeswap/pancake-frontend) (The codebase is currently different, but the similar fork with the original codebase is [here](https://github.com/Yepman0620/pancake-frontend))
 
 ## Installation
 
@@ -15,23 +15,24 @@ After git clone run `npm install`.
 
 ## Development
 
--   Run dev server: `npm run start`
--   Install Metamask, create an account and con`nect it to Callisto network.
+- Run dev server: `npm run start`
+- Install Metamask, create an account and con`nect it to Callisto network.
 
 ## Deployment
+
 > All deployments are hosted by Netlify
 
--   Deployment to **development** server is done with each push to the `development` branch
+- Deployment to **development** server is done with each push to the `development` branch
 
-    domain: https://development--multichain-soy-finance.netlify.app
+  domain: https://development--multichain-soy-finance.netlify.app
 
--   Deployment to **production** server is done with each push to the `main` branch (only via PR or locally `npm run build`)
+- Deployment to **production** server is done with each push to the `main` branch (only via PR or locally `npm run build`)
 
-    domain: https://app.soy.finance
+  domain: https://app.soy.finance
 
--   Deployment of any other branch, for example **hot-fix-121** is done by each push
+- Deployment of any other branch, for example **hot-fix-121** is done by each push
 
-    domain: https://**hot-fix-121**--multichain-soy-finance.netlify.app
+  domain: https://**hot-fix-121**--multichain-soy-finance.netlify.app
 
 ## Project structure
 
@@ -44,27 +45,30 @@ After git clone run `npm install`.
 - **utils** contains generic utilities functions.
 
 ## Contracts info
--   All ABIs are stored in `/src/config/abi/`
+
+- All ABIs are stored in `/src/config/abi/`
 
 ## Constants
+
 > Please do not use any hard-coded constants directly into the code
 
--   All configurations are stored in `/src/config/constants/`
--   All token lists are stored in `/src/config/constants/tokenLists`
--   Each chain has a single configuration file f.e. `/src/config/constants/chains/mainnet.ts`, please read [NEWCHAIN.md](./NEWCHAIN.md) if you want to add new chain support.
+- All configurations are stored in `/src/config/constants/`
+- All token lists are stored in `/src/config/constants/tokenLists`
+- Each chain has a single configuration file f.e. `/src/config/constants/chains/mainnet.ts`, please read [NEWCHAIN.md](./NEWCHAIN.md) if you want to add new chain support.
 
 ## Environment variables
+
 > TBD
 
 ## Analytics
--   Google Analytics
+
+- Google Analytics
 
 ## Dependencies
 
 Here is a list of the dependencies in this package.json file, along with a brief explanation of each:
 
-- **@binance-chain/bsc-connector**: This package provides a connector for interfacing with the Binance Smart Chain.
-- **@callisto-enterprise/soy-sdk**: This package provides an interface to the Callisto Enterprise platform.
+- **@callisto-enterprise/chain-constants**: This package provides basic chain config for Callisto Enterprise.
 - **@callisto-enterprise/soy-uikit2**: This package provides a user interface kit for the Callisto Enterprise platform.
 - **@reduxjs/toolkit**: This package provides a toolkit for simplifying the creation of Redux applications. Redux is a popular state management library for JavaScript.
 - **@types/multicodec**: This package provides TypeScript definitions for the multicodec library, which provides a way to encode and decode data using various multiformats.

@@ -40,7 +40,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
   isBnbPool,
   isCompoundPool = false,
   onDismiss,
-  isNew = true
+  isNew = true,
 }) => {
   const { t } = useTranslation()
   const { theme } = useTheme()

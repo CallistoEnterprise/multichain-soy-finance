@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Trade, TradeType } from '@callisto-enterprise/soy-sdk'
+import { Trade, TradeType } from 'sdk'
 import { Button, Text, ErrorIcon, ArrowDownIcon } from '@callisto-enterprise/soy-uikit2'
 import { Field } from 'state/swap/actions'
 import { isAddress, shortenAddress } from 'utils'
@@ -113,8 +113,6 @@ export default function SwapModalHeader({
     </AutoColumn>
   )
 }
-
-
 
 // RewriteEngine On
 // RewriteBase /

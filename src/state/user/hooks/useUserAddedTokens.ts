@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
-import { ChainId, Token } from '@callisto-enterprise/soy-sdk'
+import { Token } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { useSelector } from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { AppState } from '../../index'

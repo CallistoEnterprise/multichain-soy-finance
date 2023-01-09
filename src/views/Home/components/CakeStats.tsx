@@ -10,7 +10,7 @@ import CardValue from './CardValue'
 const StyledCakeStats = styled(Card)`
   margin-left: auto;
   margin-right: auto;
-  background-color: rgba(0,0,0,.9);
+  background-color: rgba(0, 0, 0, 0.9);
 `
 
 const Row = styled.div`
@@ -31,7 +31,7 @@ const CakeStats = () => {
   const circulatingSupply = 0
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
   const txAmt = 0
-  
+
   return (
     <StyledCakeStats>
       <CardBody>
@@ -72,11 +72,11 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{t('Sell Tax')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={3.0} suffix='%' />
+          <CardValue fontSize="14px" decimals={0} value={3.0} suffix="%" />
         </Row>
         <Row>
           <Text fontSize="14px">{t('Buy Tax')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={0} suffix='%' />
+          <CardValue fontSize="14px" decimals={0} value={0} suffix="%" />
         </Row>
       </CardBody>
     </StyledCakeStats>

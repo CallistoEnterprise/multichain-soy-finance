@@ -1,5 +1,5 @@
 import React from 'react'
-import { Price } from '@callisto-enterprise/soy-sdk'
+import { Price } from 'sdk'
 import { Text, AutoRenewIcon } from '@callisto-enterprise/soy-uikit2'
 import { StyledBalanceMaxMini } from './styleds'
 

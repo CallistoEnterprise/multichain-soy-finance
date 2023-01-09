@@ -28,7 +28,6 @@ import {
 } from './actions'
 import { ProtocolData, PoolData, TokenData, ChartEntry, PriceChartEntry } from './types'
 
-
 // Protocol hooks
 
 export const useProtocolData = (): [ProtocolData | undefined, (protocolData: ProtocolData) => void] => {

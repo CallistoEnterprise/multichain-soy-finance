@@ -8,8 +8,8 @@ const RPC_URL = getRpcUrl()
 export const simpleRpcProvider = new ethers.providers.JsonRpcProvider(RPC_URL)
 
 export const getRpcProvider = () => {
-    const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
-    return new ethers.providers.JsonRpcProvider(getRpcForMulti(CHAINS_CONSTANTS[chainId].rpcs),)
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+  return new ethers.providers.JsonRpcProvider(getRpcForMulti(CHAINS_CONSTANTS[chainId].rpcs))
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export

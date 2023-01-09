@@ -1,6 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { AddressZero } from '@ethersproject/constants'
-import { TokenAmount, Token, ChainId, Percent, JSBI } from '@callisto-enterprise/soy-sdk'
+import { TokenAmount, Token, Percent, JSBI } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 import {
   getCallistoExpLink,
@@ -14,22 +15,24 @@ import {
 describe('utils', () => {
   describe('#getCallistoExpLink', () => {
     it('correct for tx', () => {
-      expect(getCallistoExpLink('abc', 'transaction', ChainId.MAINNET)).toEqual('https://CallistoExp.com/tx/abc')
+      expect(getCallistoExpLink('abc', 'transaction', ChainId.Mainnet)).toEqual('https://CallistoExp.com/tx/abc')
     })
     it('correct for token', () => {
-      expect(getCallistoExpLink('abc', 'token', ChainId.MAINNET)).toEqual('https://CallistoExp.com/token/abc')
+      expect(getCallistoExpLink('abc', 'token', ChainId.Mainnet)).toEqual('https://CallistoExp.com/token/abc')
     })
     it('correct for address', () => {
-      expect(getCallistoExpLink('abc', 'address', ChainId.MAINNET)).toEqual('https://CallistoExp.com/address/abc')
+      expect(getCallistoExpLink('abc', 'address', ChainId.Mainnet)).toEqual('https://CallistoExp.com/address/abc')
     })
     it('enum', () => {
-      expect(getCallistoExpLink('abc', 'address', ChainId.CLOTESTNET)).toEqual('https://mumbai.CallistoExp.com/address/abc')
+      expect(getCallistoExpLink('abc', 'address', ChainId.Testnet)).toEqual(
+        'https://mumbai.CallistoExp.com/address/abc',
+      )
     })
   })
 
   describe('#calculateSlippageAmount', () => {
     it('bounds are correct', () => {
-      const tokenAmount = new TokenAmount(new Token(ChainId.MAINNET, AddressZero, 0), '100')
+      const tokenAmount = new TokenAmount(new Token(ChainId.Mainnet, AddressZero, 0), '100')
       expect(() => calculateSlippageAmount(tokenAmount, -1)).toThrow()
       expect(calculateSlippageAmount(tokenAmount, 0).map((bound) => bound.toString())).toEqual(['100', '100'])
       expect(calculateSlippageAmount(tokenAmount, 100).map((bound) => bound.toString())).toEqual(['99', '101'])

@@ -39,7 +39,7 @@ const getProfile = async (address: string): Promise<GetProfileResponse> => {
 
     const profileResponse = await profileContract.getUserProfile(address)
     const { userId, points, teamId, tokenId, nftAddress, isActive } = transformProfileResponse(profileResponse)
-    const team = undefined//await getTeam(teamId)
+    const team = undefined //await getTeam(teamId)
     const username = await getUsername(address)
 
     // If the profile is not active the tokenId returns 0, which is still a valid token id

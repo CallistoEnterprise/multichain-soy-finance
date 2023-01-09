@@ -17,7 +17,11 @@ import { State, Pool } from '../types'
 import { transformPool } from './helpers'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
-export const useFetchPublicPoolsData = (rewardBlockCount?: BigNumber, rwBLCntOfSousChef?: BigNumber, rwBLCntOfMaticStaking?: BigNumber) => {
+export const useFetchPublicPoolsData = (
+  rewardBlockCount?: BigNumber,
+  rwBLCntOfSousChef?: BigNumber,
+  rwBLCntOfMaticStaking?: BigNumber,
+) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
   const { chainId } = useActiveWeb3React()
@@ -30,7 +34,7 @@ export const useFetchPublicPoolsData = (rewardBlockCount?: BigNumber, rwBLCntOfS
       // console.log(pubData)
       dispatch(fetchPoolsPublicDataAsync(blockNumber, new BigNumber(5), chainId)) // , rwBLCntOfSousChef, rwBLCntOfMaticStaking
     }
-    if (simpleRpcProvider){
+    if (simpleRpcProvider) {
       fetchPoolsPublicData()
       dispatch(fetchPoolsStakingLimitsAsync(chainId))
     }

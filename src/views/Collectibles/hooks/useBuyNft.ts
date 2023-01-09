@@ -6,20 +6,20 @@ import { BIG_TEN } from 'utils/bigNumber'
 
 const useBuyNft = () => {
   const contract = useCharityContract()
-  const { toastError,} = useToast()
+  const { toastError } = useToast()
 
   const handleBuy = useCallback(
     async (classId: number, value: string | number) => {
       try {
-        const bigAmount = new BigNumber(value).multipliedBy(BIG_TEN.pow(18)).toString() 
+        const bigAmount = new BigNumber(value).multipliedBy(BIG_TEN.pow(18)).toString()
 
-        const tx = await contract.buyNFT(classId.toString(), {value: bigAmount})
+        const tx = await contract.buyNFT(classId.toString(), { value: bigAmount })
         if (tx) {
           const receipt = await tx.wait()
           return receipt.status
         }
         return false
-      } catch(err: {data?: {message?: string}} | any) {
+      } catch (err: { data?: { message?: string } } | any) {
         toastError(err?.data?.message)
         return false
       }

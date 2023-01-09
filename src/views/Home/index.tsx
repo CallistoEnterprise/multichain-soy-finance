@@ -34,7 +34,7 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: calc(100vh - 64px);
-`;
+`
 
 // const Hero1 = styled.div`
 //   align-items: center;
@@ -108,7 +108,7 @@ const Wrapper = styled.div`
 // `
 
 const Heading = styled.p`
-  color: #9A6AFF;
+  color: #9a6aff;
   font-weight: 600;
   font-size: 64px;
   margin-bottom: 20px;
@@ -121,7 +121,7 @@ const Heading = styled.p`
 `
 
 const Text = styled.p`
-  color: #9A6AFF;
+  color: #9a6aff;
   font-weight: 400;
   font-size: 44px;
   margin-top: 20px;
@@ -163,7 +163,7 @@ const Text = styled.p`
 // `
 
 // const CTACards = styled(BaseLayout)`
-  
+
 //   grid-template-columns: none;
 //   display: flex;
 //   align-items: start;
@@ -201,10 +201,8 @@ const Home: React.FC = () => {
 
   return (
     <Wrapper>
-      <Heading >
-          SoyFinance
-        </Heading>
-        <Text>COMMING SOON!</Text>
+      <Heading>SoyFinance</Heading>
+      <Text>COMMING SOON!</Text>
       {/* <ImageCon>
         <ImgLogo src={Assets.logo} alt="logo" />
         <ImgText src={Assets.logoTxt} alt="logoText" />
@@ -217,10 +215,10 @@ const Home: React.FC = () => {
         <Text>{t('The #1 AMM and yield farm on Polygon Network.')}</Text>
       </Hero1>
       <StyledDiv> */}
-        {/* <Cards>
+      {/* <Cards>
           <FarmStakingCard />
         </Cards> */}
-        {/* <CTACards>
+      {/* <CTACards>
           <EarnAPYCard />
           <EarnAssetCard />
         </CTACards>

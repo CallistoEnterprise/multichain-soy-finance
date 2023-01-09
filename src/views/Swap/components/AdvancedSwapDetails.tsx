@@ -1,5 +1,5 @@
 import React from 'react'
-import { Trade, TradeType } from '@callisto-enterprise/soy-sdk'
+import { Trade, TradeType } from 'sdk'
 import { Text } from '@callisto-enterprise/soy-uikit2'
 import { Field } from 'state/swap/actions'
 import { useUserSlippageTolerance } from 'state/user/hooks'
@@ -60,7 +60,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
                 <Text mb="12px">For each trade a 0.2% fee is paid</Text>
                 <Text>- 100% of the fee is distributed to LP token holders.</Text>
                 {/* <Text>- 0.03% to the Treasury</Text> */}
-                  {/* <Text>- 15% to 30% of the total trading fee will buyback and burn</Text> */}
+                {/* <Text>- 15% to 30% of the total trading fee will buyback and burn</Text> */}
               </>
             }
             ml="4px"

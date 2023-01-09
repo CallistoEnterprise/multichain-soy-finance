@@ -1,4 +1,4 @@
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import BigNumber from 'bignumber.js'
 import { BASE_URL } from 'config'
 import type { ChainConstants } from './types'
@@ -7,7 +7,7 @@ import farms from '../farms/farmsInCLOTestnet'
 
 const TESTNET_CONSTANTS: ChainConstants = {
   general: {
-    chainId: ChainId.CLOTESTNET,
+    chainId: ChainId.Testnet,
     hexChainId: '0x50F9',
     chainName: 'CLO Testnet',
     officialName: 'Callisto Testnet',

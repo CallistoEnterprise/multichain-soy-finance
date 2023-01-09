@@ -12,16 +12,11 @@ import NftGrid from './NftGrid'
  */
 
 const PadList = () => {
-
-    return (
+  return (
     <NftGrid>
-      {
-        LaunchPads.map((nft) => {
-          return (
-            <NftCard nft = {nft} key={`${nft.name}-${nft.classId}`}/>
-          )
-        })
-      }
+      {LaunchPads.map((nft) => {
+        return <NftCard nft={nft} key={`${nft.name}-${nft.classId}`} />
+      })}
     </NftGrid>
   )
 }
