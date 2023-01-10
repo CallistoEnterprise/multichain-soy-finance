@@ -1,5 +1,5 @@
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
-import { MenuEntry } from '@callisto-enterprise/soy-uikit2'
+import { MenuEntry } from 'uikit2'
 import { ContextApi } from 'contexts/Localization/types'
 
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [

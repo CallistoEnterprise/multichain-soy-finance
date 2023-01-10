@@ -1,5 +1,5 @@
 import React from 'react'
-import { Svg, SvgProps } from '@callisto-enterprise/soy-uikit2'
+import { Svg, SvgProps } from 'uikit2'
 
 const LineChartLoaderSVG: React.FC<SvgProps> = (props) => {
   return (

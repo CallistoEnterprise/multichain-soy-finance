@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text, LinkExternal } from '@callisto-enterprise/soy-uikit2'
+import { Heading, Text, LinkExternal } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/Layout/Page'
 import NftList from './components/NftList'

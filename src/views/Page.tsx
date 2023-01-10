@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex } from '@callisto-enterprise/soy-uikit2'
+import { Flex } from 'uikit2'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Footer from 'components/Menu/Footer'
 import SubNav from 'components/Menu/SubNav'

@@ -3,7 +3,7 @@ import { UAuthConnector } from '@uauth/web3-react'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import type { AbstractConnector } from '@web3-react/abstract-connector'
-import { ConnectorNames } from '@callisto-enterprise/soy-uikit2'
+import { ConnectorNames } from 'uikit2'
 import { ethers } from 'ethers'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 

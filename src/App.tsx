@@ -1,7 +1,7 @@
 import React, { useEffect, lazy } from 'react'
 import { Router, Redirect, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
-import { ResetCSS } from '@callisto-enterprise/soy-uikit2'
+import { ResetCSS } from 'uikit2'
 import BigNumber from 'bignumber.js'
 import { SUPPORTED_CHAINS } from 'config'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

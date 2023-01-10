@@ -1,5 +1,5 @@
 import React from 'react'
-import { ModalProvider, light, dark } from '@callisto-enterprise/soy-uikit2'
+import { ModalProvider, light, dark } from 'uikit2'
 import { Web3ReactProvider } from '@web3-react/core'
 import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'

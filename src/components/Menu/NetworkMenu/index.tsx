@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { usePopper } from 'react-popper'
 import styled from 'styled-components'
-import { Flex, ChevronDownIcon } from '@callisto-enterprise/soy-uikit2'
+import { Flex, ChevronDownIcon } from 'uikit2'
 import isTouchDevice from './isTouchDevice'
 import { UserMenuProps, variants } from './types'
 import MenuIcon from './MenuIcon'

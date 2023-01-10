@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from 'react'
-// import { Text, Heading, Card } from '@callisto-enterprise/soy-uikit2'
-import { Heading } from '@callisto-enterprise/soy-uikit2'
+// import { Text, Heading, Card } from 'uikit2'
+import { Heading } from 'uikit2'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Page from 'components/Layout/Page'

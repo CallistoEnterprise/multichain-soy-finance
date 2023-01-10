@@ -9,7 +9,7 @@ import {
   UserMenuItem,
   connectorLocalStorageKey,
   ConnectorNames,
-} from '@callisto-enterprise/soy-uikit2'
+} from 'uikit2'
 import { Networks } from 'config/constants/networks'
 import useAuth from 'hooks/useAuth'
 import { useProfile } from 'state/profile/hooks'
