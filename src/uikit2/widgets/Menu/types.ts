@@ -1,58 +1,58 @@
-import { ReactElement } from "react";
-import { Colors } from "../../theme/types";
+import { ReactElement } from 'react'
+import { Colors } from '../../theme/types'
 
 export interface Language {
-  code: string;
-  language: string;
-  locale: string;
+  code: string
+  language: string
+  locale: string
 }
 
 export interface PushedProps {
-  isPushed: boolean;
-  pushNav: (isPushed: boolean) => void;
+  isPushed: boolean
+  pushNav: (isPushed: boolean) => void
 }
 
 export interface NavTheme {
-  background: string;
+  background: string
 }
 
 export interface LinkStatus {
-  text: string;
-  color: keyof Colors;
+  text: string
+  color: keyof Colors
 }
 
 export interface MenuSubEntry {
-  label: string;
-  href: string;
-  calloutClass?: string;
-  status?: LinkStatus;
-  target?: string;
+  label: string
+  href: string
+  calloutClass?: string
+  status?: LinkStatus
+  target?: string
 }
 
 export interface MenuEntry {
-  label: string;
-  icon: string;
-  sublabel?: string;
-  items?: MenuSubEntry[];
-  href?: string;
-  calloutClass?: string;
-  initialOpenState?: boolean;
-  status?: LinkStatus;
-  target?: string;
+  label: string
+  icon: string
+  sublabel?: string
+  items?: MenuSubEntry[]
+  href?: string
+  calloutClass?: string
+  initialOpenState?: boolean
+  status?: LinkStatus
+  target?: string
 }
 
 export interface PanelProps {
-  isDark: boolean;
-  toggleTheme: (isDark: boolean) => void;
-  cakePriceUsd?: number;
-  currentLang: string;
-  langs: Language[];
-  setLang: (lang: Language) => void;
-  links: Array<MenuEntry>;
-  addSoyToMetamask?: () => void;
-  isTestnet?: boolean;
+  isDark: boolean
+  toggleTheme: (isDark: boolean) => void
+  cakePriceUsd?: number
+  currentLang: string
+  langs: Language[]
+  setLang: (lang: Language) => void
+  links: Array<MenuEntry>
+  addSoyToMetamask?: () => void
+  isTestnet?: boolean
 }
 
 export interface NavProps extends PanelProps {
-  userMenu?: ReactElement;
+  userMenu?: ReactElement
 }

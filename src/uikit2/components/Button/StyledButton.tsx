@@ -1,15 +1,15 @@
-import styled from "styled-components";
-import { space, layout, variant } from "styled-system";
-import { PancakeTheme } from "../..";
-import { scaleVariants, styleVariants } from "./theme";
-import { BaseButtonProps } from "./types";
+import styled from 'styled-components'
+import { space, layout, variant } from 'styled-system'
+import { PancakeTheme } from '../..'
+import { scaleVariants, styleVariants } from './theme'
+import { BaseButtonProps } from './types'
 
 interface ThemedButtonProps extends BaseButtonProps {
-  theme: PancakeTheme;
+  theme: PancakeTheme
 }
 
 interface TransientButtonProps extends ThemedButtonProps {
-  $isLoading?: boolean;
+  $isLoading?: boolean
 }
 
 const getDisabledStyles = ({ $isLoading, theme }: TransientButtonProps) => {
@@ -19,7 +19,7 @@ const getDisabledStyles = ({ $isLoading, theme }: TransientButtonProps) => {
       &.pancake-button--disabled {
         cursor: not-allowed;
       }
-    `;
+    `
   }
 
   return `
@@ -31,8 +31,8 @@ const getDisabledStyles = ({ $isLoading, theme }: TransientButtonProps) => {
       color: ${theme.colors.textDisabled};
       cursor: not-allowed;
     }
-  `;
-};
+  `
+}
 
 /**
  * This is to get around an issue where if you use a Link component
@@ -41,8 +41,8 @@ const getDisabledStyles = ({ $isLoading, theme }: TransientButtonProps) => {
  */
 
 const getOpacity = ({ $isLoading = false }: TransientButtonProps) => {
-  return $isLoading ? ".5" : "1";
-};
+  return $isLoading ? '.5' : '1'
+}
 
 const StyledButton = styled.button<BaseButtonProps>`
   align-items: center;
@@ -73,7 +73,7 @@ const StyledButton = styled.button<BaseButtonProps>`
 
   ${getDisabledStyles}
   ${variant({
-    prop: "scale",
+    prop: 'scale',
     variants: scaleVariants,
   })}
   ${variant({
@@ -81,6 +81,6 @@ const StyledButton = styled.button<BaseButtonProps>`
   })}
   ${layout}
   ${space}
-`;
+`
 
-export default StyledButton;
+export default StyledButton

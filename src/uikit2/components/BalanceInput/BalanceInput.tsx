@@ -1,11 +1,11 @@
-import React from "react";
-import Text from "../Text/Text";
-import { StyledBalanceInput, StyledInput } from "./styles";
-import { BalanceInputProps } from "./types";
+import React from 'react'
+import Text from '../Text/Text'
+import { StyledBalanceInput, StyledInput } from './styles'
+import { BalanceInputProps } from './types'
 
 const BalanceInput: React.FC<BalanceInputProps> = ({
   value,
-  placeholder = "0.0",
+  placeholder = '0.0',
   onUserInput,
   currencyValue,
   inputProps,
@@ -16,9 +16,9 @@ const BalanceInput: React.FC<BalanceInputProps> = ({
 }) => {
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.validity.valid) {
-      onUserInput(e.currentTarget.value.replace(/,/g, "."));
+      onUserInput(e.currentTarget.value.replace(/,/g, '.'))
     }
-  };
+  }
 
   return (
     <StyledBalanceInput isWarning={isWarning} {...props}>
@@ -38,7 +38,7 @@ const BalanceInput: React.FC<BalanceInputProps> = ({
         </Text>
       )}
     </StyledBalanceInput>
-  );
-};
+  )
+}
 
-export default BalanceInput;
+export default BalanceInput

@@ -1,32 +1,32 @@
-import React, { cloneElement, Children, ReactElement } from "react";
-import styled from "styled-components";
-import { space } from "styled-system";
-import { PancakeTheme } from "../..";
-import { scales, variants } from "../Button/types";
-import { ButtonMenuProps } from "./types";
+import React, { cloneElement, Children, ReactElement } from 'react'
+import styled from 'styled-components'
+import { space } from 'styled-system'
+import { PancakeTheme } from '../..'
+import { scales, variants } from '../Button/types'
+import { ButtonMenuProps } from './types'
 
 interface StyledButtonMenuProps extends ButtonMenuProps {
-  theme: PancakeTheme;
+  theme: PancakeTheme
 }
 
 const getBackgroundColor = ({ theme, variant }: StyledButtonMenuProps) => {
-  return theme.colors[variant === variants.SUBTLE ? "tabBack" : "tabBack"];
-};
+  return theme.colors[variant === variants.SUBTLE ? 'tabBack' : 'tabBack']
+}
 
 const getBorderColor = ({ theme, variant }: StyledButtonMenuProps) => {
-  return theme.colors[variant === variants.SUBTLE ? "inputSecondary" : "disabled"];
-};
+  return theme.colors[variant === variants.SUBTLE ? 'inputSecondary' : 'disabled']
+}
 
 const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
   background-color: ${getBackgroundColor};
   border-radius: 20px;
-  display: ${({ fullWidth }) => (fullWidth ? "flex" : "inline-flex")};
+  display: ${({ fullWidth }) => (fullWidth ? 'flex' : 'inline-flex')};
   border: 1px solid ${getBorderColor};
-  width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
   & > button,
   & > a {
-    margin-left: ${({ fullWidth }) => (fullWidth ? "0px" : "0px")}; // To avoid focus shadow overlap
-    flex: ${({ fullWidth }) => (fullWidth ? 1 : "auto")};
+    margin-left: ${({ fullWidth }) => (fullWidth ? '0px' : '0px')}; // To avoid focus shadow overlap
+    flex: ${({ fullWidth }) => (fullWidth ? 1 : 'auto')};
   }
 
   & > button + button,
@@ -48,12 +48,12 @@ const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
           background-color: transparent;
           color: ${variant === variants.PRIMARY ? theme.colors.primary : theme.colors.textSubtle};
         }
-    `;
+    `
     }
-    return "";
+    return ''
   }}
   ${space}
-`;
+`
 
 const ButtonMenu: React.FC<ButtonMenuProps> = ({
   activeIndex = 0,
@@ -74,10 +74,10 @@ const ButtonMenu: React.FC<ButtonMenuProps> = ({
           scale,
           variant,
           disabled,
-        });
+        })
       })}
     </StyledButtonMenu>
-  );
-};
+  )
+}
 
-export default ButtonMenu;
+export default ButtonMenu

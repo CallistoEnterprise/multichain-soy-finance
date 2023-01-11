@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import observerOptions from "./options";
-import Wrapper from "./Wrapper";
-import { ImageProps } from "./types";
+import React, { useEffect, useRef, useState } from 'react'
+import styled from 'styled-components'
+import observerOptions from './options'
+import Wrapper from './Wrapper'
+import { ImageProps } from './types'
 
 const StyledImage = styled.img`
   height: 100%;
@@ -10,7 +10,7 @@ const StyledImage = styled.img`
   position: absolute;
   top: 0;
   width: 100%;
-`;
+`
 const StyledTokenImage = styled.img`
   height: 100%;
   left: 0;
@@ -18,81 +18,81 @@ const StyledTokenImage = styled.img`
   top: 0;
   width: 100%;
   border-radius: 50%;
-`;
+`
 const Placeholder = styled.div`
   height: 100%;
   left: 0;
   position: absolute;
   top: 0;
   width: 100%;
-`;
+`
 
 const Image: React.FC<ImageProps> = ({ src, alt, width, height, ...props }) => {
-  const imgRef = useRef<HTMLDivElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLDivElement>(null)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    let observer: IntersectionObserver;
+    let observer: IntersectionObserver
 
     if (imgRef.current) {
       observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          const { isIntersecting } = entry;
+          const { isIntersecting } = entry
           if (isIntersecting) {
-            setIsLoaded(true);
-            observer.disconnect();
+            setIsLoaded(true)
+            observer.disconnect()
           }
-        });
-      }, observerOptions);
-      observer.observe(imgRef.current);
+        })
+      }, observerOptions)
+      observer.observe(imgRef.current)
     }
 
     return () => {
       if (observer) {
-        observer.disconnect();
+        observer.disconnect()
       }
-    };
-  }, [src]);
+    }
+  }, [src])
 
   return (
     <Wrapper ref={imgRef} height={height} width={width} {...props}>
       {isLoaded ? <StyledImage src={src} alt={alt} /> : <Placeholder />}
     </Wrapper>
-  );
-};
+  )
+}
 
 export const TokenPairImage: React.FC<ImageProps> = ({ src, alt, width, height, ...props }) => {
-  const imgRef = useRef<HTMLDivElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLDivElement>(null)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    let observer: IntersectionObserver;
+    let observer: IntersectionObserver
 
     if (imgRef.current) {
       observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          const { isIntersecting } = entry;
+          const { isIntersecting } = entry
           if (isIntersecting) {
-            setIsLoaded(true);
-            observer.disconnect();
+            setIsLoaded(true)
+            observer.disconnect()
           }
-        });
-      }, observerOptions);
-      observer.observe(imgRef.current);
+        })
+      }, observerOptions)
+      observer.observe(imgRef.current)
     }
 
     return () => {
       if (observer) {
-        observer.disconnect();
+        observer.disconnect()
       }
-    };
-  }, [src]);
+    }
+  }, [src])
 
   return (
     <Wrapper ref={imgRef} height={height} width={width} {...props}>
       {isLoaded ? <StyledTokenImage src={src} alt={alt} /> : <Placeholder />}
     </Wrapper>
-  );
-};
+  )
+}
 
-export default Image;
+export default Image

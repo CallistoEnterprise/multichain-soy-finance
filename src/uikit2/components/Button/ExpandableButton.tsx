@@ -1,12 +1,12 @@
-import React from "react";
-import { ChevronDownIcon, ChevronUpIcon } from "../Svg";
-import Button from "./Button";
-import IconButton from "./IconButton";
+import React from 'react'
+import { ChevronDownIcon, ChevronUpIcon } from '../Svg'
+import Button from './Button'
+import IconButton from './IconButton'
 
 interface Props {
-  onClick?: () => void;
-  expanded?: boolean;
-  children?: React.ReactNode;
+  onClick?: () => void
+  expanded?: boolean
+  children?: React.ReactNode
 }
 
 export const ExpandableButton: React.FC<Props> = ({ onClick, expanded, children }) => {
@@ -15,11 +15,11 @@ export const ExpandableButton: React.FC<Props> = ({ onClick, expanded, children 
       {children}
       {expanded ? <ChevronUpIcon color="invertedContrast" /> : <ChevronDownIcon color="invertedContrast" />}
     </IconButton>
-  );
-};
+  )
+}
 ExpandableButton.defaultProps = {
   expanded: false,
-};
+}
 
 export const ExpandableLabel: React.FC<Props> = ({ onClick, expanded, children }) => {
   return (
@@ -31,8 +31,8 @@ export const ExpandableLabel: React.FC<Props> = ({ onClick, expanded, children }
     >
       {children}
     </Button>
-  );
-};
+  )
+}
 ExpandableLabel.defaultProps = {
   expanded: false,
-};
+}

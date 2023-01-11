@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SubMenuContainer = styled.div`
   display: flex;
@@ -8,11 +8,11 @@ export const SubMenuContainer = styled.div`
   background: ${({ theme }) => theme.colors.input};
   border-radius: ${({ theme }) => theme.radii.default};
   border: ${({ theme }) => `1px solid ${theme.colors.inputSecondary}`};
-`;
+`
 
 export const ClickableElementContainer = styled.div`
   cursor: pointer;
-`;
+`
 
 export const SubMenuItem = styled.button`
   border: 0;
@@ -29,4 +29,4 @@ export const SubMenuItem = styled.button`
     background-color: ${({ theme }) => theme.colors.inputSecondary};
     text-decoration: none;
   }
-`;
+`

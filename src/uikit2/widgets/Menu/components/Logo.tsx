@@ -1,23 +1,23 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
-import { Link } from "react-router-dom";
-import { LogoIcon } from "../../../components/Svg";
-import Flex from "../../../components/Box/Flex";
-import { HamburgerIcon, HamburgerCloseIcon } from "../icons";
-import MenuButton from "./MenuButton";
+import React from 'react'
+import styled, { keyframes } from 'styled-components'
+import { Link } from 'react-router-dom'
+import { LogoIcon } from '../../../components/Svg'
+import Flex from '../../../components/Box/Flex'
+import { HamburgerIcon, HamburgerCloseIcon } from '../icons'
+import MenuButton from './MenuButton'
 
 interface Props {
-  isPushed: boolean;
-  isDark: boolean;
-  togglePush: () => void;
-  href: string;
-  isTestnet: boolean;
+  isPushed: boolean
+  isDark: boolean
+  togglePush: () => void
+  href: string
+  isTestnet: boolean
 }
 
 const blink = keyframes`
   0%,  100% { transform: scaleY(1); } 
   50% { transform:  scaleY(0.1); } 
-`;
+`
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -47,18 +47,18 @@ const StyledLink = styled(Link)`
       animation-iteration-count: 1;
     }
   }
-`;
+`
 
-const LogoText = styled.div`   
+const LogoText = styled.div`
   font-weight: 600;
   font-size: 28px;
-  color: #FFF;
+  color: #fff;
   letter-spacing: 1.2px;
   @media screen and (max-width: 480px) {
     display: none;
   }
-`;
-const LogoText2 = styled.div`   
+`
+const LogoText2 = styled.div`
   font-weight: 600;
   font-size: 28px;
   color: #919191;
@@ -66,29 +66,32 @@ const LogoText2 = styled.div`
   @media screen and (max-width: 480px) {
     display: none;
   }
-`;
-const LogoPreText = styled.div`   
-    display: flex;
-    font-weight: 600;
-    font-size: 28px;
-    line-height: 27px;
-    color: #A5C437;
-    padding-left: 10px;
-    @media screen and (max-width: 480px) {
-      display: none;
-      // padding-left: 5px;
-      // font-size: 18px;
-    }
-`;
+`
+const LogoPreText = styled.div`
+  display: flex;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 27px;
+  color: #a5c437;
+  padding-left: 10px;
+  @media screen and (max-width: 480px) {
+    display: none;
+    // padding-left: 5px;
+    // font-size: 18px;
+  }
+`
 
 const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, href, isTestnet }) => {
-  const isAbsoluteUrl = href.startsWith("http");
+  const isAbsoluteUrl = href.startsWith('http')
   const innerLogo = (
     <>
-      <LogoIcon width="34px"/>
-      <LogoPreText >Soy.<LogoText>Swap</LogoText>{isTestnet && <LogoText2>.Testnet</LogoText2>}</LogoPreText>
+      <LogoIcon width="34px" />
+      <LogoPreText>
+        Soy.<LogoText>Swap</LogoText>
+        {isTestnet && <LogoText2>.Testnet</LogoText2>}
+      </LogoPreText>
     </>
-  );
+  )
 
   return (
     <Flex>
@@ -109,7 +112,10 @@ const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, href, isTestnet }
         </StyledLink>
       )}
     </Flex>
-  );
-};
+  )
+}
 
-export default React.memo(Logo, (prev, next) => prev.isPushed === next.isPushed && prev.isDark === next.isDark && prev.isTestnet === next.isTestnet);
+export default React.memo(
+  Logo,
+  (prev, next) => prev.isPushed === next.isPushed && prev.isDark === next.isDark && prev.isTestnet === next.isTestnet,
+)

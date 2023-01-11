@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { space } from "styled-system";
+import styled from 'styled-components'
+import { space } from 'styled-system'
 
 const Table = styled.table`
   max-width: 100%;
@@ -25,6 +25,6 @@ const Table = styled.table`
   }
 
   ${space}
-`;
+`
 
-export default Table;
+export default Table
