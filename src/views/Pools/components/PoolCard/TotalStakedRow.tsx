@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, TooltipText } from '@soy-libs/uikit2' // useTooltip
+import { Flex, TooltipText } from 'uikit2' // useTooltip
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 import { Pool } from 'state/types'
@@ -21,13 +21,14 @@ const TotalStakedRow: React.FC<TotalStakedRowRowProps> = ({ pool }) => {
       {/* {tooltipVisible && tooltip} */}
       <TooltipText>{isAutoVault ? `${t('Total Staked')}:` : `${t('Total Staked')}:`}</TooltipText>
       <Flex alignItems="center">
-          <Balance
-            fontSize="16px "
-            isDisabled={isFinished[chainId]}
-            value={getBalanceNumber(totalStaked, stakingToken?.decimals)}
-            decimals={0}
-            unit={` ${stakingToken?.symbol}`} />
-        </Flex>
+        <Balance
+          fontSize="16px "
+          isDisabled={isFinished[chainId]}
+          value={getBalanceNumber(totalStaked, stakingToken?.decimals)}
+          decimals={0}
+          unit={` ${stakingToken?.symbol}`}
+        />
+      </Flex>
     </Flex>
   )
 }
