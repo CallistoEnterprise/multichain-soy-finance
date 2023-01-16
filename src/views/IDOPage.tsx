@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex } from '@callisto-enterprise/soy-uikit2'
+import { Flex } from 'uikit2'
 import NavForIDO from 'components/Menu/SubNavForIDO'
 
 const StyledPage = styled.div`

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Heading } from '@callisto-enterprise/soy-uikit2'
+import { Heading } from 'uikit2'
 import history from 'routerHistory'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'

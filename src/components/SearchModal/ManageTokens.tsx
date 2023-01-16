@@ -1,6 +1,6 @@
 import React, { useRef, RefObject, useCallback, useState, useMemo } from 'react'
 import { Token } from 'sdk'
-import { Text, Button, CloseIcon, IconButton, LinkExternal, Input, Link } from '@callisto-enterprise/soy-uikit2'
+import { Text, Button, CloseIcon, IconButton, LinkExternal, Input, Link } from 'uikit2'
 import styled from 'styled-components'
 import Row, { RowBetween, RowFixed } from 'components/Layout/Row'
 import { useToken } from 'hooks/Tokens'

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { Flex, Text, Skeleton } from '@callisto-enterprise/soy-uikit2'
+import { Flex, Text, Skeleton } from 'uikit2'
 import { Farm } from 'state/types'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getCallistoExpLink } from 'utils'

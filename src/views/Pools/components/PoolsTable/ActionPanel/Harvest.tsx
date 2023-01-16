@@ -1,14 +1,5 @@
 import React from 'react'
-import {
-  Button,
-  Text,
-  useModal,
-  Flex,
-  TooltipText,
-  useTooltip,
-  Skeleton,
-  Heading,
-} from '@callisto-enterprise/soy-uikit2'
+import { Button, Text, useModal, Flex, TooltipText, useTooltip, Skeleton, Heading } from 'uikit2'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { getCakeVaultEarnings } from 'views/Pools/helpers'

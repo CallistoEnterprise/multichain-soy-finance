@@ -1,8 +1,9 @@
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
-import { MenuEntry } from '@callisto-enterprise/soy-uikit2'
+import { MenuEntry } from 'uikit2'
 import { ContextApi } from 'contexts/Localization/types'
+import { config } from 'process'
 
-const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
+const menuMainnet: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Home'),
     icon: 'HomeIcon',
@@ -81,7 +82,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   },
 ]
 
-export const bttConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
+const menuBTT: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Home'),
     icon: 'HomeIcon',
@@ -141,7 +142,7 @@ export const bttConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   },
 ]
 
-export const etcConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
+const menuETC: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Home'),
     icon: 'HomeIcon',
@@ -206,7 +207,7 @@ export const etcConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   },
 ]
 
-export const clotestnetConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
+const menuTestnet: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Home'),
     icon: 'HomeIcon',
@@ -249,17 +250,14 @@ export const clotestnetConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   },
 ]
 
-export const getConfig = (chainId: ChainId) => {
-  switch (chainId) {
-    case ChainId.BTT:
-      return bttConfig
-    case ChainId.ETC:
-      return etcConfig
-    case ChainId.Testnet:
-      return clotestnetConfig
-    default:
-      return config
+const userMenuConfig = (chainId: ChainId) => {
+  const configs = {
+    [ChainId.Mainnet]: menuMainnet,
+    [ChainId.BTT]: menuBTT,
+    [ChainId.ETC]: menuETC,
+    [ChainId.Testnet]: menuTestnet,
   }
+  return configs[chainId]
 }
 
-export default config
+export default userMenuConfig

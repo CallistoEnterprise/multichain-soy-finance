@@ -1,11 +1,12 @@
 import BigNumber from 'bignumber.js'
 import React from 'react'
-import { CardBody, Flex, Text, CardRibbon } from '@callisto-enterprise/soy-uikit2'
+import { CardBody, Flex, Text, CardRibbon } from 'uikit2'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useTranslation } from 'contexts/Localization'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { Pool } from 'state/types'
 import AprRow from './AprRow'
+import TotalStakedRow from './TotalStakedRow'
 import { StyledCard, StyledCardInner } from './StyledCard'
 import CardFooter from './CardFooter'
 import StyledCardHeader from './StyledCardHeader'
@@ -35,6 +36,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
           isNew={isNew}
         />
         <CardBody>
+          <TotalStakedRow pool={pool} />
           <AprRow pool={pool} />
           <Flex mt="10px" flexDirection="column">
             {account ? (

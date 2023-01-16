@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ethers } from 'ethers'
-import { Card, CardBody, Button } from '@callisto-enterprise/soy-uikit2'
+import { Card, CardBody, Button } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { Nft } from 'config/constants/types'
 import Preview from './Preview'

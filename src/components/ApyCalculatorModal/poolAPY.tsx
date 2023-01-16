@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Modal, Text, LinkExternal, Flex, Box } from '@callisto-enterprise/soy-uikit2'
+import { Modal, Text, LinkExternal, Flex, Box } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { tokenEarnedPerThousandDollarsCompoundingForPools, getRoi } from 'utils/compoundApyHelpers'
 

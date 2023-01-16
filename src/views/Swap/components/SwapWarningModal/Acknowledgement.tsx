@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'contexts/Localization'
-import { Text, Flex, Checkbox, Button } from '@callisto-enterprise/soy-uikit2'
+import { Text, Flex, Checkbox, Button } from 'uikit2'
 
 interface AcknowledgementProps {
   handleContinueClick: () => void

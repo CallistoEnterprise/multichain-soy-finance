@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu as UikitMenu } from '@callisto-enterprise/soy-uikit2'
+import { Menu as UikitMenu } from 'uikit2'
 import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
@@ -7,7 +7,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { usePriceCakeBusd } from 'state/farms/hooks'
 import { useProfile } from 'state/profile/hooks'
 import { addSoyToMetamask } from 'utils/wallet'
-import { getConfig } from './config'
+import userMenuConfig from 'config/app/userMenuConfig'
 import UserMenu from './UserMenu'
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
@@ -29,7 +29,7 @@ const Menu = (props) => {
       langs={languageList}
       setLang={setLanguage}
       cakePriceUsd={soyPriceUsd.toNumber()}
-      links={getConfig(chainId)(t) /*chainId === 199 ? bttConfig(t) : chainId === 61 ? etcConfig(t) : config(t)*/}
+      links={userMenuConfig(chainId)(t) /*chainId === 199 ? bttConfig(t) : chainId === 61 ? etcConfig(t) : config(t)*/}
       profile={{
         username: profile?.username,
         image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
