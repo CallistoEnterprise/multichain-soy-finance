@@ -1,7 +1,7 @@
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
 import { Currency, CurrencyAmount, currencyEquals, ETHERS, Token } from 'sdk'
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
-import { Text } from '@callisto-enterprise/soy-uikit2'
+import { Text } from 'uikit2'
 import styled from 'styled-components'
 import { FixedSizeList } from 'react-window'
 import { wrappedCurrency } from 'utils/wrappedCurrency'

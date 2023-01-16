@@ -8,18 +8,20 @@ const options = {
 
 export const stakeFarm = async (lpContract, localFarmAddress, amount, web3?: any) => {
   const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
-  // const _amount = ethers.utils.parseUnits(amount.toString(), 18);
-  // const gasLimit = await lpContract.estimateGas.transfer(localFarmAddress, _amount);
-  // const gasPrice = await web3.eth.getGasPrice()
-  // const tx = await lpContract.transfer(localFarmAddress, _amount, { gasLimit: gasLimit, gasPrice: gasPrice });
-  const tx = await lpContract.transfer(localFarmAddress, value, options)
+  const gasLimit = await lpContract.estimateGas.transfer(localFarmAddress, value)
+  const gasPrice = await web3.eth.getGasPrice()
+  const increasedGas = gasLimit.add(100000)
+  const tx = await lpContract.transfer(localFarmAddress, value, { gasLimit: increasedGas, gasPrice: gasPrice })
   const receipt = await tx.wait()
   return receipt.status
 }
 
-export const unstakeFarm = async (localFarmContract, amount) => {
+export const unstakeFarm = async (localFarmContract, amount, web3?: any) => {
   const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
-  const tx = await localFarmContract.withdraw(value, options)
+  const gasLimit = await localFarmContract.estimateGas.withdraw(value)
+  const gasPrice = await web3.eth.getGasPrice()
+  const increasedGas = gasLimit.add(100000)
+  const tx = await localFarmContract.withdraw(value, { gasLimit: increasedGas, gasPrice: gasPrice })
   const receipt = await tx.wait()
   return receipt.status
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Text } from '@callisto-enterprise/soy-uikit2'
+import { Box, Text } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import LineChartLoaderSVG from './LineChartLoaderSVG'
 import BarChartLoaderSVG from './BarChartLoaderSVG'

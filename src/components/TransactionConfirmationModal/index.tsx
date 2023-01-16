@@ -14,7 +14,7 @@ import {
   Spinner,
   Modal,
   InjectedModalProps,
-} from '@callisto-enterprise/soy-uikit2'
+} from 'uikit2'
 import { registerToken } from 'utils/wallet'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

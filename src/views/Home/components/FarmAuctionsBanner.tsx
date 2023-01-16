@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Flex, Button, ArrowForwardIcon, Link, Heading } from '@callisto-enterprise/soy-uikit2'
+import { Text, Flex, Button, ArrowForwardIcon, Link, Heading } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledSubheading = styled(Heading)`

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Text, Flex, Link } from '@callisto-enterprise/soy-uikit2'
+import { Text, Flex, Link } from 'uikit2'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getCallistoExpLink } from 'utils'
 import useToast from 'hooks/useToast'

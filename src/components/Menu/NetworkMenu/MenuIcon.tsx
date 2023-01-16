@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Image, RefreshIcon, WalletFilledIcon, WarningIcon } from '@callisto-enterprise/soy-uikit2'
+import { Image, RefreshIcon, WalletFilledIcon, WarningIcon } from 'uikit2'
 import { BASE_URL } from 'config'
 import { Variant } from './types'
 // import { Colors } from "../../../../theme/types";

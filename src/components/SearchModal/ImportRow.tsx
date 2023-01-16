@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react'
 import { Token } from 'sdk'
-import { Button, Text, CheckmarkCircleIcon } from '@callisto-enterprise/soy-uikit2'
+import { Button, Text, CheckmarkCircleIcon } from 'uikit2'
 import { AutoRow, RowFixed } from 'components/Layout/Row'
 import { AutoColumn } from 'components/Layout/Column'
 import CurrencyLogo from 'components/Logo/CurrencyLogo'

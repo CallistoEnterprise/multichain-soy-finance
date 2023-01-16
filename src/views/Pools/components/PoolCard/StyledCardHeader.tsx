@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardHeader, Heading, Text, Flex } from '@callisto-enterprise/soy-uikit2'
+import { CardHeader, Heading, Text, Flex } from 'uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { Token } from 'config/constants/types'

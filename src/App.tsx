@@ -1,7 +1,7 @@
 import React, { useEffect, lazy } from 'react'
-import { Router, Redirect, Route, Switch } from 'react-router-dom'
+import { Router, Redirect, Route, Switch, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { ResetCSS } from '@callisto-enterprise/soy-uikit2'
+import { ResetCSS } from 'uikit2'
 import BigNumber from 'bignumber.js'
 import { SUPPORTED_CHAINS } from 'config'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -21,7 +21,6 @@ import RouteChangeTracker from './RouteChangeTracker'
 // Views included in the main bundle
 import Pools from './views/Pools'
 import Swap from './views/Swap'
-import IDO from './views/IDO'
 import {
   RedirectDuplicateTokenIds,
   RedirectOldAddLiquidityPathStructure,
@@ -29,6 +28,7 @@ import {
 } from './views/AddLiquidity/redirects'
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
+import AllowedViewsRedirect from 'components/AllowedViewsRedirect'
 
 const Wrapper = styled.div`
   display: flex;
@@ -71,6 +71,7 @@ const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const Info = lazy(() => import('./views/Info'))
 
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
+const IDO = lazy(() => import('./views/IDO'))
 const IDOWeek = lazy(() => import('./views/IDOWeek'))
 
 // This config is required for number formatting
@@ -101,25 +102,22 @@ const App: React.FC = () => {
       <ResetCSS />
       <GlobalStyle />
       <RouteChangeTracker />
+      <AllowedViewsRedirect />
       <Wrapper>
         <Menu>
           <BodyWrapper>
             <SuspenseWithChunkError fallback={<PageLoader />}>
               <Switch>
-                <Route path="/pools">
-                  <Pools />
-                </Route>
-                <Route path="/nft">
-                  <Collectibles />
-                </Route>
-                <Route path="/launchpad">
-                  <Launchpad />
-                </Route>
-
+                {/* Always allowed core paths */}
+                <Route path="/home" component={RedirectPathToSwapOnly} />
                 <Route exact strict path="/swap" component={Swap} />
                 <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
                 <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
+
                 <Route exact strict path="/find" component={PoolFinder} />
+                <Route path="/pool">
+                  <Redirect to="/liquidity" />
+                </Route>
                 <Route exact strict path="/liquidity" component={Liquidity} />
                 <Route exact strict path="/create" component={RedirectToAddLiquidity} />
                 <Route exact path="/add" component={AddLiquidity} />
@@ -130,26 +128,23 @@ const App: React.FC = () => {
                 <Route exact path="/create/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
                 <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
                 <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
-                <Route path="/info">
-                  <Info />
-                </Route>
-                <Route path="/farms">
-                  <Farms />
-                </Route>
-                <Route exact strict path="/ido" component={IDO} />
-                <Route exact strict path="/ido-week" component={IDOWeek} />
-                <Route path="/home">
-                  <Redirect to="/swap" />
-                </Route>
-                <Route path="/pool">
-                  <Redirect to="/liquidity" />
-                </Route>
+
+                {/* Additional paths */}
+                <Route path="/farms" component={Farms} />
+
+                <Route path="/pools" component={Pools} />
                 <Route path="/staking">
                   <Redirect to="/pools" />
                 </Route>
-                <Route path="/nft">
-                  <Redirect to="/nft" />
-                </Route>
+
+                <Route path="/launchpad" component={Launchpad} />
+
+                <Route exact strict path="/ido" component={IDO} />
+                <Route exact strict path="/ido-week" component={IDOWeek} />
+
+                <Route path="/nft" component={Collectibles} />
+
+                <Route path="/info" component={Info} />
 
                 <Route component={RedirectPathToSwapOnly} />
               </Switch>

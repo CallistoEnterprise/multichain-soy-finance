@@ -89,7 +89,12 @@ export const PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN: Percent = new Percent(JSBI.Bi
 export const BLOCKED_PRICE_IMPACT_NON_EXPERT: Percent = new Percent(JSBI.BigInt(1500), BIPS_BASE) // 15%
 
 // used to ensure the user doesn't send so much CLO so they end up with <.01
-export const MIN_CLO: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 CLO
+export const MIN_ETHERS = {
+  [ChainId.Mainnet]: JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18)), // 1 CLO,
+  [ChainId.Testnet]: JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18)), // 1 CLO,
+  [ChainId.ETC]: JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(17)), // 0.1 ETC,
+  [ChainId.BTT]: JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(21)), // 1000 BTT,
+}
 export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSBI.BigInt(10000)) // .5%
 
 export const ZERO_PERCENT = new Percent('0')

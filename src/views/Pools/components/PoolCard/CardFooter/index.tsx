@@ -2,15 +2,7 @@ import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import {
-  Flex,
-  CardFooter,
-  ExpandableLabel,
-  Text,
-  HelpIcon,
-  useTooltip,
-  Skeleton,
-} from '@callisto-enterprise/soy-uikit2'
+import { Flex, CardFooter, ExpandableLabel, Text, HelpIcon, useTooltip, Skeleton } from 'uikit2'
 import { Pool } from 'state/types'
 import { getTimeFromTimeStamp2 } from 'utils/formatTimePeriod'
 import { useBlockLatestTimestamp } from 'utils'

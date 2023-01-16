@@ -1,6 +1,6 @@
 import React from 'react'
 import { Token } from 'sdk'
-import { Modal, InjectedModalProps } from '@callisto-enterprise/soy-uikit2'
+import { Modal, InjectedModalProps } from 'uikit2'
 import ImportToken from 'components/SearchModal/ImportToken'
 
 interface Props extends InjectedModalProps {

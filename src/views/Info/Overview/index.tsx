@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import styled from 'styled-components'
-import { Flex, Box, Text, Heading, Card, Skeleton } from '@callisto-enterprise/soy-uikit2'
+import { Flex, Box, Text, Heading, Card, Skeleton } from 'uikit2'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { format, fromUnixTime } from 'date-fns'
 import { useTranslation } from 'contexts/Localization'

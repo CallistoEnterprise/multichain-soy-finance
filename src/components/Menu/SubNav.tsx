@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useLocation } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem } from '@callisto-enterprise/soy-uikit2'
+import { ButtonMenu, ButtonMenuItem } from 'uikit2'
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'

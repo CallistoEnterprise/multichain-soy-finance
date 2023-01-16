@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Text } from '@callisto-enterprise/soy-uikit2'
+import { Heading, Text } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import SecondaryCard from './SecondaryCard'
 import CardContent from './CardContent'

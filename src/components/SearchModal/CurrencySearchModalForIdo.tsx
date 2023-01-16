@@ -9,7 +9,7 @@ import {
   ModalBody,
   InjectedModalProps,
   Heading,
-} from '@callisto-enterprise/soy-uikit2'
+} from 'uikit2'
 import styled from 'styled-components'
 import usePrevious from 'hooks/usePreviousValue'
 import { useTranslation } from 'contexts/Localization'

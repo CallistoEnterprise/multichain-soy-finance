@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { HelpIcon, Text, Skeleton, useTooltip } from '@callisto-enterprise/soy-uikit2'
+import { HelpIcon, Text, Skeleton, useTooltip } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import BigNumber from 'bignumber.js'
 

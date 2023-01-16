@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Link, Skeleton, Text, TimerIcon } from '@callisto-enterprise/soy-uikit2'
+import { Flex, Link, Skeleton, Text, TimerIcon } from 'uikit2'
 import { getCallistoExpLink } from 'utils'
 import { Pool } from 'state/types'
 import { useBlock } from 'state/block/hooks'

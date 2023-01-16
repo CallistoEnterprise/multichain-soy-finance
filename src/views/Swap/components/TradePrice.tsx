@@ -1,6 +1,6 @@
 import React from 'react'
 import { Price } from 'sdk'
-import { Text, AutoRenewIcon } from '@callisto-enterprise/soy-uikit2'
+import { Text, AutoRenewIcon } from 'uikit2'
 import { StyledBalanceMaxMini } from './styleds'
 
 interface TradePriceProps {

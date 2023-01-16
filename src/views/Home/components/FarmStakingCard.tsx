@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button } from '@callisto-enterprise/soy-uikit2'
+import { Heading, Card, CardBody, Button } from 'uikit2'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import { useAllHarvest } from 'views/Home/hooks/useHarvest'

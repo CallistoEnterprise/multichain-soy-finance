@@ -12,7 +12,7 @@ import {
   Text,
   // TimerIcon,
   useTooltip,
-} from '@callisto-enterprise/soy-uikit2'
+} from 'uikit2'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 // import { useBlock } from 'state/block/hooks'

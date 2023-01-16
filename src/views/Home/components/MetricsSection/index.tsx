@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Flex, Text, Skeleton, ChartIcon, CommunityIcon, SwapVertIcon } from '@callisto-enterprise/soy-uikit2'
+import { Heading, Flex, Text, Skeleton, ChartIcon, CommunityIcon, SwapVertIcon } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { useGetStats } from 'hooks/api'
 import useTheme from 'hooks/useTheme'

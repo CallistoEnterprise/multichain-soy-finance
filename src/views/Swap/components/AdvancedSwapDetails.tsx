@@ -1,6 +1,6 @@
 import React from 'react'
 import { Trade, TradeType } from 'sdk'
-import { Text } from '@callisto-enterprise/soy-uikit2'
+import { Text } from 'uikit2'
 import { Field } from 'state/swap/actions'
 import { useUserSlippageTolerance } from 'state/user/hooks'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from 'utils/prices'

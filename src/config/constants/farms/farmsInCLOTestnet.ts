@@ -55,8 +55,8 @@ const farms: FarmConfig[] = [
       820: '',
       20729: '0xC14e256C295A1C873ae21E05cc88956Add15C293',
     },
-    token: tokens.wclo,
-    quoteToken: tokens.tmt,
+    token: tokens.tmt,
+    quoteToken: tokens.wclo,
   },
   {
     pid: 22,
@@ -69,8 +69,8 @@ const farms: FarmConfig[] = [
       820: '',
       20729: '0xe9d02a3fE2e7785Cd45d99a0F5F923e3E59CfC27',
     },
-    token: tokens.soy,
-    quoteToken: tokens.tmt,
+    token: tokens.tmt,
+    quoteToken: tokens.soy,
   },
 ]
 

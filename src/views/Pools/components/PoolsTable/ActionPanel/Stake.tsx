@@ -13,7 +13,7 @@ import {
   Text,
   AutoRenewIcon,
   HelpIcon,
-} from '@callisto-enterprise/soy-uikit2'
+} from 'uikit2'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useCakeVault } from 'state/pools/hooks'
 import { Pool } from 'state/types'

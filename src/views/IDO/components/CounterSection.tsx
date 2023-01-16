@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text } from '@callisto-enterprise/soy-uikit2'
+import { Text } from 'uikit2'
 
 // function getDate(seconds) {
 //     return Math.floor(seconds/(3600 * 24))

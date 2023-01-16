@@ -3,16 +3,7 @@
 import React, { useCallback, useState, useMemo, useEffect } from 'react'
 import styled from 'styled-components'
 import { formatDistanceToNowStrict } from 'date-fns'
-import {
-  Text,
-  Flex,
-  Box,
-  Radio,
-  Skeleton,
-  LinkExternal,
-  ArrowForwardIcon,
-  ArrowBackIcon,
-} from '@callisto-enterprise/soy-uikit2'
+import { Text, Flex, Box, Radio, Skeleton, LinkExternal, ArrowForwardIcon, ArrowBackIcon } from 'uikit2'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import { getCallistoExpLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
