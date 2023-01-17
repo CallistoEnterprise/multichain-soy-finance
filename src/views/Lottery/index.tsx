@@ -26,6 +26,7 @@ import HowToPlay from './components/HowToPlay'
 
 const LotteryPage = styled.div`
   min-height: calc(100vh - 64px);
+  margin-bottom: 0px;
 `
 
 const Lottery = () => {
@@ -97,6 +98,7 @@ const Lottery = () => {
       </PageSection>
       <PageSection
         dividerPosition="top"
+        lastSectionDecreasePadding={true}
         dividerFill={{ light: theme.colors.background }}
         clipFill={{ light: theme.colors.primary, dark: theme.colors.primary }}
         index={2}

@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import { Box, Flex, Text, Heading, useMatchBreakpoints, Link } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
-import { BallWithNumber, MatchExampleA, MatchExampleB, PoolAllocationChart } from '../svgs'
-import LotterySlothBottompage from 'assets/lottery-sloth-bottompage.png'
+import { BallWithNumber, MatchExampleA, MatchExampleB, PoolAllocationChart, LotterySlothBottompage } from '../svgs'
 
 const Divider = styled.div`
   background-color: ${({ theme }) => theme.colors.cardBorder};
@@ -199,6 +198,7 @@ const GappedFlex = styled(Flex)`
 
 const HowToPlay: React.FC = () => {
   const { t } = useTranslation()
+  const { isDark } = useTheme()
 
   const steps: Step[] = [
     {
@@ -328,7 +328,7 @@ const HowToPlay: React.FC = () => {
       <Divider />
       <Flex justifyContent="center" alignItems="center" flexDirection={['column', 'column', 'row']}>
         <Flex maxWidth="240px" mr="8px" mb="16px">
-          <img src={LotterySlothBottompage} alt="Lottery Sloth" style={{ height: '100px' }} />
+          <LotterySlothBottompage width="93px" height="100px" isDark={isDark} />
         </Flex>
         <Flex maxWidth="300px" flexDirection="column">
           <Heading mb="16px" scale="md">
