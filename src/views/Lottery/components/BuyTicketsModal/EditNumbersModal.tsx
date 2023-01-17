@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Modal, Text, Flex, Button, ArrowBackIcon, AutoRenewIcon } from '@callisto-enterprise/soy-uikit2'
+import { Modal, Text, Flex, Button, ArrowBackIcon, AutoRenewIcon } from 'uikit2'
 import useTheme from 'hooks/useTheme'
 import { useTranslation } from 'contexts/Localization'
 import TicketInput from './TicketInput'

@@ -1,16 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Box,
-  Text,
-  Flex,
-  Button,
-  Skeleton,
-  Ticket,
-  TooltipText,
-  InfoIcon,
-  useTooltip,
-  useModal,
-} from '@callisto-enterprise/soy-uikit2'
+import { Box, Text, Flex, Button, Skeleton, Ticket, TooltipText, InfoIcon, useTooltip, useModal } from 'uikit2'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { LotteryTicket, LotteryTicketClaimData } from 'config/constants/types'

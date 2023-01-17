@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button } from '@callisto-enterprise/soy-uikit2'
+import { Button } from 'uikit2'
 
 interface NumTicketsToBuyButtonProps {
   onClick: () => void

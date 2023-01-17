@@ -1,17 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {
-  CardBody,
-  Heading,
-  Flex,
-  Skeleton,
-  Text,
-  Box,
-  Button,
-  useModal,
-  CardRibbon,
-  useMatchBreakpoints,
-} from '@callisto-enterprise/soy-uikit2'
+import { CardBody, Heading, Flex, Skeleton, Text, Box, Button, useModal, CardRibbon, useMatchBreakpoints } from 'uikit2'
 import { LotteryRound } from 'state/types'
 import { useGetUserLotteriesGraphData, useLottery } from 'state/lottery/hooks'
 import { LotteryStatus } from 'config/constants/types'

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Flex, FlexProps } from '@callisto-enterprise/soy-uikit2'
+import { Flex, FlexProps } from 'uikit2'
 import { random } from 'lodash'
 import uniqueId from 'lodash/uniqueId'
 import { parseRetreivedNumber } from '../helpers'
