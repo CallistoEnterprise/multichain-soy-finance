@@ -16,7 +16,7 @@ import {
   Spinner,
   Image,
   useMatchBreakpoints,
-} from '@callisto-enterprise/soy-uikit2'
+} from 'uikit2'
 import Page from 'components/Layout/Page'
 import { getCallistoExpLink } from 'utils'
 import truncateHash from 'utils/truncateHash'
@@ -24,7 +24,7 @@ import useCMCLink from 'views/Info/hooks/useCMCLink'
 import { CurrencyLogo } from 'views/Info/components/CurrencyLogo'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import Percent from 'views/Info/components/Percent'
-import { renameTokens,renamePools,renameTransactions } from 'views/Info/utils/tokenInfoRename'
+import { renameTokens, renamePools, renameTransactions } from 'views/Info/utils/tokenInfoRename'
 // import SaveIcon from 'views/Info/components/SaveIcon'
 import {
   usePoolDatas,
@@ -87,7 +87,7 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
   const tokenDataView = renameTokens(tokenData)
   const poolsForToken = usePoolsForToken(address)
   const poolDatas = renamePools(usePoolDatas(poolsForToken ?? []))
-  const transactions =renameTransactions(useTokenTransactions(address))
+  const transactions = renameTransactions(useTokenTransactions(address))
   const chartData = useTokenChartData(address)
 
   // pricing data

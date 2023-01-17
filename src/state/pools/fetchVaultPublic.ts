@@ -50,7 +50,10 @@ export const fetchVaultFees = async () => {
       name: method,
     }))
 
-    const [[performanceFee], [callFee], [withdrawalFee], [withdrawalFeePeriod]] = await multicallv2(pmoonVaultAbi, calls)
+    const [[performanceFee], [callFee], [withdrawalFee], [withdrawalFeePeriod]] = await multicallv2(
+      pmoonVaultAbi,
+      calls,
+    )
 
     return {
       performanceFee: performanceFee.toNumber(),

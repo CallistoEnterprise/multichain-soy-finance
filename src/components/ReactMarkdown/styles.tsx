@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading } from '@callisto-enterprise/soy-uikit2'
+import { Heading } from 'uikit2'
 import { NormalComponents, SpecialComponents } from 'react-markdown/src/ast-to-react'
 import styled from 'styled-components'
 
@@ -14,8 +14,7 @@ const Table = styled.table`
     padding: 8px;
   }
 `
-const Text = styled.p`
-`;
+const Text = styled.p``
 
 const ThemedComponent = styled.div`
   color: ${({ theme }) => theme.colors.text};
@@ -47,7 +46,7 @@ const markdownComponents: Partial<NormalComponents & SpecialComponents> = {
   h5: Title,
   h6: Title, //as="p" my="16px" {...props}
   p: (props) => {
-    return <Text  />
+    return <Text />
   },
   table: Table,
   ol: (props) => {

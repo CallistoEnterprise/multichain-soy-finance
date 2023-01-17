@@ -1,4 +1,3 @@
-
 export const UNSUPPORTED_LIST_URLS: string[] = []
 
 // lower index == higher priority for token import

@@ -2,7 +2,7 @@ import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
 import sousChefABINew from 'config/abi/sousChefNew.json'
 import erc20ABI from 'config/abi/erc20.json'
-import {multicall3} from 'utils/multicall'
+import { multicall3 } from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
 import { getRpcProvider } from 'utils/providers'
 import BigNumber from 'bignumber.js'
@@ -50,21 +50,28 @@ export const fetchUserBalances = async (account) => {
 }
 
 export const fetchUserStakeBalances = async (account) => {
-  const callsOld = poolsConfig.filter((_) => !_.isNew).map((p) => ({
-    address: getAddress(p.contractAddress),
-    name: 'staker',
-    params: [account],
-  }))
-  const callsNew = poolsConfig.filter((_) => _.isNew).map((p) => p.isNew && ({
-    address: getAddress(p.contractAddress),
-    name: 'staker',
-    params: [account],
-  }))
+  const callsOld = poolsConfig
+    .filter((_) => !_.isNew)
+    .map((p) => ({
+      address: getAddress(p.contractAddress),
+      name: 'staker',
+      params: [account],
+    }))
+  const callsNew = poolsConfig
+    .filter((_) => _.isNew)
+    .map(
+      (p) =>
+        p.isNew && {
+          address: getAddress(p.contractAddress),
+          name: 'staker',
+          params: [account],
+        },
+    )
 
   const userInfoOld = await multicall3(sousChefABI, callsOld)
   const userInfoNew = await multicall3(sousChefABINew, callsNew)
 
-  const userInfo1 = [ ...userInfoNew, ...userInfoOld]
+  const userInfo1 = [...userInfoNew, ...userInfoOld]
 
   const stakedBalances = poolsConfig.reduce(
     (acc, pool, index) => ({
@@ -73,14 +80,18 @@ export const fetchUserStakeBalances = async (account) => {
     }),
     {},
   )
-  
+
   const userInfo = poolsConfig.reduce(
     (acc, pool, index) => ({
       ...acc,
       [pool.sousId]: {
         time: !pool.isNew ? new BigNumber(userInfo1[index].time.toString()).toJSON() : new BigNumber(0).toJSON(),
-        multiplier: !pool.isNew ? new BigNumber(userInfo1[index].multiplier.toString()).toJSON() : new BigNumber(0).toJSON(),
-        endTime: !pool.isNew ? new BigNumber(userInfo1[index].end_time.toString()).toJSON() : new BigNumber(userInfo1[index].endTime.toString()).toJSON()
+        multiplier: !pool.isNew
+          ? new BigNumber(userInfo1[index].multiplier.toString()).toJSON()
+          : new BigNumber(0).toJSON(),
+        endTime: !pool.isNew
+          ? new BigNumber(userInfo1[index].end_time.toString()).toJSON()
+          : new BigNumber(userInfo1[index].endTime.toString()).toJSON(),
       },
     }),
     {},

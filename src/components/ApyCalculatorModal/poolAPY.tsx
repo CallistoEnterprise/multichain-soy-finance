@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Modal, Text, LinkExternal, Flex, Box } from '@callisto-enterprise/soy-uikit2'
+import { Modal, Text, LinkExternal, Flex, Box } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { tokenEarnedPerThousandDollarsCompoundingForPools, getRoi } from 'utils/compoundApyHelpers'
 
@@ -67,7 +67,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
 }) => {
   const { t } = useTranslation()
   const oneThousandDollarsWorthOfToken = 1000 / tokenPrice
-  
+
   const tokenEarnedPerThousand1M = tokenEarnedPerThousandDollarsCompoundingForPools({
     numberOfDays: 30,
     farmApr: 0.5 * apr,
@@ -155,8 +155,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             {/* {getRoi({ amountEarned: tokenEarnedPerThousand1M, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(
               roundingDecimals,
             )} */}
-            {(0.5 * apr).toFixed(2)}
-            %
+            {(0.5 * apr).toFixed(2)}%
           </Text>
         </GridItem>
         <GridItem>
@@ -171,8 +170,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             {/* {getRoi({ amountEarned: tokenEarnedPerThousand2M, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(
               roundingDecimals,
             )} */}
-            {(0.6 * apr).toFixed(2)}
-            %
+            {(0.6 * apr).toFixed(2)}%
           </Text>
         </GridItem>
         <GridItem>
@@ -188,8 +186,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
               amountEarned: tokenEarnedPerThousand3M,
               amountInvested: oneThousandDollarsWorthOfToken,
             }).toFixed(roundingDecimals)} */}
-            {(0.7 * apr).toFixed(2)}
-            %
+            {(0.7 * apr).toFixed(2)}%
           </Text>
         </GridItem>
         <GridItem>
@@ -205,12 +202,11 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
               amountEarned: tokenEarnedPerThousand4M,
               amountInvested: oneThousandDollarsWorthOfToken,
             }).toFixed(roundingDecimals))} */}
-            {(0.8 * apr).toFixed(2)}
-            %
+            {(0.8 * apr).toFixed(2)}%
           </Text>
         </GridItem>
         <GridItem>
-          <Text textAlign="right">{(tokenEarnedPerThousand4M)}</Text>
+          <Text textAlign="right">{tokenEarnedPerThousand4M}</Text>
         </GridItem>
 
         <GridItem style={{ maxWidth: '180px' }}>
@@ -222,12 +218,11 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
               amountEarned: tokenEarnedPerThousand5M,
               amountInvested: oneThousandDollarsWorthOfToken,
             }).toFixed(roundingDecimals))} */}
-            {(0.9 * apr).toFixed(2)}
-            %
+            {(0.9 * apr).toFixed(2)}%
           </Text>
         </GridItem>
         <GridItem>
-          <Text textAlign="right">{(tokenEarnedPerThousand5M)}</Text>
+          <Text textAlign="right">{tokenEarnedPerThousand5M}</Text>
         </GridItem>
 
         <GridItem style={{ maxWidth: '180px' }}>
@@ -239,15 +234,14 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
               amountEarned: tokenEarnedPerThousand6M,
               amountInvested: oneThousandDollarsWorthOfToken,
             }).toFixed(roundingDecimals))} */}
-            {apr.toFixed(2)}
-            %
+            {apr.toFixed(2)}%
           </Text>
         </GridItem>
         <GridItem>
-          <Text textAlign="right">{(tokenEarnedPerThousand6M)}</Text>
+          <Text textAlign="right">{tokenEarnedPerThousand6M}</Text>
         </GridItem>
       </Grid>
-      
+
       <Flex justifyContent="center">
         <Box mb="28px" maxWidth="280px" p="4px">
           <BulletList>

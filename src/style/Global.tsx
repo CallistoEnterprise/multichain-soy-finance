@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 // eslint-disable-next-line import/no-unresolved
-import { PancakeTheme } from '@callisto-enterprise/soy-uikit2/dist/theme'
+import { PancakeTheme } from 'uikit2/theme'
 
 declare module 'styled-components' {
   /* eslint-disable @typescript-eslint/no-empty-interface */
@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Kanit, sans-serif;
   }
   body {
-    background-color: ${({theme}) => theme.colors.background};
+    background-color: ${({ theme }) => theme.colors.background};
 
     img {
       height: auto;

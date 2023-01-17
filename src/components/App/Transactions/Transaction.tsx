@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { CheckmarkIcon, CloseIcon, LinkExternal } from '@callisto-enterprise/soy-uikit2'
+import { CheckmarkIcon, CloseIcon, LinkExternal } from 'uikit2'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getCallistoExpLink } from 'utils'
 import { TransactionDetails } from 'state/transactions/reducer'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, TooltipText, useTooltip } from '@callisto-enterprise/soy-uikit2'
+import { Text, TooltipText, useTooltip } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 

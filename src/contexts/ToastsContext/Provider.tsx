@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode, useCallback, useState } from 'react'
 import { kebabCase } from 'lodash'
-import { Toast, toastTypes } from '@callisto-enterprise/soy-uikit2'
+import { Toast, toastTypes } from 'uikit2'
 import { ToastContextApi } from './types'
 
 export const ToastsContext = createContext<ToastContextApi>(undefined)

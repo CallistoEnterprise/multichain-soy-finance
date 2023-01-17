@@ -15,7 +15,7 @@ export const tokenEarnedPerThousandDollarsCompounding = ({
     // Reduce the APR by the % performance fee
     const feeRelativeToApr = (farmApr / 100) * performanceFee
     const aprAfterFee = farmApr - feeRelativeToApr
-    
+
     aprAsDecimal = aprAfterFee / 100
   }
 
@@ -28,7 +28,7 @@ export const tokenEarnedPerThousandDollarsCompounding = ({
   const interestEarned = finalAmount - principal
 
   // return parseFloat((interestEarned * 10).toFixed(roundingDecimals))
-  return parseFloat((interestEarned).toFixed(roundingDecimals))
+  return parseFloat(interestEarned.toFixed(roundingDecimals))
 }
 
 export const getRoi = ({ amountEarned, amountInvested }) => {
@@ -44,6 +44,6 @@ export const tokenEarnedPerThousandDollarsCompoundingForPools = ({
   compoundFrequency = 1,
   performanceFee = 0,
 }) => {
-  const earnedSoy = tokenPrice === 0 ? 0 : 10 * farmApr / tokenPrice
-  return parseFloat((earnedSoy).toFixed(roundingDecimals))
+  const earnedSoy = tokenPrice === 0 ? 0 : (10 * farmApr) / tokenPrice
+  return parseFloat(earnedSoy.toFixed(roundingDecimals))
 }

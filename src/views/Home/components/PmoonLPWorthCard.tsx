@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading, Skeleton, Text } from '@callisto-enterprise/soy-uikit2'
+import { Card, CardBody, Heading, Skeleton, Text } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from './CardValue'
 
 const StyledTotalValueLockedCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
-  background-color: rgba(0,0,0,.9);
+  background-color: rgba(0, 0, 0, 0.9);
 `
 const Row = styled.div`
   align-items: center;
@@ -28,11 +28,11 @@ const PmoonLPWorthCard = () => {
         </Heading>
         <Row>
           <Text fontSize="14px">{t('SOY-CLO')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={0} stringVal='0.0' prefix='$'/>
+          <CardValue fontSize="14px" decimals={0} value={0} stringVal="0.0" prefix="$" />
         </Row>
         <Row>
           <Text fontSize="14px">{t('SOY-BUSDT')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={0} stringVal='0.0' prefix='$'/>
+          <CardValue fontSize="14px" decimals={0} value={0} stringVal="0.0" prefix="$" />
         </Row>
       </CardBody>
     </StyledTotalValueLockedCard>

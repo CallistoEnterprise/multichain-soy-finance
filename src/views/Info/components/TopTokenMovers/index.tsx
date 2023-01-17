@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import { Text, Flex, Box, Card } from '@callisto-enterprise/soy-uikit2'
+import { Text, Flex, Box, Card } from 'uikit2'
 import { Link } from 'react-router-dom'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useAllTokenData } from 'state/info/hooks'

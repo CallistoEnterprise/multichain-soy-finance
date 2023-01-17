@@ -66,11 +66,11 @@ const LineChart = ({ data, setHoverValue, setHoverDate }: LineChartProps) => {
           scale="linear"
           axisLine={false}
           tickLine={false}
-          domain={[dataMin => (dataMin), dataMax => (dataMax * 1.115)]}
+          domain={[(dataMin) => dataMin, (dataMax) => dataMax * 1.115]}
           fontSize="12px"
           tickFormatter={(val) => `$${formatAmount(val)}`}
           orientation="left"
-          tick={{  fill: theme.colors.textSubtle }}
+          tick={{ fill: theme.colors.textSubtle }}
         />
         <Tooltip
           cursor={{ stroke: theme.colors.secondary }}

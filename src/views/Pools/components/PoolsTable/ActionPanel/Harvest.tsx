@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Text, useModal, Flex, TooltipText, useTooltip, Skeleton, Heading } from '@callisto-enterprise/soy-uikit2'
+import { Button, Text, useModal, Flex, TooltipText, useTooltip, Skeleton, Heading } from 'uikit2'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { getCakeVaultEarnings } from 'views/Pools/helpers'
@@ -84,10 +84,10 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
     </Text>
   ) : (
     <>
-      <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : "secondary"} as="span" textTransform="uppercase">
+      <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : 'secondary'} as="span" textTransform="uppercase">
         {earningToken.symbol}{' '}
       </Text>
-      <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : "textSubtle"} as="span" textTransform="uppercase">
+      <Text fontSize="12px" bold color={!isNew ? 'textDisabled' : 'textSubtle'} as="span" textTransform="uppercase">
         {t('Earned')}
       </Text>
     </>
@@ -162,12 +162,11 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
               </Flex>
             </Flex>
           </Flex>
-        ) : (
-          isNew ?
+        ) : isNew ? (
           <Button disabled={!hasEarnings || !isNew} onClick={onPresentCollect}>
             {isCompoundPool ? t('Collect') : t('Harvest')}
-          </Button> : null
-        )}
+          </Button>
+        ) : null}
       </ActionContent>
     </ActionContainer>
   )

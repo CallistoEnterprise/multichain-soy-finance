@@ -4,7 +4,7 @@ import {
   TokenPairImageProps as UIKitTokenPairImageProps,
   TokenImage as UIKitTokenImage,
   ImageProps,
-} from '@callisto-enterprise/soy-uikit2'
+} from 'uikit2'
 import { BASE_URL } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { Token } from 'config/constants/types'
@@ -17,10 +17,11 @@ interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc
 }
 
 const getImageUrlFromToken = (token: Token, chainId?: number) => {
-  const address = token.symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol
-    ? CHAINS_CONSTANTS[chainId].general.wrappedNativeAddress
-    : getAddress(token.address, chainId)
-    
+  const address =
+    token.symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol
+      ? CHAINS_CONSTANTS[chainId].general.wrappedNativeAddress
+      : getAddress(token.address, chainId)
+
   return `${BASE_URL}/images/coins/${chainId}/${address}.png`
 }
 

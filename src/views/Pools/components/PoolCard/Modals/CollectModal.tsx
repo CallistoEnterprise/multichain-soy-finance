@@ -10,7 +10,7 @@ import {
   ButtonMenuItem,
   HelpIcon,
   useTooltip,
-} from '@callisto-enterprise/soy-uikit2'
+} from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
@@ -40,7 +40,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
   isBnbPool,
   isCompoundPool = false,
   onDismiss,
-  isNew = true
+  isNew = true,
 }) => {
   const { t } = useTranslation()
   const { theme } = useTheme()

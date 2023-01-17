@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton } from '@callisto-enterprise/soy-uikit2' // useTooltip
+import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton } from 'uikit2' // useTooltip
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 import ApyCalculatorModal from 'components/ApyCalculatorModal/poolAPY'
@@ -56,9 +56,11 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
             unit="%"
             bold
           />
-          {!isNew && <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
-            <CalculateIcon color="textSubtle" width="18px" />
-          </IconButton>}
+          {!isNew && (
+            <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
+              <CalculateIcon color="textSubtle" width="18px" />
+            </IconButton>
+          )}
         </Flex>
       )}
     </Flex>

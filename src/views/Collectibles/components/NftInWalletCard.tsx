@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, Heading, Text } from '@callisto-enterprise/soy-uikit2'
+import { Card, CardBody, Heading, Text } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import CardContent from './CardContent'
 

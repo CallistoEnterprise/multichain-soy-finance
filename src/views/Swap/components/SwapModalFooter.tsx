@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Trade, TradeType } from '@callisto-enterprise/soy-sdk'
-import { Button, Text, AutoRenewIcon } from '@callisto-enterprise/soy-uikit2'
+import { Trade, TradeType } from 'sdk'
+import { Button, Text, AutoRenewIcon } from 'uikit2'
 import { Field } from 'state/swap/actions'
 import {
   computeSlippageAdjustedAmounts,

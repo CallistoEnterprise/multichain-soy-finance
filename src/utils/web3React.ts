@@ -3,7 +3,7 @@ import { UAuthConnector } from '@uauth/web3-react'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import type { AbstractConnector } from '@web3-react/abstract-connector'
-import { ConnectorNames } from '@callisto-enterprise/soy-uikit2'
+import { ConnectorNames } from 'uikit2'
 import { ethers } from 'ethers'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
@@ -12,7 +12,7 @@ const POLLING_INTERVAL = 12000
 const supportedChainIds = []
 const RPC_URLS = {}
 
-Object.keys(CHAINS_CONSTANTS).forEach(key => {
+Object.keys(CHAINS_CONSTANTS).forEach((key) => {
   supportedChainIds.push(Number(key))
   RPC_URLS[key] = CHAINS_CONSTANTS[key].rpcs[0]
 })

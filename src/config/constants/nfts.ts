@@ -277,7 +277,7 @@ const Nfts = [
     primaryColor: '#A85EFD',
     classId: 12,
   },
-  {    
+  {
     name: 'Emerald',
     subName: 'Cold Sloth',
     images: {

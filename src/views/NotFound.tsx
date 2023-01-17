@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Heading, Text, LogoIcon } from '@callisto-enterprise/soy-uikit2'
+import { Button, Heading, Text, LogoIcon } from 'uikit2'
 import Page from 'components/Layout/Page'
 import { useTranslation } from 'contexts/Localization'
 

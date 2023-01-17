@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex } from '@callisto-enterprise/soy-uikit2'
+import { Flex } from 'uikit2'
 // import { useTranslation } from 'contexts/Localization'LinkExternal,, Svg, Image, Button
 
 const Wrapper = styled.div`
@@ -17,19 +17,21 @@ const Wrapper = styled.div`
   }
 `
 const ButtonMenuItem = styled.a`
-  background-color: rgba(165, 196, 55, .65);;
+  background-color: rgba(165, 196, 55, 0.65);
   border-radius: 20px;
   padding: 15px 30px;
   color: white;
   &:hover {
     cursor: pointer;
   }
-`;
+`
 const Footer = () => {
   return (
     <Wrapper>
       <Flex flexDirection={['column', 'column', 'row']} alignItems="center">
-        <ButtonMenuItem href="https://app1.soy.finance/" target="_blank">V1</ButtonMenuItem>
+        <ButtonMenuItem href="https://app1.soy.finance/" target="_blank">
+          V1
+        </ButtonMenuItem>
       </Flex>
     </Wrapper>
   )

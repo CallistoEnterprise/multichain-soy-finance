@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import isArchivedPid from 'utils/farmHelpers'
@@ -14,7 +14,7 @@ import {
 } from './fetchFarmUser'
 import { FarmsState, Farm } from '../types'
 
-const noAccountFarmConfig = CHAINS_CONSTANTS[ChainId.MAINNET].farms.map((farm) => ({
+const noAccountFarmConfig = CHAINS_CONSTANTS[ChainId.Mainnet].farms.map((farm) => ({
   ...farm,
   userData: {
     allowance: '0',
@@ -23,7 +23,7 @@ const noAccountFarmConfig = CHAINS_CONSTANTS[ChainId.MAINNET].farms.map((farm) =
     earnings: '0',
   },
 }))
-const noAccountFarmConfigForCLOTest = CHAINS_CONSTANTS[ChainId.CLOTESTNET].farms.map((farm) => ({
+const noAccountFarmConfigForCLOTest = CHAINS_CONSTANTS[ChainId.Testnet].farms.map((farm) => ({
   ...farm,
   userData: {
     allowance: '0',
@@ -32,7 +32,7 @@ const noAccountFarmConfigForCLOTest = CHAINS_CONSTANTS[ChainId.CLOTESTNET].farms
     earnings: '0',
   },
 }))
-const noAccountFarmConfigBTT = CHAINS_CONSTANTS[ChainId.BTTMAINNET].farms.map((farm) => ({
+const noAccountFarmConfigBTT = CHAINS_CONSTANTS[ChainId.BTT].farms.map((farm) => ({
   ...farm,
   userData: {
     allowance: '0',
@@ -41,7 +41,7 @@ const noAccountFarmConfigBTT = CHAINS_CONSTANTS[ChainId.BTTMAINNET].farms.map((f
     earnings: '0',
   },
 }))
-const noAccountFarmConfigETC = CHAINS_CONSTANTS[ChainId.ETCCLASSICMAINNET].farms.map((farm) => ({
+const noAccountFarmConfigETC = CHAINS_CONSTANTS[ChainId.ETC].farms.map((farm) => ({
   ...farm,
   userData: {
     allowance: '0',
@@ -51,18 +51,22 @@ const noAccountFarmConfigETC = CHAINS_CONSTANTS[ChainId.ETCCLASSICMAINNET].farms
   },
 }))
 
-const initialState: FarmsState = { data: {
-  [ChainId.MAINNET]: noAccountFarmConfig,
-  [ChainId.CLOTESTNET]: noAccountFarmConfigForCLOTest,
-  [ChainId.BTTMAINNET]: noAccountFarmConfigBTT,
-  [ChainId.ETCCLASSICMAINNET]: noAccountFarmConfigETC
-}, loadArchivedFarmsData: false, userDataLoaded: false }
+const initialState: FarmsState = {
+  data: {
+    [ChainId.Mainnet]: noAccountFarmConfig,
+    [ChainId.Testnet]: noAccountFarmConfigForCLOTest,
+    [ChainId.BTT]: noAccountFarmConfigBTT,
+    [ChainId.ETC]: noAccountFarmConfigETC,
+  },
+  loadArchivedFarmsData: false,
+  userDataLoaded: false,
+}
 
 export const nonArchivedFarms = {
-  [ChainId.MAINNET]: CHAINS_CONSTANTS[ChainId.MAINNET].farms.filter(({ pid }) => !isArchivedPid(pid)),
-  [ChainId.CLOTESTNET]: CHAINS_CONSTANTS[ChainId.CLOTESTNET].farms.filter(({ pid }) => !isArchivedPid(pid)),
-  [ChainId.BTTMAINNET]: CHAINS_CONSTANTS[ChainId.BTTMAINNET].farms.filter(({ pid }) => !isArchivedPid(pid)),
-  [ChainId.ETCCLASSICMAINNET]: CHAINS_CONSTANTS[ChainId.ETCCLASSICMAINNET].farms.filter(({ pid }) => !isArchivedPid(pid)),
+  [ChainId.Mainnet]: CHAINS_CONSTANTS[ChainId.Mainnet].farms.filter(({ pid }) => !isArchivedPid(pid)),
+  [ChainId.Testnet]: CHAINS_CONSTANTS[ChainId.Testnet].farms.filter(({ pid }) => !isArchivedPid(pid)),
+  [ChainId.BTT]: CHAINS_CONSTANTS[ChainId.BTT].farms.filter(({ pid }) => !isArchivedPid(pid)),
+  [ChainId.ETC]: CHAINS_CONSTANTS[ChainId.ETC].farms.filter(({ pid }) => !isArchivedPid(pid)),
 }
 
 // Async thunks

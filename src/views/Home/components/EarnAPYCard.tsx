@@ -2,7 +2,7 @@ import React, { useCallback, useRef } from 'react'
 import BigNumber from 'bignumber.js'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton } from '@callisto-enterprise/soy-uikit2'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton } from 'uikit2'
 import { BLOCKS_PER_YEAR, SOY_PER_BLOCK, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { QuoteToken } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
@@ -15,7 +15,7 @@ const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
   width: 300px;
-  background-color: rgba(0,0,0,.9);
+  background-color: rgba(0, 0, 0, 0.9);
 
   ${({ theme }) => theme.mediaQueries.lg} {
     margin: 0;
@@ -43,7 +43,9 @@ const EarnAPYCard = () => {
 
   const calculateAPY = useCallback(
     (farmsToDisplay) => {
-      const cakePriceVsBNB = new BigNumber(farmsLP.data[chainId].find((farm) => farm.pid === SOY_POOL_PID)?.tokenPriceVsQuote || 0)
+      const cakePriceVsBNB = new BigNumber(
+        farmsLP.data[chainId].find((farm) => farm.pid === SOY_POOL_PID)?.tokenPriceVsQuote || 0,
+      )
 
       farmsToDisplay.map((farm) => {
         if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {

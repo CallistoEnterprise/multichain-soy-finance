@@ -8,7 +8,7 @@ import {
   UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
-import { ConnectorNames, connectorLocalStorageKey } from '@callisto-enterprise/soy-uikit2'
+import { ConnectorNames, connectorLocalStorageKey } from 'uikit2'
 import { connectorsByName } from 'utils/web3React'
 import { setupNetwork } from 'utils/wallet'
 import useToast from 'hooks/useToast'
@@ -20,7 +20,7 @@ import useActiveWeb3React from './useActiveWeb3React'
 const useAuth = () => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const { activate, deactivate, chainId} = useActiveWeb3React()
+  const { activate, deactivate, chainId } = useActiveWeb3React()
   const { toastError } = useToast()
 
   const login = useCallback(

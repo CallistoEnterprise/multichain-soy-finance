@@ -23,7 +23,6 @@ cypress/fixtures/example.json
 # misc
 .DS_Store
 .eslintcache
-.vscode
 
 # local env files
 .env.local

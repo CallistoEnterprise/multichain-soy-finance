@@ -28,7 +28,10 @@ const useFarmsWithBalance = () => {
       }))
 
       const rawResults = await multicall(masterChefABI, calls)
-      const results = CHAINS_CONSTANTS[chainId].farms.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
+      const results = CHAINS_CONSTANTS[chainId].farms.map((farm, index) => ({
+        ...farm,
+        balance: new BigNumber(rawResults[index]),
+      }))
       const farmsWithBalances = results.filter((balanceType) => balanceType.balance.gt(0))
       const totalEarned = farmsWithBalances.reduce((accum, earning) => {
         const earningNumber = new BigNumber(earning.balance)

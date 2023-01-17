@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { Text, Box, Card, Flex, Skeleton } from '@callisto-enterprise/soy-uikit2'
+import { Text, Box, Card, Flex, Skeleton } from 'uikit2'
 import LineChart from 'views/Info/components/InfoCharts/LineChart'
 import BarChart from 'views/Info/components/InfoCharts/BarChart'
 import CandleChart from 'views/Info/components/InfoCharts/CandleChart'
@@ -91,13 +91,10 @@ const ChartCard: React.FC<ChartCardProps> = ({ variant, chartData, tokenData, to
       </TabToggleGroup>
 
       <Flex flexDirection="column" px="24px" pt="24px">
-        
         <Text small color="secondary" textAlign="end">
           {hoverDate || currentDate}
         </Text>
-        <Text textAlign="end">
-          {getLatestValueDisplay()}
-        </Text>
+        <Text textAlign="end">{getLatestValueDisplay()}</Text>
       </Flex>
 
       <Box px="24px" height={variant === 'token' ? '250px' : '335px'}>

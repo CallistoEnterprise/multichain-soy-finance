@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useRouteMatch } from 'react-router-dom'
-import { Box, Flex, ButtonMenu, ButtonMenuItem } from '@callisto-enterprise/soy-uikit2'
+import { Box, Flex, ButtonMenu, ButtonMenuItem } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 // import Search from 'views/Info/components/InfoSearch'
 
@@ -29,7 +29,7 @@ const InfoNav = () => {
     activeIndex = 1
   }
   return (
-    <NavWrapper style={{width: '100%'}}>
+    <NavWrapper style={{ width: '100%' }}>
       <Box>
         <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
           <ButtonMenuItem as={Link} to="/info">

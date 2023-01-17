@@ -1,4 +1,4 @@
-import { Currency, ETHERS, Token } from '@callisto-enterprise/soy-sdk'
+import { Currency, ETHERS, Token } from 'sdk'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -17,7 +17,7 @@ const LogoImg = styled.img<{ size: string }>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
   margin-right: 5px;
-`;
+`
 export default function CurrencyLogo({
   currency,
   size = '22px',
@@ -43,7 +43,7 @@ export default function CurrencyLogo({
   }, [currency, uriLocations, chainId])
 
   if (currency === ETHERS[chainId]) {
-    return <LogoImg size={size} src={`${CHAINS_CONSTANTS[chainId].general.image}`} alt="clo"/>
+    return <LogoImg size={size} src={`${CHAINS_CONSTANTS[chainId].general.image}`} alt="clo" />
   }
 
   return <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />

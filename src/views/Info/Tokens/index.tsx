@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from 'react'
-// import { Text, Heading, Card } from '@callisto-enterprise/soy-uikit2'
-import { Heading } from '@callisto-enterprise/soy-uikit2'
+// import { Text, Heading, Card } from 'uikit2'
+import { Heading } from 'uikit2'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Page from 'components/Layout/Page'
@@ -34,13 +34,17 @@ const TokensOverview: React.FC = () => {
       .map((token) => renameTokens(token.data))
       .filter((token) => token)
   }, [allTokens])
-  
+
   const isExist = (address) => {
     const oneItem = tokenLists[chainId]?.tokens.find((token) => token.address.toLowerCase() === address)
     return oneItem ? true : false
   }
 
-  const formattedTokens = formattedTokens1 ? formattedTokens1.filter((token) => isExist(token.address) || token.symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol) : []
+  const formattedTokens = formattedTokens1
+    ? formattedTokens1.filter(
+        (token) => isExist(token.address) || token.symbol === CHAINS_CONSTANTS[chainId].general.nativeSymbol,
+      )
+    : []
   // const [savedTokens] = useWatchlistTokens()
   // const watchListTokens = useTokenDatas(savedTokens)
 

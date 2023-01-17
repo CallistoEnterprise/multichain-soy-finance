@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType } from '@callisto-enterprise/soy-uikit2'
+import { useTable, Button, ChevronUpIcon, ColumnType } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 
 import Row, { RowProps } from './Row'
@@ -70,7 +70,6 @@ const FarmTable: React.FC<ITableProps> = (props) => {
     })
   }
 
-
   return (
     <Container>
       <TableContainer>
@@ -86,7 +85,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
         <ScrollButtonContainer>
           <Button variant="text" onClick={scrollToTop}>
             {t('To Top')}
-            <ChevronUpIcon color="primary" ml="5px"/>
+            <ChevronUpIcon color="primary" ml="5px" />
           </Button>
         </ScrollButtonContainer>
       </TableContainer>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Button, Heading, useModal, Skeleton } from '@callisto-enterprise/soy-uikit2'
+import { Flex, Text, Button, Heading, useModal, Skeleton } from 'uikit2'
 import BigNumber from 'bignumber.js'
 import { Token } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
@@ -28,7 +28,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   isLoading = false,
   // endTimeStr = null,
   havestDayStr = null,
-  isNew = true
+  isNew = true,
 }) => {
   const { t } = useTranslation()
   const earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
@@ -86,9 +86,11 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           </>
         )}
       </Flex>
-      {isNew && <Button disabled={!hasEarnings || havestDayStr !== null || !isNew} onClick={onPresentCollect}>
-        {isCompoundPool ? t('Collect') : t('Harvest')}
-      </Button>}
+      {isNew && (
+        <Button disabled={!hasEarnings || havestDayStr !== null || !isNew} onClick={onPresentCollect}>
+          {isCompoundPool ? t('Collect') : t('Harvest')}
+        </Button>
+      )}
     </Flex>
   )
 }

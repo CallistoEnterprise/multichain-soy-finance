@@ -2,8 +2,8 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { Heading, RowType, Toggle, Text, Flex } from '@callisto-enterprise/soy-uikit2'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { Heading, RowType, Toggle, Text, Flex } from 'uikit2'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
@@ -135,14 +135,16 @@ const Farms: React.FC = () => {
   // Users with no wallet connected should see 0 as Earned amount
   // Connected users should see loading indicator until first userData has loaded
   const userDataReady = !account || (!!account && userDataLoaded)
-  
+
   const [stakedOnly, setStakedOnly] = useState(!isActive)
   useEffect(() => {
     setStakedOnly(!isActive)
   }, [isActive])
 
   const activeFarms = farmsLP[chainId].filter((farm) => farm.pid !== 0 && !isArchivedPid(farm.pid))
-  const inactiveFarms = farmsLP[chainId].filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  const inactiveFarms = farmsLP[chainId].filter(
+    (farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid),
+  )
   const archivedFarms = farmsLP[chainId].filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
@@ -386,7 +388,7 @@ const Farms: React.FC = () => {
   return (
     <>
       <PageHeader background="rgba(0,0,0,.5)">
-        <Heading as="h1" scale="xxl" color="secondary" mb="24px" style={{textAlign: 'center'}}>
+        <Heading as="h1" scale="xxl" color="secondary" mb="24px" style={{ textAlign: 'center' }}>
           {t('Farms')}
         </Heading>
       </PageHeader>

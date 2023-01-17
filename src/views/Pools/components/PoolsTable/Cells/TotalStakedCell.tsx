@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Flex, Skeleton, Text } from '@callisto-enterprise/soy-uikit2'
+import { Flex, Skeleton, Text } from 'uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import BigNumber from 'bignumber.js'
@@ -38,7 +38,7 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color={!isNew ? 'textDisabled' : "textSubtle"} textAlign="left">
+        <Text fontSize="12px" color={!isNew ? 'textDisabled' : 'textSubtle'} textAlign="left">
           {t('Total staked')}
         </Text>
         {totalStaked && totalStaked.gte(0) ? (

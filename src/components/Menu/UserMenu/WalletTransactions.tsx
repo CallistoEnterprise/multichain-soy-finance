@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Box, Button, Flex, Text } from '@callisto-enterprise/soy-uikit2'
+import { Box, Button, Flex, Text } from 'uikit2'
 import { AppDispatch } from 'state'
 import { useAllTransactions } from 'state/transactions/hooks'
 import { useTranslation } from 'contexts/Localization'

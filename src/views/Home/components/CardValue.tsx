@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useCountUp } from 'react-countup'
-import { Text } from '@callisto-enterprise/soy-uikit2'
+import { Text } from 'uikit2'
 
 export interface CardValueProps {
   value: number
@@ -23,7 +23,7 @@ const CardValue: React.FC<CardValueProps> = ({
   bold = true,
   color = 'primary',
   suffix = '',
-  stringVal = ''
+  stringVal = '',
 }) => {
   const { countUp, update } = useCountUp({
     start: 0,
@@ -44,7 +44,7 @@ const CardValue: React.FC<CardValueProps> = ({
   return (
     <Text bold={bold} fontSize={fontSize} style={{ lineHeight }} color={color}>
       {prefix}
-      {stringVal !== ''? stringVal :countUp}
+      {stringVal !== '' ? stringVal : countUp}
       {suffix}
     </Text>
   )

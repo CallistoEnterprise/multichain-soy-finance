@@ -5,8 +5,9 @@ import { getAddress } from '@ethersproject/address'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
-import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHERS } from '@callisto-enterprise/soy-sdk'
-import { DEFAULT_CHAIN_ID } from 'config';
+import { JSBI, Percent, Token, CurrencyAmount, Currency, ETHERS } from 'sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { DEFAULT_CHAIN_ID } from 'config'
 import SoyRouterABI from '../config/abi/soyRouter.json'
 import { ROUTER_ADDRESS } from '../config/constants'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
@@ -28,7 +29,7 @@ export function isAddress(value: any): string | false {
 export function getCallistoExpLink(
   data: string | number,
   type: 'transaction' | 'token' | 'address' | 'block' | 'countdown',
-  chainId: ChainId = ChainId.MAINNET,
+  chainId: ChainId = ChainId.Mainnet,
 ): string {
   switch (type) {
     case 'transaction': {

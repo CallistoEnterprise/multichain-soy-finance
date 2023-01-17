@@ -1,4 +1,4 @@
-import { Token, TokenAmount } from '@callisto-enterprise/soy-sdk'
+import { Token, TokenAmount } from 'sdk'
 import { useMemo } from 'react'
 
 import { useTokenContract } from './useContract'

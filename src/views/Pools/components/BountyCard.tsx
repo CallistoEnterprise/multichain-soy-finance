@@ -1,19 +1,7 @@
 import React, { useMemo } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import {
-  Card,
-  CardBody,
-  Text,
-  Flex,
-  HelpIcon,
-  Button,
-  Heading,
-  Skeleton,
-  useModal,
-  Box,
-  useTooltip,
-} from '@callisto-enterprise/soy-uikit2'
+import { Card, CardBody, Text, Flex, HelpIcon, Button, Heading, Skeleton, useModal, Box, useTooltip } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePriceCakeBusd } from 'state/farms/hooks'
@@ -24,7 +12,7 @@ import BountyModal from './BountyModal'
 const StyledCard = styled(Card)`
   width: 100%;
   flex: 1;
-  border: 1px solid rgba(245,73,82,.77);
+  border: 1px solid rgba(245, 73, 82, 0.77);
   max-width: 300px;
   ${({ theme }) => theme.mediaQueries.sm} {
     min-width: 240px;

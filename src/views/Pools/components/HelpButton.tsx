@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Button, HelpIcon, Link } from '@callisto-enterprise/soy-uikit2'
+import { Text, Button, HelpIcon, Link } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 
 const ButtonText = styled(Text)`
@@ -26,7 +26,9 @@ const StyledLink = styled(Link)`
 const HelpButton = () => {
   const { t } = useTranslation()
   return (
-    <StyledLink external href=""> {/* https://docs.polysafemoon.finance/psyrup-pools/ */}
+    <StyledLink external href="">
+      {' '}
+      {/* https://docs.polysafemoon.finance/psyrup-pools/ */}
       <Button px={['14px', null, null, null, '20px']} variant="subtle">
         <ButtonText color="backgroundAlt" bold fontSize="16px">
           {t('Help')}

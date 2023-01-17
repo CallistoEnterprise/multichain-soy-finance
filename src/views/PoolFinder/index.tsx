@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Currency, ETHERS, JSBI, TokenAmount } from '@callisto-enterprise/soy-sdk'
-import { Button, ChevronDownIcon, Text, AddIcon, useModal } from '@callisto-enterprise/soy-uikit2'
+import { Currency, ETHERS, JSBI, TokenAmount } from 'sdk'
+import { Button, ChevronDownIcon, Text, AddIcon, useModal } from 'uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { LightCard } from '../../components/Card'

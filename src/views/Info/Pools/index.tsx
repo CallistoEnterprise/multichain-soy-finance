@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Text, Heading, Card } from '@callisto-enterprise/soy-uikit2'
+import { Text, Heading, Card } from 'uikit2'
 import Page from 'components/Layout/Page'
 import PoolTable from 'views/Info/components/InfoTables/PoolsTable'
 import { useAllPoolData, usePoolDatas } from 'state/info/hooks'

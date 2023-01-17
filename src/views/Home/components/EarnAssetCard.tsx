@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import orderBy from 'lodash/orderBy'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon } from '@callisto-enterprise/soy-uikit2'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon } from 'uikit2'
 import { NavLink } from 'react-router-dom'
 import pools from 'config/constants/pools'
 import { Pool } from 'state/types'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const StyledFarmStakingCard = styled(Card)`
-  background-color: rgba(0,0,0,.9);
+  background-color: rgba(0, 0, 0, 0.9);
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -22,7 +22,9 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
 `
 const EarnAssetCard = () => {
   const { chainId } = useActiveWeb3React()
-  const activeNonCakePools = pools.filter((pool) => !pool.isFinished[chainId] && !pool.stakingToken.symbol.includes('SOY'))
+  const activeNonCakePools = pools.filter(
+    (pool) => !pool.isFinished[chainId] && !pool.stakingToken.symbol.includes('SOY'),
+  )
   const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
   // Always include SOY
   const assets = ['SOY', ...latestPools.map((pool) => pool.stakingToken.symbol)].join(', ')

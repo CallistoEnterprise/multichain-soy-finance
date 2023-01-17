@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { connectorLocalStorageKey, ConnectorNames } from '@callisto-enterprise/soy-uikit2'
+import { connectorLocalStorageKey, ConnectorNames } from 'uikit2'
 import useAuth from 'hooks/useAuth'
 
 const _binanceChainListener = async () =>
@@ -23,7 +23,7 @@ const useEagerConnect = () => {
     const connectorId = window.localStorage.getItem(connectorLocalStorageKey) as ConnectorNames
 
     if (connectorId) {
-      const isConnectorBinanceChain = false//connectorId === ConnectorNames.BSC
+      const isConnectorBinanceChain = false //connectorId === ConnectorNames.BSC
       const isBinanceChainDefined = Reflect.has(window, 'BinanceChain')
 
       // Currently BSC extension doesn't always inject in time.

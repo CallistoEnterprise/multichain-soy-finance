@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, IconButton, AddIcon, MinusIcon, useModal, Skeleton } from '@callisto-enterprise/soy-uikit2'
+import { Flex, Text, IconButton, AddIcon, MinusIcon, useModal, Skeleton } from 'uikit2'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Pool } from 'state/types'

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Skeleton, Text, useTooltip, HelpIcon, Flex, Box, useModal, useMatchBreakpoints } from '@callisto-enterprise/soy-uikit2'
+import { Skeleton, Text, useTooltip, HelpIcon, Flex, Box, useModal, useMatchBreakpoints } from 'uikit2'
 import { Pool } from 'state/types'
 import BigNumber from 'bignumber.js'
 import { PoolCategory } from 'config/constants/types'
@@ -39,7 +39,10 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
   // These will be reassigned later if its Auto SOY vault
   let earningTokenBalance = getBalanceNumber(earnings, earningToken?.decimals)
-  let earningTokenDollarBalance = getBalanceNumber(earnings.multipliedBy(earningTokenPrice ?? 0.104), earningToken?.decimals)
+  let earningTokenDollarBalance = getBalanceNumber(
+    earnings.multipliedBy(earningTokenPrice ?? 0.104),
+    earningToken?.decimals,
+  )
   let hasEarnings = account && earnings.gt(0)
   const fullBalance = getFullDisplayBalance(earnings, earningToken?.decimals)
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
@@ -97,7 +100,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color={!isNew ? "textDisabled" : "textSubtle"} textAlign="left">
+        <Text fontSize="12px" color={!isNew ? 'textDisabled' : 'textSubtle'} textAlign="left">
           {labelText}
         </Text>
         {!userDataLoaded && account ? (
@@ -121,7 +124,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
                       <Balance
                         display="inline"
                         fontSize="12px"
-                        color={!isNew ? 'textDisabled' : "textSubtle"}
+                        color={!isNew ? 'textDisabled' : 'textSubtle'}
                         decimals={2}
                         prefix="~"
                         value={earningTokenDollarBalance}
@@ -130,14 +133,14 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
                     )}
                   </>
                 ) : (
-                  <Text mt="4px" fontSize="12px" color={!isNew ? 'textDisabled' : "textDisabled"}>
+                  <Text mt="4px" fontSize="12px" color={!isNew ? 'textDisabled' : 'textDisabled'}>
                     0 USD
                   </Text>
                 )}
               </Box>
               {isAutoVault && hasEarnings && !isXs && !isSm && (
                 <HelpIconWrapper ref={targetRef}>
-                  <HelpIcon color={!isNew ? 'textDisabled' : "textSubtle"} />
+                  <HelpIcon color={!isNew ? 'textDisabled' : 'textSubtle'} />
                 </HelpIconWrapper>
               )}
             </Flex>

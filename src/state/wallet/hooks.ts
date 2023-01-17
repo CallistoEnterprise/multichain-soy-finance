@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, ETHERS, JSBI, Token, TokenAmount } from '@callisto-enterprise/soy-sdk'
+import { Currency, CurrencyAmount, ETHERS, JSBI, Token, TokenAmount } from 'sdk'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from 'config/abi/erc20'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components'
-import { Card, Box } from '@callisto-enterprise/soy-uikit2'
+import { Card, Box } from 'uikit2'
 
 const PromotedGradient = keyframes`
   0% {
@@ -17,7 +17,7 @@ interface PromotedStyleCardProps {
   isDesktop: boolean
 }
 
-export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; isFinished?: boolean;}>`
+export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; isFinished?: boolean }>`
   max-width: 352px;
   margin: 0 8px 24px;
   display: flex;
@@ -48,8 +48,8 @@ export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; is
   }
 `
 
-export const StyledCardInner = styled(Box)<{ isNew?: boolean;}>`
-  background: ${({ theme, isNew }) => isNew ? theme.card.background : 'grey'};
+export const StyledCardInner = styled(Box)<{ isNew?: boolean }>`
+  background: ${({ theme, isNew }) => (isNew ? theme.card.background : 'grey')};
   border-radius: ${({ theme }) => theme.radii.card};
 `
 

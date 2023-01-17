@@ -13,11 +13,13 @@ const options = {
   gasLimit: DEFAULT_GAS_LIMIT,
 }
 
-const sousStake = async (stakingTkContract, to, amount, decimals = 18, periods=6, isNew = true, affiliateAddress) => {
+const sousStake = async (stakingTkContract, to, amount, decimals = 18, periods = 6, isNew = true, affiliateAddress) => {
   const _data = web3.eth.abi.encodeParameter('uint256', periods)
   const _accountData = affiliateAddress ? web3.eth.abi.encodeParameter('address', affiliateAddress) : '0x'
   const bigAmount = new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString()
-  const tx = isNew ? await stakingTkContract.transfer(to, bigAmount, _accountData) : await stakingTkContract.transfer(to, bigAmount, _data)
+  const tx = isNew
+    ? await stakingTkContract.transfer(to, bigAmount, _accountData)
+    : await stakingTkContract.transfer(to, bigAmount, _data)
   const receipt = await tx.wait()
   return receipt.status
 }

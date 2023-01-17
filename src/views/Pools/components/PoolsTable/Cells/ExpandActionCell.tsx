@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, ChevronDownIcon } from '@callisto-enterprise/soy-uikit2'
+import { Text, ChevronDownIcon } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import BaseCell from './BaseCell'
 
@@ -34,11 +34,11 @@ const TotalStakedCell: React.FC<ExpandActionCellProps> = ({ expanded, isFullLayo
   return (
     <StyledCell role="cell">
       {isFullLayout && (
-        <Text color={!isNew ? 'textDisabled' : "primary"} bold>
+        <Text color={!isNew ? 'textDisabled' : 'primary'} bold>
           {expanded ? t('Hide') : t('Details')}
         </Text>
       )}
-      <ArrowIcon color={!isNew ? 'textDisabled' : "primary"} toggled={expanded} />
+      <ArrowIcon color={!isNew ? 'textDisabled' : 'primary'} toggled={expanded} />
     </StyledCell>
   )
 }

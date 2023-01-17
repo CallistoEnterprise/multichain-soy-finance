@@ -1,11 +1,11 @@
 import React from 'react'
-import { CardHeader, Heading, Text, Flex } from '@callisto-enterprise/soy-uikit2'
+import { CardHeader, Heading, Text, Flex } from 'uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { Token } from 'config/constants/types'
 import { TokenPairImage } from 'components/TokenImage'
 import CakeVaultTokenPairImage from '../CakeVaultCard/CakeVaultTokenPairImage'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
   background: ${({ isFinished, background, theme }) =>
@@ -16,8 +16,8 @@ const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }
 const soyTemp = {
   symbol: 'SOY',
   address: {
-    [ChainId.MAINNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
-    [ChainId.CLOTESTNET]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+    [ChainId.Mainnet]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
+    [ChainId.Testnet]: '0x9FaE2529863bD691B4A7171bDfCf33C7ebB1grey',
   },
   decimals: 18,
   projectLink: 'https://app.soy.finance/',
@@ -32,7 +32,16 @@ const StyledCardHeader: React.FC<{
   lockPeriod?: number | string
   lockPeriodUnit?: string
   isNew?: boolean
-}> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false, lockPeriod, lockPeriodUnit, isNew }) => {
+}> = ({
+  earningToken,
+  stakingToken,
+  isFinished = false,
+  isAutoVault = false,
+  isStaking = false,
+  lockPeriod,
+  lockPeriodUnit,
+  isNew,
+}) => {
   const { t } = useTranslation()
   const isCakePool = earningToken.symbol === 'SOY' && stakingToken.symbol === 'SOY'
   const background = isStaking ? 'bubblegum' : 'cardHeader'
@@ -72,7 +81,12 @@ const StyledCardHeader: React.FC<{
         {isAutoVault ? (
           <CakeVaultTokenPairImage width={64} height={64} />
         ) : (
-          <TokenPairImage primaryToken={!isNew ? soyTemp : earningToken} secondaryToken={!isNew ? soyTemp : stakingToken} width={64} height={64} />
+          <TokenPairImage
+            primaryToken={!isNew ? soyTemp : earningToken}
+            secondaryToken={!isNew ? soyTemp : stakingToken}
+            width={64}
+            height={64}
+          />
         )}
       </Flex>
     </Wrapper>

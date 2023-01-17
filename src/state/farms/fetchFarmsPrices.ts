@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { BIG_ONE, BIG_ZERO } from 'utils/bigNumber'
@@ -30,7 +30,7 @@ const getFarmBaseTokenPrice = (
     return hasTokenPriceVsQuote ? cloPriceBusd.times(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
-  if ((chainId === ChainId.BTTMAINNET || chainId === ChainId.ETCCLASSICMAINNET) && farm.quoteToken.symbol === 'ccCLO') {
+  if ((chainId === ChainId.BTT || chainId === ChainId.ETC) && farm.quoteToken.symbol === 'ccCLO') {
     return hasTokenPriceVsQuote ? ccCloPrice.times(farm.tokenPriceVsQuote) : BIG_ZERO
   }
   // We can only calculate profits without a quoteTokenFarm for BUSDT/CLO farms
@@ -76,7 +76,7 @@ const getFarmQuoteTokenPrice = (
     return bnbPriceBusd
   }
 
-  if ((chainId === ChainId.BTTMAINNET || chainId === ChainId.ETCCLASSICMAINNET) && farm.quoteToken.symbol === 'ccCLO') {
+  if ((chainId === ChainId.BTT || chainId === ChainId.ETC) && farm.quoteToken.symbol === 'ccCLO') {
     return ccCloPrice
   }
 
@@ -96,22 +96,22 @@ const getFarmQuoteTokenPrice = (
 }
 
 const farmsPids = {
-  [ChainId.MAINNET]: 4,
-  [ChainId.CLOTESTNET]: 25,
-  [ChainId.BTTMAINNET]: 14,
-  [ChainId.ETCCLASSICMAINNET]: 6,
+  [ChainId.Mainnet]: 4,
+  [ChainId.Testnet]: 25,
+  [ChainId.BTT]: 14,
+  [ChainId.ETC]: 6,
 }
 const busdtFarms = {
-  [ChainId.MAINNET]: 5,
-  [ChainId.CLOTESTNET]: 24,
-  [ChainId.BTTMAINNET]: 19,
-  [ChainId.ETCCLASSICMAINNET]: 5,
+  [ChainId.Mainnet]: 5,
+  [ChainId.Testnet]: 24,
+  [ChainId.BTT]: 19,
+  [ChainId.ETC]: 5,
 }
 const refFarms = {
-  [ChainId.MAINNET]: 2,
-  [ChainId.CLOTESTNET]: 23,
-  [ChainId.BTTMAINNET]: 9,
-  [ChainId.ETCCLASSICMAINNET]: 1,
+  [ChainId.Mainnet]: 2,
+  [ChainId.Testnet]: 23,
+  [ChainId.BTT]: 9,
+  [ChainId.ETC]: 1,
 }
 const fetchFarmsPrices = async (farms) => {
   const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
@@ -126,13 +126,11 @@ const fetchFarmsPrices = async (farms) => {
   const farmsWithPrices = farms.map((farm) => {
     const quoteTokenFarm = getFarmFromTokenSymbol(farms, farm.quoteToken.symbol)
     const baseTokenPrice =
-      farm.pid === 15 &&
-      (chainId === ChainId.BTTMAINNET || chainId === ChainId.ETCCLASSICMAINNET)
+      farm.pid === 15 && (chainId === ChainId.BTT || chainId === ChainId.ETC)
         ? nativePriceBusdt
         : getFarmBaseTokenPrice(farm, quoteTokenFarm, nativePriceBusdt, cloPrice, chainId)
     const quoteTokenPrice =
-      farm.pid === 15 &&
-      (chainId === ChainId.BTTMAINNET || chainId === ChainId.ETCCLASSICMAINNET)
+      farm.pid === 15 && (chainId === ChainId.BTT || chainId === ChainId.ETC)
         ? cloPrice
         : getFarmQuoteTokenPrice(farm, quoteTokenFarm, nativePriceBusdt, cloPrice, chainId)
 

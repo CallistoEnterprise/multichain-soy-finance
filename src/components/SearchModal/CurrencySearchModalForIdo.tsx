@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Currency } from '@callisto-enterprise/soy-sdk'
+import { Currency } from 'sdk'
 import {
   ModalContainer,
   ModalHeader,
@@ -9,7 +9,7 @@ import {
   ModalBody,
   InjectedModalProps,
   Heading,
-} from '@callisto-enterprise/soy-uikit2'
+} from 'uikit2'
 import styled from 'styled-components'
 import usePrevious from 'hooks/usePreviousValue'
 import { useTranslation } from 'contexts/Localization'
@@ -86,7 +86,8 @@ export default function CurrencySearchModalForIdo({
             showCommonBases={showCommonBases}
             showImportView={() => setModalView(CurrencyModalView.importToken)}
             // setImportToken={()}
-          />)}
+          />
+        )}
       </StyledModalBody>
     </StyledModalContainer>
   )

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useLocation } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem } from '@callisto-enterprise/soy-uikit2'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { ButtonMenu, ButtonMenuItem } from 'uikit2'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'
 
@@ -38,14 +38,14 @@ const Nav = () => {
 
   return (
     <StyledNav>
-      <ButtonMenu activeIndex={getActiveIndex(location.pathname)} >
+      <ButtonMenu activeIndex={getActiveIndex(location.pathname)}>
         <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
           {t('Swap')}
         </ButtonMenuItem>
         <ButtonMenuItem id="pool-nav-link" to="/pool" as={Link}>
           {t('Liquidity')}
         </ButtonMenuItem>
-        {chainId !== ChainId.CLOTESTNET ? (
+        {chainId !== ChainId.Testnet ? (
           <ButtonMenuItem id="pool-nav-bridge" href="https://bridge.soy.finance/" as="a" target="_blank">
             {t('Bridge')}
           </ButtonMenuItem>
@@ -54,7 +54,6 @@ const Nav = () => {
             {t('Faucet')}
           </ButtonMenuItem>
         )}
-        
       </ButtonMenu>
     </StyledNav>
   )

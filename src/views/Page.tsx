@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex } from '@callisto-enterprise/soy-uikit2'
+import { Flex } from 'uikit2'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Footer from 'components/Menu/Footer'
 import SubNav from 'components/Menu/SubNav'
-import { ChainId } from '@callisto-enterprise/soy-sdk'
+import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
 const StyledPage = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const Page: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...pro
       <SubNav />
       {children}
       <Flex flexGrow={1} />
-      {(chainId === ChainId.MAINNET || chainId === ChainId.CLOTESTNET) && <Footer />}
+      {(chainId === ChainId.Mainnet || chainId === ChainId.Testnet) && <Footer />}
     </StyledPage>
   )
 }
