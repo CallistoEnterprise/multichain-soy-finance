@@ -52,6 +52,7 @@ const applyNodeDataToLotteriesGraphResponse = (
 
 const getGraphLotteries = async (): Promise<LotteryRoundGraphEntity[]> => {
   try {
+    console.log('Trying to fetch Lottery data from', GRAPH_API_LOTTERY)
     const response = await request(
       GRAPH_API_LOTTERY,
       gql`
