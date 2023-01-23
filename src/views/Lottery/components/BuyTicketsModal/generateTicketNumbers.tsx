@@ -2,13 +2,13 @@ import { LotteryTicket } from 'config/constants/types'
 import { random } from 'lodash'
 
 /**
- * Generate a specific number of unique, randomised 7-digit lottery numbers between 1000000 & 1999999
+ * Generate a specific number of unique, randomised 7-digit lottery numbers between 1000 & 1999
  */
 const generateTicketNumbers = (
   numberOfTickets: number,
   userCurrentTickets?: LotteryTicket[],
-  minNumber = 1000000,
-  maxNumber = 1999999,
+  minNumber = 1000,
+  maxNumber = 1999,
 ): number[] => {
   // Populate array with existing tickets (if they have them) to ensure no duplicates when generating new numbers
   const existingTicketNumbers =

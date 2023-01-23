@@ -3,7 +3,7 @@ import { ethers } from 'ethers'
 import { LotteryStatus, LotteryTicket } from 'config/constants/types'
 import lotteryV2Abi from 'config/abi/lotteryV2.json'
 import { getLotteryV2Address } from 'utils/addressHelpers'
-import { multicallv2 } from 'utils/multicall'
+import { multicall3 } from 'utils/multicall'
 import { LotteryRound, LotteryRoundUserTickets, LotteryResponse } from 'state/types'
 import { getLotteryV2Contract } from 'utils/contractHelpers'
 import { useMemo } from 'react'
@@ -92,7 +92,7 @@ export const fetchMultipleLotteries = async (lotteryIds: string[]): Promise<Lott
     params: [id],
   }))
   try {
-    const multicallRes = await multicallv2(lotteryV2Abi, calls, { requireSuccess: false })
+    const multicallRes = await multicall3(lotteryV2Abi, calls)
     const processedResponses = multicallRes.map((res, index) =>
       processViewLotterySuccessResponse(res[0], lotteryIds[index]),
     )
@@ -109,11 +109,10 @@ export const fetchCurrentLotteryIdAndMaxBuy = async () => {
       address: getLotteryV2Address(),
       name: method,
     }))
-    const [[currentLotteryId], [maxNumberTicketsPerBuyOrClaim]] = (await multicallv2(
+    const [[currentLotteryId], [maxNumberTicketsPerBuyOrClaim]] = (await multicall3(
       lotteryV2Abi,
       calls,
     )) as ethers.BigNumber[][]
-
     return {
       currentLotteryId: currentLotteryId ? currentLotteryId.toString() : null,
       maxNumberTicketsPerBuyOrClaim: maxNumberTicketsPerBuyOrClaim ? maxNumberTicketsPerBuyOrClaim.toString() : null,

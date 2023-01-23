@@ -1,3 +1,4 @@
+import { NUM_BALLS } from 'config/constants/lottery'
 import { LotteryTicket } from 'config/constants/types'
 import { useEffect, useReducer } from 'react'
 import { parseRetreivedNumber } from '../../helpers'
@@ -76,7 +77,7 @@ const reducer = (state: TicketsState, action: any) => {
         id: ticketId,
         numbers: newNumbers,
         duplicateWith: newDuplicates.map((ticket) => ticket.id),
-        isComplete: newNumbers.join('').length === 6,
+        isComplete: newNumbers.join('').length === NUM_BALLS,
       }
       tickets[ticketId - 1] = updatedTicket
 

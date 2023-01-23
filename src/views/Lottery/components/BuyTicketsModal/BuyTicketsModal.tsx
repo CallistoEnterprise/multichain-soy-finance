@@ -33,6 +33,7 @@ import ApproveConfirmButtons, { ButtonArrangement } from 'views/Profile/componen
 import NumTicketsToBuyButton from './NumTicketsToBuyButton'
 import EditNumbersModal from './EditNumbersModal'
 import { useTicketsReducer } from './useTicketsReducer'
+import useBuyTickets from 'views/Lottery/hooks/useBuyTickets'
 
 const StyledModal = styled(Modal)`
   min-width: 280px;
@@ -235,7 +236,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     userCurrentTickets,
   )
 
-  const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
+  const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove /*, handleConfirm*/ } =
     useApproveConfirmTransaction({
       onRequiresApproval: async () => {
         try {
@@ -262,6 +263,12 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
         toastSuccess(t('Lottery tickets purchased!'))
       },
     })
+
+  const { handleBuyConfirm } = useBuyTickets(currentLotteryId)
+  const handleConfirm = async () => {
+    const ticketsForPurchase = getTicketsForPurchase()
+    await handleBuyConfirm(ticketsForPurchase)
+  }
 
   const getErrorMessage = () => {
     if (userNotEnoughCake) return t('Insufficient SOY balance')

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Flex, Text } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { Ticket, UpdateTicketAction } from './useTicketsReducer'
+import { NUM_BALLS } from 'config/constants/lottery'
 
 const InputsContainer = styled.div<{ focused: boolean; isDuplicate: boolean }>`
   display: flex;
@@ -79,13 +80,10 @@ const TicketContaier: React.FC<{
   const digit1 = useRef<HTMLInputElement>(null)
   const digit2 = useRef<HTMLInputElement>(null)
   const digit3 = useRef<HTMLInputElement>(null)
-  const digit4 = useRef<HTMLInputElement>(null)
-  const digit5 = useRef<HTMLInputElement>(null)
-  const digit6 = useRef<HTMLInputElement>(null)
 
   const { t } = useTranslation()
 
-  const digitRefs = [digit1, digit2, digit3, digit4, digit5, digit6]
+  const digitRefs = [digit1, digit2, digit3]
 
   const scrollInputIntoView = () => {
     if (containerRef.current) {
@@ -96,8 +94,8 @@ const TicketContaier: React.FC<{
   const onPasteHandler = (e: React.ClipboardEvent) => {
     e.preventDefault()
     const pasteContent = e.clipboardData.getData('Text')
-    if (pasteContent.length <= 6 && /^\d+$/.test(pasteContent)) {
-      const filler = Array(6 - pasteContent.length).fill('')
+    if (pasteContent.length <= NUM_BALLS && /^\d+$/.test(pasteContent)) {
+      const filler = Array(NUM_BALLS - pasteContent.length).fill('')
       updateTicket(ticket.id, [...pasteContent.split(''), ...filler])
     }
   }
@@ -128,7 +126,7 @@ const TicketContaier: React.FC<{
       const nextDigitId = digitId + 1
       // if we're not on the last digit - auto-tab
       const nextInput = digitRefs[nextDigitId]
-      if (nextDigitId !== 6 && nextInput.current) {
+      if (nextDigitId !== NUM_BALLS && nextInput.current) {
         nextInput.current.focus()
       }
     }
@@ -165,7 +163,7 @@ const TicketContaier: React.FC<{
         const nextDigitId = digitId + 1
         const nextInput = digitRefs[nextDigitId]
         // prevent focusing on non-existent input
-        if (nextDigitId !== 6 && nextInput.current) {
+        if (nextDigitId !== NUM_BALLS && nextInput.current) {
           nextInput.current.focus()
           const newNumbers = [...ticket.numbers]
           newNumbers[nextDigitId] = ''
@@ -189,7 +187,7 @@ const TicketContaier: React.FC<{
       const nextDigitId = digitId + 1
       const nextInput = digitRefs[nextDigitId]
       // prevent focusing on non-existent input
-      if (nextDigitId !== 6 && nextInput.current) {
+      if (nextDigitId !== NUM_BALLS && nextInput.current) {
         nextInput.current.focus()
       }
     }
@@ -241,45 +239,6 @@ const TicketContaier: React.FC<{
           type="number"
           value={ticket.numbers[2]}
           onKeyDown={(e: React.KeyboardEvent) => onChangeHandler(e, 2)}
-          placeholder="_"
-          onChange={(e) => e.preventDefault()}
-          disabled={disabled}
-          onFocus={onFocusHandler}
-          onBlur={onBlurHandler}
-          onPaste={onPasteHandler}
-          inputMode="numeric"
-        />
-        <DigitInput
-          ref={digit4}
-          type="number"
-          value={ticket.numbers[3]}
-          onKeyDown={(e: React.KeyboardEvent) => onChangeHandler(e, 3)}
-          placeholder="_"
-          onChange={(e) => e.preventDefault()}
-          disabled={disabled}
-          onFocus={onFocusHandler}
-          onBlur={onBlurHandler}
-          onPaste={onPasteHandler}
-          inputMode="numeric"
-        />
-        <DigitInput
-          ref={digit5}
-          type="number"
-          value={ticket.numbers[4]}
-          onKeyDown={(e: React.KeyboardEvent) => onChangeHandler(e, 4)}
-          placeholder="_"
-          onChange={(e) => e.preventDefault()}
-          disabled={disabled}
-          onFocus={onFocusHandler}
-          onBlur={onBlurHandler}
-          onPaste={onPasteHandler}
-          inputMode="numeric"
-        />
-        <DigitInput
-          ref={digit6}
-          type="number"
-          value={ticket.numbers[5]}
-          onKeyDown={(e: React.KeyboardEvent) => onChangeHandler(e, 5)}
           placeholder="_"
           onChange={(e) => e.preventDefault()}
           disabled={disabled}
