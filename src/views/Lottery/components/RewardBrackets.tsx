@@ -6,6 +6,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { useTranslation } from 'contexts/Localization'
 import { LotteryRound } from 'state/types'
 import RewardBracketDetail from './RewardBracketDetail'
+import { NUM_BALLS } from 'config/constants/lottery'
 
 const Wrapper = styled(Flex)`
   width: 100%;
@@ -77,7 +78,9 @@ const RewardBrackets: React.FC<RewardMatchesProps> = ({ lotteryData, isHistoricR
 
   const { isLoading, countWinnersPerBracket, cakeToBurn } = state
 
-  const rewardBrackets = [0, 1, 2, 3, 4, 5]
+  const rewardBrackets = Array(NUM_BALLS)
+    .fill(0)
+    .map((_, index) => index) // [0, 1, 2]
 
   return (
     <Wrapper>

@@ -80,7 +80,7 @@ const NextDrawCard = () => {
     }
     return (
       <>
-        {prizeInBusd.isNaN() ? (
+        {amountCollectedInCake.isNaN() ? (
           <Skeleton my="7px" height={40} width={160} />
         ) : (
           <Balance
@@ -89,12 +89,12 @@ const NextDrawCard = () => {
             textAlign={['center', null, null, 'left']}
             lineHeight="1"
             bold
-            prefix="~$"
-            value={getBalanceNumber(prizeInBusd)}
+            unit=" SOY"
+            value={getBalanceNumber(amountCollectedInCake)}
             decimals={0}
           />
         )}
-        {prizeInBusd.isNaN() ? (
+        {/*prizeInBusd.isNaN() ? (
           <Skeleton my="2px" height={14} width={90} />
         ) : (
           <Balance
@@ -102,10 +102,10 @@ const NextDrawCard = () => {
             color="textSubtle"
             textAlign={['center', null, null, 'left']}
             unit=" SOY"
-            value={getBalanceNumber(amountCollectedInCake)}
+            value={getBalanceNumber(prizeInBusd)}
             decimals={0}
           />
-        )}
+        )*/}
       </>
     )
   }
@@ -140,13 +140,13 @@ const NextDrawCard = () => {
       <CardBody>
         <Grid>
           <Flex justifyContent={['center', null, null, 'flex-start']}>
-            <Heading>{t('Prize Pot')}</Heading>
+            <Heading>{t('Prize Pot')}:</Heading>
           </Flex>
           <Flex flexDirection="column" mb="18px">
             {getPrizeBalances()}
           </Flex>
           <Box display={['none', null, null, 'flex']}>
-            <Heading>{t('Your tickets')}</Heading>
+            <Heading>{t('Your tickets')}:</Heading>
           </Box>
           <Flex flexDirection={['column', null, null, 'row']} alignItems={['center', null, null, 'flex-start']}>
             {isLotteryOpen && (
@@ -170,7 +170,7 @@ const NextDrawCard = () => {
                     ) : (
                       <Skeleton mx="4px" height={20} width={40} />
                     )}
-                    <Text display="inline"> {t('this round')}</Text>
+                    <Text display="inline"> {t('this round.')}</Text>
                   </Flex>
                 )}
                 {!userTickets.isLoading && userTicketCount > 0 && (

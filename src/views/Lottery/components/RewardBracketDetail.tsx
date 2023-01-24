@@ -31,9 +31,6 @@ const RewardBracketDetail: React.FC<RewardBracketDetailProps> = ({
     if (isBurn) {
       return t('Burn')
     }
-    if (rewardBracket === 5) {
-      return t('Match all %numberMatch%', { numberMatch })
-    }
     return t('Match first %numberMatch%', { numberMatch })
   }
 

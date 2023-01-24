@@ -57,7 +57,7 @@ const Lottery = () => {
         <Flex alignItems="center" justifyContent="center" flexDirection="column" pt="24px">
           {status === LotteryStatus.OPEN && (
             <Heading scale="xl" color="#ffffff" mb="24px" textAlign="center">
-              {t('Get your tickets now!')}
+              {t('Get Your Tickets Now!')}
             </Heading>
           )}
           <Flex alignItems="center" justifyContent="center" mb="48px">

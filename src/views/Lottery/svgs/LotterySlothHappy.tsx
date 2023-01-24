@@ -1,7 +1,7 @@
 import React from 'react'
 import { Svg, SvgProps } from 'uikit2'
 
-export const LotterySlothBottompage: React.FC<{ isDark: boolean } & SvgProps> = ({ isDark, ...rest }) => {
+export const LotterySlothHappy: React.FC<{ isDark: boolean } & SvgProps> = ({ isDark, ...rest }) => {
   return (
     <Svg viewBox="0 0 93 100" {...rest}>
       <svg

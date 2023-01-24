@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Box, Flex, Text, Heading, useMatchBreakpoints, Link } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
-import { BallWithNumber, MatchExampleA, MatchExampleB, PoolAllocationChart, LotterySlothBottompage } from '../svgs'
+import { BallWithNumber, MatchExampleA, MatchExampleB, PoolAllocationChart, LotterySlothHappy } from '../svgs'
 
 const Divider = styled.div`
   background-color: ${({ theme }) => theme.colors.cardBorder};
@@ -204,17 +204,17 @@ const HowToPlay: React.FC = () => {
     {
       label: t('Step %number%', { number: 1 }),
       title: t('Buy Tickets'),
-      subtitle: t('Price of a ticket is 250 SOY.'),
+      subtitle: t('Price of a ticket is 250 SOY. There is a bulk purchase discount of up to 5% !'),
     },
     {
       label: t('Step %number%', { number: 2 }),
       title: t('Wait for the Draw'),
-      subtitle: t('There is one draw daily.'),
+      subtitle: t('There is one draw daily at 9:00 UTC.'),
     },
     {
       label: t('Step %number%', { number: 3 }),
       title: t('Check for Prizes'),
-      subtitle: t('Once the round’s over, come back to the page and check to see if you’ve won!'),
+      subtitle: t('Once the round is over, come back to the page and check to see if you have won!'),
     },
   ]
   return (
@@ -328,7 +328,7 @@ const HowToPlay: React.FC = () => {
       <Divider />
       <Flex justifyContent="center" alignItems="center" flexDirection={['column', 'column', 'row']}>
         <Flex maxWidth="240px" mr="8px" mb="16px">
-          <LotterySlothBottompage width="93px" height="100px" isDark={isDark} />
+          <LotterySlothHappy width="93px" height="100px" isDark={isDark} />
         </Flex>
         <Flex maxWidth="300px" flexDirection="column">
           <Heading mb="16px" scale="md">

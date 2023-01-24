@@ -253,19 +253,21 @@ const Hero = () => {
     isTransitioning,
   } = useLottery()
 
-  const cakePriceBusd = usePriceCakeBusd()
-  const prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
-  const prizeTotal = getBalanceNumber(prizeInBusd)
+  //const cakePriceBusd = usePriceCakeBusd()
+  //const prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
+  //const prizeTotal = getBalanceNumber(prizeInBusd)
+  const prizeTotal = getBalanceNumber(amountCollectedInCake)
+
   const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
 
   const getHeroHeading = () => {
     if (status === LotteryStatus.OPEN) {
       return (
         <>
-          {prizeInBusd.isNaN() ? (
+          {amountCollectedInCake.isNaN() ? (
             <Skeleton my="7px" height={60} width={190} />
           ) : (
-            <PrizeTotalBalance fontSize="64px" bold prefix="$" value={prizeTotal} mb="8px" decimals={0} />
+            <PrizeTotalBalance fontSize="64px" bold unit=" SOY" value={prizeTotal} mb="8px" decimals={0} />
           )}
           <Heading mb="32px" scale="lg" color="#ffffff">
             {t('in prizes!')}
@@ -292,7 +294,7 @@ const Hero = () => {
         <img src={`${BASE_URL}/images/soyswap.png`} width="40px" height="22px" alt="" />
       </StarsDecorations>
       <Heading mb="8px" scale="md" color="#ffffff">
-        {t('The Soy.Finance Lottery')}
+        {t('The Soy Finance Lottery')}
       </Heading>
       {getHeroHeading()}
       <TicketContainer

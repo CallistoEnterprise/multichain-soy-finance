@@ -128,7 +128,7 @@ const YourHistoryCard = () => {
       <CardFooter>
         <Flex flexDirection="column" justifyContent="center" alignItems="center">
           <Text fontSize="12px" color="textSubtle">
-            {t('Only showing data for Lottery V2')}
+            {t('Check all your lucky matches!')}
           </Text>
         </Flex>
       </CardFooter>

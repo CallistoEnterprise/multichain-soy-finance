@@ -10,6 +10,8 @@ import { useAppDispatch } from 'state'
 import { useLottery } from 'state/lottery/hooks'
 import { fetchUserLotteries } from 'state/lottery'
 import ClaimPrizesInner from './ClaimPrizesInner'
+import { LotterySlothHappy } from '../../svgs'
+import useTheme from 'hooks/useTheme'
 
 const StyledModal = styled(ModalContainer)`
   position: relative;
@@ -55,6 +57,8 @@ interface ClaimPrizesModalModalProps {
 
 const ClaimPrizesModal: React.FC<ClaimPrizesModalModalProps> = ({ onDismiss, roundsToClaim }) => {
   const { t } = useTranslation()
+  const { isDark } = useTheme()
+
   const { account } = useWeb3React()
   const { currentLotteryId } = useLottery()
   const dispatch = useAppDispatch()
@@ -66,7 +70,7 @@ const ClaimPrizesModal: React.FC<ClaimPrizesModalModalProps> = ({ onDismiss, rou
   return (
     <StyledModal minWidth="280px">
       <BunnyDecoration>
-        <img src="/images/decorations/prize-bunny.png" alt="bunny decoration" height="124px" width="168px" />
+        <LotterySlothHappy width="115px" height="124px" isDark={isDark} />
       </BunnyDecoration>
       <StyledModalHeader>
         <ModalTitle>
