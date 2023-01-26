@@ -79,7 +79,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   const [userNotEnoughCake, setUserNotEnoughCake] = useState(false)
   const lotteryContract = useLotteryV2Contract()
   const cakeContract = usePmoon()
-  const { toastSuccess } = useToast()
+  const { toastSuccess, toastError } = useToast()
   const { balance: userCake, fetchStatus } = useTokenBalance(getSoyAddress())
   // balance from useTokenBalance causes rerenders in effects as a new BigNumber is instanciated on each render, hence memoising it using the stringified value below.
   const stringifiedUserCake = userCake.toJSON()
@@ -274,12 +274,18 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   const handleConfirm = async () => {
     getApproveConfirmDispatch.dispatch({ type: 'confirm_sending' })
     const ticketsForPurchase = getTicketsForPurchase()
-    const status = await handleBuyConfirm(ticketsForPurchase)
-    if (status) {
-      getApproveConfirmDispatch.dispatch({ type: 'confirm_receipt' })
-      onDismiss()
-      dispatch(fetchUserTicketsAndLotteries({ account, currentLotteryId }))
-      toastSuccess(t('Lottery tickets purchased!'))
+
+    try {
+      const status = await handleBuyConfirm(ticketsForPurchase)
+      if (status) {
+        getApproveConfirmDispatch.dispatch({ type: 'confirm_receipt' })
+        onDismiss()
+        dispatch(fetchUserTicketsAndLotteries({ account, currentLotteryId }))
+        toastSuccess(t('Lottery tickets purchased!'))
+      }
+    } catch (error) {
+      getApproveConfirmDispatch.dispatch({ type: 'confirm_error' })
+      toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
     }
   }
 
