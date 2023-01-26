@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react'
+import React, { useEffect, useReducer, useRef } from 'react'
 import { noop } from 'lodash'
 import { useWeb3React } from '@web3-react/core'
 import { ethers } from 'ethers'
@@ -133,6 +133,7 @@ const useApproveConfirmTransaction = ({
         toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
       }
     },
+    getApproveConfirmDispatch: { state, dispatch },
   }
 }
 

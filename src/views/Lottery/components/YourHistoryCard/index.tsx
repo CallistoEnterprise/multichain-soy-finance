@@ -9,11 +9,11 @@ import { fetchLottery } from 'state/lottery/helpers'
 import { LotteryRound } from 'state/types'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import FinishedRoundTable from './FinishedRoundTable'
-import { WhiteBunny } from '../../svgs'
 import BuyTicketsButton from '../BuyTicketsButton'
 import PreviousRoundCardBody from '../PreviousRoundCard/Body'
 import { processLotteryResponse, getDrawnDate } from '../../helpers'
 import PreviousRoundCardFooter from '../PreviousRoundCard/Footer'
+import { BASE_URL } from 'config'
 
 const StyledCard = styled(Card)`
   width: 100%;
@@ -107,7 +107,8 @@ const YourHistoryCard = () => {
         <StyledCardBody>
           <Box maxWidth="280px">
             <Flex alignItems="center" justifyContent="center" mb="16px">
-              <WhiteBunny height="24px" mr="8px" /> <Text textAlign="left">{t('No lottery history found')}</Text>
+              <img src={`${BASE_URL}/images/logo.png`} height="24px" alt="soy logo" style={{ margin: '8px' }} />{' '}
+              <Text textAlign="left">{t('No lottery history found')}</Text>
             </Flex>
             <Text textAlign="center" color="textSubtle" mb="16px">
               {t('Buy tickets for the next round!')}

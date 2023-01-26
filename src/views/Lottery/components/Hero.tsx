@@ -95,7 +95,7 @@ const TicketContainer = styled(Flex)`
 `
 
 const PrizeTotalBalance = styled(Balance)`
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  background: ${({ theme }) => theme.colors.gradients.lotteryBubblegum};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `

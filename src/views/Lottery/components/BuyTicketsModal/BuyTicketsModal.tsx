@@ -236,38 +236,51 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     userCurrentTickets,
   )
 
-  const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove /*, handleConfirm*/ } =
-    useApproveConfirmTransaction({
-      onRequiresApproval: async () => {
-        try {
-          const response = await cakeContract.allowance(account, lotteryContract.address)
-          const currentAllowance = ethersToBigNumber(response)
-          return currentAllowance.gt(0)
-        } catch (error) {
-          return false
-        }
-      },
-      onApprove: () => {
-        return cakeContract.approve(lotteryContract.address, ethers.constants.MaxUint256)
-      },
-      onApproveSuccess: async () => {
-        toastSuccess(t('Contract enabled - you can now purchase tickets'))
-      },
-      onConfirm: () => {
-        const ticketsForPurchase = getTicketsForPurchase()
-        return lotteryContract.buyTickets(currentLotteryId, ticketsForPurchase)
-      },
-      onSuccess: async () => {
-        onDismiss()
-        dispatch(fetchUserTicketsAndLotteries({ account, currentLotteryId }))
-        toastSuccess(t('Lottery tickets purchased!'))
-      },
-    })
+  const {
+    isApproving,
+    isApproved,
+    isConfirmed,
+    isConfirming,
+    handleApprove /*, handleConfirm*/,
+    getApproveConfirmDispatch,
+  } = useApproveConfirmTransaction({
+    onRequiresApproval: async () => {
+      try {
+        const response = await cakeContract.allowance(account, lotteryContract.address)
+        const currentAllowance = ethersToBigNumber(response)
+        return currentAllowance.gt(0)
+      } catch (error) {
+        return false
+      }
+    },
+    onApprove: () => {
+      return cakeContract.approve(lotteryContract.address, ethers.constants.MaxUint256)
+    },
+    onApproveSuccess: async () => {
+      toastSuccess(t('Contract enabled - you can now purchase tickets'))
+    },
+    onConfirm: () => {
+      const ticketsForPurchase = getTicketsForPurchase()
+      return lotteryContract.buyTickets(currentLotteryId, ticketsForPurchase)
+    },
+    onSuccess: async () => {
+      onDismiss()
+      dispatch(fetchUserTicketsAndLotteries({ account, currentLotteryId }))
+      toastSuccess(t('Lottery tickets purchased!'))
+    },
+  })
 
   const { handleBuyConfirm } = useBuyTickets(currentLotteryId)
   const handleConfirm = async () => {
+    getApproveConfirmDispatch.dispatch({ type: 'confirm_sending' })
     const ticketsForPurchase = getTicketsForPurchase()
-    await handleBuyConfirm(ticketsForPurchase)
+    const status = await handleBuyConfirm(ticketsForPurchase)
+    if (status) {
+      getApproveConfirmDispatch.dispatch({ type: 'confirm_receipt' })
+      onDismiss()
+      dispatch(fetchUserTicketsAndLotteries({ account, currentLotteryId }))
+      toastSuccess(t('Lottery tickets purchased!'))
+    }
   }
 
   const getErrorMessage = () => {
