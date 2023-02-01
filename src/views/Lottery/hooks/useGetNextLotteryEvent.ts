@@ -12,7 +12,7 @@ const useGetNextLotteryEvent = (endTime: number, status: LotteryStatus): Lottery
   const { t } = useTranslation()
   const vrfRequestTime = 180 // 3 mins
   const secondsBetweenRounds = 300 // 5 mins
-  const transactionResolvingBuffer = 30 // Delay countdown by 30s to ensure contract transactions have been calculated and broadcast
+  const transactionResolvingBuffer = 180 // (3 min, original PCS 30 s) Delay countdown by 30s to ensure contract transactions have been calculated and broadcast
   const [nextEvent, setNextEvent] = useState({ nextEventTime: null, preCountdownText: null, postCountdownText: null })
 
   useEffect(() => {

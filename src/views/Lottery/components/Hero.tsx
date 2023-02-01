@@ -3,12 +3,11 @@ import styled, { keyframes } from 'styled-components'
 import { Box, Flex, Heading, Skeleton } from 'uikit2'
 import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
-import { TicketPurchaseCard } from '../svgs'
-import BuyTicketsButton from './BuyTicketsButton'
+//import { TicketPurchaseCard } from '../svgs'
+//import BuyTicketsButton from './BuyTicketsButton'
 import LotteryImage from 'assets/lottery-ticket.png'
 import { BASE_URL } from 'config'
 
@@ -100,7 +99,7 @@ const PrizeTotalBalance = styled(Balance)`
   -webkit-text-fill-color: transparent;
 `
 
-const StyledBuyTicketButton = styled(BuyTicketsButton)<{ disabled: boolean }>`
+/*const StyledBuyTicketButton = styled(BuyTicketsButton)<{ disabled: boolean }>`
   background: ${({ theme, disabled }) => (disabled ? 'grey' : 'linear-gradient(180deg, #7645d9 0%, #452a7a 100%)')};
   width: 200px;
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -121,7 +120,7 @@ const TicketSvgWrapper = styled.div`
   top: 0;
   left: 0;
   transform: rotate(-4deg);
-`
+`*/
 
 const Decorations = styled.div`
   position: absolute;
@@ -250,7 +249,7 @@ const Hero = () => {
   const { t } = useTranslation()
   const {
     currentRound: { amountCollectedInCake, status },
-    isTransitioning,
+    //isTransitioning,
   } = useLottery()
 
   //const cakePriceBusd = usePriceCakeBusd()
@@ -258,7 +257,7 @@ const Hero = () => {
   //const prizeTotal = getBalanceNumber(prizeInBusd)
   const prizeTotal = getBalanceNumber(amountCollectedInCake)
 
-  const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
+  //const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
 
   const getHeroHeading = () => {
     if (status === LotteryStatus.OPEN) {
@@ -305,7 +304,7 @@ const Hero = () => {
         justifyContent="center"
       >
         <img src={LotteryImage} alt="Ticket Illustration" />
-        {/*}
+        {/*
         <ButtonWrapper>
           <StyledBuyTicketButton disabled={ticketBuyIsDisabled} />
         </ButtonWrapper>

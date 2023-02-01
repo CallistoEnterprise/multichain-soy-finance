@@ -1,5 +1,4 @@
-import { ethers } from 'ethers'
-import { DEFAULT_GAS_LIMIT } from 'config'
+//import { DEFAULT_GAS_LIMIT } from 'config'
 
 export const buyTickets = async (lotteryContract, currentLotteryId, ticketsForPurchase, web3) => {
   const gasLimit = await lotteryContract.estimateGas.buyTickets(currentLotteryId, ticketsForPurchase)
