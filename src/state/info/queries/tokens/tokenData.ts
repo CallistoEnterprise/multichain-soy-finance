@@ -7,7 +7,7 @@ import { useBlocksFromTimestamps } from 'views/Info/hooks/useBlocksFromTimestamp
 import { getPercentChange, getChangeForPeriod, getAmountChange } from 'views/Info/utils/infoDataHelpers'
 import { TokenData } from 'state/info/types'
 import { useBnbPrices } from 'views/Info/hooks/useBnbPrices'
-import { coinPrice, derivedCOIN } from 'config/constants/info'
+import { derivedCOIN } from 'config/constants/info'
 
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 

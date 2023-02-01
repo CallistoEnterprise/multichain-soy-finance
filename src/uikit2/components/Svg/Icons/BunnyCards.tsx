@@ -1,11 +1,8 @@
 import React from 'react'
-import uniqueId from 'lodash/uniqueId'
 import Svg from '../Svg'
 import { SvgProps } from '../types'
 
 const Icon: React.FC<SvgProps> = (props) => {
-  const id = uniqueId('svg')
-
   return (
     <Svg viewBox="0 0 101 100" {...props}>
       <g opacity="0.5">

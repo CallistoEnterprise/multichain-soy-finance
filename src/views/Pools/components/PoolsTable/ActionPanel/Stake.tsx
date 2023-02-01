@@ -5,7 +5,6 @@ import {
   Button,
   useModal,
   IconButton,
-  AddIcon,
   MinusIcon,
   Skeleton,
   useTooltip,
@@ -50,7 +49,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     sousId,
     stakingToken,
     earningToken,
-    stakingLimit,
     isFinished,
     poolCategory,
     userData,
@@ -186,7 +184,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     { placement: 'bottom' },
   )
 
-  const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
+  //const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
 
   if (!account) {
     return (

@@ -1,8 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { CHAINS_CONSTANTS } from './chains'
-import { chain } from 'lodash'
 export const GRAPH_API_PROFILE = process.env.REACT_APP_GRAPH_API_PROFILE
 export const GRAPH_API_PREDICTION = process.env.REACT_APP_GRAPH_API_PREDICTION
 export const GRAPH_API_LOTTERY = 'http://sinkulova.invictusmining.com:8200/subgraphs/name/SoyFinance/lottery' //process.env.REACT_APP_GRAPH_API_LOTTERY

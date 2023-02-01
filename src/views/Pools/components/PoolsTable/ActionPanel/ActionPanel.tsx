@@ -21,7 +21,6 @@ import BigNumber from 'bignumber.js'
 import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
-import { ManualPoolTag } from 'components/Tags'
 import { useBlockLatestTimestamp } from 'utils'
 import { getAddress, getPmoonVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
@@ -172,7 +171,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   )
 
   const {
-    targetRef: tagTargetRef,
+    //targetRef: tagTargetRef,
     tooltip: tagTooltip,
     tooltipVisible: tagTooltipVisible,
   } = useTooltip(isAutoVault ? autoTooltipText : manualTooltipText, {
