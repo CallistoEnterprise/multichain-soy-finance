@@ -4,7 +4,7 @@ import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { Contract } from '@ethersproject/contracts'
 import { getRpcProvider } from 'utils/providers'
 import { poolsConfig } from 'config/constants'
-import { Address, PoolCategory } from 'config/constants/types'
+import { Address } from 'config/constants/types'
 
 // Addresses
 import {
@@ -56,7 +56,6 @@ import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefNew from 'config/abi/sousChefNew.json'
 import sousChefV2 from 'config/abi/sousChefV2.json'
-import sousChefMatic from 'config/abi/sousChefMatic.json'
 import claimRefundAbi from 'config/abi/claimRefund.json'
 import tradingCompetitionAbi from 'config/abi/tradingCompetition.json'
 import easterNftAbi from 'config/abi/easterNft.json'

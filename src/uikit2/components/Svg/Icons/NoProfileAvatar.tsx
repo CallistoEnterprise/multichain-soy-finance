@@ -1,11 +1,8 @@
 import React from 'react'
-import { useTheme } from 'styled-components'
 import Svg from '../Svg'
 import { SvgProps } from '../types'
 
 const Icon: React.FC<SvgProps> = (props) => {
-  const theme = useTheme()
-
   return (
     <Svg viewBox="0 0 101 100" {...props}>
       <circle cx="50.1423" cy="50" r="45" fill="url(#paint0_linear)" stroke="url(#paint1_linear)" strokeWidth="4" />

@@ -5,7 +5,6 @@ import { useWeb3React } from '@web3-react/core'
 import { Button, InjectedModalProps, Modal, Text, Flex, AutoRenewIcon } from 'uikit2'
 import { Nft } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
-import useToast from 'hooks/useToast'
 
 interface ClaimNftModalProps extends InjectedModalProps {
   nft: Nft
@@ -24,10 +23,10 @@ const Actions = styled.div`
 `
 
 const ClaimNftModal: React.FC<ClaimNftModalProps> = ({ nft, onSuccess, onClaim, onDismiss }) => {
-  const [isConfirming, setIsConfirming] = useState(false)
+  const [isConfirming /*setIsConfirming*/] = useState(false)
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  const { toastError, toastSuccess } = useToast()
+  //const { toastError, toastSuccess } = useToast()
 
   // const handleConfirm = async () => {
   //   const tx = await onClaim()

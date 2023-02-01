@@ -3,7 +3,6 @@ import useActiveWeb3React, { useWeb3ProviderByRpc } from 'hooks/useActiveWeb3Rea
 import { stakeFarm } from 'utils/calls'
 import { getLpContractWithAccount } from 'utils/contractHelpers'
 import { getAddress } from 'utils/addressHelpers'
-import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const useStakeFarms = (pid: number) => {

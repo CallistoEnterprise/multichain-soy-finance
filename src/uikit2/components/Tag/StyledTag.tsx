@@ -1,4 +1,4 @@
-import styled, { DefaultTheme } from 'styled-components'
+import styled from 'styled-components'
 import { space, variant } from 'styled-system'
 import { PancakeTheme } from '../..'
 import { Colors } from '../../theme/types'

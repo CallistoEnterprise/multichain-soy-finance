@@ -12,12 +12,6 @@
     "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
     "format:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn format:check",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -116,7 +110,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "https-browserify": "^1.0.0",
-    "husky": "^7.0.4",
     "prettier": "^2.4.1",
     "react-scripts": "^5.0.1",
     "source-map-explorer": "^2.5.2",

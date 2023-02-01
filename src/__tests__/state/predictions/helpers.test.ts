@@ -1,9 +1,4 @@
-import {
-  makeFutureRoundResponse,
-  numberOrNull,
-  transformBetResponse,
-  transformTotalWonResponse,
-} from 'state/predictions/helpers'
+import { makeFutureRoundResponse, numberOrNull, transformTotalWonResponse } from 'state/predictions/helpers'
 
 describe('numberOrNull', () => {
   it.each([
@@ -36,13 +31,13 @@ describe('makeFutureRoundResponse', () => {
 })
 
 describe('transformBetResponse', () => {
-  const userResponse = {
-    id: 'user',
-    address: 'address',
-    block: '500',
-    totalBets: '20',
-    totalCLO: '43',
-  }
+  // const userResponse = {
+  //   id: 'user',
+  //   address: 'address',
+  //   block: '500',
+  //   totalBets: '20',
+  //   totalCLO: '43',
+  // }
 
   it('returns a correctly transformed betresponse without round', () => {
     // const betResponseWithoutRound = {

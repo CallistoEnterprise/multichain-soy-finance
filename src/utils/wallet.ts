@@ -1,6 +1,6 @@
 // Set of helper functions to facilitate wallet setup
 
-import { BASE_URL, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
+import { BASE_URL } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { ChainConstants } from 'config/constants/chains/types'
 import tokens from 'config/constants/tokens'

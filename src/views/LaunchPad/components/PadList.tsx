@@ -1,7 +1,5 @@
 import React from 'react'
-import { useWeb3React } from '@web3-react/core'
 import LaunchPads from 'config/constants/launchPads'
-import { useAppDispatch } from 'state'
 import NftCard from './NftCard'
 import NftGrid from './NftGrid'
 
