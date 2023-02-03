@@ -62,6 +62,12 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     label: '',
   },
   {
+    id: 1.5,
+    name: 'tags',
+    sortable: false,
+    label: '',
+  },
+  {
     id: 2,
     name: 'earned',
     sortable: true,

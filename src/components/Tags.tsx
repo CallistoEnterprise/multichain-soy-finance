@@ -11,12 +11,28 @@ import {
   VoteIcon,
 } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
+import { AuditTagProps } from 'uikit2/components/Tag/types'
+import { getCallistoRiskLevelColor, getCallistoRiskLevelDescription } from '@callisto-enterprise/assetslist'
 
 const CoreTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <Tag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
+    <Tag
+      variant="secondary"
+      outline
+      startIcon={<VerifiedIcon width={props.scale === 'sm' ? '14px' : '18px'} color="secondary" mr="4px" />}
+      {...props}
+    >
       {t('Core')}
+    </Tag>
+  )
+}
+
+const AuditTag: React.FC<AuditTagProps> = (props) => {
+  const { t } = useTranslation()
+  return (
+    <Tag variant="secondary" outline {...props} color={getCallistoRiskLevelColor(props.riskLevel)}>
+      {t(getCallistoRiskLevelDescription(props.riskLevel).replace('Audit: ', ''))}
     </Tag>
   )
 }
@@ -84,4 +100,4 @@ const ClosedTag: React.FC<TagProps> = (props) => {
   )
 }
 
-export { CoreTag, CommunityTag, DualTag, ManualPoolTag, CompoundingPoolTag, VoteNowTag, SoonTag, ClosedTag }
+export { CoreTag, AuditTag, CommunityTag, DualTag, ManualPoolTag, CompoundingPoolTag, VoteNowTag, SoonTag, ClosedTag }
