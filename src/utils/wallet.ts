@@ -6,7 +6,7 @@ import { ChainConstants } from 'config/constants/chains/types'
 import tokens from 'config/constants/tokens'
 
 /**
- * Prompt the user to add Polygon as a network on Metamask, or switch to Polygon if the wallet is on a different network
+ * Prompt the user to network on Metamask, or switch if the wallet is on a different network
  * @returns {boolean} true if the setup succeeded, false otherwise
  */
 export const setupNetwork = async (chainId: number) => {
@@ -37,7 +37,7 @@ export const setupNetwork = async (chainId: number) => {
       return false
     }
   } else {
-    console.error("Can't setup the Polygon network on metamask because window.ethereum is undefined")
+    console.error("Can't setup the network on metamask because window.ethereum is undefined")
     return false
   }
 }
@@ -108,7 +108,7 @@ export const setupNetwork2 = async (chainId: number) => {
       return false
     }
   } else {
-    console.error("Can't setup the BSC network on metamask because window.ethereum is undefined")
+    console.error("Can't setup the network on metamask because window.ethereum is undefined")
     return false
   }
 }

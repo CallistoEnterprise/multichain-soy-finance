@@ -129,7 +129,6 @@ function CurrencySearchIdo({
       (item.symbol === 'ccETH' && item.name.includes('ERC223')) ||
       (item.symbol === 'ccBNB' && item.name.includes('ERC223')),
   )
-  // console.log(filteredSortedTokens1)
 
   return (
     <>
