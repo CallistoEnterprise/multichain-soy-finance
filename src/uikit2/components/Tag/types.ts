@@ -1,3 +1,4 @@
+import { AuditRiskLevel } from '@callisto-enterprise/assetslist/dist/types'
 import { ReactNode } from 'react'
 import { SpaceProps } from 'styled-system'
 
@@ -27,4 +28,9 @@ export interface TagProps extends SpaceProps {
   endIcon?: ReactNode
   outline?: boolean
   children?: ReactNode
+  color?: string
+}
+
+export interface AuditTagProps extends TagProps {
+  riskLevel: AuditRiskLevel
 }

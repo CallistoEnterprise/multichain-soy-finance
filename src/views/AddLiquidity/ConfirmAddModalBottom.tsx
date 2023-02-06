@@ -1,6 +1,6 @@
 import { Currency, CurrencyAmount, Fraction, Percent } from 'sdk'
 import React from 'react'
-import { Button, Text } from 'uikit2'
+import { Button, Text, Flex } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { RowBetween, RowFixed } from '../../components/Layout/Row'
 import { CurrencyLogo } from '../../components/Logo'
@@ -57,9 +57,11 @@ function ConfirmAddModalBottom({
         <Text>{t('Share of Pool')}:</Text>
         <Text>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</Text>
       </RowBetween>
-      <Button onClick={onAdd} mt="20px">
-        {noLiquidity ? t('Create Pool & Supply') : t('Confirm Supply')}
-      </Button>
+      <Flex justifyContent="center" pt="24px">
+        <Button onClick={onAdd} mt="20px" style={{ width: '100%' }}>
+          {noLiquidity ? t('Create Pool & Supply') : t('Confirm Supply')}
+        </Button>
+      </Flex>
     </>
   )
 }

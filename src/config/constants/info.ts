@@ -1,4 +1,3 @@
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { CHAINS_CONSTANTS } from './chains'
 const chainId = 820 //parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 export const MINIMUM_SEARCH_CHARACTERS = 2

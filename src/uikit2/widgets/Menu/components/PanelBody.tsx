@@ -22,11 +22,6 @@ const Container = styled.div`
   height: calc(100%-66px);
 `
 
-const StyledImg = styled.img`
-  width: 24px;
-  margin-right: 8px;
-`
-
 const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
   const location = useLocation()
 

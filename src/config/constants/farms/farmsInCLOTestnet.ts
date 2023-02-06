@@ -18,7 +18,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 25,
-    lpSymbol: 'BUSDT-CLO LP',
+    lpSymbol: 'CLO-BUSDT LP',
     lpAddresses: {
       20729: '0x427c92b6ee9c4885448708c725f909E9521b41AA',
       820: '',

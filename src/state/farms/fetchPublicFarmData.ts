@@ -107,8 +107,6 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
   //   }
   // ])
 
-  // console.log("chainMultiplier :: ", chainMultiplier)
-
   const bigAlloc = new BigNumber(allocPoint[0].toString())
   const poolWeight = totalAllocPoint[0] ? bigAlloc.div(new BigNumber(1000)) : BIG_ZERO
 

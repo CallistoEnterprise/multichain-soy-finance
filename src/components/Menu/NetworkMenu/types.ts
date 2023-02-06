@@ -1,4 +1,3 @@
-import React from 'react'
 import { FlexProps } from 'styled-system'
 
 export const variants = {

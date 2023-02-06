@@ -10,6 +10,7 @@ import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
 import Earned, { EarnedProps } from './Earned'
 import Details from './Details'
+import FarmTags, { FarmTagProps } from './FarmTags'
 import Multiplier, { MultiplierProps } from './Multiplier'
 import Liquidity, { LiquidityProps } from './Liquidity'
 import ActionPanel from './Actions/ActionPanel'
@@ -23,6 +24,7 @@ export interface RowProps {
   multiplier: MultiplierProps
   liquidity: LiquidityProps
   details: FarmWithStakedValue
+  tags: FarmTagProps
 }
 
 interface RowPropsWithLoading extends RowProps {
@@ -36,6 +38,7 @@ const cells = {
   details: Details,
   multiplier: Multiplier,
   liquidity: Liquidity,
+  tags: FarmTags,
 }
 
 const CellInner = styled.div`
@@ -175,7 +178,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
       {handleRenderRow()}
       {shouldRenderChild && (
         <tr>
-          <td colSpan={6}>
+          <td colSpan={7}>
             <ActionPanel {...props} expanded={actionPanelExpanded} />
           </td>
         </tr>

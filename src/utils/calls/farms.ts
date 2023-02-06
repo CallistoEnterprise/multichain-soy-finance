@@ -1,10 +1,6 @@
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
-import { DEFAULT_TOKEN_DECIMAL, DEFAULT_GAS_LIMIT } from 'config'
-
-const options = {
-  gasLimit: DEFAULT_GAS_LIMIT,
-}
+import { DEFAULT_TOKEN_DECIMAL } from 'config'
 
 export const stakeFarm = async (lpContract, localFarmAddress, amount, web3?: any) => {
   const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()

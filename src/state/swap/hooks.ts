@@ -146,7 +146,6 @@ export function useDerivedSwapInfo(): {
   const bestTradeExactOut = useTradeExactOut(inputCurrency ?? undefined, !isExactIn ? parsedAmount : undefined)
 
   const v2Trade = isExactIn ? bestTradeExactIn : bestTradeExactOut
-  // console.log(isExactIn, parsedAmount, v2Trade, bestTradeExactIn, bestTradeExactOut)
 
   const currencyBalances = {
     [Field.INPUT]: relevantTokenBalances[0],
