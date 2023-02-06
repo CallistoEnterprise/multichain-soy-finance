@@ -124,9 +124,10 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                   </td>
                 )
               default:
+                const stylingMod = key === 'tags' ? { paddingTop: '0px', paddingBottom: '0px' } : {}
                 return (
                   <td key={key}>
-                    <CellInner>
+                    <CellInner style={stylingMod}>
                       <CellLayout label={t(tableSchema[columnIndex].label)}>
                         {React.createElement(cells[key], { ...props[key], userDataReady })}
                       </CellLayout>
