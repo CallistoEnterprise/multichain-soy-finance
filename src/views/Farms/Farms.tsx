@@ -3,7 +3,6 @@ import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Heading, RowType, Toggle, Text, Flex } from 'uikit2'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
@@ -14,7 +13,6 @@ import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getFarmApr } from 'utils/apr'
 import { orderBy } from 'lodash'
-import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
 import PageHeader from 'components/PageHeader'
@@ -27,6 +25,7 @@ import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+import { getCallistoIsAuditedFarm, getCallistoRiskLevelFarm } from 'utils/getCallistoRiskLevel'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -304,6 +303,12 @@ const Farms: React.FC = () => {
         multiplier: farm.multiplier,
       },
       details: farm,
+      tags: {
+        flexDirection: 'column',
+        isCore: farm.multiplier && Number(farm.multiplier.replace('X', '')) >= 5,
+        isAudited: getCallistoIsAuditedFarm(farm.quoteToken.address[chainId], farm.token.address[chainId], chainId),
+        riskLevel: getCallistoRiskLevelFarm(farm.quoteToken.address[chainId], farm.token.address[chainId], chainId),
+      },
     }
 
     return row

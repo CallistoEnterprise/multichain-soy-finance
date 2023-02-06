@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import PanIcon from './PanIcon'
+//import PanIcon from './PanIcon'
 import PancakeIcon from './PancakeIcon'
 import { SpinnerProps } from './types'
 
@@ -13,7 +13,7 @@ const rotate = keyframes`
   }
 `
 
-const float = keyframes`
+/*const float = keyframes`
 	0% {
 		transform: translatey(0px);
 	}
@@ -24,7 +24,7 @@ const float = keyframes`
 		transform: translatey(0px);
 	}
 `
-
+*/
 const Container = styled.div`
   position: relative;
 `

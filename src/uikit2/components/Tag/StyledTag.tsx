@@ -1,4 +1,4 @@
-import styled, { DefaultTheme } from 'styled-components'
+import styled from 'styled-components'
 import { space, variant } from 'styled-system'
 import { PancakeTheme } from '../..'
 import { Colors } from '../../theme/types'
@@ -9,16 +9,24 @@ interface ThemedProps extends TagProps {
   theme: PancakeTheme
 }
 
-const getOutlineStyles = ({ outline, theme, variant: variantKey = variants.PRIMARY }: ThemedProps) => {
+const getOutlineStyles = ({ outline, theme, variant: variantKey = variants.PRIMARY, color }: ThemedProps) => {
   if (outline) {
-    const themeColorKey = styleVariants[variantKey].backgroundColor as keyof Colors
-    const color = theme.colors[themeColorKey]
-
-    return `
+    if (color) {
+      return `
       color: ${color};
       background: transparent;
       border: 2px solid ${color};
     `
+    } else {
+      const themeColorKey = styleVariants[variantKey].backgroundColor as keyof Colors
+      const realColor = theme.colors[themeColorKey]
+
+      return `
+      color: ${realColor};
+      background: transparent;
+      border: 2px solid ${realColor};
+    `
+    }
   }
 
   return ''

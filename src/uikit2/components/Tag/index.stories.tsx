@@ -18,9 +18,9 @@ export const Default: React.FC = () => {
         return (
           <Box key={variant} mb="32px ">
             <Flex alignItems="center">
-              {Object.values(scales).map((scale) => {
+              {Object.values(scales).map((scale, inex) => {
                 return (
-                  <Tag scale={scale} variant={variant} mr="8px">
+                  <Tag scale={scale} variant={variant} mr="8px" key={index}>
                     {`${capitalize(variant)}: ${scale.toUpperCase()}`}
                   </Tag>
                 )

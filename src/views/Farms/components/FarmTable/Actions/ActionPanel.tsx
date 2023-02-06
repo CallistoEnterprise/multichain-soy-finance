@@ -7,13 +7,14 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getAddress } from 'utils/addressHelpers'
 import { getCallistoExpLink } from 'utils'
-import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
 
 import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
 import Liquidity, { LiquidityProps } from '../Liquidity'
+import FarmTags from '../FarmTags'
+import { getCallistoIsAuditedFarm, getCallistoRiskLevelFarm } from 'utils/getCallistoRiskLevel'
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -80,23 +81,8 @@ const StakeContainer = styled.div`
 `
 
 const TagsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 25px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-top: 16px;
-  }
-
-  > div {
-    height: 24px;
-    padding: 0 6px;
-    font-size: 14px;
-    margin-right: 4px;
-
-    svg {
-      width: 14px;
-    }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display: none;
   }
 `
 
@@ -114,13 +100,24 @@ const ActionContainer = styled.div`
 
 const InfoContainer = styled.div`
   min-width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-top: 0;
+  }
 `
+
+const LinksContainer = styled.div``
 
 const ValueContainer = styled.div`
   display: block;
+  margin-top: 10px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     display: none;
+    margin-top: 0;
   }
 `
 
@@ -143,11 +140,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const isActive = farm.multiplier !== '0X'
-  const { quoteToken, token, dual } = farm
   const lpLabel = farm?.lpSymbol && farm?.lpSymbol?.toUpperCase().replace('SOYFINANCE', '')
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
-    quoteTokenAddress: quoteToken.address,
-    tokenAddress: token.address,
+    quoteTokenAddress: farm.quoteToken.address,
+    tokenAddress: farm.token.address,
   })
   const lpAddress = getAddress(farm?.lpAddresses)
   const polygon = getCallistoExpLink(lpAddress, 'address', chainId)
@@ -156,18 +152,24 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   return (
     <Container expanded={expanded}>
       <InfoContainer>
-        {isActive && (
-          <StakeContainer>
-            <StyledLinkExternal href={`/add/${liquidityUrlPathParts}`}>
-              {t('Get %symbol%', { symbol: lpLabel })}
-            </StyledLinkExternal>
-          </StakeContainer>
-        )}
-        <StyledLinkExternal href={polygon}>{t('View Contract')}</StyledLinkExternal>
-        {/* <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal> */}
+        <LinksContainer>
+          {isActive && (
+            <StakeContainer>
+              <StyledLinkExternal href={`/add/${liquidityUrlPathParts}`}>
+                {t('Get %symbol%', { symbol: lpLabel })}
+              </StyledLinkExternal>
+            </StakeContainer>
+          )}
+          <StyledLinkExternal href={polygon}>{t('View Contract')}</StyledLinkExternal>
+        </LinksContainer>
         <TagsContainer>
-          {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
-          {dual ? <DualTag /> : null}
+          <FarmTags
+            flexDirection="column"
+            scale="sm"
+            isCore={farm.multiplier && Number(farm.multiplier.replace('X', '')) >= 5}
+            isAudited={getCallistoIsAuditedFarm(farm.quoteToken.address[chainId], farm.token.address[chainId], chainId)}
+            riskLevel={getCallistoRiskLevelFarm(farm.quoteToken.address[chainId], farm.token.address[chainId], chainId)}
+          />
         </TagsContainer>
       </InfoContainer>
       <ValueContainer>

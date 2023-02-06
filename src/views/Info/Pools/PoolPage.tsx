@@ -1,7 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react'
 import { RouteComponentProps, Link } from 'react-router-dom'
-import { useWeb3React } from '@web3-react/core'
 import {
   Text,
   Flex,

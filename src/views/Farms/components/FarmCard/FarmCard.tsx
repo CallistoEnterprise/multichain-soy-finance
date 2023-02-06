@@ -111,6 +111,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
         isCommunityFarm={farm.isCommunity}
         token={farm.token}
         quoteToken={farm.quoteToken}
+        chainId={chainId}
       />
       {!removed && (
         <Flex justifyContent="space-between" alignItems="center">

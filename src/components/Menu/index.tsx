@@ -29,7 +29,7 @@ const Menu = (props) => {
       langs={languageList}
       setLang={setLanguage}
       cakePriceUsd={soyPriceUsd.toNumber()}
-      links={userMenuConfig(chainId)(t) /*chainId === 199 ? bttConfig(t) : chainId === 61 ? etcConfig(t) : config(t)*/}
+      links={userMenuConfig(chainId)(t)}
       profile={{
         username: profile?.username,
         image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,

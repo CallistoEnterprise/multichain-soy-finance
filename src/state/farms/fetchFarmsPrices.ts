@@ -9,7 +9,6 @@ import { Farm } from 'state/types'
 const getFarmFromTokenSymbol = (farms: Farm[], tokenSymbol: string): Farm => {
   const farmsWithTokenSymbol = farms.filter((farm) => farm.token.symbol === tokenSymbol)
   const filteredFarm = filterFarmsByQuoteToken(farmsWithTokenSymbol)
-  // console.log(farmsWithTokenSymbol, filteredFarm, tokenSymbol)
   return filteredFarm
 }
 
@@ -18,7 +17,7 @@ const getFarmBaseTokenPrice = (
   quoteTokenFarm: Farm,
   cloPriceBusd: BigNumber,
   ccCloPrice: BigNumber,
-  chainId,
+  chainId: number,
 ): BigNumber => {
   const hasTokenPriceVsQuote = Boolean(farm.tokenPriceVsQuote)
 
@@ -96,18 +95,21 @@ const getFarmQuoteTokenPrice = (
 }
 
 const farmsPids = {
-  [ChainId.Mainnet]: 4,
-  [ChainId.Testnet]: 25,
+  // clo-busdt
+  [ChainId.Mainnet]: 4, // here it is busdt-wclo
+  [ChainId.Testnet]: 25, // clo-busdt
   [ChainId.BTT]: 14,
   [ChainId.ETC]: 6,
 }
 const busdtFarms = {
+  // soy-busdt
   [ChainId.Mainnet]: 5,
   [ChainId.Testnet]: 24,
   [ChainId.BTT]: 19,
   [ChainId.ETC]: 5,
 }
 const refFarms = {
+  // soy-clo
   [ChainId.Mainnet]: 2,
   [ChainId.Testnet]: 23,
   [ChainId.BTT]: 9,
@@ -123,6 +125,7 @@ const fetchFarmsPrices = async (farms) => {
   const cloPrice = soyCloFarm ? soyPrice.times(soyCloFarm.tokenPriceVsQuote) : BIG_ZERO
 
   const nativePriceBusdt = nativeBusdtFarm.tokenPriceVsQuote ? BIG_ONE.div(nativeBusdtFarm.tokenPriceVsQuote) : BIG_ZERO
+
   const farmsWithPrices = farms.map((farm) => {
     const quoteTokenFarm = getFarmFromTokenSymbol(farms, farm.quoteToken.symbol)
     const baseTokenPrice =
@@ -136,6 +139,7 @@ const fetchFarmsPrices = async (farms) => {
 
     const token = { ...farm.token, usdcPrice: baseTokenPrice.toJSON() }
     const quoteToken = { ...farm.quoteToken, usdcPrice: quoteTokenPrice.toJSON() }
+
     return { ...farm, token, quoteToken }
   })
 

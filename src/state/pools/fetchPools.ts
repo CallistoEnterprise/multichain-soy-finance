@@ -7,7 +7,6 @@ import erc223ABI from 'config/abi/erc223.json'
 import { multicall3 } from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 
 export const fetchPoolsBlockLimits = async () => {
   const poolsWithEnd = poolsConfig.filter((p) => !p.isNew)

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Modal, Text, LinkExternal, Flex, Box } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
-import { tokenEarnedPerThousandDollarsCompoundingForPools, getRoi } from 'utils/compoundApyHelpers'
+import { tokenEarnedPerThousandDollarsCompoundingForPools } from 'utils/compoundApyHelpers'
 
 interface ApyCalculatorModalProps {
   onDismiss?: () => void
@@ -66,7 +66,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   isFarm = false,
 }) => {
   const { t } = useTranslation()
-  const oneThousandDollarsWorthOfToken = 1000 / tokenPrice
+  // const oneThousandDollarsWorthOfToken = 1000 / tokenPrice
 
   const tokenEarnedPerThousand1M = tokenEarnedPerThousandDollarsCompoundingForPools({
     numberOfDays: 30,
