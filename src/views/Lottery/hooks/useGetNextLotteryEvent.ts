@@ -6,14 +6,20 @@ interface LotteryEvent {
   nextEventTime: number
   postCountdownText?: string
   preCountdownText?: string
+  replacementText?: string
 }
 
 const useGetNextLotteryEvent = (endTime: number, status: LotteryStatus): LotteryEvent => {
   const { t } = useTranslation()
   const vrfRequestTime = 180 // 3 mins
   const secondsBetweenRounds = 300 // 5 mins
-  const transactionResolvingBuffer = 180 // (3 min, original PCS 30 s) Delay countdown by 30s to ensure contract transactions have been calculated and broadcast
-  const [nextEvent, setNextEvent] = useState({ nextEventTime: null, preCountdownText: null, postCountdownText: null })
+  const transactionResolvingBuffer = 0 // (3 min, original PCS 30 s) Delay countdown by 30s to ensure contract transactions have been calculated and broadcast
+  const [nextEvent, setNextEvent] = useState({
+    nextEventTime: null,
+    preCountdownText: null,
+    postCountdownText: null,
+    replacementText: null,
+  })
 
   useEffect(() => {
     // Current lottery is active
@@ -22,6 +28,7 @@ const useGetNextLotteryEvent = (endTime: number, status: LotteryStatus): Lottery
         nextEventTime: endTime + transactionResolvingBuffer,
         preCountdownText: null,
         postCountdownText: t('until the draw'),
+        replacementText: 'Draw in progress...',
       })
     }
     // Current lottery has finished but not yet claimable
@@ -30,6 +37,7 @@ const useGetNextLotteryEvent = (endTime: number, status: LotteryStatus): Lottery
         nextEventTime: endTime + transactionResolvingBuffer + vrfRequestTime,
         preCountdownText: t('Winners announced in'),
         postCountdownText: null,
+        replacementText: null,
       })
     }
     // Current lottery claimable. Next lottery has not yet started
@@ -38,6 +46,7 @@ const useGetNextLotteryEvent = (endTime: number, status: LotteryStatus): Lottery
         nextEventTime: endTime + transactionResolvingBuffer + secondsBetweenRounds,
         preCountdownText: t('Tickets on sale in'),
         postCountdownText: null,
+        replacementText: null,
       })
     }
   }, [status, endTime, t])

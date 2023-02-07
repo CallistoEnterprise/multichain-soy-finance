@@ -39,7 +39,10 @@ const Lottery = () => {
   } = useLottery()
   const [historyTabMenuIndex, setHistoryTabMenuIndex] = useState(0)
   const endTimeAsInt = parseInt(endTime, 10)
-  const { nextEventTime, postCountdownText, preCountdownText } = useGetNextLotteryEvent(endTimeAsInt, status)
+  let { nextEventTime, postCountdownText, preCountdownText, replacementText } = useGetNextLotteryEvent(
+    endTimeAsInt,
+    status,
+  )
 
   return (
     <LotteryPage>
@@ -66,6 +69,7 @@ const Lottery = () => {
                 nextEventTime={nextEventTime}
                 postCountdownText={postCountdownText}
                 preCountdownText={preCountdownText}
+                replacementText={replacementText}
               />
             ) : (
               <Skeleton height="41px" width="250px" />

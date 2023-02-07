@@ -8,9 +8,15 @@ interface CountdownProps {
   nextEventTime: number
   preCountdownText?: string
   postCountdownText?: string
+  replacementText?: string
 }
 
-const Countdown: React.FC<CountdownProps> = ({ nextEventTime, preCountdownText, postCountdownText }) => {
+const Countdown: React.FC<CountdownProps> = ({
+  nextEventTime,
+  preCountdownText,
+  postCountdownText,
+  replacementText,
+}) => {
   const secondsRemaining = useNextEventCountdown(nextEventTime)
   const { days, hours, minutes } = getTimePeriods(secondsRemaining <= 0 ? 0 : secondsRemaining)
 
@@ -23,12 +29,18 @@ const Countdown: React.FC<CountdownProps> = ({ nextEventTime, preCountdownText, 
               {preCountdownText}
             </Heading>
           )}
-          <Timer
-            minutes={minutes + 1} // We don't show seconds - so values from 0 - 59s should be shown as 1 min
-            hours={hours}
-            days={days}
-          />
-          {postCountdownText && <Heading color="#ffff">{postCountdownText}</Heading>}
+          {secondsRemaining >= 0 || !replacementText ? (
+            <>
+              <Timer
+                minutes={minutes + 1} // We don't show seconds - so values from 0 - 59s should be shown as 1 min
+                hours={hours}
+                days={days}
+              />
+              {postCountdownText && <Heading color="#ffff">{postCountdownText}</Heading>}
+            </>
+          ) : (
+            <Heading color="#ffff">{replacementText}</Heading>
+          )}
         </Flex>
       ) : (
         <Skeleton height="41px" width="250px" />
