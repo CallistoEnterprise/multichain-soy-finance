@@ -305,6 +305,7 @@ const Farms: React.FC = () => {
       details: farm,
       tags: {
         flexDirection: 'column',
+        scale: 'sm',
         isCore: farm.multiplier && Number(farm.multiplier.replace('X', '')) >= 5,
         isAudited: getCallistoIsAuditedFarm(farm.quoteToken.address[chainId], farm.token.address[chainId], chainId),
         riskLevel: getCallistoRiskLevelFarm(farm.quoteToken.address[chainId], farm.token.address[chainId], chainId),
