@@ -49,8 +49,8 @@ const fetchCakeRewardsForTickets = async (
 const getRewardBracketByNumber = (ticketNumber: string, finalNumber: string): number => {
   // Winning numbers are evaluated right-to-left in the smart contract, so we reverse their order for validation here:
   // i.e. '1123456' should be evaluated as '6543211'
-  const ticketNumAsArray = ticketNumber.split('').reverse()
-  const winningNumsAsArray = finalNumber.split('').reverse()
+  const ticketNumAsArray = (ticketNumber || '').split('').reverse()
+  const winningNumsAsArray = (finalNumber || '').split('').reverse()
   const matchingNumbers = []
 
   // The number at index 6 in all tickets is 1 and will always match, so finish at index 5

@@ -67,7 +67,7 @@ const getGraphLotteryUser = async (account: string): Promise<LotteryUserGraphEnt
             id
             totalTickets
             totalSoy
-            rounds(first: 100, orderDirection: desc, orderBy: block) {
+            rounds(first: 1000, orderDirection: desc, orderBy: block) {
               id
               lottery {
                 id

@@ -56,7 +56,7 @@ const getGraphLotteries = async (): Promise<LotteryRoundGraphEntity[]> => {
       GRAPH_API_LOTTERY,
       gql`
         query getLotteries {
-          lotteries(first: 100, orderDirection: desc, orderBy: block) {
+          lotteries(first: 1000, orderDirection: desc, orderBy: block) {
             id
             totalUsers
             totalTickets
