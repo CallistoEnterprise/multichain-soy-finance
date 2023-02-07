@@ -29,7 +29,6 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   isLoading = false,
 }) => {
   const { chainId } = useActiveWeb3React()
-  // console.log("stakingTokenBalance ::", stakingTokenBalance.toString())
   const { stakingToken, earningToken, sousId, stakingTokenPrice, stakingLimit, isFinished, userData, isNew } = pool
   const { t } = useTranslation()
   const [pendingTx, setPendingTx] = useState(false)

@@ -25,6 +25,7 @@ import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+import { getCallistoIsAuditedFarm, getCallistoRiskLevelFarm } from 'utils/getCallistoRiskLevel'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -302,6 +303,12 @@ const Farms: React.FC = () => {
         multiplier: farm.multiplier,
       },
       details: farm,
+      tags: {
+        flexDirection: 'column',
+        isCore: farm.multiplier && Number(farm.multiplier.replace('X', '')) >= 5,
+        isAudited: getCallistoIsAuditedFarm(farm.quoteToken.address[chainId], farm.token.address[chainId], chainId),
+        riskLevel: getCallistoRiskLevelFarm(farm.quoteToken.address[chainId], farm.token.address[chainId], chainId),
+      },
     }
 
     return row

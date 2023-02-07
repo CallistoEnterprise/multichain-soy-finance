@@ -30,8 +30,6 @@ export const useFetchPublicPoolsData = (
   useEffect(() => {
     const fetchPoolsPublicData = async () => {
       const blockNumber = await simpleRpcProvider.getBlockNumber()
-      // const pubData = await fetchPoolsPublicDataAsync(blockNumber, new BigNumber(0))
-      // console.log(pubData)
       dispatch(fetchPoolsPublicDataAsync(blockNumber, new BigNumber(5), chainId)) // , rwBLCntOfSousChef, rwBLCntOfMaticStaking
     }
     if (simpleRpcProvider) {

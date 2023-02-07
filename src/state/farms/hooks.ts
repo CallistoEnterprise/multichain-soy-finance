@@ -40,12 +40,14 @@ const coreFarms = {
   [ChainId.ETC]: [2, 6, 5, 1],
 }
 const coreEthFarms = {
+  // soy-clo
   [ChainId.Mainnet]: 2,
   [ChainId.Testnet]: 23,
   [ChainId.BTT]: 19,
   [ChainId.ETC]: 5,
 }
 const busdtFarms = {
+  // clo-busdt
   [ChainId.Mainnet]: 4,
   [ChainId.Testnet]: 25,
   [ChainId.BTT]: 14,
