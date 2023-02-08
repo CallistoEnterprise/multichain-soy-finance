@@ -336,7 +336,7 @@ const HowToPlay: React.FC = () => {
           </Heading>
           <Text>
             {t('Check our in-depth guide on')}{' '}
-            <InlineLink href="https://docs.soyfinance.finance/products/lottery/lottery-guide">
+            <InlineLink href="https://soy-finance.gitbook.io/soy-finance/soy-products/lottery/lottery-guide">
               {t('how to play the soyfinance lottery!')}
             </InlineLink>
           </Text>

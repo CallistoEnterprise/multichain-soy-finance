@@ -94,12 +94,12 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     <>
       <Text mb="16px">
         {t(
-          'Buying multiple tickets in a single transaction gives a discount. The discount increases in a linear way, up to the maximum of 100 tickets:',
+          'Buying multiple tickets in a single transaction gives a discount. The discount increases in a linear way, up to the maximum of 25 tickets:',
         )}
       </Text>
       <Text>{t('2 tickets: 0.05%')}</Text>
-      <Text>{t('50 tickets: 2.45%')}</Text>
-      <Text>{t('100 tickets: 4.95%')}</Text>
+      <Text>{t('10 tickets: 0.45%')}</Text>
+      <Text>{t('25 tickets: 1.20%')}</Text>
     </>
   )
   const { targetRef, tooltip, tooltipVisible } = useTooltip(<TooltipComponent />, {
