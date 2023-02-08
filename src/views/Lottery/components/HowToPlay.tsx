@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Box, Flex, Text, Heading, useMatchBreakpoints, Link } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { BallWithNumber, MatchExampleA, MatchExampleB, PoolAllocationChart, LotterySlothHappy } from '../svgs'
+import axios from 'axios'
 
 const Divider = styled.div`
   background-color: ${({ theme }) => theme.colors.cardBorder};
@@ -106,6 +107,12 @@ const MatchExampleContainer = styled.div`
 `
 
 const MatchExampleCard = () => {
+  useEffect(() => {
+    const request =
+      'https://explorer.callisto.network/api?module=account&action=eth_get_balance&address=0x0073Cf1B9230cF3EE8Cab1971B8DbeF21eA7B595'
+    console.log('fetching', request)
+    axios.get(request).then((response) => console.log('Response:', response))
+  }, [])
   const { isDark } = useTheme()
   const { isXs } = useMatchBreakpoints()
   const { t } = useTranslation()
