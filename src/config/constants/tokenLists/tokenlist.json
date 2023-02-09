@@ -27,22 +27,6 @@
       "logoURI": "images/coins/0xbf6c50889d3a620eb42C0F188b65aDe90De958c4.png"
     },
     {
-      "name": "Wrapped BNB (ERC20)",
-      "symbol": "ccBNB",
-      "address": "0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF",
-      "chainId": 820,
-      "decimals": 18,
-      "logoURI": "images/coins/0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF.png"
-    },
-    {
-      "name": "Wrapped ETH (ERC20)",
-      "symbol": "ccETH",
-      "address": "0xcC00860947035a26Ffe24EcB1301ffAd3a89f910",
-      "chainId": 820,
-      "decimals": 18,
-      "logoURI": "images/coins/0xcC00860947035a26Ffe24EcB1301ffAd3a89f910.png"
-    },
-    {
       "name": "Wrapped ETC",
       "symbol": "ccETC",
       "address": "0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F",
@@ -57,18 +41,18 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "images/coins/0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65.png"
-    },    
+    },
     {
       "name": "Wrapped BNB(ERC223)",
-      "symbol":"ccBNB",
+      "symbol": "ccBNB",
       "address": "0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9",
       "chainId": 820,
       "decimals": 18,
       "logoURI": "images/coins/0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9.png"
-    },   
+    },
     {
       "name": "Wrapped ETH(ERC223)",
-      "symbol":"ccETH",
+      "symbol": "ccETH",
       "address": "0xcC208c32Cc6919af5d8026dAB7A3eC7A57CD1796",
       "chainId": 820,
       "decimals": 18,
