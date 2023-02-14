@@ -12,7 +12,11 @@ export const GRAPH_API_NFTMARKET = process.env.REACT_APP_GRAPH_API_NFT_MARKET
 */
 export const API_PROFILE = process.env.REACT_APP_API_PROFILE
 
-export const GRAPH_API_LOTTERY = 'https://graphql.callisto.network/testnet/subgraphs/name/SoyFinance/lottery' //process.env.REACT_APP_GRAPH_API_LOTTERY
+export const GRAPH_API_LOTTERY = {
+  820: 'https://graphql.callisto.network/mainnet/subgraphs/name/SoyFinance/lottery',
+  20729: 'https://graphql.callisto.network/testnet/subgraphs/name/SoyFinance/lottery',
+} //process.env.REACT_APP_GRAPH_API_LOTTERY
+
 const chainId = 820 //parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
 
 export const INFO_CLIENT = CHAINS_CONSTANTS[chainId].subgraph.infoClient

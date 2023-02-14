@@ -4,6 +4,7 @@ import { LotteryTicket } from 'config/constants/types'
 import { LotteryUserGraphEntity, LotteryResponse, UserRound } from 'state/types'
 import { getRoundIdsArray, fetchMultipleLotteries, hasRoundBeenClaimed } from './helpers'
 import { fetchUserTicketsForMultipleRounds } from './getUserTicketsData'
+import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 
 const applyNodeDataToUserGraphResponse = (
   userNodeData: { roundId: string; userTickets: LotteryTicket[] }[],
@@ -58,9 +59,11 @@ const getGraphLotteryUser = async (account: string): Promise<LotteryUserGraphEnt
     rounds: [],
   }
 
+  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? DEFAULT_CHAIN_ID
+
   try {
     const response = await request(
-      GRAPH_API_LOTTERY,
+      GRAPH_API_LOTTERY[chainId],
       gql`
         query getUserLotteries($account: ID!) {
           user(id: $account) {
