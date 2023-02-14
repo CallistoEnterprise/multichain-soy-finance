@@ -204,17 +204,17 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     setDiscountValue(discountBeingApplied.gt(0) ? getFullDisplayBalance(discountBeingApplied, 18, 5) : '0')
   }, [ticketsToBuy, priceTicketInCake, discountDivisor, getTicketCostAfterDiscount])
 
-  const getNumTicketsByPercentage = (percentage: number): number => {
+  /*const getNumTicketsByPercentage = (percentage: number): number => {
     const percentageOfMaxTickets = maxPossibleTicketPurchase.gt(0)
       ? maxPossibleTicketPurchase.div(new BigNumber(100)).times(new BigNumber(percentage))
       : BIG_ZERO
     return Math.floor(percentageOfMaxTickets.toNumber())
-  }
+  }*/
 
-  const tenPercentOfBalance = getNumTicketsByPercentage(10)
-  const twentyFivePercentOfBalance = getNumTicketsByPercentage(25)
-  const fiftyPercentOfBalance = getNumTicketsByPercentage(50)
-  const oneHundredPercentOfBalance = getNumTicketsByPercentage(100)
+  const tenPercentOfBalance = maxNumberTicketsPerBuyOrClaim.toNumber() === 25 ? 5 : 10 //getNumTicketsByPercentage(10)
+  const twentyFivePercentOfBalance = maxNumberTicketsPerBuyOrClaim.toNumber() === 25 ? 10 : 25 //getNumTicketsByPercentage(25)
+  const fiftyPercentOfBalance = maxNumberTicketsPerBuyOrClaim.toNumber() === 25 ? 15 : 50 //getNumTicketsByPercentage(50)
+  const oneHundredPercentOfBalance = maxNumberTicketsPerBuyOrClaim.toNumber() === 25 ? 25 : 100 //getNumTicketsByPercentage(100)
 
   const handleInputChange = (input: string) => {
     // Force input to integer
