@@ -97,9 +97,9 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
           'Buying multiple tickets in a single transaction gives a discount. The discount increases in a linear way, up to the maximum of 25 tickets:',
         )}
       </Text>
-      <Text>{t('2 tickets: 0.05%')}</Text>
-      <Text>{t('10 tickets: 0.45%')}</Text>
-      <Text>{t('25 tickets: 1.20%')}</Text>
+      <Text>{t('5 tickets: 0.83%')}</Text>
+      <Text>{t('10 tickets: 1.88%')}</Text>
+      <Text>{t('25 tickets: 5.00%')}</Text>
     </>
   )
   const { targetRef, tooltip, tooltipVisible } = useTooltip(<TooltipComponent />, {
@@ -199,9 +199,9 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     const costAfterDiscount = getTicketCostAfterDiscount(numberOfTicketsToBuy)
     const costBeforeDiscount = priceTicketInCake.times(numberOfTicketsToBuy)
     const discountBeingApplied = costBeforeDiscount.minus(costAfterDiscount)
-    setTicketCostBeforeDiscount(costBeforeDiscount.gt(0) ? getFullDisplayBalance(costBeforeDiscount) : '0')
-    setTotalCost(costAfterDiscount.gt(0) ? getFullDisplayBalance(costAfterDiscount) : '0')
-    setDiscountValue(discountBeingApplied.gt(0) ? getFullDisplayBalance(discountBeingApplied, 18, 5) : '0')
+    setTicketCostBeforeDiscount(costBeforeDiscount.gt(0) ? getFullDisplayBalance(costBeforeDiscount, 18, 3) : '0')
+    setTotalCost(costAfterDiscount.gt(0) ? getFullDisplayBalance(costAfterDiscount, 18, 3) : '0')
+    setDiscountValue(discountBeingApplied.gt(0) ? getFullDisplayBalance(discountBeingApplied, 18, 3) : '0')
   }, [ticketsToBuy, priceTicketInCake, discountDivisor, getTicketCostAfterDiscount])
 
   /*const getNumTicketsByPercentage = (percentage: number): number => {
