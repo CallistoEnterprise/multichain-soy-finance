@@ -5,7 +5,7 @@ import { getWeeklyIdoAddress } from 'utils/addressHelpers'
 import { useWeb3React } from '@web3-react/core'
 
 const useApprove = () => {
-  const { account, library } = useWeb3React()
+  const { account, provider: library } = useWeb3React()
   const idoAddress = getWeeklyIdoAddress()
   const handleApprove = useCallback(
     async (tokenAddress: string) => {

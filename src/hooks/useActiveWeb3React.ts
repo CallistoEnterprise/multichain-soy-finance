@@ -1,8 +1,7 @@
 import { ethers } from 'ethers'
 import { useEffect, useState, useRef, useMemo } from 'react'
-import { useWeb3React } from '@web3-react/core'
+import { useWeb3React, Web3ContextType } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
-import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
 import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { Networks } from 'config/constants/networks'
 import { getRpcForMulti } from 'utils/getRpcUrl'
@@ -43,8 +42,8 @@ export const useWeb3ProviderByRpc = (chainId: number | string) => {
  * Provides a web3 provider with or without user's signer
  * Recreate web3 instance only if the provider change
  */
-const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> => {
-  const { library, chainId, ...web3React } = useWeb3React()
+const useActiveWeb3React = (): Web3ContextType<Web3Provider> => {
+  const { provider: library, chainId, ...web3React } = useWeb3React()
   const refEth = useRef(library)
   const simpleRpcProviderInMulti = useGetSimpleRpcProvider(chainId)
   const [provider, setprovider] = useState(library || simpleRpcProviderInMulti)
@@ -57,7 +56,7 @@ const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> => {
     }
   }, [library, simpleRpcProviderInMulti])
 
-  return { library: provider, chainId: chainId ?? locChainId, ...web3React }
+  return { provider, chainId: chainId ?? locChainId, ...web3React }
 }
 
 export default useActiveWeb3React

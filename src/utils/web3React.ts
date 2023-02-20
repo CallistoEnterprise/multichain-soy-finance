@@ -1,11 +1,8 @@
-import UAuth from '@uauth/js'
-import { UAuthConnector } from '@uauth/web3-react'
-import { InjectedConnector } from '@web3-react/injected-connector'
-import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
-import type { AbstractConnector } from '@web3-react/abstract-connector'
-import { ConnectorNames } from 'uikit2'
 import { ethers } from 'ethers'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
+import { initializeConnector, Web3ReactHooks } from '@web3-react/core'
+import { MetaMask } from '@web3-react/metamask'
+import { WalletConnect } from '@web3-react/walletconnect'
 
 const POLLING_INTERVAL = 12000
 
@@ -17,15 +14,21 @@ Object.keys(CHAINS_CONSTANTS).forEach((key) => {
   RPC_URLS[key] = CHAINS_CONSTANTS[key].rpcs[0]
 })
 
-const injected = new InjectedConnector({ supportedChainIds })
+const [metamask, metamaskHooks] = initializeConnector<MetaMask>((actions) => new MetaMask({ actions }))
 
-const walletconnect = new WalletConnectConnector({
-  rpc: RPC_URLS,
-  bridge: 'https://soyfinance.bridge.walletconnect.org/',
-  qrcode: true,
-})
+const [walletConnect, walletConnectHooks] = initializeConnector<WalletConnect>(
+  (actions) =>
+    new WalletConnect({
+      actions,
+      options: {
+        rpc: RPC_URLS,
+        bridge: 'https://soyfinance.bridge.walletconnect.org/',
+        qrcode: true,
+      },
+    }),
+)
 
-export const uauth = new UAuthConnector({
+/*export const uauth = new UAuthConnector({
   clientID: process.env.REACT_APP_UNSTOPPABLE_CLIENT_ID,
   redirectUri: 'https://app.soy.finance',
   postLogoutRedirectUri: 'https://app.soy.finance',
@@ -40,19 +43,19 @@ export const unstoppableAuth = new UAuth({
   redirectUri: 'https://app.soy.finance',
   postLogoutRedirectUri: 'https://app.soy.finance',
   scope: 'openid wallet',
-})
+})*/
 
-export const connectors: Record<string, AbstractConnector> = {
-  injected,
-  walletconnect,
-  uauth,
-}
+export const connectors: [MetaMask | WalletConnect, Web3ReactHooks][] = [
+  [metamask, metamaskHooks],
+  [walletConnect, walletConnectHooks],
+  //uauth,
+]
 
-export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
+/*export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Injected]: injected,
   [ConnectorNames.WalletConnect]: walletconnect,
   [ConnectorNames.Unstoppable]: uauth,
-}
+}*/
 
 export const getLibrary = (provider): ethers.providers.Web3Provider => {
   const library = new ethers.providers.Web3Provider(provider)

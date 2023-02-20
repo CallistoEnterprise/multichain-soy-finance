@@ -45,7 +45,7 @@ export default function AddLiquidity({
   },
   history,
 }: RouteComponentProps<{ currencyIdA?: string; currencyIdB?: string }>) {
-  const { account, chainId, library } = useActiveWeb3React()
+  const { account, chainId, provider: library } = useActiveWeb3React()
   const { t } = useTranslation()
 
   const currencyA = useCurrency(currencyIdA)

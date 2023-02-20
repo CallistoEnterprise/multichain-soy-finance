@@ -3,7 +3,7 @@ import { getDailyIdoContractWithAccount } from 'utils/contractHelpers'
 import { useWeb3React } from '@web3-react/core'
 
 const useClaim = () => {
-  const { account, library } = useWeb3React()
+  const { account, provider: library } = useWeb3React()
   const contract = getDailyIdoContractWithAccount(library, account)
   const handleClaim = useCallback(async () => {
     try {

@@ -31,7 +31,7 @@ export function shouldCheck(
 }
 
 export default function Updater(): null {
-  const { library, chainId } = useActiveWeb3React()
+  const { provider: library, chainId } = useActiveWeb3React()
 
   const lastBlockNumber = useBlockNumber()
 

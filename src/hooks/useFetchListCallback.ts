@@ -11,7 +11,7 @@ import resolveENSContentHash from '../utils/ENS/resolveENSContentHash'
 import useWeb3Provider from './useActiveWeb3React'
 
 function useFetchListCallback(): (listUrl: string, sendDispatch?: boolean) => Promise<TokenList> {
-  const { library } = useWeb3Provider()
+  const { provider: library } = useWeb3Provider()
   const { chainId } = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
 

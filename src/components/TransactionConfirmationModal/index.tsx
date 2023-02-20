@@ -68,7 +68,7 @@ function TransactionSubmittedContent({
   chainId: ChainId
   currencyToAdd?: Currency | undefined
 }) {
-  const { library } = useActiveWeb3React()
+  const { provider: library } = useActiveWeb3React()
 
   const { t } = useTranslation()
 

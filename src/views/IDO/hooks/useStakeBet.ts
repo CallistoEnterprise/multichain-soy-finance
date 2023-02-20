@@ -4,7 +4,7 @@ import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 
 const useStakeBet = () => {
-  const { account, library } = useWeb3React()
+  const { account, provider: library } = useWeb3React()
   const contract = getDailyIdoContractWithAccount(library, account)
   const handleStake = useCallback(
     async (token: string, amount: BigNumber) => {

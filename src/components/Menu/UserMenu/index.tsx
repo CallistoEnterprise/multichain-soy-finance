@@ -28,7 +28,7 @@ import { NetworkIcon } from '../NetworkMenu/MenuIcon'
 const UserMenu = () => {
   const { t } = useTranslation()
   const [unstoppable, setUnstoppable] = useState(null)
-  const { account, library, chainId } = useActiveWeb3React()
+  const { account, provider: library, chainId } = useActiveWeb3React()
   const { logout } = useAuth()
   const [networkAvatar, setNetworkAvatar] = useState(undefined)
   const [networkText, setNetworkText] = useState('')

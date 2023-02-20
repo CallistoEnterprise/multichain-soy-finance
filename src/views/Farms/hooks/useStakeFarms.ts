@@ -6,7 +6,7 @@ import { getAddress } from 'utils/addressHelpers'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const useStakeFarms = (pid: number) => {
-  const { account, library, chainId } = useActiveWeb3React()
+  const { account, provider: library, chainId } = useActiveWeb3React()
 
   // const masterChefContract = useMasterchef()
   const currentFarm = CHAINS_CONSTANTS[chainId].farms.find((farm) => farm.pid === pid)

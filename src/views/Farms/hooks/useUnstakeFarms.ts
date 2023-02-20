@@ -5,7 +5,7 @@ import useActiveWeb3React, { useWeb3ProviderByRpc } from 'hooks/useActiveWeb3Rea
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 
 const useUnstakeFarms = (pid: number) => {
-  const { account, library, chainId } = useActiveWeb3React()
+  const { account, provider: library, chainId } = useActiveWeb3React()
 
   const currentFarm = CHAINS_CONSTANTS[chainId].farms.find((farm) => farm.pid === pid)
   const { localFarmAddresses } = currentFarm

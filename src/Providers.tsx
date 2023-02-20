@@ -5,7 +5,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { useThemeManager } from 'state/user/hooks'
-import { getLibrary } from 'utils/web3React'
+import { connectors } from 'utils/web3React'
 import { LanguageProvider } from 'contexts/Localization'
 import { RefreshContextProvider } from 'contexts/RefreshContext'
 import { ToastsProvider } from 'contexts/ToastsContext'
@@ -19,7 +19,7 @@ const ThemeProviderWrapper = (props) => {
 
 const Providers: React.FC = ({ children }) => {
   return (
-    <Web3ReactProvider getLibrary={getLibrary}>
+    <Web3ReactProvider connectors={connectors}>
       <Provider store={store}>
         <ToastsProvider>
           <HelmetProvider>

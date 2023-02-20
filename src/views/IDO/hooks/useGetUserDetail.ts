@@ -11,7 +11,7 @@ const useGetUserDetail = () => {
     soyToClaim: 0,
     hasBidder: false,
   })
-  const { account, library } = useWeb3React()
+  const { account, provider: library } = useWeb3React()
   const [refetchCounter, setRefetchCounter] = useState(0)
 
   const refetch = () => {
