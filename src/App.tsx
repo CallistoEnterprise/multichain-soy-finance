@@ -74,6 +74,8 @@ const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
 const IDO = lazy(() => import('./views/IDO'))
 const IDOWeek = lazy(() => import('./views/IDOWeek'))
 
+const Lottery = lazy(() => import('./views/Lottery'))
+
 // This config is required for number formatting
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -141,6 +143,8 @@ const App: React.FC = () => {
 
                 <Route exact strict path="/ido" component={IDO} />
                 <Route exact strict path="/ido-week" component={IDOWeek} />
+
+                <Route exact strict path="/lottery" component={Lottery} />
 
                 <Route path="/nft" component={Collectibles} />
 
