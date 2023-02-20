@@ -8,4 +8,13 @@ const Flex = styled(Box)<FlexProps>`
   ${flexbox}
 `
 
+export const MobileVerticalFlex = styled(Box)<FlexProps>`
+  display: flex;
+  ${flexbox}
+  flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    flex-direction: row;
+  }
+`
+
 export default Flex

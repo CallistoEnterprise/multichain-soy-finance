@@ -15,6 +15,7 @@ interface PageSectionProps extends BackgroundColorProps {
   innerProps?: BoxProps
   clipFill?: ClipFill
   dividerFill?: DividerFill
+  lastSectionDecreasePadding?: boolean
 }
 
 interface BackgroundColorProps extends FlexProps {
@@ -57,6 +58,7 @@ const PageSection: React.FC<PageSectionProps> = ({
   dividerPosition = 'bottom',
   hasCurvedDivider = true,
   concaveDivider = false,
+  lastSectionDecreasePadding = false,
   clipFill,
   dividerFill,
   containerProps,
@@ -75,8 +77,14 @@ const PageSection: React.FC<PageSectionProps> = ({
     }
     // Top curved divider
     // Less top padding, as the divider is present there
-    if (dividerPosition === 'top') {
+    if (dividerPosition === 'top' && !lastSectionDecreasePadding) {
       return '14px 0 48px'
+    }
+    // Top curved divider
+    // Less top padding, as the divider is present there
+    // End of page, smaller padding bottom
+    if (dividerPosition === 'top' && lastSectionDecreasePadding) {
+      return '14px 0 0px'
     }
     return '48px 0'
   }

@@ -23,5 +23,7 @@
     "no-console": ["warn", { "allow": ["info", "warn", "error", "debug"] }],
     "react/prop-types": 0,
     "import/no-anonymous-default-export": 0
+    // Start temporary rules
+    //"@typescript-eslint/no-unused-vars": 0
   }
 }
