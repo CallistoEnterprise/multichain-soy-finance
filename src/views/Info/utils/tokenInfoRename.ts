@@ -8,7 +8,6 @@ const toRename = {
   '0xccde29903e621ca12df33bb0ad9d1add7261ace9': { name: 'Wrapped BNB', symbol: 'ccBNB' },
   '0xcc208c32cc6919af5d8026dab7a3ec7a57cd1796': { name: 'Wrapped Ethereum', symbol: 'ccETH' },
   '0xcc10a4050917f771210407df7a4c048e8934332c': { name: 'Wrapped LINA', symbol: 'ccLINA' },
-  '0xcc78d0a86b0c0a3b32debd773ec815130f9527cf': { name: 'Wrapped BNB (old contract)', symbol: 'ccBNB' },
   '0xcc8b04c0f7d0797b3bd6b7be8e0061ac0c3c0a9b': { name: 'Wrapped RACA', symbol: 'ccRACA' },
   '0xccec9f26f52e8e0d1d88365004f4f475f5274279': { name: 'Wrapped BAKE', symbol: 'ccBAKE' },
   '0xcc1530716a7ebecfdc7572edcbf01766f042155c': { name: 'Wrapped REEF', symbol: 'ccREEF' },
