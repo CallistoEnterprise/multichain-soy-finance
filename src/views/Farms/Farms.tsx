@@ -104,7 +104,7 @@ const ViewControls = styled.div`
 // `
 const NUMBER_OF_FARMS_VISIBLE = 12
 
-const getDisplayApr = (cakeRewardsApr?: number, lpRewardsApr?: number) => {
+export const getDisplayApr = (cakeRewardsApr?: number, lpRewardsApr?: number) => {
   if (cakeRewardsApr && lpRewardsApr) {
     return (cakeRewardsApr + lpRewardsApr).toLocaleString('en-US', { maximumFractionDigits: 2 })
   }
@@ -280,13 +280,13 @@ const Farms: React.FC = () => {
 
     const row: RowProps = {
       apr: {
-        value: getDisplayApr(farm.apr, farm.lpRewardsApr),
         multiplier: farm.multiplier,
         lpLabel,
         tokenAddress,
         quoteTokenAddress,
         cakePrice,
-        originalValue: farm.apr,
+        farmApr: farm.apr,
+        lpApr: farm.lpRewardsApr,
       },
       farm: {
         label: lpLabel,
@@ -330,11 +330,9 @@ const Farms: React.FC = () => {
             case 'farm':
               return b.id - a.id
             case 'apr':
-              if (a.original.apr.value && b.original.apr.value) {
-                return Number(a.original.apr.value) - Number(b.original.apr.value)
-              }
-
-              return 0
+              const aTotal = (a.original.apr.farmApr || 0) + (a.original.apr.lpApr || 0)
+              const bTotal = (b.original.apr.farmApr || 0) + (b.original.apr.lpApr || 0)
+              return aTotal - bTotal
             case 'earned':
               return a.original.earned.earnings - b.original.earned.earnings
             default:
@@ -351,26 +349,12 @@ const Farms: React.FC = () => {
       <FlexLayout>
         <Route exact path={`${path}`}>
           {chosenFarmsMemoized.map((farm) => (
-            <FarmCard
-              key={farm.pid}
-              farm={farm}
-              displayApr={getDisplayApr(farm.apr, farm.lpRewardsApr)}
-              cakePrice={cakePrice}
-              account={account}
-              removed={false}
-            />
+            <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} />
           ))}
         </Route>
         <Route exact path={`${path}/history`}>
           {chosenFarmsMemoized.map((farm) => (
-            <FarmCard
-              key={farm.pid}
-              farm={farm}
-              displayApr={getDisplayApr(farm.apr, farm.lpRewardsApr)}
-              cakePrice={cakePrice}
-              account={account}
-              removed
-            />
+            <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
           ))}
         </Route>
       </FlexLayout>
