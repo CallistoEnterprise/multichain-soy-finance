@@ -85,7 +85,6 @@ export interface FarmsState {
     [ChainId.BTT]: Farm[]
     [ChainId.ETC]: Farm[]
   }
-  loadArchivedFarmsData: boolean
   userDataLoaded: boolean
 }
 

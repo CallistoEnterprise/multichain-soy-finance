@@ -56,7 +56,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   onDismiss,
   tokenPrice,
   apr,
-  // displayApr,
+  displayApr,
   linkLabel,
   linkHref,
   earningTokenSymbol = 'SOY',
@@ -109,12 +109,12 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     <Modal title={t('ROI')} onDismiss={onDismiss}>
       {isFarm && (
         <Box>
-          {/* <Flex mb="8px" justifyContent="space-between">
+          <Flex mb="8px" justifyContent="space-between">
             <Text small color="textSubtle">
               {t('APR (incl. LP rewards)')}
             </Text>
             <Text small>{displayApr}%</Text>
-          </Flex> */}
+          </Flex>
           <Flex mb="24px" justifyContent="space-between">
             <Text small color="textSubtle">
               {t('Base APR (yield only)')}
