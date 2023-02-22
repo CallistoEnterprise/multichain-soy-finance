@@ -6,15 +6,16 @@ import { Address } from 'config/constants/types'
 import BigNumber from 'bignumber.js'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
+import { getDisplayApr } from 'views/Farms/Farms'
 
 export interface AprProps {
-  value: string
+  farmApr: number
+  lpApr?: number
   multiplier: string
   lpLabel: string
   tokenAddress?: Address
   quoteTokenAddress?: Address
   cakePrice: BigNumber
-  originalValue: number
   hideButton?: boolean
 }
 
@@ -41,28 +42,30 @@ const AprWrapper = styled.div`
 `
 
 const Apr: React.FC<AprProps> = ({
-  value,
+  farmApr,
+  lpApr,
   lpLabel,
   tokenAddress,
   quoteTokenAddress,
   cakePrice,
-  originalValue,
   hideButton = false,
 }) => {
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAddress, tokenAddress })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
-  return originalValue !== 0 ? (
+  const totalApr = (farmApr || 0) + (lpApr || 0)
+
+  return totalApr !== 0 ? (
     <Container>
-      {originalValue ? (
+      {farmApr ? (
         <>
-          <AprWrapper>{value}%</AprWrapper>
+          <AprWrapper>{getDisplayApr(totalApr)}%</AprWrapper>
           {!hideButton && (
             <ApyButton
               lpLabel={lpLabel}
               cakePrice={cakePrice}
-              apr={originalValue}
-              displayApr={value}
+              farmApr={farmApr}
+              lpApr={lpApr}
               addLiquidityUrl={addLiquidityUrl}
             />
           )}
@@ -75,7 +78,7 @@ const Apr: React.FC<AprProps> = ({
     </Container>
   ) : (
     <Container>
-      <AprWrapper>{originalValue}%</AprWrapper>
+      <AprWrapper>0%</AprWrapper>
     </Container>
   )
 }

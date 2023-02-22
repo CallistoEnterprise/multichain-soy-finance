@@ -1,6 +1,5 @@
 import BigNumber from 'bignumber.js'
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
-import lpAprs from 'config/constants/lpAprs.json'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import { DEFAULT_CHAIN_ID, ONE_YEAR_TIMESTAMP } from 'config'
 
@@ -72,6 +71,7 @@ export const getFarmApr = (
   poolLiquidityUsd: BigNumber,
   farmAddress: string,
   chainId = DEFAULT_CHAIN_ID,
+  swapApr = 0,
 ): { cakeRewardsApr: number; lpRewardsApr: number } => {
   const yearlySoyRewardAllocation = CHAINS_CONSTANTS[chainId].rewardTokensPerYear.times(poolWeight)
   const soyRewardsApr = yearlySoyRewardAllocation.times(soyPriceUsd).div(poolLiquidityUsd).times(100)
@@ -80,7 +80,7 @@ export const getFarmApr = (
   if (!soyRewardsApr.isNaN() /* && soyRewardsApr.isFinite() */) {
     soyRewardsAprAsNumber = soyRewardsApr.toNumber()
   }
-  const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
+  const lpRewardsApr = swapApr //lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
   return { cakeRewardsApr: soyRewardsAprAsNumber, lpRewardsApr }
 }
 
