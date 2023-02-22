@@ -3,12 +3,13 @@ import styled from 'styled-components'
 import { Modal, Text, LinkExternal, Flex, Box } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compoundApyHelpers'
+import { getDisplayApr } from 'views/Farms/Farms'
 
 interface ApyCalculatorModalProps {
   onDismiss?: () => void
   tokenPrice: number
-  apr: number
-  displayApr?: string
+  farmApr: number
+  lpApr?: number
   linkLabel: string
   linkHref: string
   earningTokenSymbol?: string
@@ -55,8 +56,8 @@ const BulletList = styled.ul`
 const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   onDismiss,
   tokenPrice,
-  apr,
-  // displayApr,
+  farmApr,
+  lpApr,
   linkLabel,
   linkHref,
   earningTokenSymbol = 'SOY',
@@ -67,6 +68,8 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
 }) => {
   const { t } = useTranslation()
   const oneThousandDollarsWorthOfToken = 1000 / tokenPrice
+
+  const apr = farmApr + lpApr
 
   const tokenEarnedPerThousand1D = tokenEarnedPerThousandDollarsCompounding({
     numberOfDays: 1,
@@ -101,26 +104,22 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     performanceFee,
   })
 
-  const customAPR = (
-    365 * getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken })
-  ).toFixed(2)
-
   return (
     <Modal title={t('ROI')} onDismiss={onDismiss}>
       {isFarm && (
         <Box>
-          {/* <Flex mb="8px" justifyContent="space-between">
+          <Flex mb="8px" justifyContent="space-between">
             <Text small color="textSubtle">
               {t('APR (incl. LP rewards)')}
             </Text>
-            <Text small>{displayApr}%</Text>
-          </Flex> */}
+            <Text small>{getDisplayApr(apr)}%</Text>
+          </Flex>
           <Flex mb="24px" justifyContent="space-between">
             <Text small color="textSubtle">
               {t('Base APR (yield only)')}
             </Text>
             {/* <Text small>{apr.toFixed(roundingDecimals)}%</Text> */}
-            <Text small>{customAPR}%</Text>
+            <Text small>{getDisplayApr(farmApr, 0)}%</Text>
           </Flex>
         </Box>
       )}

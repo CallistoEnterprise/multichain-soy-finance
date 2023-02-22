@@ -74,13 +74,12 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
 
 interface FarmCardProps {
   farm: FarmWithStakedValue
-  displayApr: string
   removed: boolean
   cakePrice?: BigNumber
   account?: string
 }
 
-const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePrice, account }) => {
+const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }) => {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
 
@@ -123,10 +122,10 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
                   lpLabel={lpLabel}
                   addLiquidityUrl={addLiquidityUrl}
                   cakePrice={cakePrice}
-                  apr={farm.apr}
-                  displayApr={displayApr}
+                  farmApr={farm.apr}
+                  lpApr={farm.lpRewardsApr}
                 />
-                {farm.apr.toFixed(2)}%
+                {(farm.apr + (farm.lpRewardsApr || 0)).toFixed(2)}%
               </>
             ) : (
               <Skeleton height={24} width={80} />
