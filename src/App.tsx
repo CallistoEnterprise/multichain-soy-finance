@@ -29,6 +29,7 @@ import {
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
 import AllowedViewsRedirect from 'components/AllowedViewsRedirect'
+import CookiesBar from 'components/CookiesBar'
 
 const Wrapper = styled.div`
   display: flex;
@@ -105,6 +106,7 @@ const App: React.FC = () => {
       <GlobalStyle />
       <RouteChangeTracker />
       <AllowedViewsRedirect />
+      <CookiesBar />
       <Wrapper>
         <Menu>
           <BodyWrapper>
