@@ -18,7 +18,7 @@ import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
 import { unstoppableAuth } from 'utils/web3React'
 import { switchNetwork } from 'utils/wallet'
-import { localStorageChainIdKey } from 'config'
+import { LOCAL_STORAGE_CHAIN_ID_KEY } from 'config'
 import NetworkMenu from '../NetworkMenu'
 import WalletModal, { WalletView, LOW_BNB_BALANCE } from './WalletModal'
 // import ProfileUserMenuItem from './ProfileUserMenutItem'
@@ -62,7 +62,7 @@ const UserMenu = () => {
     const init = () => {
       const filtered = Networks.find((_) => Number(_.chainId) === chainId)
       if (filtered) {
-        window.localStorage.setItem(localStorageChainIdKey, filtered.chainId)
+        window.localStorage.setItem(LOCAL_STORAGE_CHAIN_ID_KEY, filtered.chainId)
         setNetworkAvatar(filtered.img)
         setNetworkText(filtered.name)
       }

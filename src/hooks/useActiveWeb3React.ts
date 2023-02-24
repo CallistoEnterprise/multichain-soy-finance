@@ -3,10 +3,10 @@ import { useEffect, useState, useRef, useMemo } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
-import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { Networks } from 'config/constants/networks'
 import { getRpcForMulti } from 'utils/getRpcUrl'
 import Web3 from 'web3'
+import getLocalStorageChainId from 'utils/getLocalStorageChainId'
 
 export const getProviderByChainId = (chainId) => {
   const filtered = Networks.filter((_) => Number(_.chainId) === chainId)
@@ -49,7 +49,7 @@ const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> => {
   const simpleRpcProviderInMulti = useGetSimpleRpcProvider(chainId)
   const [provider, setprovider] = useState(library || simpleRpcProviderInMulti)
 
-  const locChainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+  const locChainId = getLocalStorageChainId()
   useEffect(() => {
     if (library !== refEth.current && simpleRpcProviderInMulti) {
       setprovider(library || simpleRpcProviderInMulti)

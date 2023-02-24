@@ -1,6 +1,6 @@
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
-import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { Farm } from 'state/types'
+import getLocalStorageChainId from './getLocalStorageChainId'
 
 const preferredQuoteTokensForMulti = {
   [ChainId.Mainnet]: ['BUSDT', 'WCLO'],
@@ -15,7 +15,7 @@ const preferredQuoteTokensForMulti = {
  * @returns A preferred farm, if found - or the first element of the farms array
  */
 export const filterFarmsByQuoteToken = (farms: Farm[]): Farm => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+  const chainId = getLocalStorageChainId()
   const preferredFarm = farms.find((farm) => {
     return preferredQuoteTokensForMulti[chainId].some((quoteToken) => {
       return farm.quoteToken.symbol === quoteToken

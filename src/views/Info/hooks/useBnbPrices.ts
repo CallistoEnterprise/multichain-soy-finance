@@ -5,7 +5,7 @@ import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
-const chainId = 820 // parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
+const chainId = 820 // getLocalStorageChainId()
 
 export interface BnbPrices {
   current: number

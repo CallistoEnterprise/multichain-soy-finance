@@ -4,7 +4,7 @@ import { LotteryTicket } from 'config/constants/types'
 import { LotteryUserGraphEntity, LotteryResponse, UserRound } from 'state/types'
 import { getRoundIdsArray, fetchMultipleLotteries, hasRoundBeenClaimed } from './helpers'
 import { fetchUserTicketsForMultipleRounds } from './getUserTicketsData'
-import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
+import getLocalStorageChainId from 'utils/getLocalStorageChainId'
 
 const applyNodeDataToUserGraphResponse = (
   userNodeData: { roundId: string; userTickets: LotteryTicket[] }[],
@@ -59,7 +59,7 @@ const getGraphLotteryUser = async (account: string): Promise<LotteryUserGraphEnt
     rounds: [],
   }
 
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? DEFAULT_CHAIN_ID
+  const chainId = getLocalStorageChainId()
 
   try {
     const response = await request(

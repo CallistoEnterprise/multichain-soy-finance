@@ -1,5 +1,5 @@
 import { CHAINS_CONSTANTS } from './chains'
-const chainId = 820 //parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
+const chainId = 820 //getLocalStorageChainId()
 export const MINIMUM_SEARCH_CHARACTERS = 2
 
 export const WEEKS_IN_YEAR = 52.1429

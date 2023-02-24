@@ -1,4 +1,4 @@
-import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
+import { LOCAL_STORAGE_CHAIN_ID_KEY, DEFAULT_CHAIN_ID } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
 import addresses from 'config/constants/contracts'
 import tokens from 'config/constants/tokens'
@@ -6,7 +6,7 @@ import { Address } from 'config/constants/types'
 import { poolsConfig } from 'config/constants'
 
 export const getAddress = (address: Address, chainId = DEFAULT_CHAIN_ID): string => {
-  const chId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? chainId
+  const chId = Number(window.localStorage.getItem(LOCAL_STORAGE_CHAIN_ID_KEY)) ?? chainId
   return address[chId] ? address[chId] : address[DEFAULT_CHAIN_ID]
 }
 

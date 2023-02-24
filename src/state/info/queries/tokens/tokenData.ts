@@ -11,7 +11,7 @@ import { derivedCOIN } from 'config/constants/info'
 
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 
-const chainId = parseInt('820' ?? '820') //parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
+const chainId = parseInt('820' ?? '820') //getLocalStorageChainId()
 
 interface CloTokenFields {
   id: string
