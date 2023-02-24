@@ -8,16 +8,16 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceAmount } from 'utils/formatBalance'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useRefresh from 'hooks/useRefresh'
-import { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync, nonArchivedFarms } from '.'
+import { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from '.'
 import { State, Farm, FarmsState } from '../types'
 
-export const usePollFarmsData = (includeArchive = false) => {
+export const usePollFarmsData = () => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
   const { account, chainId } = useActiveWeb3React()
 
   useEffect(() => {
-    const farmsToFetch = includeArchive ? CHAINS_CONSTANTS[chainId].farms : nonArchivedFarms[chainId]
+    const farmsToFetch = CHAINS_CONSTANTS[chainId].farms
     const pids = farmsToFetch?.map((farmToFetch) => farmToFetch.pid)
 
     dispatch(fetchFarmsPublicDataAsync(pids))
@@ -25,7 +25,7 @@ export const usePollFarmsData = (includeArchive = false) => {
     if (account) {
       dispatch(fetchFarmUserDataAsync({ account, pids }))
     }
-  }, [includeArchive, dispatch, slowRefresh, account, chainId])
+  }, [dispatch, slowRefresh, account, chainId])
 }
 
 /**

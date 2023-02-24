@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
 import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
 import { CHAINS_CONSTANTS } from 'config/constants/chains'
-import isArchivedPid from 'utils/farmHelpers'
 // import priceHelperLpsConfig from 'config/constants/priceHelperLps'
 import fetchFarms from './fetchFarms'
 import fetchFarmsPrices from './fetchFarmsPrices'
@@ -58,15 +57,7 @@ const initialState: FarmsState = {
     [ChainId.BTT]: noAccountFarmConfigBTT,
     [ChainId.ETC]: noAccountFarmConfigETC,
   },
-  loadArchivedFarmsData: false,
   userDataLoaded: false,
-}
-
-export const nonArchivedFarms = {
-  [ChainId.Mainnet]: CHAINS_CONSTANTS[ChainId.Mainnet].farms.filter(({ pid }) => !isArchivedPid(pid)),
-  [ChainId.Testnet]: CHAINS_CONSTANTS[ChainId.Testnet].farms.filter(({ pid }) => !isArchivedPid(pid)),
-  [ChainId.BTT]: CHAINS_CONSTANTS[ChainId.BTT].farms.filter(({ pid }) => !isArchivedPid(pid)),
-  [ChainId.ETC]: CHAINS_CONSTANTS[ChainId.ETC].farms.filter(({ pid }) => !isArchivedPid(pid)),
 }
 
 // Async thunks
@@ -123,12 +114,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
 export const farmsSlice = createSlice({
   name: 'Farms',
   initialState,
-  reducers: {
-    setLoadArchivedFarmsData: (state, action) => {
-      const loadArchivedFarmsData = action.payload
-      state.loadArchivedFarmsData = loadArchivedFarmsData
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     // Update farms with live data
     builder.addCase(fetchFarmsPublicDataAsync.fulfilled, (state, action) => {
@@ -152,8 +138,5 @@ export const farmsSlice = createSlice({
     })
   },
 })
-
-// Actions
-export const { setLoadArchivedFarmsData } = farmsSlice.actions
 
 export default farmsSlice.reducer

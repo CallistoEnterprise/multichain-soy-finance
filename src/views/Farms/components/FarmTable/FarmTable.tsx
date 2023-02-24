@@ -10,6 +10,7 @@ export interface ITableProps {
   columns: ColumnType<RowProps>[]
   userDataReady: boolean
   sortColumn?: string
+  headerRef?: React.MutableRefObject<HTMLDivElement>
 }
 
 const Container = styled.div`
@@ -65,7 +66,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
   const { rows } = useTable(columns, data, { sortable: true, sortColumn: 'farm' })
 
   const scrollToTop = (): void => {
-    tableWrapperEl.current.scrollIntoView({
+    ;(props.headerRef || tableWrapperEl).current.scrollIntoView({
       behavior: 'smooth',
     })
   }

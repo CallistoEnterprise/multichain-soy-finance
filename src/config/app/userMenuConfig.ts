@@ -44,6 +44,11 @@ const menuMainnet: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     target: '_blank',
   },
   {
+    label: t('Lottery'),
+    icon: 'TicketIcon',
+    href: '/lottery',
+  },
+  {
     label: t('SOY Finance IDO'),
     icon: 'IDOIcon',
     href: '/ido',
@@ -241,6 +246,11 @@ const menuTestnet: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'BridgeIcon',
     href: 'https://faucet.callisto.network/',
     target: '_blank',
+  },
+  {
+    label: t('Lottery'),
+    icon: 'TicketIcon',
+    href: '/lottery',
   },
   {
     label: t('Info'),

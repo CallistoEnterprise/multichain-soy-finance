@@ -133,6 +133,7 @@ const useApproveConfirmTransaction = ({
         toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
       }
     },
+    getApproveConfirmDispatch: { state, dispatch },
   }
 }
 

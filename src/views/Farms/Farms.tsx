@@ -13,7 +13,6 @@ import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getFarmApr } from 'utils/apr'
 import { orderBy } from 'lodash'
-import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
 import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
@@ -26,6 +25,8 @@ import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 import { getCallistoIsAuditedFarm, getCallistoRiskLevelFarm } from 'utils/getCallistoRiskLevel'
+import { useAllPoolData } from 'state/info/hooks'
+import { PoolUpdater } from 'state/info/updaters'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -103,7 +104,7 @@ const ViewControls = styled.div`
 // `
 const NUMBER_OF_FARMS_VISIBLE = 12
 
-const getDisplayApr = (cakeRewardsApr?: number, lpRewardsApr?: number) => {
+export const getDisplayApr = (cakeRewardsApr?: number, lpRewardsApr?: number) => {
   if (cakeRewardsApr && lpRewardsApr) {
     return (cakeRewardsApr + lpRewardsApr).toLocaleString('en-US', { maximumFractionDigits: 2 })
   }
@@ -125,11 +126,12 @@ const Farms: React.FC = () => {
   const [sortOption, setSortOption] = useState('hot')
   const chosenFarmsLength = useRef(0)
 
-  const isArchived = pathname.includes('archived')
   const isInactive = pathname.includes('history')
-  const isActive = !isInactive && !isArchived
+  const isActive = !isInactive
 
-  usePollFarmsData(isArchived)
+  const headerRef = useRef<HTMLDivElement>() // for nice scroll-to-top
+
+  usePollFarmsData()
 
   // Users with no wallet connected should see 0 as Earned amount
   // Connected users should see loading indicator until first userData has loaded
@@ -140,13 +142,10 @@ const Farms: React.FC = () => {
     setStakedOnly(!isActive)
   }, [isActive])
 
-  const activeFarms = farmsLP[chainId].filter((farm) => farm.pid !== 0 && !isArchivedPid(farm.pid))
-  const inactiveFarms = farmsLP[chainId].filter(
-    (farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid),
-  )
-  const archivedFarms = farmsLP[chainId].filter((farm) => isArchivedPid(farm.pid))
+  const activeFarms = farmsLP[chainId].filter((farm) => farm.multiplier !== '0X')
+  const inactiveFarms = farmsLP[chainId].filter((farm) => farm.multiplier === '0X')
 
-  const stakedOnlyFarms = activeFarms.filter(
+  const stakedActiveFarms = activeFarms.filter(
     (farm) => farm?.userData && new BigNumber(farm?.userData.stakedBalance).isGreaterThan(0),
   )
 
@@ -154,9 +153,7 @@ const Farms: React.FC = () => {
     (farm) => farm?.userData && new BigNumber(farm?.userData.stakedBalance).isGreaterThan(0),
   )
 
-  const stakedArchivedFarms = archivedFarms.filter(
-    (farm) => farm?.userData && new BigNumber(farm?.userData.stakedBalance).isGreaterThan(0),
-  )
+  const poolData = useAllPoolData()
 
   const farmsList = useCallback(
     (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
@@ -165,9 +162,20 @@ const Farms: React.FC = () => {
           return farm
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.usdcPrice)
+
+        const poolKey = farm.lpAddresses[chainId].toLowerCase()
+        const farmSwapAPR = poolData && poolData[poolKey] && poolData[poolKey].data ? poolData[poolKey].data.lpApr7d : 0
+
         const { cakeRewardsApr, lpRewardsApr } = isActive
-          ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm?.lpAddresses[chainId], chainId)
-          : { cakeRewardsApr: 0, lpRewardsApr: 0 }
+          ? getFarmApr(
+              new BigNumber(farm.poolWeight),
+              cakePrice,
+              totalLiquidity,
+              farm?.lpAddresses[chainId],
+              chainId,
+              farmSwapAPR,
+            )
+          : { cakeRewardsApr: 0, lpRewardsApr: farmSwapAPR }
 
         return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
       })
@@ -180,7 +188,7 @@ const Farms: React.FC = () => {
       }
       return farmsToDisplayWithAPR
     },
-    [cakePrice, query, isActive, chainId],
+    [cakePrice, query, isActive, chainId, poolData],
   )
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -219,13 +227,10 @@ const Farms: React.FC = () => {
     }
 
     if (isActive) {
-      chosenFarms = stakedOnly ? farmsList(stakedOnlyFarms) : farmsList(activeFarms)
+      chosenFarms = stakedOnly ? farmsList(stakedActiveFarms) : farmsList(activeFarms)
     }
     if (isInactive) {
       chosenFarms = stakedOnly ? farmsList(stakedInactiveFarms) : farmsList(inactiveFarms)
-    }
-    if (isArchived) {
-      chosenFarms = stakedOnly ? farmsList(stakedArchivedFarms) : farmsList(archivedFarms)
     }
 
     return sortFarms(chosenFarms).slice(0, numberOfFarmsVisible)
@@ -234,14 +239,11 @@ const Farms: React.FC = () => {
     activeFarms,
     farmsList,
     inactiveFarms,
-    archivedFarms,
     isActive,
     isInactive,
-    isArchived,
-    stakedArchivedFarms,
     stakedInactiveFarms,
     stakedOnly,
-    stakedOnlyFarms,
+    stakedActiveFarms,
     numberOfFarmsVisible,
   ])
 
@@ -278,13 +280,13 @@ const Farms: React.FC = () => {
 
     const row: RowProps = {
       apr: {
-        value: getDisplayApr(farm.apr, farm.lpRewardsApr),
         multiplier: farm.multiplier,
         lpLabel,
         tokenAddress,
         quoteTokenAddress,
         cakePrice,
-        originalValue: farm.apr,
+        farmApr: farm.apr,
+        lpApr: farm.lpRewardsApr,
       },
       farm: {
         label: lpLabel,
@@ -328,11 +330,9 @@ const Farms: React.FC = () => {
             case 'farm':
               return b.id - a.id
             case 'apr':
-              if (a.original.apr.value && b.original.apr.value) {
-                return Number(a.original.apr.value) - Number(b.original.apr.value)
-              }
-
-              return 0
+              const aTotal = (a.original.apr.farmApr || 0) + (a.original.apr.lpApr || 0)
+              const bTotal = (b.original.apr.farmApr || 0) + (b.original.apr.lpApr || 0)
+              return aTotal - bTotal
             case 'earned':
               return a.original.earned.earnings - b.original.earned.earnings
             default:
@@ -342,45 +342,19 @@ const Farms: React.FC = () => {
         sortable: column.sortable,
       }))
 
-      return <Table data={rowData} columns={columns} userDataReady={userDataReady} />
+      return <Table data={rowData} columns={columns} userDataReady={userDataReady} headerRef={headerRef} />
     }
 
     return (
       <FlexLayout>
         <Route exact path={`${path}`}>
           {chosenFarmsMemoized.map((farm) => (
-            <FarmCard
-              key={farm.pid}
-              farm={farm}
-              displayApr={getDisplayApr(farm.apr, farm.lpRewardsApr)}
-              cakePrice={cakePrice}
-              account={account}
-              removed={false}
-            />
+            <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} />
           ))}
         </Route>
         <Route exact path={`${path}/history`}>
           {chosenFarmsMemoized.map((farm) => (
-            <FarmCard
-              key={farm.pid}
-              farm={farm}
-              displayApr={getDisplayApr(farm.apr, farm.lpRewardsApr)}
-              cakePrice={cakePrice}
-              account={account}
-              removed
-            />
-          ))}
-        </Route>
-        <Route exact path={`${path}/archived`}>
-          {chosenFarmsMemoized.map((farm) => (
-            <FarmCard
-              key={farm.pid}
-              farm={farm}
-              displayApr={getDisplayApr(farm.apr, farm.lpRewardsApr)}
-              cakePrice={cakePrice}
-              account={account}
-              removed
-            />
+            <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
           ))}
         </Route>
       </FlexLayout>
@@ -393,8 +367,9 @@ const Farms: React.FC = () => {
 
   return (
     <>
+      <PoolUpdater />
       <PageHeader background="rgba(0,0,0,.5)">
-        <Heading as="h1" scale="xxl" color="secondary" mb="24px" style={{ textAlign: 'center' }}>
+        <Heading as="h1" scale="xxl" color="secondary" mb="24px" style={{ textAlign: 'center' }} ref={headerRef}>
           {t('Farms')}
         </Heading>
       </PageHeader>
@@ -450,7 +425,6 @@ const Farms: React.FC = () => {
           </Flex>
         )}
         <div ref={loadMoreRef} />
-        {/* <StyledImage src="/images/decorations/3dpan.svg" alt="Poloysafemooon illustration" width={120} height={103} /> */}
       </Page>
     </>
   )

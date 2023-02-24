@@ -69,7 +69,6 @@ After git clone run `npm install`.
 Here is a list of the dependencies in this package.json file, along with a brief explanation of each:
 
 - **@callisto-enterprise/chain-constants**: This package provides basic chain config for Callisto Enterprise.
-- **@callisto-enterprise/soy-uikit2**: This package provides a user interface kit for the Callisto Enterprise platform.
 - **@reduxjs/toolkit**: This package provides a toolkit for simplifying the creation of Redux applications. Redux is a popular state management library for JavaScript.
 - **@types/multicodec**: This package provides TypeScript definitions for the multicodec library, which provides a way to encode and decode data using various multiformats.
 - **@types/node**: This package provides TypeScript definitions for Node.js, which allows TypeScript to understand the types and APIs provided by Node.js.
