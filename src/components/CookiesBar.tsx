@@ -52,7 +52,7 @@ const Container = styled.div<{ show: boolean }>`
 const Subcontainer = styled.div`
   width: 100%;
   max-width: 800px;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: rgb(139, 163, 51);
   padding: 16px;
   margin: 0px auto;
   border-radius: 14px;
@@ -75,7 +75,7 @@ const Link = styled.a`
 const Button = styled.button`
   margin-top: 8px;
 
-  color: ${({ theme }) => theme.colors.primary};
+  color: rgb(139, 163, 51);
   background-color: white;
   font-size: 18px;
   font-weight: 700;
