@@ -1,6 +1,6 @@
 // import invariant from 'tiny-invariant'
 // import { WETH as _WETH, TradeType, Rounding, Token, TokenAmount, Pair, Route, Trade } from 'sdk'
-// import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+// import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 
 // const ADDRESSES = [
 //   '0x0000000000000000000000000000000000000001',

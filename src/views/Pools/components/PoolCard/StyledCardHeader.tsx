@@ -5,7 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import { Token } from 'config/constants/types'
 import { TokenPairImage } from 'components/TokenImage'
 import CakeVaultTokenPairImage from '../CakeVaultCard/CakeVaultTokenPairImage'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
   background: ${({ isFinished, background, theme }) =>

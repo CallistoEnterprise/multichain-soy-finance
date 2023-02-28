@@ -1,5 +1,5 @@
 import { nanoid } from '@reduxjs/toolkit'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import { TokenList } from '@uniswap/token-lists'
 import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'

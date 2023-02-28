@@ -1,5 +1,5 @@
 // import { Token, Pair, TokenAmount, WETH, Price } from 'sdk'
-// import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+// import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 
 // describe('Pair', () => {
 //   const USDC = new Token(ChainId.Mainnet, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18, 'USDC', 'USD Coin')

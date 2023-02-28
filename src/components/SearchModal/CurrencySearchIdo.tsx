@@ -1,6 +1,6 @@
 import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from 'react'
 import { Currency, ETHERS, Token } from 'sdk'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import { Text, Input, Box } from 'uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { FixedSizeList } from 'react-window'

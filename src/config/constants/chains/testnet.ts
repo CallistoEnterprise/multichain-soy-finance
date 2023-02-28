@@ -1,4 +1,4 @@
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import BigNumber from 'bignumber.js'
 import { BASE_URL } from 'config'
 import type { ChainConstants } from './types'

@@ -1,4 +1,4 @@
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import { createStore, Store } from 'redux'
 import { addTransaction, checkedTransaction, clearAllTransactions, finalizeTransaction } from './actions'
 import reducer, { initialState, TransactionState } from './reducer'

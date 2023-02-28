@@ -1,6 +1,6 @@
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
 import { Currency, CurrencyAmount, currencyEquals, ETHERS, Token } from 'sdk'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import { Text } from 'uikit2'
 import styled from 'styled-components'
 import { FixedSizeList } from 'react-window'
@@ -22,7 +22,10 @@ import ImportRow from './ImportRow'
 function currencyKey(currency: Currency): string {
   return currency instanceof Token
     ? currency.address
-    : currency === ETHERS[ChainId.Mainnet] || currency === ETHERS[ChainId.BTT] || currency === ETHERS[ChainId.ETC]
+    : currency === ETHERS[ChainId.Mainnet] ||
+      currency === ETHERS[ChainId.BTT] ||
+      currency === ETHERS[ChainId.ETC] ||
+      currency === ETHERS[ChainId.ETH]
     ? 'ETHER'
     : ''
 }

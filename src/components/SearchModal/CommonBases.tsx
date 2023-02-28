@@ -1,6 +1,6 @@
 import React from 'react'
 import { Currency, currencyEquals, ETHERS, Token } from 'sdk'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import { Text } from 'uikit2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'

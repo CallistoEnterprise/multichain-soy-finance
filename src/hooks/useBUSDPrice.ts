@@ -1,5 +1,5 @@
 import { Currency, currencyEquals, JSBI, Price, WETH } from 'sdk'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import { useMemo } from 'react'
 import { DEFAULT_CHAIN_ID } from 'config'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

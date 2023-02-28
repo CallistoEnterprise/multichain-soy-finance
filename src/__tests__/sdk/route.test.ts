@@ -1,5 +1,5 @@
 import { Token, WETH, Pair, TokenAmount, Route, ETHER } from 'sdk'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 
 describe('Route', () => {
   const token0 = new Token(ChainId.Mainnet, '0x0000000000000000000000000000000000000001', 18, 't0')

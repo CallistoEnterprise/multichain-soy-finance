@@ -1,5 +1,5 @@
 import { getCallistoToken } from '@callisto-enterprise/assetslist'
-import { ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 
 export const getCallistoRiskLevelToken = (address: string, chainId: ChainId) => {
   const audit = getCallistoToken(address, chainId).audit

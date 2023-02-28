@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 
 export interface SerializableTransactionReceipt {
   to: string

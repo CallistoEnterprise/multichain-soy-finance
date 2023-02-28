@@ -1,7 +1,7 @@
 import invariant from 'tiny-invariant'
 
 import { ONE, TradeType, ZERO } from '../constants'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import { sortedInsert } from '../utils'
 import { Currency, ETHERS } from './currency'
 import { CurrencyAmount } from './fractions/currencyAmount'

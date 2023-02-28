@@ -1,5 +1,5 @@
 import { Currency, CurrencyAmount, ETHERS, Token, TokenAmount, WETH } from 'sdk'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 
 export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId | undefined): Token | undefined {
   return chainId && currency === ETHERS[chainId] ? WETH[chainId] : currency instanceof Token ? currency : undefined

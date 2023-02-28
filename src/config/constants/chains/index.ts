@@ -1,4 +1,4 @@
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import MAINNET_CONSTANTS from './mainnet'
 import BTT_CONSTANTS from './btt'
 import ETC_CONSTANTS from './etc'

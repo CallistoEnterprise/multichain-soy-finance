@@ -1,6 +1,6 @@
 import invariant from 'tiny-invariant'
 import { CurrencyAmount, ETHER, Pair, Percent, Route, Router, Token, TokenAmount, Trade, WETH } from 'sdk'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import JSBI from 'jsbi'
 
 function checkDeadline(deadline: string[] | string): void {

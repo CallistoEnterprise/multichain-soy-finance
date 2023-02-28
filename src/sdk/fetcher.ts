@@ -7,7 +7,7 @@ import ISoyFinanceFactory from './abis/ISoyFinancePair.json'
 
 import invariant from 'tiny-invariant'
 import ERC20 from './abis/ERC20.json'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import { Token } from './entities/token'
 
 let TOKEN_DECIMALS_CACHE: { [chainId: number]: { [address: string]: number } } = {

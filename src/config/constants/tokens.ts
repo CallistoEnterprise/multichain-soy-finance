@@ -1,5 +1,5 @@
 import { Token } from 'sdk'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 
 export const SOY: { [chainId: number]: Token } = {
   [ChainId.Mainnet]: new Token(

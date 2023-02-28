@@ -1,5 +1,5 @@
 import invariant from 'tiny-invariant'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import { validateAndParseAddress } from '../utils'
 import { Currency } from './currency'
 

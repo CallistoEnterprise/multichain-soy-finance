@@ -1,4 +1,4 @@
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import tokens from './tokens'
 import { PoolConfig, PoolCategory } from './types'
 

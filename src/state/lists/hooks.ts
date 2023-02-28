@@ -1,5 +1,5 @@
 import { Token } from 'sdk'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
@@ -64,6 +64,8 @@ const EMPTY_LIST: TokenAddressMap = {
   [ChainId.Testnet]: {},
   [ChainId.ETC]: {},
   [ChainId.BTT]: {},
+  [ChainId.ETH]: {},
+  [ChainId.BSC]: {},
 }
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =
@@ -118,6 +120,8 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
     [ChainId.Testnet]: { ...map1[ChainId.Testnet], ...map2[ChainId.Testnet] },
     [ChainId.ETC]: { ...map1[ChainId.ETC], ...map2[ChainId.ETC] },
     [ChainId.BTT]: { ...map1[ChainId.BTT], ...map2[ChainId.BTT] },
+    [ChainId.ETH]: { ...map1[ChainId.ETH], ...map2[ChainId.ETH] },
+    [ChainId.BSC]: { ...map1[ChainId.BSC], ...map2[ChainId.BSC] },
   }
 }
 

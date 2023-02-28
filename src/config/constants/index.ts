@@ -1,5 +1,5 @@
 import { JSBI, Percent, Token, WETH } from 'sdk'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import { BUSDT, SOY, WCLO } from './tokens'
 
 export const ROUTER_ADDRESS = {
@@ -7,6 +7,8 @@ export const ROUTER_ADDRESS = {
   [ChainId.Testnet]: '0xdbe46b17FFd35D6865b69F9398AC5454389BF38c',
   [ChainId.BTT]: '0x8Cb2e43e5AEB329de592F7e49B6c454649b61929',
   [ChainId.ETC]: '0x8c5Bba04B2f5CCCe0f8F951D2DE9616BE190070D',
+  [ChainId.ETH]: '0x8c5bba04b2f5ccce0f8f951d2de9616be190070d',
+  [ChainId.BSC]: '0x8c5Bba04B2f5CCCe0f8F951D2DE9616BE190070D',
 }
 
 // a list of tokens by chain
@@ -20,17 +22,21 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.Testnet]: [WETH[ChainId.Testnet], SOY[ChainId.Testnet]],
   [ChainId.ETC]: [WETH[ChainId.ETC], SOY[ChainId.ETC], BUSDT[ChainId.ETC]],
   [ChainId.BTT]: [WETH[ChainId.BTT], SOY[ChainId.BTT], BUSDT[ChainId.BTT], WCLO[ChainId.BTT]],
+  [ChainId.ETH]: [WETH[ChainId.ETH], SOY[ChainId.ETH], WCLO[ChainId.ETH]],
+  [ChainId.BSC]: [WETH[ChainId.BSC], SOY[ChainId.BSC], WCLO[ChainId.BSC]],
 }
 
 /**
  * Addittional bases for specific tokens
  * @example { [WBTC.address]: [renBTC], [renBTC.address]: [WBTC] }
  */
-export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
+export const ADDITIONAL_BASES: { [chainId in ChainId]: { [tokenAddress: string]: Token[] } } = {
   [ChainId.Mainnet]: {},
   [ChainId.Testnet]: {},
   [ChainId.ETC]: {},
   [ChainId.BTT]: {},
+  [ChainId.ETH]: {},
+  [ChainId.BSC]: {},
 }
 
 /**
@@ -38,11 +44,13 @@ export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]
  * tokens.
  * @example [AMPL.address]: [DAI, WETH[ChainId.Mainnet]]
  */
-export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
+export const CUSTOM_BASES: { [chainId in ChainId]: { [tokenAddress: string]: Token[] } } = {
   [ChainId.Mainnet]: {},
   [ChainId.Testnet]: {},
   [ChainId.ETC]: {},
   [ChainId.BTT]: {},
+  [ChainId.ETH]: {},
+  [ChainId.BSC]: {},
 }
 
 // used for display in the default list when adding liquidity
@@ -51,6 +59,8 @@ export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.Testnet]: [SOY[ChainId.Testnet], BUSDT[ChainId.Testnet]],
   [ChainId.ETC]: [SOY[ChainId.ETC], BUSDT[ChainId.ETC]],
   [ChainId.BTT]: [SOY[ChainId.BTT], BUSDT[ChainId.BTT], WCLO[ChainId.BTT]],
+  [ChainId.ETH]: [SOY[ChainId.ETH], WCLO[ChainId.ETH]],
+  [ChainId.BSC]: [SOY[ChainId.BSC], WCLO[ChainId.BSC]],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
@@ -59,12 +69,17 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.Testnet]: [WETH[ChainId.Testnet], SOY[ChainId.Testnet], BUSDT[ChainId.Testnet]],
   [ChainId.ETC]: [WETH[ChainId.ETC], SOY[ChainId.ETC], BUSDT[ChainId.ETC]],
   [ChainId.BTT]: [WETH[ChainId.BTT], SOY[ChainId.BTT], BUSDT[ChainId.BTT], WCLO[ChainId.BTT]],
+  [ChainId.ETH]: [WETH[ChainId.ETH], SOY[ChainId.ETH], WCLO[ChainId.ETH]],
+  [ChainId.BSC]: [WETH[ChainId.BSC], SOY[ChainId.BSC], WCLO[ChainId.BSC]],
 }
 
-export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
+export const PINNED_PAIRS: { readonly [chainId in ChainId]: [Token, Token][] } = {
   [ChainId.Mainnet]: [[SOY[ChainId.Mainnet], WCLO[ChainId.Mainnet]]],
+  [ChainId.Testnet]: [[SOY[ChainId.Testnet], WCLO[ChainId.Testnet]]],
   [ChainId.BTT]: [[WETH[ChainId.BTT], SOY[ChainId.BTT]]],
   [ChainId.ETC]: [[WETH[ChainId.ETC], SOY[ChainId.ETC]]],
+  [ChainId.ETH]: [[SOY[ChainId.ETH], WCLO[ChainId.ETH]]],
+  [ChainId.BSC]: [[SOY[ChainId.BSC], WCLO[ChainId.BSC]]],
 }
 
 export const NetworkContextName = 'NETWORK'
@@ -94,6 +109,8 @@ export const MIN_ETHERS = {
   [ChainId.Testnet]: JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18)), // 1 CLO,
   [ChainId.ETC]: JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(17)), // 0.1 ETC,
   [ChainId.BTT]: JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(21)), // 1000 BTT,
+  [ChainId.ETH]: JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)), // 0.01 ETH,
+  [ChainId.BSC]: JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)), // 0.01 BSC,
 }
 export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSBI.BigInt(10000)) // .5%
 

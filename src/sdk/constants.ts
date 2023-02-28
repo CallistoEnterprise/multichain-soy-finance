@@ -1,5 +1,5 @@
 import JSBI from 'jsbi'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 
 // exports for external consumption
 export type BigintIsh = JSBI | bigint | string

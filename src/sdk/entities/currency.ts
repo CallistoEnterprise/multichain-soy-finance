@@ -1,7 +1,7 @@
 import JSBI from 'jsbi'
 
 import { SolidityType } from '../constants'
-import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 import { validateSolidityTypeInstance } from '../utils'
 
 /**
@@ -19,8 +19,8 @@ export class Currency {
    */
   public static readonly ETHER: Currency = new Currency(18, 'CLO', 'Callisto Network')
   public static readonly ETHERCLOTEST: Currency = new Currency(18, 'CLO', 'Callisto Test Network')
-  public static readonly MAINETHER: Currency = new Currency(18, 'ETH', 'Ethereum Network')
-  public static readonly BNBETHER: Currency = new Currency(18, 'BNB', 'BSC Network')
+  public static readonly ETHETHER: Currency = new Currency(18, 'ETH', 'Ethereum Network')
+  public static readonly BSCETHER: Currency = new Currency(18, 'BNB', 'BSC Network')
   public static readonly BTTETHER: Currency = new Currency(18, 'BTT', 'BitTorrent Chain')
   public static readonly ETCETHER: Currency = new Currency(18, 'ETC', 'Ethereum Classic')
   /**
@@ -43,6 +43,8 @@ const ETHERS: { [chainId in ChainId]: Currency } = {
   [ChainId.Testnet]: Currency.ETHERCLOTEST,
   [ChainId.BTT]: Currency.BTTETHER,
   [ChainId.ETC]: Currency.ETCETHER,
+  [ChainId.ETH]: Currency.ETHETHER,
+  [ChainId.BSC]: Currency.BSCETHER,
 }
 
 export { ETHERS }

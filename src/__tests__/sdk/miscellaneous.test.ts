@@ -1,5 +1,5 @@
 // import { Token, TokenAmount, Pair, InsufficientInputAmountError } from 'sdk'
-// import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+// import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 // import { sortedInsert } from '../../sdk/utils'
 
 describe('miscellaneous', () => {
