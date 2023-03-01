@@ -73,4 +73,6 @@ export const WETH = {
   ),
   [ChainId.BTT]: new Token(ChainId.BTT, '0x33e85f0e26600a6644b6c910639B0bc7a99fd34e', 18, 'WBTT', 'Wrapped BTT'),
   [ChainId.ETC]: new Token(ChainId.ETC, '0x35e9A89e43e45904684325970B2E2d258463e072', 18, 'WETC', 'Wrapped ETC'),
+  [ChainId.ETH]: new Token(ChainId.ETH, '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 18, 'WETH', 'Wrapped ETH'),
+  [ChainId.BSC]: new Token(ChainId.BSC, '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', 18, 'WBNB', 'Wrapped BNB'),
 }

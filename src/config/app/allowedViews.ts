@@ -4,18 +4,24 @@ const coreViews = ['/home', '/swap', '/send', '/find', '/pool', '/liquidity', '/
 
 const viewsMainnet = ['/farms', '/pools', '/staking', '/launchpad', '/ido', '/ido-week', '/nft', 'lottery', '/info']
 
-const viewsBTT = ['/farms']
+const viewsTestnet = ['/farms', '/pools', '/staking', 'lottery', 'info']
 
 const viewsETC = ['/farms']
 
-const viewsTestnet = ['/farms', '/pools', '/staking', 'lottery', 'info']
+const viewsBTT = ['/farms']
+
+const viewsETH = []
+
+const viewsBSC = []
 
 const allowedViews = (chainId: ChainId) => {
   const configs = {
     [ChainId.Mainnet]: viewsMainnet,
-    [ChainId.BTT]: viewsBTT,
-    [ChainId.ETC]: viewsETC,
     [ChainId.Testnet]: viewsTestnet,
+    [ChainId.ETC]: viewsETC,
+    [ChainId.BTT]: viewsBTT,
+    [ChainId.ETH]: viewsETH,
+    [ChainId.BSC]: viewsBSC,
   }
   return [...coreViews, ...configs[chainId]]
 }

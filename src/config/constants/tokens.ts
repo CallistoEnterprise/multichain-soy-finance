@@ -1,7 +1,7 @@
 import { Token } from 'sdk'
 import { CALLISTO_CHAIN_ID as ChainId } from '@callisto-enterprise/chain-constants'
 
-export const SOY: { [chainId: number]: Token } = {
+export const SOY: { [chainId in ChainId]: Token } = {
   [ChainId.Mainnet]: new Token(
     ChainId.Mainnet,
     '0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65',
@@ -18,9 +18,12 @@ export const SOY: { [chainId: number]: Token } = {
   ),
   [ChainId.BTT]: new Token(ChainId.BTT, '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910', 18, 'SOY', 'SoyERC223-Token'),
   [ChainId.ETC]: new Token(ChainId.ETC, '0xcC67D978Ddf07971D9050d2b424f36f6C1a15893', 18, 'SOY', 'SoyERC223-Token'),
+  // todoeth
+  [ChainId.ETH]: new Token(ChainId.ETH, '0x0000000000000000000000000000000000000001', 18, 'SOY', 'SoyERC223-Token'),
+  [ChainId.BSC]: new Token(ChainId.BSC, '0x0000000000000000000000000000000000000001', 18, 'SOY', 'SoyERC223-Token'),
 }
 
-export const WCLO: { [chainId: number]: Token } = {
+export const WCLO: { [chainId in ChainId]: Token } = {
   [ChainId.Mainnet]: new Token(
     ChainId.Mainnet,
     '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
@@ -49,8 +52,24 @@ export const WCLO: { [chainId: number]: Token } = {
     'ccCLO',
     'Wrapped Callisto Coin',
   ),
+  // todoeth
+  [ChainId.ETH]: new Token(
+    ChainId.ETH,
+    '0x0000000000000000000000000000000000000002',
+    18,
+    'WCLO',
+    'Wrapped Callisto Coin',
+  ),
+  [ChainId.BSC]: new Token(
+    ChainId.BSC,
+    '0x0000000000000000000000000000000000000002',
+    18,
+    'WCLO',
+    'Wrapped Callisto Coin',
+  ),
 }
-export const BUSDT = {
+
+export const BUSDT: { [chainId in ChainId]: Token } = {
   [ChainId.Mainnet]: new Token(
     ChainId.Mainnet,
     '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
@@ -67,6 +86,9 @@ export const BUSDT = {
   ),
   [ChainId.ETC]: new Token(ChainId.ETC, '0xCC48CD0B4a6f50b8f8bf0f9b80eD7881fA547968', 18, 'BUSDT', 'Tether USD'),
   [ChainId.BTT]: new Token(ChainId.BTT, '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF', 18, 'BUSDT', 'Tether USD'),
+  // todoeth
+  [ChainId.ETH]: new Token(ChainId.ETC, '0x0000000000000000000000000000000000000003', 18, 'BUSDT', 'Tether USD'),
+  [ChainId.BSC]: new Token(ChainId.BTT, '0x0000000000000000000000000000000000000003', 18, 'BUSDT', 'Tether USD'),
 }
 export const WBTT = new Token(ChainId.BTT, '0x33e85f0e26600a6644b6c910639B0bc7a99fd34e', 18, 'WBTT', 'Wrapped BTT')
 // export const CCCLO = new Token(ChainId.BTT, '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53', 18, 'ccCLO', 'Wrapped Callisto Coin')
@@ -87,6 +109,8 @@ const tokens = {
       [ChainId.Testnet]: '0x4c20231BCc5dB8D805DB9197C84c8BA8287CbA92',
       [ChainId.BTT]: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
       [ChainId.ETC]: '0xcC67D978Ddf07971D9050d2b424f36f6C1a15893',
+      [ChainId.ETH]: '0x0000000000000000000000000000000000000001', // todoeth
+      [ChainId.BSC]: '0x0000000000000000000000000000000000000001',
     },
     decimals: 18,
     projectLink: 'https://app.soy.finance/',
@@ -98,6 +122,8 @@ const tokens = {
       [ChainId.Testnet]: '0xbd2D3BCe975FD72E44A73cC8e834aD1B8441BdDa',
       [ChainId.BTT]: '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53',
       [ChainId.ETC]: '',
+      [ChainId.ETH]: '',
+      [ChainId.BSC]: '',
     },
     decimals: 18,
     projectLink: 'https://callisto.network/',
@@ -120,6 +146,8 @@ const tokens = {
       [ChainId.Testnet]: '',
       [ChainId.BTT]: '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53',
       [ChainId.ETC]: '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53',
+      [ChainId.ETH]: '0x0000000000000000000000000000000000000002', // todoeth
+      [ChainId.BSC]: '0x0000000000000000000000000000000000000002',
     },
     decimals: 18,
     projectLink: 'https://callisto.network/',
@@ -131,6 +159,8 @@ const tokens = {
       [ChainId.Testnet]: '0xAB99622d19298EC2BEAB50EFF91A9b6F46Af747C',
       [ChainId.BTT]: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
       [ChainId.ETC]: '0xCC48CD0B4a6f50b8f8bf0f9b80eD7881fA547968',
+      [ChainId.ETH]: '0x0000000000000000000000000000000000000003', // todoeth
+      [ChainId.BSC]: '0x0000000000000000000000000000000000000003',
     },
     decimals: 18,
     projectLink: 'https://bullsinvesting.club/',
@@ -142,6 +172,8 @@ const tokens = {
       [ChainId.Testnet]: '0xAB99622d19298EC2BEAB50EFF91A9b6F46Af747C',
       [ChainId.BTT]: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
       [ChainId.ETC]: '0xCC48CD0B4a6f50b8f8bf0f9b80eD7881fA547968',
+      [ChainId.ETH]: '0x0000000000000000000000000000000000000003', // todoeth
+      [ChainId.BSC]: '0x0000000000000000000000000000000000000003',
     },
     decimals: 18,
     projectLink: 'https://bullsinvesting.club/',

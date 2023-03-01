@@ -1,0 +1,46 @@
+{
+  "name": "SoyFinance Default List in BSC chain",
+  "timestamp": "2022-02-28T12:39:23Z",
+  "version": {
+    "major": 1,
+    "minor": 1,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "images/networks/bsc.png",
+  "keywords": ["soyfinance", "BSC"],
+  "tokens": [
+    {
+      "name": "Wrapped CLO",
+      "symbol": "ccCLO",
+      "address": "0x0000000000000000000000000000000000000002",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0x0000000000000000000000000000000000000002.png"
+    },
+    {
+      "name": "Wrapped SOY",
+      "symbol": "SOY",
+      "address": "0x0000000000000000000000000000000000000001",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0x0000000000000000000000000000000000000001.png"
+    },
+    {
+      "name": "Tether",
+      "symbol": "BUSDT",
+      "address": "0x0000000000000000000000000000000000000003",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0x0000000000000000000000000000000000000003.png"
+    },
+    {
+      "name": "Wrapped ETH",
+      "symbol": "ETH",
+      "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c.png"
+    }
+  ]
+}

@@ -25,7 +25,8 @@ function currencyKey(currency: Currency): string {
     : currency === ETHERS[ChainId.Mainnet] ||
       currency === ETHERS[ChainId.BTT] ||
       currency === ETHERS[ChainId.ETC] ||
-      currency === ETHERS[ChainId.ETH]
+      currency === ETHERS[ChainId.ETH] ||
+      currency === ETHERS[ChainId.BSC]
     ? 'ETHER'
     : ''
 }
