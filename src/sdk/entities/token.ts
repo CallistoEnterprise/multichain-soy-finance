@@ -56,21 +56,10 @@ export function currencyEquals(currencyA: Currency, currencyB: Currency): boolea
   }
 }
 
+// prettier-ignore
 export const WETH = {
-  [ChainId.Mainnet]: new Token(
-    ChainId.Mainnet,
-    '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
-    18,
-    'WCLO',
-    'Wrapped CLO',
-  ),
-  [ChainId.Testnet]: new Token(
-    ChainId.Testnet,
-    '0xbd2D3BCe975FD72E44A73cC8e834aD1B8441BdDa',
-    18,
-    'WCLO',
-    'Wrapped CLO',
-  ),
+  [ChainId.Mainnet]: new Token(ChainId.Mainnet, '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a', 18, 'WCLO', 'Wrapped CLO'),
+  [ChainId.Testnet]: new Token(ChainId.Testnet, '0xbd2D3BCe975FD72E44A73cC8e834aD1B8441BdDa', 18, 'WCLO', 'Wrapped CLO'),
   [ChainId.BTT]: new Token(ChainId.BTT, '0x33e85f0e26600a6644b6c910639B0bc7a99fd34e', 18, 'WBTT', 'Wrapped BTT'),
   [ChainId.ETC]: new Token(ChainId.ETC, '0x35e9A89e43e45904684325970B2E2d258463e072', 18, 'WETC', 'Wrapped ETC'),
   [ChainId.ETH]: new Token(ChainId.ETH, '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 18, 'WETH', 'Wrapped ETH'),

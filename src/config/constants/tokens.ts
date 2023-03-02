@@ -52,17 +52,16 @@ export const WCLO: { [chainId in ChainId]: Token } = {
     'ccCLO',
     'Wrapped Callisto Coin',
   ),
-  // todoeth
   [ChainId.ETH]: new Token(
     ChainId.ETH,
-    '0x0000000000000000000000000000000000000002',
+    '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53',
     18,
     'WCLO',
     'Wrapped Callisto Coin',
   ),
   [ChainId.BSC]: new Token(
     ChainId.BSC,
-    '0x0000000000000000000000000000000000000002',
+    '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
     18,
     'WCLO',
     'Wrapped Callisto Coin',
@@ -86,9 +85,8 @@ export const BUSDT: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.ETC]: new Token(ChainId.ETC, '0xCC48CD0B4a6f50b8f8bf0f9b80eD7881fA547968', 18, 'BUSDT', 'Tether USD'),
   [ChainId.BTT]: new Token(ChainId.BTT, '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF', 18, 'BUSDT', 'Tether USD'),
-  // todoeth
-  [ChainId.ETH]: new Token(ChainId.ETC, '0x0000000000000000000000000000000000000003', 18, 'BUSDT', 'Tether USD'),
-  [ChainId.BSC]: new Token(ChainId.BTT, '0x0000000000000000000000000000000000000003', 18, 'BUSDT', 'Tether USD'),
+  [ChainId.ETH]: new Token(ChainId.ETC, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 18, 'USDT', 'Tether USD'),
+  [ChainId.BSC]: new Token(ChainId.BTT, '0x55d398326f99059fF775485246999027B3197955', 18, 'USDT', 'Tether USD'),
 }
 export const WBTT = new Token(ChainId.BTT, '0x33e85f0e26600a6644b6c910639B0bc7a99fd34e', 18, 'WBTT', 'Wrapped BTT')
 // export const CCCLO = new Token(ChainId.BTT, '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53', 18, 'ccCLO', 'Wrapped Callisto Coin')
@@ -146,8 +144,8 @@ const tokens = {
       [ChainId.Testnet]: '',
       [ChainId.BTT]: '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53',
       [ChainId.ETC]: '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53',
-      [ChainId.ETH]: '0x0000000000000000000000000000000000000002', // todoeth
-      [ChainId.BSC]: '0x0000000000000000000000000000000000000002',
+      [ChainId.ETH]: '0xCcbf1C9E8b4f2cDF3Bfba1098b8f56f97d219D53',
+      [ChainId.BSC]: '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a',
     },
     decimals: 18,
     projectLink: 'https://callisto.network/',
@@ -159,8 +157,8 @@ const tokens = {
       [ChainId.Testnet]: '0xAB99622d19298EC2BEAB50EFF91A9b6F46Af747C',
       [ChainId.BTT]: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
       [ChainId.ETC]: '0xCC48CD0B4a6f50b8f8bf0f9b80eD7881fA547968',
-      [ChainId.ETH]: '0x0000000000000000000000000000000000000003', // todoeth
-      [ChainId.BSC]: '0x0000000000000000000000000000000000000003',
+      [ChainId.ETH]: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+      [ChainId.BSC]: '0x55d398326f99059fF775485246999027B3197955',
     },
     decimals: 18,
     projectLink: 'https://bullsinvesting.club/',
@@ -172,8 +170,8 @@ const tokens = {
       [ChainId.Testnet]: '0xAB99622d19298EC2BEAB50EFF91A9b6F46Af747C',
       [ChainId.BTT]: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
       [ChainId.ETC]: '0xCC48CD0B4a6f50b8f8bf0f9b80eD7881fA547968',
-      [ChainId.ETH]: '0x0000000000000000000000000000000000000003', // todoeth
-      [ChainId.BSC]: '0x0000000000000000000000000000000000000003',
+      [ChainId.ETH]: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+      [ChainId.BSC]: '0x55d398326f99059fF775485246999027B3197955',
     },
     decimals: 18,
     projectLink: 'https://bullsinvesting.club/',
@@ -207,6 +205,8 @@ const tokens = {
       [ChainId.Testnet]: '',
       [ChainId.BTT]: '0x185a4091027E2dB459a2433F85f894dC3013aeB5',
       [ChainId.ETC]: '0xcC653d74E087D35577049AB23e2141D619D95AEe',
+      [ChainId.ETH]: '',
+      [ChainId.BSC]: '0x0000000000000000000000000000000000000007',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF/transactions',
@@ -249,6 +249,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xCC2D45F7fE1b8864a13F5D552345eB3f5a005FEd',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCC2D45F7fE1b8864a13F5D552345eB3f5a005FEd/transactions',
@@ -258,6 +259,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xCC099e75152ACCda96d54FAbaf6e333ca44AD86e',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0x4B0F1812e5Df2A09796481Ff14017e6005508003',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCC099e75152ACCda96d54FAbaf6e333ca44AD86e/transactions',
@@ -267,6 +269,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xccEbb9f0EE6D720DebccEE42f52915037f774A70',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0xA58950F05FeA2277d2608748412bf9F802eA4901',
     },
     decimals: 18,
     projectLink: 'https://wsg.gg/',
@@ -276,6 +279,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xCc1530716A7eBecFdc7572eDCbF01766f042155c',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0xF21768cCBC73Ea5B6fd3C687208a7c2def2d966e',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCc1530716A7eBecFdc7572eDCbF01766f042155c/transactions',
@@ -285,6 +289,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xCCeC9F26F52E8e0D1d88365004f4F475f5274279',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCCeC9F26F52E8e0D1d88365004f4F475f5274279/transactions',
@@ -294,6 +299,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xccA4F2ED7Fc093461c13f7F5d79870625329549A',
       [ChainId.Testnet]: '',
+      [ChainId.ETH]: '0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xccA4F2ED7Fc093461c13f7F5d79870625329549A/transactions',
@@ -303,6 +309,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0x12BB890508c125661E03b09EC06E404bc9289040',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b/transactions',
@@ -312,6 +319,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xCC10A4050917f771210407DF7A4C048e8934332c',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0x762539b45A1dCcE3D36d080F74d1AED37844b878',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCC10A4050917f771210407DF7A4C048e8934332c/transactions',
@@ -321,6 +329,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xCC50D400042177B9DAb6bd31ede73aE8e1ED6F08',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0x76A797A59Ba2C17726896976B7B3747BfD1d220f',
     },
     decimals: 9,
     projectLink: 'https://explorer.callisto.network/address/0xCC50D400042177B9DAb6bd31ede73aE8e1ED6F08/transactions',
@@ -330,6 +339,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xcc45afedd2065EDcA770801055d1E376473a871B',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0x7859B01BbF675d67Da8cD128a50D155cd881B576',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xcc45afedd2065EDcA770801055d1E376473a871B/transactions',
@@ -339,6 +349,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xcc50aB63766660C6C1157B8d6A5D51ceA82Dff34',
       [ChainId.Testnet]: '',
+      [ChainId.ETH]: '0x4E15361FD6b4BB609Fa63C81A2be19d873717870',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xcc50aB63766660C6C1157B8d6A5D51ceA82Dff34/transactions',
@@ -357,6 +368,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xcCCaC2f22752bbe77D4DAb4e9421F2AC6c988427',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0xD48474E7444727bF500a32D5AbE01943f3A59A64',
     },
     decimals: 8,
     projectLink: 'https://explorer.callisto.network/address/0xcCCaC2f22752bbe77D4DAb4e9421F2AC6c988427/transactions',
@@ -366,6 +378,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xCCd792f5D06b73685a1b54A32fE786346cAd1894',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0xCA1aCAB14e85F30996aC83c64fF93Ded7586977C',
     },
     decimals: 8,
     projectLink: 'https://explorer.callisto.network/address/0xCCd792f5D06b73685a1b54A32fE786346cAd1894/transactions',
@@ -375,6 +388,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xCC9aFcE1e164fC2b381A3a104909e2D9E52cfB5D',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0x1D229B958D5DDFca92146585a8711aECbE56F095',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCC9aFcE1e164fC2b381A3a104909e2D9E52cfB5D/transactions',
@@ -384,6 +398,7 @@ const tokens = {
     address: {
       [ChainId.Mainnet]: '0xcC6e7E97A46B6F0eD3bC81518Fc816da78F7cb65',
       [ChainId.Testnet]: '',
+      [ChainId.BSC]: '0x00e1656e45f18ec6747F5a8496Fd39B50b38396D',
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xcC6e7E97A46B6F0eD3bC81518Fc816da78F7cb65/transactions',

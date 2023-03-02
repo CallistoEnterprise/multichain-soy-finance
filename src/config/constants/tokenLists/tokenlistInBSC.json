@@ -11,14 +11,6 @@
   "keywords": ["soyfinance", "BSC"],
   "tokens": [
     {
-      "name": "Wrapped CLO",
-      "symbol": "ccCLO",
-      "address": "0x0000000000000000000000000000000000000002",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "images/coins/56/0x0000000000000000000000000000000000000002.png"
-    },
-    {
       "name": "Wrapped SOY",
       "symbol": "SOY",
       "address": "0x0000000000000000000000000000000000000001",
@@ -27,20 +19,140 @@
       "logoURI": "images/coins/56/0x0000000000000000000000000000000000000001.png"
     },
     {
-      "name": "Tether",
-      "symbol": "BUSDT",
-      "address": "0x0000000000000000000000000000000000000003",
+      "name": "Binance coin",
+      "symbol": "BNB",
+      "address": "0x0000000000000000000000000000000000000007",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "images/coins/56/0x0000000000000000000000000000000000000003.png"
+      "logoURI": "images/coins/56/0x0000000000000000000000000000000000000007.png"
     },
     {
-      "name": "Wrapped ETH",
-      "symbol": "ETH",
-      "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "name": "Wrapped BNB",
+      "symbol": "BNB",
+      "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "images/coins/56/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c.png"
+      "logoURI": "images/coins/56/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c.png"
+    },
+    {
+      "name": "Wrapped CLO",
+      "symbol": "WCLO",
+      "address": "0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a.png"
+    },
+    {
+      "name": "Tether",
+      "symbol": "USDT",
+      "address": "0x55d398326f99059fF775485246999027B3197955",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0x55d398326f99059fF775485246999027B3197955.png"
+    },
+    {
+      "name": "Wrapped CAKE",
+      "symbol": "ccCAKE",
+      "address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
+    },
+    {
+      "name": "Wrapped TWT",
+      "symbol": "ccTWT",
+      "address": "0x4B0F1812e5Df2A09796481Ff14017e6005508003",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0x4B0F1812e5Df2A09796481Ff14017e6005508003.png"
+    },
+    {
+      "name": "Wrapped WSG",
+      "symbol": "ccWSG",
+      "address": "0xA58950F05FeA2277d2608748412bf9F802eA4901",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0xA58950F05FeA2277d2608748412bf9F802eA4901.png"
+    },
+    {
+      "name": "Wrapped REEF",
+      "symbol": "ccREEF",
+      "address": "0xF21768cCBC73Ea5B6fd3C687208a7c2def2d966e",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0xF21768cCBC73Ea5B6fd3C687208a7c2def2d966e.png"
+    },
+    {
+      "name": "Wrapped BAKE",
+      "symbol": "ccBAKE",
+      "address": "0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5.png"
+    },
+    {
+      "name": "Wrapped RACA",
+      "symbol": "ccRACA",
+      "address": "0x12BB890508c125661E03b09EC06E404bc9289040",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0x12BB890508c125661E03b09EC06E404bc9289040.png"
+    },
+    {
+      "name": "Wrapped LINA",
+      "symbol": "ccLINA",
+      "address": "0x762539b45A1dCcE3D36d080F74d1AED37844b878",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0x762539b45A1dCcE3D36d080F74d1AED37844b878.png"
+    },
+    {
+      "name": "Wrapped TON",
+      "symbol": "ccTON",
+      "address": "0x76A797A59Ba2C17726896976B7B3747BfD1d220f",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "images/coins/56/0x76A797A59Ba2C17726896976B7B3747BfD1d220f.png"
+    },
+    {
+      "name": "Wrapped XMS",
+      "symbol": "ccXMS",
+      "address": "0x7859B01BbF675d67Da8cD128a50D155cd881B576",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0x7859B01BbF675d67Da8cD128a50D155cd881B576.png"
+    },
+    {
+      "name": "Wrapped BBT",
+      "symbol": "ccBBT",
+      "address": "0xD48474E7444727bF500a32D5AbE01943f3A59A64",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "images/coins/56/0xD48474E7444727bF500a32D5AbE01943f3A59A64.png"
+    },
+    {
+      "name": "Wrapped ANTEX",
+      "symbol": "ccANTEX",
+      "address": "0xCA1aCAB14e85F30996aC83c64fF93Ded7586977C",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "images/coins/56/0xCA1aCAB14e85F30996aC83c64fF93Ded7586977C.png"
+    },
+    {
+      "name": "Wrapped ZOO",
+      "symbol": "ccZOO",
+      "address": "0x1D229B958D5DDFca92146585a8711aECbE56F095",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0x1D229B958D5DDFca92146585a8711aECbE56F095.png"
+    },
+    {
+      "name": "Wrapped BCOIN",
+      "symbol": "ccBCOIN",
+      "address": "0x00e1656e45f18ec6747F5a8496Fd39B50b38396D",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "images/coins/56/0x00e1656e45f18ec6747F5a8496Fd39B50b38396D.png"
     }
   ]
 }
