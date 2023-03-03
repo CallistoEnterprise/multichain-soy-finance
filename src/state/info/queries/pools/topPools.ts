@@ -3,6 +3,8 @@ import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
 import { TOKEN_BLACKLIST } from 'config/constants/info'
 import { getDeltaTimestamps } from 'views/Info/utils/infoQueryHelpers'
+import { getLocalStorageChainIdForSubgraphs } from 'utils/getLocalStorageChainId'
+import { ChainId } from '@callisto-enterprise/chain-constants'
 
 interface TopPoolsResponse {
   pairDayDatas: {
@@ -41,17 +43,19 @@ const fetchTopPools = async (timestamp24hAgo: number): Promise<string[]> => {
  */
 const useTopPoolAddresses = (): string[] => {
   const [topPoolAddresses, setTopPoolAddresses] = useState([])
-  const [timestamp24hAgo] = getDeltaTimestamps()
+  const [timestamp24hAgo, timestamp14dAgo] = getDeltaTimestamps()
 
   useEffect(() => {
     const fetch = async () => {
-      const addresses = await fetchTopPools(timestamp24hAgo)
+      const addresses = await fetchTopPools(
+        getLocalStorageChainIdForSubgraphs() === ChainId.Testnet ? timestamp14dAgo : timestamp24hAgo,
+      )
       setTopPoolAddresses(addresses)
     }
     if (topPoolAddresses.length === 0) {
       fetch()
     }
-  }, [topPoolAddresses, timestamp24hAgo])
+  }, [topPoolAddresses, timestamp24hAgo, timestamp14dAgo])
 
   return topPoolAddresses
 }

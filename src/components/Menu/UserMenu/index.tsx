@@ -74,6 +74,8 @@ const UserMenu = () => {
 
   const handleSwitchNetwork = async (curNet) => {
     await switchNetwork(library, curNet)
+    window.localStorage.setItem(LOCAL_STORAGE_CHAIN_ID_KEY, curNet.chainId)
+    window.location.reload()
   }
 
   if (!account) {

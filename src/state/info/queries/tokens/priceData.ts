@@ -7,8 +7,9 @@ import { INFO_CLIENT } from 'config/constants/endpoints'
 import { coinPrice, derivedCOIN } from 'config/constants/info'
 
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { getLocalStorageChainIdForSubgraphs } from 'utils/getLocalStorageChainId'
 
-const chainId = 820 //getLocalStorageChainId()
+const chainId = getLocalStorageChainIdForSubgraphs()
 
 const getPriceSubqueries = (tokenAddress: string, blocks: any) =>
   blocks.map(
@@ -85,7 +86,7 @@ const fetchTokenPriceData = async (
       // if its CLO price e.g. `b123` split('t')[1] will be undefined and skip CLO price entry
 
       if (timestamp) {
-        if (chainId === ChainId.Mainnet) {
+        if (chainId === ChainId.Mainnet || chainId === ChainId.Testnet) {
           tokenPrices.push({
             timestamp,
             derivedCOIN: prices[priceKey]?.derivedCLO ? parseFloat(prices[priceKey].derivedCLO) : 0,
@@ -109,7 +110,7 @@ const fetchTokenPriceData = async (
         const tokenPriceIndex = tokenPrices.findIndex((tokenPrice) => tokenPrice.timestamp === timestamp)
         if (tokenPriceIndex >= 0) {
           const { derivedCOIN } = tokenPrices[tokenPriceIndex]
-          if (chainId === ChainId.Mainnet) {
+          if (chainId === ChainId.Mainnet || chainId === ChainId.Testnet) {
             tokenPrices[tokenPriceIndex].priceUSD = parseFloat(prices[priceKey]?.cloPrice ?? 0) * derivedCOIN
           } else if (chainId === ChainId.ETC) {
             tokenPrices[tokenPriceIndex].priceUSD = parseFloat(prices[priceKey]?.etcPrice ?? 0) * derivedCOIN
