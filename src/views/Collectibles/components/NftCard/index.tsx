@@ -87,6 +87,11 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
     if (receipt) {
       toastSuccess(t('Successfully puchased!'))
     }
+
+    if (intAmount < nft.minPrice) {
+      toastWarning('Please enter a value equal or greater than the minimum value.')
+      return
+    }
     setIsConfirming(false)
     setInputAmount('')
   }
