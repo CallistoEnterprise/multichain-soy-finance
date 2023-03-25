@@ -24,7 +24,7 @@ const BTT_CONSTANTS: ChainConstants = {
   },
   tokenLists: DEFAULT_TOKEN_LIST,
   farms: farms,
-  rewardTokensPerYear: new BigNumber(50000000 * 0.1),
+  rewardTokensPerYear: new BigNumber(40000000 * 0),
 }
 
 export default BTT_CONSTANTS

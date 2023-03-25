@@ -24,7 +24,7 @@ const TESTNET_CONSTANTS: ChainConstants = {
   },
   tokenLists: DEFAULT_TOKEN_LIST,
   farms: farms,
-  rewardTokensPerYear: new BigNumber(50000000 * 0.8),
+  rewardTokensPerYear: new BigNumber(40000000 * 1),
 }
 
 export default TESTNET_CONSTANTS
