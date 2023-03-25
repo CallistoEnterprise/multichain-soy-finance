@@ -142,8 +142,13 @@ const Farms: React.FC = () => {
     setStakedOnly(!isActive)
   }, [isActive])
 
-  const activeFarms = farmsLP[chainId].filter((farm) => farm.multiplier !== '0X')
-  const inactiveFarms = farmsLP[chainId].filter((farm) => farm.multiplier === '0X')
+  // hide farms with zero multiplier
+  //  const activeFarms = farmsLP[chainId].filter((farm) => farm.multiplier !== '0X')
+  //  const inactiveFarms = farmsLP[chainId].filter((farm) => farm.multiplier === '0X')
+
+  // Don't hide farms with zero multiplier
+  const activeFarms = farmsLP[chainId].filter((farm) => farm.multiplier !== '0Xx')
+  const inactiveFarms = farmsLP[chainId].filter((farm) => farm.multiplier === '0Xx')
 
   const stakedActiveFarms = activeFarms.filter(
     (farm) => farm?.userData && new BigNumber(farm?.userData.stakedBalance).isGreaterThan(0),
@@ -168,13 +173,13 @@ const Farms: React.FC = () => {
 
         const { cakeRewardsApr, lpRewardsApr } = isActive
           ? getFarmApr(
-              new BigNumber(farm.poolWeight),
-              cakePrice,
-              totalLiquidity,
-              farm?.lpAddresses[chainId],
-              chainId,
-              farmSwapAPR,
-            )
+            new BigNumber(farm.poolWeight),
+            cakePrice,
+            totalLiquidity,
+            farm?.lpAddresses[chainId],
+            chainId,
+            farmSwapAPR,
+          )
           : { cakeRewardsApr: 0, lpRewardsApr: farmSwapAPR }
 
         return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
