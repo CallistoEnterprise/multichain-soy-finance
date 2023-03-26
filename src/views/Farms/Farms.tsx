@@ -142,13 +142,8 @@ const Farms: React.FC = () => {
     setStakedOnly(!isActive)
   }, [isActive])
 
-  // hide farms with zero multiplier
-  //  const activeFarms = farmsLP[chainId].filter((farm) => farm.multiplier !== '0X')
-  //  const inactiveFarms = farmsLP[chainId].filter((farm) => farm.multiplier === '0X')
-
-  // Don't hide farms with zero multiplier
-  const activeFarms = farmsLP[chainId].filter((farm) => farm.multiplier !== '0Xx')
-  const inactiveFarms = farmsLP[chainId].filter((farm) => farm.multiplier === '0Xx')
+  const activeFarms = farmsLP[chainId].filter((farm) => farm.multiplier !== '0X')
+  const inactiveFarms = farmsLP[chainId].filter((farm) => farm.multiplier === '0X')
 
   const stakedActiveFarms = activeFarms.filter(
     (farm) => farm?.userData && new BigNumber(farm?.userData.stakedBalance).isGreaterThan(0),
