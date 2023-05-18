@@ -8,7 +8,10 @@
   },
   "tags": {},
   "logoURI": "images/clo.png",
-  "keywords": ["soyfinance", "default"],
+  "keywords": [
+    "soyfinance",
+    "default"
+  ],
   "tokens": [
     {
       "name": "Callisto Enterprise",
@@ -193,6 +196,14 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "images/coins/820/0x9f9b6DD3DEDB4D2e6C679bCb8782f546400e9A53.png"
+    },
+    {
+      "name": "Wrapped Dogecoin Token",
+      "symbol": "ccDOGE",
+      "address": "0xcc68a5a0fe33fe74a24955717989ea094e6c2b9f",
+      "chainId": 820,
+      "decimals": 8,
+      "logoURI": "images/coins/820/0xcc68a5a0fe33fe74a24955717989ea094e6c2b9f.png"
     }
   ]
 }
