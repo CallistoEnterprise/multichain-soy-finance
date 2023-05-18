@@ -398,6 +398,20 @@ const farms: FarmConfig[] = [
     token: tokens.vvt,
     quoteToken: tokens.soy,
   },
+  {
+    pid: 40,
+    lpSymbol: 'SOY-DOGE LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x93AA120b5195337D71C1AF424B616c8ED5510305',
+    },
+    localFarmAddresses: {
+      820: '0xa20E39a3587cA7c3d790925c3875765669B323A1',
+      20729: '',
+    },
+    token: tokens.doge,
+    quoteToken: tokens.soy,
+  },
 ]
 
 export default farms
