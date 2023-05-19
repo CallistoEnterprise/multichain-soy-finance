@@ -411,7 +411,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.doge,
     quoteToken: tokens.soy,
-  },
+  }
 ]
 
 export default farms
