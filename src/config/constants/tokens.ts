@@ -365,6 +365,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0x9f9b6DD3DEDB4D2e6C679bCb8782f546400e9A53/transactions',
   },
+  doge: {
+    symbol: 'DOGE',
+    address: {
+      [ChainId.Mainnet]: '0xcc68A5a0fe33fE74A24955717989EA094E6c2b9F',
+      [ChainId.Testnet]: '',
+    },
+    decimals: 8,
+    projectLink: 'https://explorer.callisto.network/address/0xcc68A5a0fe33fE74A24955717989EA094E6c2b9F/transactions',
+  },
   tmt: {
     symbol: 'TMT',
     address: {

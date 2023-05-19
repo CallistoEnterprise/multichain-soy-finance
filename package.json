@@ -25,7 +25,7 @@
     ]
   },
   "dependencies": {
-    "@callisto-enterprise/assetslist": "^1.9.1",
+    "@callisto-enterprise/assetslist": "^1.9.3",
     "@callisto-enterprise/chain-constants": "^1.0.6",
     "@popperjs/core": "^2.9.2",
     "@reduxjs/toolkit": "^1.6.1",
