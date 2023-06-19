@@ -204,12 +204,12 @@ const HowToPlay: React.FC = () => {
     {
       label: t('Step %number%', { number: 1 }),
       title: t('Buy Tickets'),
-      subtitle: t('Price of a ticket is 250 SOY. There is a bulk purchase discount of up to 5% !'),
+      subtitle: t('Price of a ticket is 10 SOY. There is a bulk purchase discount of up to 5% !'),
     },
     {
       label: t('Step %number%', { number: 2 }),
       title: t('Wait for the Draw'),
-      subtitle: t('There is one draw daily at 9:00 UTC.'),
+      subtitle: t('There is one draw weekly at 9:00 UTC.'),
     },
     {
       label: t('Step %number%', { number: 3 }),
