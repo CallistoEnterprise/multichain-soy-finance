@@ -17,7 +17,7 @@ const ETC_CONSTANTS: ChainConstants = {
     nativeAddress: '0x0000000000000000000000000000000000000005',
     wrappedNativeAddress: '0x35e9A89e43e45904684325970B2E2d258463e072',
   },
-  rpcs: ['https://etc.etcdesktop.com', 'https://geth-at.etc-network.info', 'https://01.callisto.network/etcnode2'],
+  rpcs: ['https://etc.etcdesktop.com'], // ,'https://geth-at.etc-network.info', 'https://01.callisto.network/etcnode2'
   explorer: {
     name: 'ETCScan',
     url: 'https://blockscout.com/etc/mainnet/',
