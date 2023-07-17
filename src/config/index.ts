@@ -15,10 +15,12 @@ export const AUCTION_BIDDERS_TO_FETCH = 500
 export const RECLAIM_AUCTIONS_TO_FETCH = 500
 export const AUCTION_WHITELISTED_BIDDERS_TO_FETCH = 500
 export const ONE_YEAR_TIMESTAMP = 365 * 24 * 60 * 60
-export const localStorageChainIdKey = 'soyfinanceChainId'
+export const LOCAL_STORAGE_CHAIN_ID_KEY = 'localStorageChainIdKey'
 export const DEFAULT_CHAIN_ID = process.env.REACT_APP_DEFAULT_CHAIN_ID
   ? Number(process.env.REACT_APP_DEFAULT_CHAIN_ID)
   : ChainId.Mainnet
 export const SUPPORTED_CHAINS = (process.env.REACT_APP_SUPPORTED_CHAINS as string)
   .split(',')
   .map((chainId) => Number(chainId)) as ChainId[]
+
+export const SUBGRAPH_SUPPORTED_CHAIN_IDS = [ChainId.Mainnet, ChainId.Testnet]

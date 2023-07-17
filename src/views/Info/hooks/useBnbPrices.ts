@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react'
 import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { getLocalStorageChainIdForSubgraphs } from 'utils/getLocalStorageChainId'
 
-const chainId = 820 // parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
+const chainId = getLocalStorageChainIdForSubgraphs()
 
 export interface BnbPrices {
   current: number
@@ -150,7 +151,7 @@ export const useBnbPrices = (): BnbPrices | undefined => {
     const fetch = async () => {
       const [block24, block48, blockWeek] = blocks
       let fetchPrices
-      if (chainId === ChainId.Mainnet) {
+      if (chainId === ChainId.Mainnet || chainId === ChainId.Testnet) {
         fetchPrices = fetchCloPrices
       } else if (chainId === ChainId.ETC) {
         fetchPrices = fetchEtcPrices

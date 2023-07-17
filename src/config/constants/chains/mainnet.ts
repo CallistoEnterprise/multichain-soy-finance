@@ -23,8 +23,8 @@ const MAINNET_CONSTANTS: ChainConstants = {
     url: 'https://explorer.callisto.network',
   },
   subgraph: {
-    infoClient: 'https://03.callisto.network/subgraphs/name/soyswap',
-    blocksClient: 'https://03.callisto.network/subgraphs/name/blocks',
+    infoClient: 'https://graphql.callisto.network/mainnet/subgraphs/name/SoyFinance/exchange',
+    blocksClient: 'https://graphql.callisto.network/mainnet/subgraphs/name/SoyFinance/blocks',
     startTimestamp: 1634494539, // October-17-2021 09:15:02 PM +2 UTC
     vars: {
       trackedReserveCOIN: 'trackedReserveCLO',

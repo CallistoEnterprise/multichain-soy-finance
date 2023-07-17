@@ -1,7 +1,8 @@
-import { BASE_URL, localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
+import { BASE_URL } from 'config'
+import getLocalStorageChainId from './getLocalStorageChainId'
 
 const getTokenLogoURL = (address: string) => {
-  const chId = Number(window.window.localStorage.getItem(localStorageChainIdKey) ?? DEFAULT_CHAIN_ID)
+  const chId = getLocalStorageChainId()
   return `${BASE_URL}/images/coins/${chId}/${address}.png`
 }
 

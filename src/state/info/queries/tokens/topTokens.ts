@@ -3,6 +3,8 @@ import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
 import { TOKEN_BLACKLIST } from 'config/constants/info'
 import { getDeltaTimestamps } from 'views/Info/utils/infoQueryHelpers'
+import { getLocalStorageChainIdForSubgraphs } from 'utils/getLocalStorageChainId'
+import { ChainId } from '@callisto-enterprise/chain-constants'
 
 interface TopTokensResponse {
   tokenDayDatas: {
@@ -43,17 +45,19 @@ const fetchTopTokens = async (timestamp24hAgo: number): Promise<string[]> => {
  */
 const useTopTokenAddresses = (): string[] => {
   const [topTokenAddresses, setTopTokenAddresses] = useState([])
-  const [timestamp24hAgo] = getDeltaTimestamps()
+  const [timestamp24hAgo, timestamp14dAgo] = getDeltaTimestamps()
 
   useEffect(() => {
     const fetch = async () => {
-      const addresses = await fetchTopTokens(timestamp24hAgo)
+      const addresses = await fetchTopTokens(
+        getLocalStorageChainIdForSubgraphs() === ChainId.Testnet ? timestamp14dAgo : timestamp24hAgo,
+      )
       setTopTokenAddresses(addresses)
     }
     if (topTokenAddresses.length === 0) {
       fetch()
     }
-  }, [topTokenAddresses, timestamp24hAgo])
+  }, [topTokenAddresses, timestamp24hAgo, timestamp14dAgo])
 
   return topTokenAddresses
 }

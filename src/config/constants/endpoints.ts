@@ -1,3 +1,4 @@
+import { getLocalStorageChainIdForSubgraphs } from 'utils/getLocalStorageChainId'
 import { CHAINS_CONSTANTS } from './chains'
 
 /*
@@ -17,7 +18,7 @@ export const GRAPH_API_LOTTERY = {
   20729: 'https://graphql.callisto.network/testnet/subgraphs/name/SoyFinance/lottery',
 } //process.env.REACT_APP_GRAPH_API_LOTTERY
 
-const chainId = 820 //parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
+const chainId = getLocalStorageChainIdForSubgraphs()
 
 export const INFO_CLIENT = CHAINS_CONSTANTS[chainId].subgraph.infoClient
 export const BLOCKS_CLIENT = CHAINS_CONSTANTS[chainId].subgraph.blocksClient

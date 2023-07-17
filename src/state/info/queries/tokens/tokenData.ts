@@ -10,8 +10,9 @@ import { useBnbPrices } from 'views/Info/hooks/useBnbPrices'
 import { derivedCOIN } from 'config/constants/info'
 
 import { SoyChainId as ChainId } from '@callisto-enterprise/chain-constants'
+import { getLocalStorageChainIdForSubgraphs } from 'utils/getLocalStorageChainId'
 
-const chainId = parseInt('820' ?? '820') //parseInt(window.localStorage.getItem('soyfinanceChainId') ?? '820')
+const chainId = getLocalStorageChainIdForSubgraphs()
 
 interface CloTokenFields {
   id: string
@@ -105,7 +106,7 @@ const fetchTokenData = async (
         twoWeeksAgo: ${TOKEN_AT_BLOCK(block14d, tokenAddresses)}
       }
     `
-    if (chainId === ChainId.Mainnet) {
+    if (chainId === ChainId.Mainnet || chainId === ChainId.Testnet) {
       const data = await request<CloTokenQueryResponse>(INFO_CLIENT, query)
       return { data, error: false }
     } else if (chainId === ChainId.ETC) {
@@ -120,7 +121,7 @@ const fetchTokenData = async (
 
 let parseTokenData
 // Transforms tokens into "0xADDRESS: { ...TokenFields }" format and cast strings to numbers
-if (chainId === ChainId.Mainnet) {
+if (chainId === ChainId.Mainnet || chainId === ChainId.Testnet) {
   parseTokenData = (tokens?: CloTokenFields[]) => {
     if (!tokens) {
       return {}
@@ -224,7 +225,7 @@ const useFetchedTokenDatas = (tokenAddresses: string[]): TokenDatas => {
             priceUSD = current ? current.derivedETC * cloPrices.current : 0
             priceUSDOneDay = oneDay ? oneDay.derivedETC * cloPrices.oneDay : 0
             priceUSDWeek = week ? week.derivedETC * cloPrices.week : 0
-          } else if (chainId === ChainId.Mainnet) {
+          } else if (chainId === ChainId.Mainnet || chainId === ChainId.Testnet) {
             priceUSD = current ? current.derivedCLO * cloPrices.current : 0
             priceUSDOneDay = oneDay ? oneDay.derivedCLO * cloPrices.oneDay : 0
             priceUSDWeek = week ? week.derivedCLO * cloPrices.week : 0

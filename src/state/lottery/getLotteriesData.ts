@@ -2,7 +2,7 @@ import { request, gql } from 'graphql-request'
 import { GRAPH_API_LOTTERY } from 'config/constants/endpoints'
 import { LotteryRoundGraphEntity, LotteryResponse } from 'state/types'
 import { getRoundIdsArray, fetchMultipleLotteries } from './helpers'
-import { localStorageChainIdKey, DEFAULT_CHAIN_ID } from 'config'
+import getLocalStorageChainId from 'utils/getLocalStorageChainId'
 
 const applyNodeDataToLotteriesGraphResponse = (
   nodeData: LotteryResponse[],
@@ -52,7 +52,7 @@ const applyNodeDataToLotteriesGraphResponse = (
 }
 
 const getGraphLotteries = async (): Promise<LotteryRoundGraphEntity[]> => {
-  const chainId = Number(window.localStorage.getItem(localStorageChainIdKey)) ?? DEFAULT_CHAIN_ID
+  const chainId = getLocalStorageChainId()
 
   try {
     const response = await request(
