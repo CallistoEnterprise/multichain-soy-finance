@@ -107,8 +107,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
 
   const renderStakeAction = () => {
-    //return isStaked ? (
-    return false ? (
+    return isStaked ? (
       <Flex justifyContent="justify-center" alignItems="center">
         <Flex flexDirection="column" width="100%">
           {reachStakingLimit ? (

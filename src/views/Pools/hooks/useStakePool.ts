@@ -31,6 +31,7 @@ const sousStakeBnb = async (sousChefContract, amount) => {
 }
 
 const useStakePool = (sousId: number, isUsingBnb = false) => {
+  return; // stop staking
   const dispatch = useAppDispatch()
   const { account } = useActiveWeb3React()
   const masterChefContract = useMasterchef()
