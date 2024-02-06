@@ -68,7 +68,7 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     tokenPerBlock: '5',
     isFinished: {
-      [ChainId.Mainnet]: true,
+      [ChainId.Mainnet]: false,
       [ChainId.Testnet]: true,
     },
     lockPeriod: {
@@ -94,7 +94,7 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     tokenPerBlock: '5',
     isFinished: {
-      [ChainId.Mainnet]: true,
+      [ChainId.Mainnet]: false,
       [ChainId.Testnet]: true,
     },
     lockPeriod: {
@@ -120,7 +120,7 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     tokenPerBlock: '5',
     isFinished: {
-      [ChainId.Mainnet]: true,
+      [ChainId.Mainnet]: false,
       [ChainId.Testnet]: true,
     },
     lockPeriod: {
