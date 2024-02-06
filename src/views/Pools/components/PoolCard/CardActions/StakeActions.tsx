@@ -107,7 +107,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
 
   const renderStakeAction = () => {
-    return isStaked ? (
+    return isStaked ? ( // stop staking set true in line 119 and 155
       <Flex justifyContent="justify-center" alignItems="center">
         <Flex flexDirection="column" width="100%">
           {reachStakingLimit ? (
@@ -116,7 +116,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
             </span>
           ) : (
             <Button
-              disabled={isFinished[chainId] || !isNew || endTime > 0}
+              disabled={isFinished[chainId] || !isNew || endTime > 0 || true}
               onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
             >
               {t(stakedTokenBalance > 0 ? 'Add SOY' : 'Stake Now')}
@@ -152,7 +152,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
       </Flex>
     ) : (
       <Button
-        disabled={isFinished[chainId] || !isNew}
+        disabled={isFinished[chainId] || !isNew || true}
         onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
       >
         {t('Stake')}
